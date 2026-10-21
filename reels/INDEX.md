@@ -858,3 +858,68 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **length:** 9s  |  **music:** pop
 - **suggested caption:** 'not urgent.' it's 6:03 am. tag the aunty who sends good morning
 - **what happens:** Lock screen at 6:03am: good-morning flowers, a 'doctors in germany' fridge forward, 'who is this', a 'woman looking for her family' chain, two missed calls and 'not urgent'.
+
+## 172_g_mom 
+- **length:** 10s  |  **music:** pop
+- **suggested caption:** 'wrap my plate while i'm still eating.' send this to your mom's biggest fan
+- **what happens:** Search suggestions for 'why does my mom': 400 bags in a drawer, 'call me' without a reason, wrapping your plate mid-meal, silent cut fruit.
+
+## 173_g_dad 
+- **length:** 10s  |  **music:** synth
+- **suggested caption:** 'give me oranges at the airport.' tag your dad
+- **what happens:** Search suggestions for 'why does my dad': $3 parking circles, oranges at the airport, never saying i love you, asleep with the tv on.
+
+## 174_g_aunties 
+- **length:** 10s  |  **music:** funk
+- **suggested caption:** 'know everything.' tag the aunty
+- **what happens:** Search suggestions for 'why do desi aunties': know everything, bring 11 kilos of food 'for nothing', ask if you're married at a funeral.
+
+## 175_g_arab 
+- **length:** 11s  |  **music:** jazz
+- **suggested caption:** 'say it's nothing and bring 14 dishes.' tag your arab friend
+- **what happens:** Search suggestions for 'why do arab families': 5 minutes means 2 hours, fighting over the bill, 'it's nothing' with 14 dishes.
+
+## 176_g_leave 
+- **length:** 17s  |  **music:** bounce
+- **suggested caption:** 'is it legal.' tag who you can never leave a party with
+- **what happens:** Three searches: how to leave a desi, Italian and Mexican house, each with escalating impossible suggestions.
+
+## 177_g_parents_normal 
+- **length:** 11s  |  **music:** lofi
+- **suggested caption:** 'keep the plastic on the couch.' yes. tag your parents
+- **what happens:** Search suggestions for 'is it normal that my parents': 400 bags, butter tubs, good dishes never used, plastic on the couch.
+
+## 178_g_inshallah 
+- **length:** 10s  |  **music:** jazz
+- **suggested caption:** 'it depends on my mood.' tag your arab friend
+- **what happens:** Search suggestions for 'what does inshallah mean': no, maybe, yes in 2 hours, it depends on my mood.
+
+## 179_r_dad_fix 
+- **length:** 11s  |  **music:** lofi
+- **suggested caption:** 'it's a feature.' tag your dad
+- **what happens:** A reminders list of Dad's repairs: the faucet is on the list for 2019, 2021 and 2023; he buys a ladder and watches videos but never calls a plumber; 'it drips. it's a feature.'
+
+## 180_n_desi_wedding 
+- **length:** 12s  |  **music:** pop
+- **suggested caption:** '(left at 1:40 am).' tag your wedding plus one
+- **what happens:** A notes checklist for a desi wedding ending with 'leave at 5 pm' and '(left at 1:40 am)'.
+
+## 181_n_mom_grocery 
+- **length:** 13s  |  **music:** lofi
+- **suggested caption:** 'the thing we always get.' tag your mom
+- **what happens:** A grocery list: milk twice, 'the thing we always get', a 20-pound rice bag when you have two, total $214 'a good price'.
+
+## 182_n_contacts 
+- **length:** 13s  |  **music:** funk
+- **suggested caption:** 'aunty (do not pick up).' tag your contacts list
+- **what happens:** A desi contact list: Mom twice, Dad not at work, Aunty in Dubai and Edison and one you must not pick up, an uncle who knows a guy, and two doctor cousins.
+
+## 183_n_grandma_rules 
+- **length:** 11s  |  **music:** lofi
+- **suggested caption:** 'you are leaving with a bag.' tag your grandma
+- **what happens:** Rules at grandma's: no 'full', no 'no thank you', take the $20, not eating means you're sick, and you leave with a bag.
+
+## 184_r_before_parents 
+- **length:** 10s  |  **music:** lofi
+- **suggested caption:** 'dad arrives with a mop.' tag who's visiting
+- **what happens:** A reminders checklist before immigrant parents visit: hide the cereal, buy fruit, clean the bathroom they will check, and dad arrives with his own mop.
