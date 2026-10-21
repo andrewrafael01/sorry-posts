@@ -1,140 +1,160 @@
 rank,when_et,score,title,niche,file
-1,2026-10-21 18:00,95.0,mexican families,world,032_mexican_families
-2,2026-10-21 21:00,93.5,mom: call me,phone,008_mom_call
-3,2026-10-22 08:00,93.5,italian families,world,031_italian_families
-4,2026-10-22 11:30,93.5,group chat people,place,086_group_chat_roles
-5,2026-10-22 15:00,92.5,dog people and cat people,hobby,060_dog_cat_people
-6,2026-10-22 18:00,92.0,first-gen kids,immig,112_first_gen_kids
-7,2026-10-22 21:00,92.0,indian families,desi,018_indian_families
-8,2026-10-23 08:00,92.0,chinese families,world,033_chinese_families
-9,2026-10-23 11:30,91.5,bmw guys,vehicle,011_bmw_guys
-10,2026-10-23 15:00,90.5,she said 5 min at 7:02,phone,001_five_min
-11,2026-10-23 18:00,91.5,tesla guys,vehicle,022_tesla_guys
-12,2026-10-23 21:00,90.5,immigrant parents,immig,111_immigrant_parents
-13,2026-10-24 08:00,90.5,oldest siblings,stage,076_oldest_siblings
-14,2026-10-24 11:30,90.5,immigrant moms in the kitchen,immig,113_immigrant_moms
-15,2026-10-24 15:00,90.5,youngest siblings,stage,077_youngest_siblings
-16,2026-10-24 18:00,90.5,immigrant dads,immig,114_immigrant_dads
-17,2026-10-24 21:00,90.5,middle children,stage,078_middle_children
-18,2026-10-25 08:00,89.0,desi aunties,desi,109_desi_aunties
-19,2026-10-25 11:30,89.0,home remedy believers,immig,115_home_remedies
-20,2026-10-25 15:00,89.0,kids of desi parents,desi,110_desi_kids
-21,2026-10-25 18:00,89.0,korean moms,world,020_korean_moms
-22,2026-10-25 21:00,89.0,replying to tuesday's text on friday at 2:47am,phone,007_just_seeing_this
-23,2026-10-26 08:00,88.0,truck guys,vehicle,024_truck_guys
-24,2026-10-26 11:30,88.5,54 minutes to pick dinner,phone,003_group_dinner
-25,2026-10-26 15:00,88.0,Gym guys,older reel,
-26,2026-10-26 18:00,88.0,"every way to type haha, ranked",phone,006_haha_ranked
-27,2026-10-26 21:00,87.5,desi wedding guests,desi,107_desi_weddings
-28,2026-10-27 08:00,87.0,dads at the hardware store,family,014_dads_hardware
-29,2026-10-27 11:30,87.0,"4 minute voice memo, transcribed",phone,002_voice_memo
-30,2026-10-27 15:00,87.0,moms,family,015_moms_in_cars
-31,2026-10-27 18:00,87.0,teachers,job,042_teachers
-32,2026-10-27 21:00,87.0,grandmas,family,016_grandmas
-33,2026-10-28 08:00,86.0,desi uncles,desi,108_desi_uncles
-34,2026-10-28 11:30,86.5,high schoolers,family,013_highschoolers
-35,2026-10-28 15:00,85.0,new yorkers,region,062_new_yorkers
-36,2026-10-28 18:00,85.0,coworkers,place,084_coworkers
-37,2026-10-28 21:00,84.0,when guests come over,immig,116_guest_protocol
-38,2026-10-29 08:00,84.0,nurses,job,041_nurses
-39,2026-10-29 11:30,84.0,every house with a china cabinet,immig,117_china_cabinet
-40,2026-10-29 15:00,84.0,Omw translated,older reel,
-41,2026-10-29 18:00,84.0,big family cousins,immig,118_cousin_network
-42,2026-10-29 21:00,83.5,jeep guys,vehicle,023_jeep_guys
-43,2026-10-30 08:00,83.5,texans,region,061_texans
-44,2026-10-30 11:30,83.5,costco shoppers,place,081_costco_shoppers
-45,2026-10-30 15:00,83.0,We should hang out,older reel,
-46,2026-10-30 18:00,82.5,punjabi families,desi,102_punjabi_families
-47,2026-10-30 21:00,82.5,filipino parties,world,019_filipino_parties
-48,2026-10-31 08:00,82.5,floridians,region,064_floridians
-49,2026-10-31 11:30,82.5,nigerian parties,world,035_nigerian_parties
-50,2026-10-31 15:00,82.5,"a day in the life of priya, pre-med",persona,099_day_premed_priya
-51,2026-10-31 18:00,82.0,waiters,job,046_servers
-52,2026-10-31 21:00,82.0,middle schoolers,stage,072_middle_schoolers
-53,2026-11-01 08:00,82.0,Group chat people (original),older reel,
-54,2026-11-01 11:30,81.5,airport people,place,082_airport_people
-55,2026-11-01 15:00,81.0,gujarati families,desi,103_gujarati_families
-56,2026-11-01 18:00,80.5,59 minutes to leave dani's apartment,phone,004_goodbye
-57,2026-11-01 21:00,80.5,realtors,job,044_realtors
-58,2026-11-02 08:00,80.5,new parents,stage,073_new_parents
-59,2026-11-02 11:30,80.5,retail workers,job,050_retail_workers
-60,2026-11-02 15:00,80.5,people turning 30,stage,079_turning_30
-61,2026-11-02 18:00,80.5,chris wants $4.37,phone,009_venmo
-62,2026-11-02 21:00,80.0,modded civic guys,vehicle,026_civic_guys
-63,2026-11-03 08:00,80.0,software engineers,job,043_software_engineers
-64,2026-11-03 11:30,80.0,soccer parents,vehicle,028_soccer_parents
-65,2026-11-03 15:00,80.0,californians,region,063_californians
-66,2026-11-03 18:00,80.0,Avoided text,older reel,
-67,2026-11-03 21:00,80.0,Brain at 2 AM,older reel,
-68,2026-11-04 08:00,79.5,bengali families,desi,101_bengali_families
-69,2026-11-04 11:30,79.5,jamaican families,other,124_jamaican_families
-70,2026-11-04 15:00,79.5,south indian families,desi,104_south_indian_families
-71,2026-11-04 18:00,79.5,dominican families,other,125_dominican_families
-72,2026-11-04 21:00,79.5,pakistani families,desi,105_pakistani_families
-73,2026-11-05 08:00,79.5,puerto rican families,other,126_puerto_rican_families
-74,2026-11-05 11:30,79.5,persian families,world,034_persian_families
-75,2026-11-05 15:00,79.5,colombian families,other,127_colombian_families
-76,2026-11-05 18:00,79.0,Self checkout,older reel,
-77,2026-11-05 21:00,78.5,only children,stage,075_only_children
-78,2026-11-06 08:00,78.0,Dogs best worst roommates,older reel,
-79,2026-11-06 11:30,77.5,people on international calls,immig,119_international_calls
-80,2026-11-06 15:00,77.0,"a day in the life of marcus, at the dmv",persona,100_day_dmv_marcus
-81,2026-11-06 18:00,77.5,big family road trips,immig,120_big_family_road_trip
-82,2026-11-06 21:00,77.0,runners,hobby,051_runners
-83,2026-11-07 08:00,77.0,"a day in the life of dave, tesla owner",persona,091_day_tesla_dave
-84,2026-11-07 11:30,77.0,Sunday hour by hour,older reel,
-85,2026-11-07 15:00,77.0,"a day in the life of tiffany, influencer",persona,095_day_influencer_tiffany
-86,2026-11-07 18:00,76.5,gamers,hobby,059_gamers
-87,2026-11-07 21:00,76.0,egyptian guys,world,017_egyptian_guys
-88,2026-11-08 08:00,75.5,subaru guys,vehicle,025_subaru_guys
-89,2026-11-08 11:30,76.0,greek families,world,036_greek_families
-90,2026-11-08 15:00,75.5,pickleball people,hobby,056_pickleball_people
-91,2026-11-08 18:00,76.0,lebanese families,world,038_lebanese_families
-92,2026-11-08 21:00,75.5,"a day in the life of brenda, pta mom",persona,092_day_pta_brenda
-93,2026-11-09 08:00,76.0,vietnamese families,world,039_vietnamese_families
-94,2026-11-09 11:30,75.5,"a day in the life of linda, facebook",persona,097_day_facebook_linda
-95,2026-11-09 15:00,75.0,mercedes guys,vehicle,012_mercedes_guys
-96,2026-11-09 18:00,75.0,college freshmen,stage,071_freshmen
-97,2026-11-09 21:00,75.0,audi guys,vehicle,021_audi_guys
-98,2026-11-10 08:00,75.0,wedding guests,place,083_wedding_guests
-99,2026-11-10 11:30,75.0,mustang and charger guys,vehicle,027_muscle_car_guys
-100,2026-11-10 15:00,75.0,neighbors,place,085_neighbors
-101,2026-11-10 18:00,75.0,uber drivers,vehicle,029_uber_drivers
-102,2026-11-10 21:00,74.0,retirees,stage,074_retirees
-103,2026-11-11 08:00,73.5,hiding from kyle in aisle 9,phone,010_grocery_avoid
-104,2026-11-11 11:30,73.5,brazilian guys,world,037_brazilian_guys
-105,2026-11-11 15:00,73.5,yoga people,hobby,055_yoga_people
-106,2026-11-11 18:00,73.5,irish families,world,040_irish_families
-107,2026-11-11 21:00,73.5,southerners,region,070_southerners
-108,2026-11-12 08:00,72.0,baristas,job,045_baristas
-109,2026-11-12 11:30,72.5,bostonians,region,067_bostonians
-110,2026-11-12 15:00,72.0,contractors,job,047_contractors
-111,2026-11-12 18:00,72.0,sticky note war ends with a haunted bowl,phone,005_roommate_notes
-112,2026-11-12 21:00,72.0,doctors,job,049_doctors
-113,2026-11-13 08:00,72.0,midwesterners,region,066_midwesterners
-114,2026-11-13 11:30,72.0,roommates,stage,080_roommates
-115,2026-11-13 15:00,71.0,cuban families,other,128_cuban_families
-116,2026-11-13 18:00,70.5,canadians,region,065_canadians
-117,2026-11-13 21:00,70.5,road trip people,place,090_road_trip_passengers
-118,2026-11-14 08:00,69.5,turkish families,other,121_turkish_families
-119,2026-11-14 11:30,68.5,movie theater people,place,088_movie_theater
-120,2026-11-14 15:00,69.5,armenian families,other,122_armenian_families
-121,2026-11-14 18:00,68.5,house party guests,place,089_house_party_guests
-122,2026-11-14 21:00,69.5,ethiopian families,other,123_ethiopian_families
-123,2026-11-15 08:00,67.0,cyclists,hobby,053_cyclists
-124,2026-11-15 11:30,69.5,polish families,other,130_polish_families
-125,2026-11-15 15:00,67.0,"a day in the life of chad, crypto",persona,096_day_crypto_chad
-126,2026-11-15 18:00,66.5,nepali families,desi,106_nepali_families
-127,2026-11-15 21:00,66.5,haitian families,other,129_haitian_families
-128,2026-11-16 08:00,66.5,toyota guys,vehicle,030_toyota_guys
-129,2026-11-16 11:30,65.5,lawyers,job,048_lawyers
-130,2026-11-16 15:00,65.5,fishing dads,hobby,058_fishing_dads
-131,2026-11-16 18:00,65.0,people on zoom calls,place,087_zoom_people
-132,2026-11-16 21:00,64.0,"a day in the life of gary, costco",persona,093_day_costco_gary
-133,2026-11-17 08:00,63.5,skiers and snowboarders,hobby,054_skiers
-134,2026-11-17 11:30,64.0,"a day in the life of kevin, in january",persona,094_day_january_kevin
-135,2026-11-17 15:00,63.5,brits,region,068_brits
-136,2026-11-17 18:00,64.0,"a day in the life of steve, air fryer",persona,098_day_airfryer_steve
-137,2026-11-17 21:00,63.5,australians,region,069_australians
-138,2026-11-18 08:00,62.0,golfers,hobby,052_golfers
-139,2026-11-18 11:30,58.5,campers,hobby,057_campers
+1,2026-10-21 18:00,95.5,desi kids who were compared,other,147_desi_doctor_pressure
+2,2026-10-21 21:00,95.0,mexican families,world,032_mexican_families
+3,2026-10-22 08:00,93.5,mom: call me,phone,008_mom_call
+4,2026-10-22 11:30,93.5,italian families,world,031_italian_families
+5,2026-10-22 15:00,93.5,group chat people,place,086_group_chat_roles
+6,2026-10-22 18:00,92.5,dog people and cat people,hobby,060_dog_cat_people
+7,2026-10-22 21:00,92.0,first-gen kids,immig,112_first_gen_kids
+8,2026-10-23 08:00,92.0,a day in the life of a desi mom on whatsapp,other,146_desi_moms_whatsapp
+9,2026-10-23 11:30,92.0,indian families,desi,018_indian_families
+10,2026-10-23 15:00,92.0,desi dads driving,other,148_desi_dads_driving
+11,2026-10-23 18:00,92.0,chinese families,world,033_chinese_families
+12,2026-10-23 21:00,91.5,bmw guys,vehicle,011_bmw_guys
+13,2026-10-24 08:00,90.5,she said 5 min at 7:02,phone,001_five_min
+14,2026-10-24 11:30,91.5,tesla guys,vehicle,022_tesla_guys
+15,2026-10-24 15:00,90.5,immigrant parents,immig,111_immigrant_parents
+16,2026-10-24 18:00,90.5,arab dads,other,134_arab_dads
+17,2026-10-24 21:00,90.5,immigrant moms in the kitchen,immig,113_immigrant_moms
+18,2026-10-25 08:00,90.5,oldest siblings,stage,076_oldest_siblings
+19,2026-10-25 11:30,90.5,immigrant dads,immig,114_immigrant_dads
+20,2026-10-25 15:00,90.5,youngest siblings,stage,077_youngest_siblings
+21,2026-10-25 18:00,89.0,desi aunties,desi,109_desi_aunties
+22,2026-10-25 21:00,90.5,middle children,stage,078_middle_children
+23,2026-10-26 08:00,89.0,kids of desi parents,desi,110_desi_kids
+24,2026-10-26 11:30,89.0,home remedy believers,immig,115_home_remedies
+25,2026-10-26 15:00,89.0,desi cousins visiting from india vs. born here,other,149_fob_vs_abcd
+26,2026-10-26 18:00,89.0,korean moms,world,020_korean_moms
+27,2026-10-26 21:00,89.0,replying to tuesday's text on friday at 2:47am,phone,007_just_seeing_this
+28,2026-10-27 08:00,88.0,truck guys,vehicle,024_truck_guys
+29,2026-10-27 11:30,88.5,54 minutes to pick dinner,phone,003_group_dinner
+30,2026-10-27 15:00,88.0,Gym guys,older reel,
+31,2026-10-27 18:00,88.0,"every way to type haha, ranked",phone,006_haha_ranked
+32,2026-10-27 21:00,87.5,desi wedding guests,desi,107_desi_weddings
+33,2026-10-28 08:00,87.5,arab wedding guests,other,140_arab_weddings
+34,2026-10-28 11:30,87.0,dads at the hardware store,family,014_dads_hardware
+35,2026-10-28 15:00,87.0,"4 minute voice memo, transcribed",phone,002_voice_memo
+36,2026-10-28 18:00,87.0,moms,family,015_moms_in_cars
+37,2026-10-28 21:00,87.0,teachers,job,042_teachers
+38,2026-10-29 08:00,87.0,grandmas,family,016_grandmas
+39,2026-10-29 11:30,86.0,desi uncles,desi,108_desi_uncles
+40,2026-10-29 15:00,86.5,high schoolers,family,013_highschoolers
+41,2026-10-29 18:00,86.0,hyderabadi families,other,143_hyderabadi_families
+42,2026-10-29 21:00,85.0,new yorkers,region,062_new_yorkers
+43,2026-10-30 08:00,85.5,desi families at the indian grocery,other,150_desi_grocery_run
+44,2026-10-30 11:30,85.0,coworkers,place,084_coworkers
+45,2026-10-30 15:00,84.0,when guests come over,immig,116_guest_protocol
+46,2026-10-30 18:00,84.0,palestinian families,other,133_palestinian_families
+47,2026-10-30 21:00,84.0,every house with a china cabinet,immig,117_china_cabinet
+48,2026-10-31 08:00,84.0,nurses,job,041_nurses
+49,2026-10-31 11:30,84.0,big family cousins,immig,118_cousin_network
+50,2026-10-31 15:00,84.0,Omw translated,older reel,
+51,2026-10-31 18:00,83.5,jeep guys,vehicle,023_jeep_guys
+52,2026-10-31 21:00,83.5,texans,region,061_texans
+53,2026-11-01 08:00,83.5,costco shoppers,place,081_costco_shoppers
+54,2026-11-01 11:30,83.0,We should hang out,older reel,
+55,2026-11-01 15:00,82.5,punjabi families,desi,102_punjabi_families
+56,2026-11-01 18:00,82.5,gulf guys,other,135_khaleeji_guys
+57,2026-11-01 21:00,82.5,filipino parties,world,019_filipino_parties
+58,2026-11-02 08:00,82.5,moroccan families,other,137_moroccan_families
+59,2026-11-02 11:30,82.5,nigerian parties,world,035_nigerian_parties
+60,2026-11-02 15:00,82.5,tamil families,other,142_tamil_families
+61,2026-11-02 18:00,82.5,floridians,region,064_floridians
+62,2026-11-02 21:00,82.5,"a day in the life of priya, pre-med",persona,099_day_premed_priya
+63,2026-11-03 08:00,82.0,waiters,job,046_servers
+64,2026-11-03 11:30,82.0,middle schoolers,stage,072_middle_schoolers
+65,2026-11-03 15:00,82.0,Group chat people (original),older reel,
+66,2026-11-03 18:00,81.5,airport people,place,082_airport_people
+67,2026-11-03 21:00,81.0,gujarati families,desi,103_gujarati_families
+68,2026-11-04 08:00,80.5,59 minutes to leave dani's apartment,phone,004_goodbye
+69,2026-11-04 11:30,80.5,realtors,job,044_realtors
+70,2026-11-04 15:00,80.5,new parents,stage,073_new_parents
+71,2026-11-04 18:00,80.5,retail workers,job,050_retail_workers
+72,2026-11-04 21:00,80.5,people turning 30,stage,079_turning_30
+73,2026-11-05 08:00,80.5,chris wants $4.37,phone,009_venmo
+74,2026-11-05 11:30,80.0,modded civic guys,vehicle,026_civic_guys
+75,2026-11-05 15:00,80.0,software engineers,job,043_software_engineers
+76,2026-11-05 18:00,80.0,soccer parents,vehicle,028_soccer_parents
+77,2026-11-05 21:00,80.0,californians,region,063_californians
+78,2026-11-06 08:00,80.0,Avoided text,older reel,
+79,2026-11-06 11:30,80.0,Brain at 2 AM,older reel,
+80,2026-11-06 15:00,79.5,bengali families,desi,101_bengali_families
+81,2026-11-06 18:00,79.5,jamaican families,other,124_jamaican_families
+82,2026-11-06 21:00,79.5,south indian families,desi,104_south_indian_families
+83,2026-11-07 08:00,79.5,dominican families,other,125_dominican_families
+84,2026-11-07 11:30,79.5,pakistani families,desi,105_pakistani_families
+85,2026-11-07 15:00,79.5,puerto rican families,other,126_puerto_rican_families
+86,2026-11-07 18:00,79.5,persian families,world,034_persian_families
+87,2026-11-07 21:00,79.5,colombian families,other,127_colombian_families
+88,2026-11-08 08:00,79.0,Self checkout,older reel,
+89,2026-11-08 11:30,79.5,iraqi families,other,131_iraqi_families
+90,2026-11-08 15:00,78.5,only children,stage,075_only_children
+91,2026-11-08 18:00,79.5,syrian families,other,132_syrian_families
+92,2026-11-08 21:00,78.0,Dogs best worst roommates,older reel,
+93,2026-11-09 08:00,79.5,malayali families,other,141_malayali_families
+94,2026-11-09 11:30,77.5,people on international calls,immig,119_international_calls
+95,2026-11-09 15:00,77.0,"a day in the life of marcus, at the dmv",persona,100_day_dmv_marcus
+96,2026-11-09 18:00,77.5,big family road trips,immig,120_big_family_road_trip
+97,2026-11-09 21:00,77.0,runners,hobby,051_runners
+98,2026-11-10 08:00,77.0,"a day in the life of dave, tesla owner",persona,091_day_tesla_dave
+99,2026-11-10 11:30,77.0,Sunday hour by hour,older reel,
+100,2026-11-10 15:00,77.0,"a day in the life of tiffany, influencer",persona,095_day_influencer_tiffany
+101,2026-11-10 18:00,76.5,gamers,hobby,059_gamers
+102,2026-11-10 21:00,76.0,afghan families,other,139_afghan_families
+103,2026-11-11 08:00,76.0,egyptian guys,world,017_egyptian_guys
+104,2026-11-11 11:30,75.5,subaru guys,vehicle,025_subaru_guys
+105,2026-11-11 15:00,76.0,greek families,world,036_greek_families
+106,2026-11-11 18:00,75.5,pickleball people,hobby,056_pickleball_people
+107,2026-11-11 21:00,76.0,lebanese families,world,038_lebanese_families
+108,2026-11-12 08:00,75.5,"a day in the life of brenda, pta mom",persona,092_day_pta_brenda
+109,2026-11-12 11:30,76.0,vietnamese families,world,039_vietnamese_families
+110,2026-11-12 15:00,75.5,"a day in the life of linda, facebook",persona,097_day_facebook_linda
+111,2026-11-12 18:00,75.0,mercedes guys,vehicle,012_mercedes_guys
+112,2026-11-12 21:00,75.0,college freshmen,stage,071_freshmen
+113,2026-11-13 08:00,75.0,audi guys,vehicle,021_audi_guys
+114,2026-11-13 11:30,75.0,wedding guests,place,083_wedding_guests
+115,2026-11-13 15:00,75.0,mustang and charger guys,vehicle,027_muscle_car_guys
+116,2026-11-13 18:00,75.0,neighbors,place,085_neighbors
+117,2026-11-13 21:00,75.0,uber drivers,vehicle,029_uber_drivers
+118,2026-11-14 08:00,74.0,retirees,stage,074_retirees
+119,2026-11-14 11:30,73.5,hiding from kyle in aisle 9,phone,010_grocery_avoid
+120,2026-11-14 15:00,73.5,brazilian guys,world,037_brazilian_guys
+121,2026-11-14 18:00,73.5,yoga people,hobby,055_yoga_people
+122,2026-11-14 21:00,73.5,irish families,world,040_irish_families
+123,2026-11-15 08:00,73.5,southerners,region,070_southerners
+124,2026-11-15 11:30,73.0,yemeni families,other,136_yemeni_families
+125,2026-11-15 15:00,72.5,bostonians,region,067_bostonians
+126,2026-11-15 18:00,73.0,kurdish families,other,138_kurdish_families
+127,2026-11-15 21:00,72.0,baristas,job,045_baristas
+128,2026-11-16 08:00,73.0,kashmiri families,other,144_kashmiri_families
+129,2026-11-16 11:30,72.0,contractors,job,047_contractors
+130,2026-11-16 15:00,73.0,sri lankan families,other,145_sri_lankan_families
+131,2026-11-16 18:00,72.0,doctors,job,049_doctors
+132,2026-11-16 21:00,72.0,sticky note war ends with a haunted bowl,phone,005_roommate_notes
+133,2026-11-17 08:00,72.0,midwesterners,region,066_midwesterners
+134,2026-11-17 11:30,72.0,roommates,stage,080_roommates
+135,2026-11-17 15:00,71.0,cuban families,other,128_cuban_families
+136,2026-11-17 18:00,70.5,canadians,region,065_canadians
+137,2026-11-17 21:00,70.5,road trip people,place,090_road_trip_passengers
+138,2026-11-18 08:00,69.5,turkish families,other,121_turkish_families
+139,2026-11-18 11:30,68.5,movie theater people,place,088_movie_theater
+140,2026-11-18 15:00,69.5,armenian families,other,122_armenian_families
+141,2026-11-18 18:00,68.5,house party guests,place,089_house_party_guests
+142,2026-11-18 21:00,69.5,ethiopian families,other,123_ethiopian_families
+143,2026-11-19 08:00,67.0,cyclists,hobby,053_cyclists
+144,2026-11-19 11:30,69.5,polish families,other,130_polish_families
+145,2026-11-19 15:00,67.0,"a day in the life of chad, crypto",persona,096_day_crypto_chad
+146,2026-11-19 18:00,66.5,nepali families,desi,106_nepali_families
+147,2026-11-19 21:00,66.5,haitian families,other,129_haitian_families
+148,2026-11-20 08:00,66.5,toyota guys,vehicle,030_toyota_guys
+149,2026-11-20 11:30,65.5,lawyers,job,048_lawyers
+150,2026-11-20 15:00,65.5,fishing dads,hobby,058_fishing_dads
+151,2026-11-20 18:00,65.0,people on zoom calls,place,087_zoom_people
+152,2026-11-20 21:00,64.0,"a day in the life of gary, costco",persona,093_day_costco_gary
+153,2026-11-21 08:00,63.5,skiers and snowboarders,hobby,054_skiers
+154,2026-11-21 11:30,64.0,"a day in the life of kevin, in january",persona,094_day_january_kevin
+155,2026-11-21 15:00,63.5,brits,region,068_brits
+156,2026-11-21 18:00,64.0,"a day in the life of steve, air fryer",persona,098_day_airfryer_steve
+157,2026-11-21 21:00,63.5,australians,region,069_australians
+158,2026-11-22 08:00,62.0,golfers,hobby,052_golfers
+159,2026-11-22 11:30,58.5,campers,hobby,057_campers

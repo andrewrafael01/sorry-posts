@@ -50,5 +50,7 @@ if __name__ == "__main__":
           "`score = 10 x (0.30 reach + 0.35 send + 0.20 hook + 0.15 debate)`, each factor 1-10. Weights follow what Instagram says ranks Reels for non-followers: sends per reach first, then watch time (hook) and likes. The numbers are my judgement, not measured data; the real test is your own Insights after the first week. Ties are broken so two reels of the same niche never post back to back.", "",
           "| # | when (ET) | score | reel | niche |", "|---|---|---|---|---|"]
     md += [f"| {a} | {b} | {c} | {d} | {e} |" for a, b, c, d, e, _ in rows]
+    oldpath = {"9fab4b15-72a6-471a-8e61-925760cce1ed": "r_gym", "04c817b6-b680-4779-94c7-ef40defa5b1b": "r_hang", "67f78e72-5554-4315-b13d-09ec13ffe121": "r_omw", "fdbb2dd5-4303-4a15-9cee-64ea3fab3b99": "r_groupchat", "1a24277f-69ac-4cd2-b944-c4a84c1bfd54": "r_avoid", "7b85d45b-8eab-47ff-8461-168f056c6b39": "r_brain2am", "88e58c51-ca99-4e0e-8b47-41fc097f2b9b": "r_checkout", "24699e3e-565e-4ddd-b8c5-72a0828d7ea1": "r_dog", "db352c48-e50c-4e2f-9d13-21870c75a1fc": "r_sunday"}
+    open(out + "/schedule_order.txt", "w").write("\n".join(f"{oldpath[r[5]] if False else ''}" for r in []))
     open(out + "/RANKING.md", "w").write("\n".join(md) + "\n")
     print(len(rows), "reels;", rows[0][1], "->", rows[-1][1]); print([ (r[0], r[3], r[2]) for r in rows[:15]])

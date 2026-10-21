@@ -653,3 +653,103 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **length:** 24s  |  **music:** pop
 - **suggested caption:** the guest slippers are a sign of love and also a dress code. send this to a polish friend
 - **what happens:** Affectionate Polish archetypes: guest slippers at the door, soup before the main course, pierogi for a village, name days, the empty chair at Wigilia, pickling everything.
+
+## 131_iraqi_families 
+- **length:** 26s  |  **music:** jazz
+- **suggested caption:** the istikan is tiny and you will drink 14. which one are you?
+- **what happens:** Affectionate Iraqi archetypes: the endless istikan of tea, the all-day dolma rolling shift, gaimar everywhere, masgouf by the river, the 80-year-old uncle leading the dabke line, 'wallah i'm full' versus 'eat'.
+
+## 132_syrian_families 
+- **length:** 26s  |  **music:** lofi
+- **suggested caption:** four kinds of kibbeh and you'll be judged for the favorite. tag your syrian friend
+- **what happens:** Affectionate Syrian archetypes: the four kinds of kibbeh, Aleppo soap, the jasmine courtyard memory, baklava boxes, the two-uncles-one-bill fight, haggling as a family sport.
+
+## 133_palestinian_families 
+- **length:** 24s  |  **music:** bounce
+- **suggested caption:** the olive oil is from a cousin's tree and it's better than yours. send this to a palestinian friend
+- **what happens:** Affectionate Palestinian archetypes: the cousin's-tree olive oil, the maqluba flip with the whole family watching, za'atar on everything, taita's trays, the instant dabke circle, a cousin in every country.
+
+## 134_arab_dads 
+- **length:** 24s  |  **music:** synth
+- **suggested caption:** he will never say i love you but he will peel the apple. which one are you?
+- **what happens:** Affectionate Arab-dad archetypes: peeling the fruit for you, news at full volume, 'wallah' as punctuation, the 5:30 am wake-up, the 340,000-mile Camry, love as fixing your tire at midnight.
+
+## 135_khaleeji_guys 
+- **length:** 24s  |  **music:** trap
+- **suggested caption:** the cup shake means stop. he will pour anyway. tag your gulf friend
+- **what happens:** Affectionate Gulf archetypes: the six-hour majlis, the cup shake to say stop, the supercar for a 400-meter grocery run, the falcon with its own seat, the date-and-milk welcome, wearing white in 49 degrees.
+
+## 136_yemeni_families 
+- **length:** 25s  |  **music:** lofi
+- **suggested caption:** the honey is $120 and it's the only real honey. send this to a yemeni friend
+- **what happens:** Affectionate Yemeni archetypes: sidr honey at $120 a jar, the family corner store, adeni chai, mandi on a coffee-table tray, saltah too hot to hold, 'staying two weeks' that is four months.
+
+## 137_moroccan_families 
+- **length:** 24s  |  **music:** jazz
+- **suggested caption:** the tagine is opened at the table and everyone gasps. which one are you?
+- **what happens:** Affectionate Moroccan archetypes: the high-pour mint tea, the tagine reveal, the hammam scrub, couscous Fridays, souk 'special price', mixing four languages in one sentence.
+
+## 138_kurdish_families 
+- **length:** 24s  |  **music:** bounce
+- **suggested caption:** the picnic is a whole lamb in a parking lot. tag a kurdish friend
+- **what happens:** Affectionate Kurdish archetypes: the halparke line dance that never ends, the lamb picnic in a parking lot, Newroz fire jumping, dolma for 30, every story starting 'in the mountains', sugar-cube tea.
+
+## 139_afghan_families 
+- **length:** 24s  |  **music:** lofi
+- **suggested caption:** you thought the palao was a side dish. send this to an afghan friend
+- **what happens:** Affectionate Afghan archetypes: Kabuli palao as the main event, floor dining with 14 dishes, 'that's just the appetizers', competitive kite flying, tea before and after everything, standing when the elder arrives.
+
+## 140_arab_weddings 
+- **length:** 25s  |  **music:** funk
+- **suggested caption:** the card says 7 and the bride arrives at 11. which one are you?
+- **what happens:** Affectionate Arab wedding archetypes: the 40-minute zaffe, the printed time that means nothing, the zalagheet trill, uncle tossing cash then collecting it, grandmas sitting only for the English song, the aunt who 'just checks' the buffet.
+
+## 141_malayali_families 
+- **length:** 25s  |  **music:** lofi
+- **suggested caption:** the payasam is not the first thing you eat. tag your malayali friend
+- **what happens:** Affectionate Malayali archetypes: coconut oil as a universal solution, the lungi fold, dad reading the paper aloud, the sadya order, the cousin with a houseboat, nurses and gulf workers everywhere.
+
+## 142_tamil_families 
+- **length:** 25s  |  **music:** bounce
+- **suggested caption:** the meal ends with curd rice no matter what. send this to your tamil friend
+- **what happens:** Affectionate Tamil archetypes: filter coffee pulled from a height, the four-hour temple trip, thalaivar fandom, dad converting to rupees out loud, the 40-year-old silk saree bank, curd rice to end every meal.
+
+## 143_hyderabadi_families 
+- **length:** 24s  |  **music:** funk
+- **suggested caption:** nakko means no, yes and more. which one are you?
+- **what happens:** Affectionate Hyderabadi archetypes: the dum biryani gospel, 'nakko' as yes, Irani chai at 5 pm, 11-hour Ramzan haleem, 'hau' as a polite no-op, pearl-shop haggling.
+
+## 144_kashmiri_families 
+- **length:** 26s  |  **music:** lofi
+- **suggested caption:** the wazwan has 36 dishes and you were full at dish 4. tag your kashmiri friend
+- **what happens:** Affectionate Kashmiri archetypes: kehwa with almonds and saffron, the 36-dish wazwan, kangri under the pheran, snow-day 'in my time', Pampore saffron pride, the 1987 houseboat photo.
+
+## 145_sri_lankan_families 
+- **length:** 24s  |  **music:** bounce
+- **suggested caption:** 'is it spicy?' 'no, mild.' tag your sri lankan friend
+- **what happens:** Affectionate Sri Lankan archetypes: towers of hoppers, 'mild' spice, living-room cricket the neighbor hears, a tuk-tuk through an impossible gap, Ceylon tea provenance, being called 'baby' at 41.
+
+## 146_desi_moms_whatsapp 
+- **length:** 24s  |  **music:** pop
+- **suggested caption:** good morning, a sunflower, and 14 groups. send this to your mom's good morning text
+- **what happens:** A day on WhatsApp for a desi mom: sunflower good-mornings to 14 groups, the 'doctor in germany' turmeric forward, the 7-minute 'nothing important' voice note, the folded-hands emoji for everything, 40 identical sunset photos, 'call me' that is just goodnight.
+
+## 147_desi_doctor_pressure 
+- **length:** 26s  |  **music:** cine
+- **suggested caption:** where did the 3 go. tag a desi kid who was compared to sharmaji's son
+- **what happens:** Affectionate desi-kid archetype: Sharmaji's son, the 97 that loses 3 points, doctor/engineer/lawyer menu, 'so no job?' startup scorn, the dentist 'oh', and the twist where they brag to strangers instead of telling you they're proud.
+
+## 148_desi_dads_driving 
+- **length:** 24s  |  **music:** funk
+- **suggested caption:** he'll drive 11 miles to save 3 cents. send this to your dad
+- **what happens:** Affectionate desi-dad driving archetypes: the shortcut that adds 40 minutes, driving 11 miles to save 3 cents on gas (costing 60 cents), arguing with the map voice, the honk as a language, circling 20 minutes to avoid $3 parking.
+
+## 149_fob_vs_abcd 
+- **length:** 25s  |  **music:** pop
+- **suggested caption:** he brought you a suitcase of pickles. which one are you?
+- **what happens:** Affectionate desi cousin archetypes: four bags of which three are food, the 'water' accent trade, a 7-year-old's Hindi vs fluent English, the 6-iPhone shopping trip, the Walmart tour, the airport goodbye with an unkept promise.
+
+## 150_desi_grocery_run 
+- **length:** 24s  |  **music:** lofi
+- **suggested caption:** she squeezed 40 onions and bought 7. tag who you grocery shop with
+- **what happens:** Affectionate desi grocery-store archetypes: the 20-pound rice bag, the onion inspector, two uncles blocking an aisle for 40 minutes, the $187 receipt called a 'good price', the free pack that makes her day, a spice-scented trunk.
