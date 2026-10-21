@@ -254,47 +254,47 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **suggested caption:** the red shirt is not a uniform for the whole store, sir. which one are you?
 - **what happens:** Retail workers: 'find everything ok?' with nothing found, the 40-coupon lady, the 11-minute price check, 'i don't work here' in a red shirt, the 8:59 customer, the bag debate.
 
-## 051_runners (not rendered yet)
+## 051_runners 
 - **length:** 27s  |  **music:** pop
 - **suggested caption:** the race bib at brunch is a flex we all respect. tag a runner
 - **what happens:** Runners: 'just a 5k' that's 13 miles, posting the walk to the car, race bib at brunch, 'tight' knee, 5am, mile-1 misery, 'i could do another mile'.
 
-## 052_golfers (not rendered yet)
+## 052_golfers 
 - **length:** 28s  |  **music:** jazz
 - **suggested caption:** 'back by lunch' has been a lie since the first tee time. send this to a golfer
 - **what happens:** Golfers: 'one more hole' (dinner), mulligans, 14 clubs, 8 mph cart driving, shouting 'fore' late, the 4th-hole dinner story.
 
-## 053_cyclists (not rendered yet)
+## 053_cyclists 
 - **length:** 27s  |  **music:** synth
 - **suggested caption:** the bike cost more than the car and the helmet cost $9. which one are you?
 - **what happens:** Cyclists: the lycra debrief, 'on your left', the $6,000 bike with a $9 helmet, the coffee stop, two abreast, cleat clicking, 'i don't talk about cycling'.
 
-## 054_skiers (not rendered yet)
+## 054_skiers 
 - **length:** 26s  |  **music:** bounce
 - **suggested caption:** 45 minutes in line for a 4 minute run is the deal we all signed. tag a skier
 - **what happens:** Ski-hill archetypes: 45-minute lift line, the snowboarder sitting mid-trail, the 'blue' that is a black, 5 hours of après, rental boots, 'one more run' at closing, hot chocolate.
 
-## 055_yoga_people (not rendered yet)
+## 055_yoga_people 
 - **length:** 26s  |  **music:** lofi
 - **suggested caption:** the savasana nap is the real workout. send this to whoever slept through the end
 - **what happens:** Yoga class archetypes: the instructor voice, mat 4 inches off the wall, 'my hips', the savasana napper, 11-second namaste eye contact, yoga pants at brunch, the fart nobody mentions.
 
-## 056_pickleball_people (not rendered yet)
+## 056_pickleball_people 
 - **length:** 26s  |  **music:** bounce
 - **suggested caption:** a 78 year old has ended your whole career. which one are you?
 - **what happens:** Pickleball: 6 days a week 'for fun', the $180 paddle, the 40-minute kitchen explanation, the 78-year-old who wins 11-0, the war-crime 'friendly' game, the ankle ball.
 
-## 057_campers (not rendered yet)
+## 057_campers 
 - **length:** 25s  |  **music:** lofi
 - **suggested caption:** we paid money to sleep on the ground on purpose. tag your camping friend
 - **what happens:** Campers: the 1-hour fire, the $1,200 tent, the bathroom talk, bugs that only like one person, 5am birds, flaming s'mores, sleeping on the ground on purpose.
 
-## 058_fishing_dads (not rendered yet)
+## 058_fishing_dads 
 - **length:** 28s  |  **music:** jazz
 - **suggested caption:** he catches nothing and it's the best day of his life. send this to your dad
 - **what happens:** Fishing dads: the 4am wake-up, catching nothing and loving it, the growing 'this big', worm names, catch-and-release a boot, the huge cooler with no bait.
 
-## 059_gamers (not rendered yet)
+## 059_gamers 
 - **length:** 27s  |  **music:** synth
 - **suggested caption:** 'one more game' is the most dangerous sentence in gaming. which one are you?
 - **what happens:** Gamers: 'one more game' 9pm to 4am, controller replaced same day, 'it's lag', 'MOM I'M IN A GAME' 2 feet away, the loud chewer, 'let me save', 'not addicted'.
@@ -304,202 +304,352 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **suggested caption:** the dog forgives you for everything and the cat will not forgive you for anything. tag your pet
 - **what happens:** Dog vs cat people: 'WALK?', 'she'll come when she wants', the couch chew look, the cup-off-the-table stare, the both-person, the $1,100 sock, 'i don't spoil him' with a birthday cake.
 
-## 061_texans (not rendered yet)
+## 061_texans 
 - **length:** 28s  |  **music:** funk
 - **suggested caption:** 'it's a dry heat' has never made anyone feel better. send this to a texan
 - **what happens:** Texans: 'the truck', 14-hour brisket, 'dry heat' at 108, Friday night football for 11,000, Buc-ee's, everything bigger, 'all y'all'.
 
-## 062_new_yorkers (not rendered yet)
+## 062_new_yorkers 
 - **length:** 26s  |  **music:** trap
 - **suggested caption:** the pizza fold is not a suggestion. which one are you?
 - **what happens:** New Yorkers: the 4 mph walk, the fold, one-handed subway reading, $3,800 'one bedroom', the deli that knows your order, 'I'M WALKING HERE', hating tourists since 2021.
 
-## 063_californians (not rendered yet)
+## 063_californians 
 - **length:** 29s  |  **music:** lofi
 - **suggested caption:** it's 68 degrees and she is freezing. tag a californian
 - **what happens:** Californians: 'the 405', the $4 avocado, an 11-stair 'hike', the 4.2 quake that doesn't interrupt brunch, secret menu, parka at 68°, 'i'd move but the weather'.
 
-## 064_floridians (not rendered yet)
+## 064_floridians 
 - **length:** 25s  |  **music:** bounce
 - **suggested caption:** the blinker has been on since 2019. send this to a floridian
 - **what happens:** Floridians: the hurricane party, humidity, the snowbird with the blinker on, a 40-minute Publix sub run, the gator in the pool, the instant sunburn, 'florida man' is the neighbor.
 
-## 065_canadians (not rendered yet)
+## 065_canadians 
 - **length:** 26s  |  **music:** jazz
 - **suggested caption:** apologizing to a door is a national sport. which one are you?
 - **what happens:** Canadians: sorry to a door, double-double, everyone's a hockey guy, '-20 nice day', dying at 32°C, the 4-minute 'after you', 'a hot one' at 18.
 
-## 066_midwesterners (not rendered yet)
+## 066_midwesterners 
 - **length:** 27s  |  **music:** lofi
 - **suggested caption:** 'that's different' is the most violent thing a midwesterner can say. tag one
 - **what happens:** Midwesterners: 'that's different' means hate, hotdish at every potluck, shorts at 30°, 'up north', the 2-hour goodbye, 4 seasons in an afternoon, 'you betcha'.
 
-## 067_bostonians (not rendered yet)
+## 067_bostonians 
 - **length:** 26s  |  **music:** funk
 - **suggested caption:** the chair in the parking spot is a legal document. send this to a bostonian
 - **what happens:** Bostonians: Dunkin' every 4 feet, the space-saver chair, Red Sox over the wedding, signals as suggestions, 'wicked', the delayed T.
 
-## 068_brits (not rendered yet)
+## 068_brits 
 - **length:** 28s  |  **music:** jazz
 - **suggested caption:** 'not bad' is the highest praise a brit can give. which one are you?
 - **what happens:** Brits: the tea crisis, joining a queue without knowing why, 'not bad' = amazing, 'lovely day' in sideways rain, apologizing when stepped on, 'just one' for 4 hours, 'you alright?'.
 
-## 069_australians (not rendered yet)
+## 069_australians 
 - **length:** 26s  |  **music:** bounce
 - **suggested caption:** 'no worries' is both a greeting and a medical opinion. tag an aussie
 - **what happens:** Aussies: 'no worries' beside a burning car, a plate-sized spider that's 'a bit big', the barbie, shortened words, thongs everywhere, 46° 'bit warm', 'she'll be right'.
 
-## 070_southerners (not rendered yet)
+## 070_southerners 
 - **length:** 28s  |  **music:** funk
 - **suggested caption:** 'bless your heart' is the most violent phrase in the english language. send this to a southerner
 - **what happens:** Southerners: 'bless your heart', sweet tea only, 'all y'all', Waffle House at 3am, Sunday best, the 22-minute 'quick story', 'fixin' to'.
 
-## 071_freshmen (not rendered yet)
+## 071_freshmen 
 - **length:** 26s  |  **music:** bounce
 - **suggested caption:** week 1 you won't party and week 2 you're the party. which one are you?
 - **what happens:** Freshmen: the lanyard, 3 swipes for 1 plate, 'i won't party', the 8am schedule, the roommate who doesn't stay a friend, the lost sock, calling mom.
 
-## 072_middle_schoolers (not rendered yet)
+## 072_middle_schoolers 
 - **length:** 28s  |  **music:** bounce
 - **suggested caption:** middle school is the awkward season we all had to survive. tag who you were
 - **what happens:** Middle schoolers: 'that's cringe', the 4-inch growth spurt, the 1% phone, walking into a locker near the crush, the 14-month trick, 'fine', and secretly crying at the dog movie.
 
-## 073_new_parents (not rendered yet)
+## 073_new_parents 
 - **length:** 29s  |  **music:** lofi
 - **suggested caption:** 'sleep when the baby sleeps' has never been said by someone who slept. send this to a new parent
 - **what happens:** New parents: the 4am zombie, the 20-minute nap, $612 of baby gear and the baby likes the box, 4,000 identical photos, advice grandma, poop reports at dinner.
 
-## 074_retirees (not rendered yet)
+## 074_retirees 
 - **length:** 28s  |  **music:** jazz
 - **suggested caption:** dinner at 4:30 is the best time to eat and nobody can tell them otherwise. which one are you?
 - **what happens:** Retirees: up at 4:30, 4:30 dinner, TV volume at 78, saving 4 cents, being 'busier than ever' with three naps, reading texts aloud, 'how did i have time to work'.
 
-## 075_only_children (not rendered yet)
+## 075_only_children 
 - **length:** 28s  |  **music:** pop
 - **suggested caption:** every only child is 100% sure they are not spoiled. tag an only child
 - **what happens:** Only children: never shared anything, sharing as a legal concept, boredom at 3pm, two parents grading one kid, imaginary friends with jobs, oversized gifts, 'i'm not spoiled'.
 
-## 076_oldest_siblings (not rendered yet)
+## 076_oldest_siblings 
 - **length:** 28s  |  **music:** funk
 - **suggested caption:** oldest siblings were basically unpaid babysitters. send this to your oldest sibling
 - **what happens:** Oldest siblings: 'you're in charge' at 6, always blamed, the test case for rules, giving away clothes, free babysitting, the call when mom can't cope, 'i'm not bossy'.
 
-## 077_youngest_siblings (not rendered yet)
+## 077_youngest_siblings 
 - **length:** 26s  |  **music:** bounce
 - **suggested caption:** the youngest has been getting away with it since 1998. which one are you?
 - **what happens:** Youngest siblings: got away with it, 3 baby photos, hand-me-downs with her sister's name, the late bedtime, retelling the story, ice cream for breakfast, still 'the baby' at 34.
 
-## 078_middle_children (not rendered yet)
+## 078_middle_children 
 - **length:** 27s  |  **music:** lofi
 - **suggested caption:** the middle child has never been seen in a family photo. tag a middle child
 - **what happens:** Middle children: forgotten in the roll call, the unthanked peacemaker, the album with a cow, 'my own thing', the lecture, doing everything alone, 'i don't mind'.
 
-## 079_turning_30 (not rendered yet)
+## 079_turning_30 
 - **length:** 27s  |  **music:** pop
 - **suggested caption:** you don't feel old until you sneeze and it's a trip to the chiropractor. send this to a 30 year old
 - **what happens:** Turning 30: sneezing out the back at 29, 9:15 pm exhaustion, sleep-score small talk, 'normal at your age', a hike from 2017 fitness, in bed by 10, sitting to put on shoes.
 
-## 080_roommates (not rendered yet)
+## 080_roommates 
 - **length:** 26s  |  **music:** bounce
 - **suggested caption:** the roommate who 'cleans quietly' is the one to fear. which one are you?
 - **what happens:** Roommates: the secretly angry cleaner, the dishes tomorrow, the 2am blender, the fridge thief, the 4-month Venmo, a group chat only for the trash, 'we should hang out more'.
 
-## 081_costco_shoppers (not rendered yet)
+## 081_costco_shoppers 
 - **length:** 27s  |  **music:** pop
 - **suggested caption:** you went in for milk and you left with a kayak. tag your costco person
 - **what happens:** Costco: the sample lap, 48 rolls of paper towels, $437 for milk and a kayak, the card check, the $1.50 hot dog, the receipt check, the 'quick trip' that takes 3 hours.
 
-## 082_airport_people (not rendered yet)
+## 082_airport_people 
 - **length:** 27s  |  **music:** jazz
 - **suggested caption:** the guy who arrives 4 hours early is always right and everyone hates it. send this to him
 - **what happens:** Airport types: 4 hours early to a closed line, the late sprinter, 51-lb bag in 4 jackets, floor sleeper, the water at security, the outlet standoff, 'good thing we're early'.
 
-## 083_wedding_guests (not rendered yet)
+## 083_wedding_guests 
 - **length:** 28s  |  **music:** pop
 - **suggested caption:** every wedding has a first-on-the-floor guy. which one are you?
 - **what happens:** Wedding guests: the crier, the solo first dancer, the open bar pacing, the 14-minute speech, the phone in the pro's shot, the kids table, closing the venue.
 
-## 084_coworkers (not rendered yet)
+## 084_coworkers 
 - **length:** 27s  |  **music:** synth
 - **suggested caption:** somebody is replying all to 400 people right now. tag your coworker
 - **what happens:** Coworkers: reply-all to 400, the 90-minute 'quick meeting', the lunch thief, unmuted-on-mute, 'per my last email', 'circle back', the vanishing birthday cake.
 
-## 085_neighbors (not rendered yet)
+## 085_neighbors 
 - **length:** 27s  |  **music:** bounce
 - **suggested caption:** 9 years of waving and nobody knows the other person's name. send this to your neighbor
 - **what happens:** Neighbors: the 7am mower, the scissor-cut lawn, the 1am party, the sugar borrower, the window watcher, the 3-week package, 9 years of waving without names.
 
-## 086_group_chat_roles (not rendered yet)
+## 086_group_chat_roles 
 - **length:** 27s  |  **music:** pop
 - **suggested caption:** every group chat has an archivist and the archivist is a menace. which one are you?
 - **what happens:** Group chat roles: the 2019 screenshot archivist, the 2-year lurker thumbs-up, 4-minute voice notes, the 3am meme dump, the planner with 14 yeses and 0 shows, 'wait what happened', the 2018 chat name.
 
-## 087_zoom_people (not rendered yet)
+## 087_zoom_people 
 - **length:** 28s  |  **music:** synth
 - **suggested caption:** 'you're on mute' is the new hello. tag your muted coworker
 - **what happens:** Zoom people: talking on mute for 90 seconds, the black-square camera, pet cameo, the loud eater, the 14-minute-late joiner, sharing the wrong screen, the mute argument.
 
-## 088_movie_theater (not rendered yet)
+## 088_movie_theater 
 - **length:** 29s  |  **music:** cine
 - **suggested caption:** the bag opens right in the quiet part. every time. send this to whoever does it
 - **what happens:** Movie theater people: the chip bag in the quiet scene, max brightness phone, the narrator, the seat kicker, the late arrival, the credits stayer, the $16 popcorn.
 
-## 089_house_party_guests (not rendered yet)
+## 089_house_party_guests 
 - **length:** 26s  |  **music:** trap
 - **suggested caption:** every party finds the kitchen like it's magnetized. which one are you?
 - **what happens:** House party guests: everyone in the kitchen, the DJ with the 2014 playlist, the dog person, the bathroom line, 'i'm leaving' at 10/11/12, the dancer, the 2am cleaner.
 
-## 090_road_trip_passengers (not rendered yet)
+## 090_road_trip_passengers 
 - **length:** 27s  |  **music:** synth
 - **suggested caption:** '15 minutes away' has never once been 15 minutes. tag your road trip crew
 - **what happens:** Road trip: the 'i'm good' driver, the shotgun claim since 2011, the napper, the aux, the snack person, the navigator who says 'turn left' 2 miles late, the fake 15 minutes.
 
-## 091_day_tesla_dave (not rendered yet)
+## 091_day_tesla_dave 
 - **length:** 28s  |  **music:** synth
 - **suggested caption:** dave has told 14 strangers about the 0-60 this week. send this to a dave
 - **what happens:** A day with Dave and his new Tesla: 98% battery panic, the 0-60 to the barista, autopilot admiration, a 40-minute 'fast' charge, the fart-sound demo, 'range anxiety' for a 2-mile ride, 2am phantom drain.
 
-## 092_day_pta_brenda (not rendered yet)
+## 092_day_pta_brenda 
 - **length:** 25s  |  **music:** bounce
 - **suggested caption:** brenda has run every committee since 2011 and nobody asked her to. which one are you?
 - **what happens:** A day with Brenda: 14 emails, 400 'few' cupcakes, volunteering for everything, a 40-minute flyer-font debate, judging the pickup line, a sign-up sheet with only her name, 4 alarms.
 
-## 093_day_costco_gary (not rendered yet)
+## 093_day_costco_gary 
 - **length:** 27s  |  **music:** funk
 - **suggested caption:** gary went in for milk and left with a kayak and no lake. tag a gary
 - **what happens:** A day with Gary at Costco: 'just milk', 7 samples, an unplanned kayak, the $1.50 hot dog, a $437 receipt, the kayak that doesn't fit, driving home with it out the window.
 
-## 094_day_january_kevin (not rendered yet)
+## 094_day_january_kevin 
 - **length:** 27s  |  **music:** pop
 - **suggested caption:** kevin has been paying $40 a month since 2019 for a gym he visited twice. send this to a kevin
 - **what happens:** Kevin's January: annual membership on Jan 1, a lone machine, soreness, counting a treadmill stare, 'a break' with no end, the $40 charge, and the same plan next Dec 31.
 
-## 095_day_influencer_tiffany (not rendered yet)
+## 095_day_influencer_tiffany 
 - **length:** 27s  |  **music:** pop
 - **suggested caption:** tiffany woke up naturally 13 times today. which one are you?
 - **what happens:** A day with an influencer: 13 takes of waking up naturally, an untouchable latte, unboxing her own order, a cold salad from 12 angles, golden hour sprint, 'real talk' ad, liking her own post.
 
-## 096_day_crypto_chad (not rendered yet)
+## 096_day_crypto_chad 
 - **length:** 28s  |  **music:** trap
 - **suggested caption:** chad has been 'up' for 6 years and has never once paid rent from it. tag a chad
 - **what happens:** A day with Chad: 400 price checks, 'buying the dip' on a cliff, explaining diamond hands to the barber, rent due while 'up 4000%', selling for a sandwich, re-buying higher, 2am checking.
 
-## 097_day_facebook_linda (not rendered yet)
+## 097_day_facebook_linda 
 - **length:** 29s  |  **music:** lofi
 - **suggested caption:** linda has liked the same stranger's photo from 2011 and she will never recover. send this to a linda
 - **what happens:** A day with Linda on Facebook: 'BEAUTIFUL!!' on a stranger, chain-post bad luck, blurry soup, birthday wishes to the wrong person, liking a 2011 post, 'who is this?' on her own photo.
 
-## 098_day_airfryer_steve (not rendered yet)
+## 098_day_airfryer_steve 
 - **length:** 27s  |  **music:** jazz
 - **suggested caption:** steve will cook everything in the air fryer except the one thing it can't. which one are you?
 - **what happens:** A day with Steve and his air fryer: toast, salad, the 40-minute neighbor presentation, ice cream idea, wife says 'we have a stove', kids finally eat the nuggets, the nightly clean.
 
-## 099_day_premed_priya (not rendered yet)
+## 099_day_premed_priya 
 - **length:** 28s  |  **music:** cine
 - **suggested caption:** she got a 92 and she is asking what happened to the 8. tag a pre-med friend
 - **what happens:** A day with a pre-med student: waiting outside a closed library, 3 coffees in 20 minutes, 4,000 flashcards, an exam on the other 88 questions, crying in a full library, a 92 and 'where's the 8', 3 hours of sleep.
 
-## 100_day_dmv_marcus (not rendered yet)
+## 100_day_dmv_marcus 
 - **length:** 31s  |  **music:** jazz
 - **suggested caption:** number 189, now serving 12. send this to who you waited with at the dmv
 - **what happens:** A day at the DMV: first in line, number 189 vs 12, befriending strangers, the clerks' simultaneous lunch, 'you need form B', form B in another building, closed at 4:55, and Marcus back tomorrow.
+
+## 101_bengali_families (not rendered yet)
+- **length:** 29s  |  **music:** lofi
+- **suggested caption:** if there's no fish it's not lunch. which one are you?
+- **what happens:** Affectionate Bengali archetypes: fish at every meal, the hilsa bone surgeon, the five-hour adda, the monkey cap at 24°, mishti for no occasion, 11 pandals, quoting Tagore.
+
+## 102_punjabi_families (not rendered yet)
+- **length:** 26s  |  **music:** bounce
+- **suggested caption:** the lassi glass is basically a vase. tag a punjabi friend
+- **what happens:** Affectionate Punjabi archetypes: butter on butter, the vase-sized lassi, the dhol that makes everyone stand, the 40-foot 'oye', 800-guest 'family only', the Canada cousin, 'one more roti'.
+
+## 103_gujarati_families (not rendered yet)
+- **length:** 25s  |  **music:** pop
+- **suggested caption:** forty theplas for a two hour flight is just good planning. send this to a gujarati friend
+- **what happens:** Affectionate Gujarati archetypes: 40 theplas for a short flight, asking for a discount at a dollar store, 9 nights of garba, 'we have no food' beside a snack drawer, the protein question, the unsittable Diwali couch.
+
+## 104_south_indian_families (not rendered yet)
+- **length:** 24s  |  **music:** jazz
+- **suggested caption:** pouring the coffee from three feet up is a skill and a personality. which one are you?
+- **what happens:** Affectionate South Indian archetypes: filter coffee pour ritual, 'just one dosa', curd rice to end every meal, first day first show, a 6-hour saree shop, the 'quick' temple stop.
+
+## 105_pakistani_families (not rendered yet)
+- **length:** 24s  |  **music:** funk
+- **suggested caption:** everyone's mom makes the best biryani and everyone is right. tag a pakistani friend
+- **what happens:** Affectionate Pakistani archetypes: the biryani debate, cricket stops the wedding, 'just a chai', 8-event wedding week, dinner at 8 starting at midnight, the aunty's matchmaking list.
+
+## 106_nepali_families (not rendered yet)
+- **length:** 24s  |  **music:** lofi
+- **suggested caption:** dal bhat power 24 hour is the only energy drink that works. send this to a nepali friend
+- **what happens:** Affectionate Nepali archetypes: dal bhat power 24 hour, 30 momos when you ordered 6, 'just a small hill', ginger milk tea, everyone is dai or didi, Dashain.
+
+## 107_desi_weddings (not rendered yet)
+- **length:** 27s  |  **music:** bounce
+- **suggested caption:** somebody at every desi wedding held you when you were two. which one are you?
+- **what happens:** Desi wedding guests: the videographer with one more angle, the cutting aunty, 'i held you when you were 2', the dhol, the 3-hours-late baraat, 7 outfits in a suitcase, crying then leftovers.
+
+## 108_desi_uncles (not rendered yet)
+- **length:** 25s  |  **music:** funk
+- **suggested caption:** 'what's the mileage' is the desi uncle's way of saying hello. tag your uncle
+- **what happens:** Desi uncles: 'what's the mileage' about a couch, 'too much' for a free item, jugaad fixes, 300 good morning forwards, 'in my time we walked 9 miles', thermostat at 68.
+
+## 109_desi_aunties (not rendered yet)
+- **length:** 24s  |  **music:** pop
+- **suggested caption:** the achaar jar is older than you. send this to your aunty
+- **what happens:** Desi aunties: 50% off buys 12, the 4-generation pickle, no calls during the serial, the 3-continent gossip network, the saree that suits you leaving with her, 'for your own good'.
+
+## 110_desi_kids (not rendered yet)
+- **length:** 26s  |  **music:** lofi
+- **suggested caption:** you translated for your parents at nine and it made you a diplomat. which one are you?
+- **what happens:** Desi-kid archetypes: translating a bank call at 9, the shoes-off rule, the lunch-box smell, 'who, where, why, no' sleepover, 'be home by 9' at 31, 14 'did you eat' calls.
+
+## 111_immigrant_parents (not rendered yet)
+- **length:** 27s  |  **music:** lofi
+- **suggested caption:** the margarine tub has never once held margarine in any language. tag your parents
+- **what happens:** Immigrant-parent classics across cultures: the bag of bags, boxes saved forever, turning off the light you're standing under, converting every price back home, washed foil since 1998, 'we have food at home', the margarine tub.
+
+## 112_first_gen_kids (not rendered yet)
+- **length:** 26s  |  **music:** lofi
+- **suggested caption:** you've been a translator, a lawyer and an accountant since you were nine. send this to a first gen friend
+- **what happens:** First-gen kids: filling out mortgage forms at 10, not knowing what parents do, the proud school-event outfits, weekend language school, the whole family at graduation, the loving guilt.
+
+## 113_immigrant_moms (not rendered yet)
+- **length:** 24s  |  **music:** jazz
+- **suggested caption:** no immigrant mom has ever not been cooking for 40 people. which one are you?
+- **what happens:** Immigrant moms: 'sit, eat' before hello, the always-on rice cooker, the labeled leftovers fridge, ceiling-view video calls, cooking for 40 when 3 come, no one leaves empty-handed.
+
+## 114_immigrant_dads (not rendered yet)
+- **length:** 24s  |  **music:** funk
+- **suggested caption:** dad drove 25 minutes to save 50 cents and nobody is allowed to say it wasn't worth it. tag your dad
+- **what happens:** Immigrant dads: the toolbox, counting cash twice at checkout, the 24-year-old car 'my baby', driving 25 minutes to save pennies of gas, receipt checks, and 'did you eat' as 'i love you'.
+
+## 115_home_remedies (not rendered yet)
+- **length:** 23s  |  **music:** jazz
+- **suggested caption:** every culture has the same exact remedy and it's oil. send this to your grandma
+- **what happens:** Home-remedy households: oil for every ailment, Vicks everywhere, hot water, garlic, the doctor as last resort, 'it works, don't google it'.
+
+## 116_guest_protocol (not rendered yet)
+- **length:** 24s  |  **music:** bounce
+- **suggested caption:** no culture agrees on anything except you can't leave without leftovers. which one are you?
+- **what happens:** Guest protocol in many households: 'sit sit', tea is not an offer, the good plates, 'i just ate' doesn't count, the car walk, the third goodbye.
+
+## 117_china_cabinet (not rendered yet)
+- **length:** 23s  |  **music:** jazz
+- **suggested caption:** the good dishes are for a company that never came. tag your house
+- **what happens:** The sacred living room: the unused good dishes, a couch nobody sits on, decorative guest towels, plastic on everything, the 2009 TV sticker, the locked cabinet.
+
+## 118_cousin_network (not rendered yet)
+- **length:** 24s  |  **music:** pop
+- **suggested caption:** you've been introduced to a cousin 4 times and you still don't know how you're related. send this to a cousin
+- **what happens:** Big-family cousins: the cousin who knows a guy, 'second cousin or cousin's cousin?', the 87-member group chat nobody can leave, the stranger-uncle hug, the far cousin's gifts, the loud reunion.
+
+## 119_international_calls (not rendered yet)
+- **length:** 23s  |  **music:** synth
+- **suggested caption:** the call is 4 hours and the news is 'nothing new'. which one are you?
+- **what happens:** International calls: shouting because it's far, the 3-second delay, the ceiling-fan video call, the pocket call, calling at 3am by mistake, the 4-hour 'nothing new'.
+
+## 120_big_family_road_trip (not rendered yet)
+- **length:** 24s  |  **music:** funk
+- **suggested caption:** nine people, four seatbelts, six containers of food. tag your road trip crew
+- **what happens:** Big-family road trips: 9 in a van with 4 seatbelts, the trunk feast, motion sickness 11 minutes in, the 9-stop rest area guy, the human GPS of three relatives, arriving by horn.
+
+## 121_turkish_families (not rendered yet)
+- **length:** 24s  |  **music:** jazz
+- **suggested caption:** the spoon across the glass is the only way to end the tea. send this to your turkish friend
+- **what happens:** Affectionate Turkish archetypes: the endless çay and the spoon-on-glass stop signal, the evil eye everywhere, coffee-cup fortune reading, the bazaar carpet 'just looking', the 40-plate 'light' breakfast, the uninvited neighbor with food.
+
+## 122_armenian_families (not rendered yet)
+- **length:** 24s  |  **music:** bounce
+- **suggested caption:** everyone's last name ends in -ian and everyone knows your grandma. which one are you?
+- **what happens:** Affectionate Armenian archetypes: -ian surnames, the khorovats barbecue debate, lavash with everything, the dance circle, 'everything is Armenian', the sacred apricot.
+
+## 123_ethiopian_families (not rendered yet)
+- **length:** 23s  |  **music:** lofi
+- **suggested caption:** someone feeding you a bite by hand is the highest form of love. tag whoever gursha'd you
+- **what happens:** Affectionate Ethiopian archetypes: the gursha, the 2-hour coffee ceremony, one big shared plate, the 6-hour clock difference, injera as plate and fork, 'sit, eat'.
+
+## 124_jamaican_families (not rendered yet)
+- **length:** 24s  |  **music:** bounce
+- **suggested caption:** 'soon come' has never once meant soon. send this to a jamaican friend
+- **what happens:** Affectionate Jamaican archetypes: 'soon come', patties and coco bread, the Sunday dinner that starts at 4 and is ready at 7, the yard, bun and cheese at Easter, everybody's cousin.
+
+## 125_dominican_families (not rendered yet)
+- **length:** 23s  |  **music:** funk
+- **suggested caption:** the merengue wakes up the whole building at 7 am and everyone is okay with it. which one are you?
+- **what happens:** Affectionate Dominican archetypes: the 7am merengue Saturday clean, the 6-hour salon 'blowout', the domino table slam, the all-knowing colmado, heavy mangú breakfast, plastic on the couch since 1998.
+
+## 126_puerto_rican_families (not rendered yet)
+- **length:** 24s  |  **music:** bounce
+- **suggested caption:** christmas lasts two months and no one has a problem with that. tag a boricua
+- **what happens:** Affectionate Puerto Rican archetypes: 200 pasteles till 3am, the 2am parranda, the flag on everything, 5am pernil, the coquí, a Christmas that lasts until January.
+
+## 127_colombian_families (not rendered yet)
+- **length:** 23s  |  **music:** bounce
+- **suggested caption:** an arepa is breakfast, lunch, dinner and a hug. send this to a colombian friend
+- **what happens:** Affectionate Colombian archetypes: arepas at every meal, the tiny-cup tinto, the 11-item bandeja paisa, 'ahoritica', the glitter good-morning image, 'mijo, come'.
+
+## 128_cuban_families (not rendered yet)
+- **length:** 25s  |  **music:** funk
+- **suggested caption:** a cafecito is a very small cup with a very large opinion. which one are you?
+- **what happens:** Affectionate Cuban archetypes: the cafecito that vibrates, the domino-park arguments, the Noche Buena whole pig from 4am, abuela's 200 croquetas, 'mi vida' to everyone, the 1-hour bodega trip.
+
+## 129_haitian_families (not rendered yet)
+- **length:** 24s  |  **music:** jazz
+- **suggested caption:** pikliz is a flavor, a pain, and a personality. tag a haitian friend
+- **what happens:** Affectionate Haitian archetypes: joumou soup on January 1, pikliz on everything, the green épis blend, a party at 7 that starts at 11, Sunday church and feast, 'i made too much'.
+
+## 130_polish_families (not rendered yet)
+- **length:** 24s  |  **music:** pop
+- **suggested caption:** the guest slippers are a sign of love and also a dress code. send this to a polish friend
+- **what happens:** Affectionate Polish archetypes: guest slippers at the door, soup before the main course, pierogi for a village, name days, the empty chair at Wigilia, pickling everything.
