@@ -1,0 +1,22 @@
+"""Brutal virality score for reels that have been rewritten as real sketches. Each factor 0-10, scored hard (7 = good, 9 = rare, 10 = almost never).
+score = 10 x (.20 hook + .20 button + .25 send + .15 originality + .20 reach) - 4
+hook        = would a stranger stop in the first 2 seconds
+button      = does the last beat hit harder than everything before it (a reveal, callback or reversal)
+send        = does it make you think of ONE specific person and DM it
+originality = have you not already seen this exact joke 1000 times
+reach       = how many people instantly see themselves
+-4 is the calibration: nothing is a sure 100, and the numbers are my read of the scripts, not measured data. Reels that are still the old narrated versions get their old score x .8."""
+#       hook button send orig reach
+F = {
+ 147: (9, 10, 10, 9, 8), 146: (8, 9, 10, 8, 9), 114: (8, 10, 10, 8, 8), 153: (8, 10, 10, 9, 8), 113: (8, 9, 10, 7, 8), 76: (8, 8, 10, 7, 9),
+ 108: (8, 10, 9, 8, 6), 158: (8, 10, 9, 9, 5), 159: (8, 10, 10, 8, 6), 151: (9, 10, 9, 8, 7), 18: (8, 9, 9, 8, 8), 112: (8, 9, 9, 8, 8),
+ 60: (8, 9, 8, 7, 10), 33: (8, 9, 9, 7, 8), 32: (8, 8, 9, 6, 9), 16: (8, 9, 9, 7, 8), 20: (8, 9, 9, 7, 6), 152: (9, 9, 9, 8, 6),
+ 78: (8, 8, 9, 7, 8), 107: (8, 9, 8, 7, 7), 24: (8, 9, 8, 7, 7), 134: (7, 8, 9, 7, 7), 77: (8, 7, 9, 6, 9), 14: (8, 7, 9, 6, 7),
+ 115: (8, 8, 8, 7, 7), 110: (7, 8, 8, 7, 7), 31: (8, 8, 8, 6, 8), 148: (8, 8, 9, 6, 7), 156: (8, 8, 9, 7, 6), 154: (8, 9, 9, 6, 6),
+ 155: (8, 8, 8, 6, 5), 22: (8, 8, 7, 6, 8), 111: (7, 7, 8, 6, 8), 109: (7, 7, 8, 5, 6), 11: (8, 7, 7, 5, 8), 157: (7, 8, 7, 5, 7),
+ 1: (9, 8, 10, 7, 9), 2: (9, 9, 9, 8, 9), 3: (8, 9, 9, 7, 9), 4: (7, 8, 8, 6, 8), 5: (7, 9, 7, 7, 7), 6: (8, 7, 8, 7, 9), 7: (8, 8, 9, 8, 9),
+ 8: (8, 9, 10, 7, 10), 9: (7, 8, 8, 6, 8), 10: (7, 6, 7, 6, 7),
+}
+def score(n):
+    h, b, s, o, r = F[n]
+    return round(10 * (.20 * h + .20 * b + .25 * s + .15 * o + .20 * r) - 4, 1)

@@ -70,9 +70,9 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** High-school archetypes: hand-up-before-the-question-ends front row kid, 'is this graded', the minivan driver, the 2am group project hero, the daily bus runner, and the hood-up napper who still gets an A.
 
 ## 014_dads_hardware 
-- **length:** 24s  |  **music:** funk
-- **suggested caption:** my dad went in for a screw and came back with a ladder and a story about Gary. which one are you?
-- **what happens:** Hardware store dads: one screw, two hours; 'i can fix it' from a 4-minute YouTube video; best friends with every employee; the thermostat police; grill guard; 'come hold this'.
+- **length:** 45s  |  **music:** funk
+- **suggested caption:** 'i got a ladder and a story about gary.' tag your dad
+- **what happens:** Dad hardware-store sketch: one screw becomes a four-hour trip and a ladder, a 40-minute talk with the apron guy, a garage with 400 jars where he 'knows where everything is', measuring 11 times and cutting it short, and owning six of the same item.
 
 ## 015_moms_in_cars 
 - **length:** 26s  |  **music:** lofi
@@ -80,9 +80,9 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Moms: imaginary passenger brake, 'who is that' about every actor, 'text me when you get there' while you're in the driveway, the infinite purse, 'i'm not mad', and 'have you eaten'.
 
 ## 016_grandmas 
-- **length:** 28s  |  **music:** jazz
-- **suggested caption:** grandma's love language is food and a folded $20. send this to your grandma
-- **what happens:** Grandma archetypes: slides you $20, 'just a little' plate, wrong-name roll call, socks with receipt, chain-email forwarder, cooks for 14 while 'not hungry', calls first after 'call me when you get home'.
+- **length:** 44s  |  **music:** lofi
+- **suggested caption:** 'cook until it smells right.' send this to your grandma
+- **what happens:** Grandma sketch: a $20 folded to stamp-size 'don't tell your mother', 'so thin' to someone who gained weight, pocketing 14 sugar packets and a lemon, a tablet wallpaper cat that 'looks at me', and a recipe that says cook until it smells right.
 
 ## 017_egyptian_guys 
 - **length:** 29s  |  **music:** funk
@@ -100,9 +100,9 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Affectionate Filipino party archetypes: videoke until 1:30am, the endless rice cooker, balikbayan boxes, the always-accurate slipper, 'kain na', everyone is tita, foil trays to take home.
 
 ## 020_korean_moms 
-- **length:** 27s  |  **music:** pop
-- **suggested caption:** the fruit plate is a love language. which one are you?
-- **what happens:** Affectionate Korean-mom archetypes: cut fruit after every meal, 7 banchan 'it's nothing', 100°C soup 'it's not hot', the who-pays fight, 'have you eaten', tupperware you owe her.
+- **length:** 39s  |  **music:** lofi
+- **suggested caption:** 'train gas.' tag your korean friend's mom
+- **what happens:** Korean mom sketch: 'it would look better on your sister', a nose job as a graduation gift, 'then you can eat more', silent peeled fruit at 1am, and crying at the airport while stuffing $400 'for train gas'.
 
 ## 021_audi_guys 
 - **length:** 24s  |  **music:** synth
@@ -120,9 +120,9 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Jeep owners: the 41-wave drive, doors off in January, the rubber duck, 'it's a jeep thing', never leaving the pavement.
 
 ## 024_truck_guys 
-- **length:** 23s  |  **music:** funk
-- **suggested caption:** the bed has been empty since the dealership. tag a truck guy
-- **what happens:** Truck owners: the empty bed, hauling one bag of mulch, the ladder-height lift kit, the 11-try back-in, spot-and-a-half parking, towing talk.
+- **length:** 36s  |  **music:** trap
+- **suggested caption:** 'the bed has my cooler in it.' tag a truck guy
+- **what happens:** Truck guy sketch: hauls nothing 'in case', six-inch lift needing a ladder, three compact spots, $141 of gas called a lifestyle, and can't help move a couch because the bed has his cooler and he doesn't want to scratch it.
 
 ## 025_subaru_guys 
 - **length:** 26s  |  **music:** lofi
@@ -390,9 +390,9 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Youngest-sibling sketch: a hand-me-down 'camp tahoe 2009' shirt, mom calling brandon jessica and the dog biscuit before the youngest's name, 400 photos of the oldest and 12 blurry ones of you, instant fake tears so the oldest gets blamed, and at 26 still introduced as the baby.
 
 ## 078_middle_children 
-- **length:** 27s  |  **music:** lofi
-- **suggested caption:** the middle child has never been seen in a family photo. tag a middle child
-- **what happens:** Middle children: forgotten in the roll call, the unthanked peacemaker, the album with a cow, 'my own thing', the lecture, doing everything alone, 'i don't mind'.
+- **length:** 41s  |  **music:** jazz
+- **suggested caption:** 'just stand behind someone.' tag a middle child
+- **what happens:** Middle-child sketch: the crust of the pizza, 'stand behind someone' in the family photo, no phone because they're 'independent', mom thinking too long when asked about her favorite, and doing all the planning for mom's birthday only to be signed in a smaller font.
 
 ## 079_turning_30 
 - **length:** 27s  |  **music:** pop
@@ -535,24 +535,24 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Affectionate Nepali archetypes: dal bhat power 24 hour, 30 momos when you ordered 6, 'just a small hill', ginger milk tea, everyone is dai or didi, Dashain.
 
 ## 107_desi_weddings 
-- **length:** 27s  |  **music:** bounce
-- **suggested caption:** somebody at every desi wedding held you when you were two. which one are you?
-- **what happens:** Desi wedding guests: the videographer with one more angle, the cutting aunty, 'i held you when you were 2', the dhol, the 3-hours-late baraat, 7 outfits in a suitcase, crying then leftovers.
+- **length:** 41s  |  **music:** pop
+- **suggested caption:** 'he gave us a gift in 2004.' tag your wedding aunty
+- **what happens:** Desi wedding sketch: the unknown guest who's family because of a 2004 gift, aunties competing on karat, the DJ playing one song 9 times, the third plate 'for his mother', and a bride's father crying at vidai while the groom's father asks if there's more paneer.
 
 ## 108_desi_uncles 
-- **length:** 25s  |  **music:** funk
-- **suggested caption:** 'what's the mileage' is the desi uncle's way of saying hello. tag your uncle
-- **what happens:** Desi uncles: 'what's the mileage' about a couch, 'too much' for a free item, jugaad fixes, 300 good morning forwards, 'in my time we walked 9 miles', thermostat at 68.
+- **length:** 43s  |  **music:** funk
+- **suggested caption:** 'good. low mileage.' tag your uncle
+- **what happens:** Desi uncle sketch: asking 'mileage' about everything including your walk and a newborn ('good. low mileage'), haggling a dealership with a price from a model that didn't exist, contradictory investing advice ending in a gas station in Ohio, and a 'hacked' WhatsApp that's him.
 
 ## 109_desi_aunties 
-- **length:** 24s  |  **music:** pop
-- **suggested caption:** the achaar jar is older than you. send this to your aunty
-- **what happens:** Desi aunties: 50% off buys 12, the 4-generation pickle, no calls during the serial, the 3-continent gossip network, the saree that suits you leaving with her, 'for your own good'.
+- **length:** 42s  |  **music:** pop
+- **suggested caption:** 'i only told you.' tag the aunty who started it
+- **what happens:** Desi auntie sketch: arriving with 'nothing' (11 kilos of food), a backhanded compliment about skin, a secret passed to the entire network ('i only told you'), 40 photos of the food while it gets cold, and one night that becomes nine.
 
 ## 110_desi_kids 
-- **length:** 26s  |  **music:** lofi
-- **suggested caption:** you translated for your parents at nine and it made you a diplomat. which one are you?
-- **what happens:** Desi-kid archetypes: translating a bank call at 9, the shoes-off rule, the lunch-box smell, 'who, where, why, no' sleepover, 'be home by 9' at 31, 14 'did you eat' calls.
+- **length:** 41s  |  **music:** bounce
+- **suggested caption:** 'everyone is not our child.' tag a desi kid
+- **what happens:** Desi kid sketch: sleepover denied with 'everyone is not our child', a party interrogation that ends with 'what is their caste', dad builds a working turbine for the science project with a patent number, and nobody's allowed over to your house.
 
 ## 111_immigrant_parents 
 - **length:** 43s  |  **music:** lofi
@@ -565,19 +565,19 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** A first-gen kid translates for immigrant parents: softening an angry bank speech to 'she says hello', telling dad 'the teacher says i'm the best', describing diarrhea as 'stomach is sad', turning a threat to go to the news into 'thank you for your help'. At 31 in a board meeting mom texts 'what is adjustable rate'.
 
 ## 113_immigrant_moms 
-- **length:** 24s  |  **music:** jazz
-- **suggested caption:** no immigrant mom has ever not been cooking for 40 people. which one are you?
-- **what happens:** Immigrant moms: 'sit, eat' before hello, the always-on rice cooker, the labeled leftovers fridge, ceiling-view video calls, cooking for 40 when 3 come, no one leaves empty-handed.
+- **length:** 49s  |  **music:** lofi
+- **suggested caption:** the secret ingredient is love and two sticks of butter. which one are you?
+- **what happens:** Immigrant mom in the kitchen: 'something small' with 40 samosas 'in case', a recipe made of 'enough', 'until it's ready' and 'hot', refusing help then asking why you're not helping, wrapping your plate while you're eating, and the secret to the dish being love and two sticks of butter.
 
 ## 114_immigrant_dads 
-- **length:** 24s  |  **music:** funk
-- **suggested caption:** dad drove 25 minutes to save 50 cents and nobody is allowed to say it wasn't worth it. tag your dad
-- **what happens:** Immigrant dads: the toolbox, counting cash twice at checkout, the 24-year-old car 'my baby', driving 25 minutes to save pennies of gas, receipt checks, and 'did you eat' as 'i love you'.
+- **length:** 41s  |  **music:** synth
+- **suggested caption:** 'oh no. i'm him.' tag your dad and yourself
+- **what happens:** Immigrant dad sketch: an expired coupon, becoming a plumber via YouTube, 'not THAT whatever' at the restaurant, bag of oranges at the airport as i love you, and the kid at 35 repeating 'try it' at the register and realizing he's become his dad.
 
 ## 115_home_remedies 
-- **length:** 23s  |  **music:** jazz
-- **suggested caption:** every culture has the same exact remedy and it's oil. send this to your grandma
-- **what happens:** Home-remedy households: oil for every ailment, Vicks everywhere, hot water, garlic, the doctor as last resort, 'it works, don't google it'.
+- **length:** 38s  |  **music:** lofi
+- **suggested caption:** 'did you oil your head?' for heartbreak too. send this to your nani
+- **what happens:** Home-remedy sketch: oil for everything including a breakup, burnt chilies for the evil eye ('that's the eye leaving'), onions in socks that 'she believes in', a twig from a very old tree, and nani secretly taking three pills.
 
 ## 116_guest_protocol 
 - **length:** 24s  |  **music:** bounce
@@ -753,3 +753,48 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **length:** 24s  |  **music:** lofi
 - **suggested caption:** she squeezed 40 onions and bought 7. tag who you grocery shop with
 - **what happens:** Affectionate desi grocery-store archetypes: the 20-pound rice bag, the onion inspector, two uncles blocking an aisle for 40 minutes, the $187 receipt called a 'good price', the free pack that makes her day, a spice-scented trunk.
+
+## 151_desi_diwali_chat 
+- **length:** 28s  |  **music:** funk
+- **suggested caption:** uncle added the boy to the group chat. neha left. send this to the cousin who always gets set up
+- **what happens:** A desi family group chat plans Diwali: Meena Aunty says bring nothing but four dishes, Raj Uncle asks 'which Neha', offers a boy, then adds him to the group; Neha leaves the chat.
+
+## 152_arab_dinner_chat 
+- **length:** 22s  |  **music:** jazz
+- **suggested caption:** inshallah 7 is a different time than 7. which one are you?
+- **what happens:** An Arab family chat sets dinner at '7 inshallah', one uncle says 'leaving now' at 5pm, '5 minutes' at 7:40 and 'downstairs' at 9:15, after dinner is over; he says he's not hungry then comes up for the 40 dishes. He lives four minutes away.
+
+## 153_dad_text_chat 
+- **length:** 26s  |  **music:** lofi
+- **suggested caption:** 'traffic was good.' he's been outside for three hours. send this to your dad
+- **what happens:** A dad texts 'did you eat', shows a single boiled egg as dinner and says mom is at her sister's. You invite him for 7; he arrives outside at 4 and explains 'traffic was good'.
+
+## 154_chinese_mom_chat 
+- **length:** 26s  |  **music:** bounce
+- **suggested caption:** 'he sent a thumbs up.' 'same thing.' tag your chinese mom
+- **what happens:** A Chinese mom texts: eat, wear more, 'you are not weather man', vitamins, a stabbing in another state, a doctor with a car, and dad says hi with a thumbs up: 'same thing' as i love you.
+
+## 155_nigerian_mom_chat 
+- **length:** 29s  |  **music:** funk
+- **suggested caption:** 'i said you are robust.' tag your nigerian friend's mum
+- **what happens:** A Nigerian mum in all caps: 7 missed calls, 'are you dead', defending the kid to the aunty as 'robust', then inviting 'only 60' people for Christmas, which becomes 80.
+
+## 156_desi_wedding_chat 
+- **length:** 25s  |  **music:** pop
+- **suggested caption:** 'ok 310.' tag the bride who asked for a small wedding
+- **what happens:** A desi wedding group chat: a four-color dress code, an aunty who bought the black saree anyway ('it's a very nice black'), and the bride asking for a small wedding gets '300 people', then '310'.
+
+## 157_gym_chat 
+- **length:** 19s  |  **music:** trap
+- **suggested caption:** 'sore emotionally.' tag the guy who says leg day then doesn't show
+- **what happens:** A gym bros chat swears no excuses for 5am leg day; Mike shows up alone, the others have alarms, sickness and being 'sore emotionally', and the gym is closed because it's Sunday.
+
+## 158_taarof_chat 
+- **length:** 23s  |  **music:** jazz
+- **suggested caption:** 'that is just what you say.' tag your persian friend who taarofs
+- **what happens:** Persian taarof: the host says don't bring anything, insists twice, you obey, and she asks at 6:40 'where is the dessert', explaining 'that is just what you say'.
+
+## 159_korean_mom_chat 
+- **length:** 18s  |  **music:** lofi
+- **suggested caption:** 'is it enough.' it's 18 pounds. tag your korean friend's mom
+- **what happens:** A Korean mom asks if you ate, shows 14 side dishes, mails an 18-pound package of kimchi and asks, 'is it enough'.

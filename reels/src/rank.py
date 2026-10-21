@@ -2,7 +2,7 @@
 Writes ../RANKING.md, ../schedule_ranked.csv and ../schedule_ranked.sql (upsert: new rows inserted, existing rows rescheduled)."""
 import sys, os, csv, datetime as dt
 sys.path.insert(0, os.path.dirname(__file__))
-import schedule, virality
+import schedule, virality, virality2
 SLOTS = ["08:00", "11:30", "15:00", "18:00", "21:00"]
 OLD = {  # older hand-made reels already in the queue: id -> (title, my score)
  "9fab4b15-72a6-471a-8e61-925760cce1ed": ("Gym guys", 88.0), "04c817b6-b680-4779-94c7-ef40defa5b1b": ("We should hang out", 83.0),
@@ -17,7 +17,8 @@ def niche(n):
 def build_seq(first):
     ready = os.path.join(os.path.dirname(__file__), "..", "ready.txt")
     only = {int(x) for x in open(ready).read().split()} if os.path.exists(ready) else None
-    items = [(virality.score(n), f"n{n}", niche(n), n) for n in virality.FACT if only is None or n in only]
+    sc2 = lambda n: virality2.score(n) if n in virality2.F else round(virality.score(n) * .8, 1)
+    items = [(sc2(n), f"n{n}", niche(n), n) for n in sorted(set(virality.FACT) | set(virality2.F)) if only is None or n in only]
     items += [(s, "o" + i, "old", i) for i, (t, s) in OLD.items() if only is None or 0 in only]
     items.sort(key=lambda x: (-x[0], x[1])); seq = []
     while items:   # greedy: best remaining whose niche differs from the previous post
