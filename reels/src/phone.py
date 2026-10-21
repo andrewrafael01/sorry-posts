@@ -304,3 +304,75 @@ class VoiceMemo:
                 u = t - l["at"]; L2 = L.copy(); L2.putalpha(L.getchannel("A").point(lambda v: int(v * clamp(u / .15)))); img.paste(L2, (60, y), L2); y += L.height + 14
         d.rounded_rectangle([UW / 2 - 150, 1470, UW / 2 + 150, 1480], 5, fill=(0, 0, 0))
         return img
+
+
+class Search:
+    """A search box with autocomplete. events: dict(at, q='why does my dad', sugg=[...], type_time=1.2, final=None). Suggestions pop in one by one after the query is typed.
+    A later event clears the box and starts again. 'final' (optional) is a completion that gets selected and bolded on the last event."""
+    def __init__(self, events, clock="9:41", dark=False, accent=(66, 133, 244), hint="Search"):
+        self.events = sorted(events, key=lambda e: e["at"]); self.clock, self.dark, self.accent, self.hint = clock, dark, accent, hint
+        self.items = [dict(at=e["at"] + e.get("type_time", 1.0) + .85 * len(e["sugg"])) for e in self.events]
+        self.cues = []
+        for e in self.events:
+            tt = e.get("type_time", 1.0)
+            for k in range(int(tt * 9)): self.cues.append((e["at"] + k / 9, "key", .5))
+            for j in range(len(e["sugg"])): self.cues.append((e["at"] + tt + .25 + j * .85, "pop", .5))
+    def draw(self, t):
+        bg = (24, 25, 29) if self.dark else (255, 255, 255); fg = (240, 240, 245) if self.dark else (32, 33, 36); mut = (150, 152, 160) if self.dark else (112, 117, 122)
+        img = Image.new("RGB", (UW, UH), bg); d = ImageDraw.Draw(img); status_bar(img, self.dark, self.clock)
+        cur = None
+        for e in self.events:
+            if e["at"] <= t: cur = e
+        # search bar
+        d.rounded_rectangle([40, 130, UW - 40, 250], 60, fill=(48, 49, 54) if self.dark else (241, 243, 244))
+        d.ellipse([84, 168, 118, 202], outline=mut, width=5); d.line([(113, 197), (130, 214)], fill=mut, width=5)
+        if cur is None: draw_line(img, 160, 164, self.hint, "reg", 48, mut); return img
+        u = t - cur["at"]; tt = cur.get("type_time", 1.0); q = cur["q"]; n = len(q) if u >= tt else int(len(q) * clamp(u / tt))
+        shown = q[:n]; draw_line(img, 160, 164, shown, "reg", 48, fg)
+        if int(t * 2) % 2 == 0 and u < tt + 1.5: 
+            w = font("reg", 48).getlength(shown); d.rectangle([160 + w + 4, 168, 164 + w + 4, 222], fill=self.accent)
+        d.line([(0, 300), (UW, 300)], fill=(60, 62, 68) if self.dark else (232, 234, 237), width=2)
+        y = 330
+        for j, s in enumerate(cur["sugg"]):
+            ta = cur["at"] + tt + .25 + j * .85
+            if t < ta: break
+            a = clamp((t - ta) / .18); sel = cur.get("final") == s
+            lay = text_layer(q + s, 44, "semi", fg if not sel else self.accent, maxw=860, align="left", pad=4, spacing=1.12)
+            hh = max(118, lay.height + 56); row = Image.new("RGB", (UW, hh), bg); rd = ImageDraw.Draw(row)
+            rd.ellipse([56, hh // 2 - 15, 86, hh // 2 + 15], outline=mut, width=4); rd.line([(80, hh // 2 + 9), (94, hh // 2 + 23)], fill=mut, width=4)
+            row.paste(lay, (130, (hh - lay.height) // 2), lay)
+            if sel: rd.rounded_rectangle([20, 4, UW - 20, hh - 4], 24, outline=self.accent, width=4)
+            if a < 1: row = Image.blend(Image.new("RGB", row.size, bg), row, a)
+            img.paste(row, (0, y)); y += hh
+        return img
+
+
+class Notes:
+    """Notes / Reminders style list. events: dict(at, text, kind='line'|'check'|'done'|'head'). 'done' = ticked + struck through. title shown at the top."""
+    def __init__(self, title, events, clock="9:41", dark=False, accent=(255, 159, 10), back="Notes"):
+        self.title, self.events, self.clock, self.dark, self.accent, self.back = title, sorted(events, key=lambda e: e["at"]), clock, dark, accent, back
+        self.items = [dict(at=e["at"]) for e in self.events]
+        self.cues = [(e["at"], "pop" if e.get("kind", "line") != "done" else "sparkle", .5) for e in self.events]
+    def draw(self, t):
+        bg = (28, 28, 30) if self.dark else (255, 255, 255); fg = (245, 245, 247) if self.dark else (20, 20, 22); mut = (140, 140, 146)
+        img = Image.new("RGB", (UW, UH), bg); d = ImageDraw.Draw(img); status_bar(img, self.dark, self.clock)
+        d.line([(52, 154), (34, 184)], fill=self.accent, width=7); d.line([(34, 184), (52, 214)], fill=self.accent, width=7); draw_line(img, 76, 160, self.back, "med", 42, self.accent)
+        L = text_layer(self.title, 74, "black", fg, maxw=960, align="left", pad=10, spacing=1.1); img.paste(L, (60, 270), L)
+        y = 270 + L.height + 50
+        for e in self.events:
+            if t < e["at"]: break
+            a = clamp((t - e["at"]) / .16); kind = e.get("kind", "line"); txt = e["text"]
+            col = fg
+            if kind == "done": col = mut
+            lay = text_layer(txt, 50, "semi" if kind != "head" else "bold", col, maxw=860 if kind in ("check", "done") else 940, align="left", pad=0, spacing=1.1)
+            hh = max(lay.height, 54) + 30; row = Image.new("RGB", (UW, hh), bg); rd = ImageDraw.Draw(row); x0 = 60
+            if kind in ("check", "done"):
+                rd.ellipse([60, 8, 112, 60], outline=self.accent, width=5)
+                if kind == "done":
+                    rd.ellipse([66, 14, 106, 54], fill=self.accent); rd.line([(76, 34), (85, 44)], fill=WHITE, width=6); rd.line([(85, 44), (100, 24)], fill=WHITE, width=6)
+                x0 = 140
+            row.paste(lay, (x0, 4), lay)
+            if kind == "done": rd.line([(x0, 4 + lay.height // 2 + 2), (x0 + min(lay.width, 840), 4 + lay.height // 2 + 2)], fill=mut, width=4)
+            if a < 1: row = Image.blend(Image.new("RGB", row.size, bg), row, a)
+            img.paste(row, (0, int(y))); y += hh
+        return img

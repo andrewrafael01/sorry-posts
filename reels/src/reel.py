@@ -31,6 +31,15 @@ def finish(img, t, grain=True):
         img = ImageChops.add(img, _GRAIN_IMG.crop((ox, oy, ox + W, oy + H)), 1.0, -128)
     return img
 
+SAFE = .91     # phone UIs and tall screens crop the edges of a 9:16 frame, so the picture is shrunk into a safe zone over a soft backdrop
+def safe(img, s=SAFE, dy=-20):
+    from PIL import Image as _I
+    bg = img.resize((54, 96), _I.BILINEAR).resize((W, H), _I.BICUBIC)
+    bg = _I.eval(bg, lambda v: int(v * .55))
+    fw, fh = int(W * s), int(H * s)
+    bg.paste(img.resize((fw, fh), _I.LANCZOS), ((W - fw) // 2, (H - fh) // 2 + dy))
+    return bg
+
 def hand(t, amp=1.0):
     return (math.sin(t * 1.9) * 3.2 + math.sin(t * 4.3 + 1) * 1.6) * amp, (math.cos(t * 1.4) * 3.0 + math.sin(t * 3.7) * 1.4) * amp
 
@@ -369,7 +378,7 @@ class Reel:
         cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-i", wav,
                "-c:v", "libx264", "-preset", "veryfast", "-crf", str(crf), "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", path]
         p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
-        for i in range(int(self.dur * FPS)): p.stdin.write(self.frame(i / FPS).tobytes())
+        for i in range(int(self.dur * FPS)): p.stdin.write(safe(self.frame(i / FPS)).tobytes())
         p.stdin.close(); p.wait(); os.remove(wav)
         return path
 
