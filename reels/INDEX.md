@@ -299,7 +299,7 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **suggested caption:** 'one more game' is the most dangerous sentence in gaming. which one are you?
 - **what happens:** Gamers: 'one more game' 9pm to 4am, controller replaced same day, 'it's lag', 'MOM I'M IN A GAME' 2 feet away, the loud chewer, 'let me save', 'not addicted'.
 
-## 060_dog_cat_people (not rendered yet)
+## 060_dog_cat_people 
 - **length:** 26s  |  **music:** bounce
 - **suggested caption:** the dog forgives you for everything and the cat will not forgive you for anything. tag your pet
 - **what happens:** Dog vs cat people: 'WALK?', 'she'll come when she wants', the couch chew look, the cup-off-the-table stare, the both-person, the $1,100 sock, 'i don't spoil him' with a birthday cake.
@@ -504,152 +504,152 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **suggested caption:** number 189, now serving 12. send this to who you waited with at the dmv
 - **what happens:** A day at the DMV: first in line, number 189 vs 12, befriending strangers, the clerks' simultaneous lunch, 'you need form B', form B in another building, closed at 4:55, and Marcus back tomorrow.
 
-## 101_bengali_families (not rendered yet)
+## 101_bengali_families 
 - **length:** 29s  |  **music:** lofi
 - **suggested caption:** if there's no fish it's not lunch. which one are you?
 - **what happens:** Affectionate Bengali archetypes: fish at every meal, the hilsa bone surgeon, the five-hour adda, the monkey cap at 24°, mishti for no occasion, 11 pandals, quoting Tagore.
 
-## 102_punjabi_families (not rendered yet)
+## 102_punjabi_families 
 - **length:** 26s  |  **music:** bounce
 - **suggested caption:** the lassi glass is basically a vase. tag a punjabi friend
 - **what happens:** Affectionate Punjabi archetypes: butter on butter, the vase-sized lassi, the dhol that makes everyone stand, the 40-foot 'oye', 800-guest 'family only', the Canada cousin, 'one more roti'.
 
-## 103_gujarati_families (not rendered yet)
+## 103_gujarati_families 
 - **length:** 25s  |  **music:** pop
 - **suggested caption:** forty theplas for a two hour flight is just good planning. send this to a gujarati friend
 - **what happens:** Affectionate Gujarati archetypes: 40 theplas for a short flight, asking for a discount at a dollar store, 9 nights of garba, 'we have no food' beside a snack drawer, the protein question, the unsittable Diwali couch.
 
-## 104_south_indian_families (not rendered yet)
+## 104_south_indian_families 
 - **length:** 24s  |  **music:** jazz
 - **suggested caption:** pouring the coffee from three feet up is a skill and a personality. which one are you?
 - **what happens:** Affectionate South Indian archetypes: filter coffee pour ritual, 'just one dosa', curd rice to end every meal, first day first show, a 6-hour saree shop, the 'quick' temple stop.
 
-## 105_pakistani_families (not rendered yet)
+## 105_pakistani_families 
 - **length:** 24s  |  **music:** funk
 - **suggested caption:** everyone's mom makes the best biryani and everyone is right. tag a pakistani friend
 - **what happens:** Affectionate Pakistani archetypes: the biryani debate, cricket stops the wedding, 'just a chai', 8-event wedding week, dinner at 8 starting at midnight, the aunty's matchmaking list.
 
-## 106_nepali_families (not rendered yet)
+## 106_nepali_families 
 - **length:** 24s  |  **music:** lofi
 - **suggested caption:** dal bhat power 24 hour is the only energy drink that works. send this to a nepali friend
 - **what happens:** Affectionate Nepali archetypes: dal bhat power 24 hour, 30 momos when you ordered 6, 'just a small hill', ginger milk tea, everyone is dai or didi, Dashain.
 
-## 107_desi_weddings (not rendered yet)
+## 107_desi_weddings 
 - **length:** 27s  |  **music:** bounce
 - **suggested caption:** somebody at every desi wedding held you when you were two. which one are you?
 - **what happens:** Desi wedding guests: the videographer with one more angle, the cutting aunty, 'i held you when you were 2', the dhol, the 3-hours-late baraat, 7 outfits in a suitcase, crying then leftovers.
 
-## 108_desi_uncles (not rendered yet)
+## 108_desi_uncles 
 - **length:** 25s  |  **music:** funk
 - **suggested caption:** 'what's the mileage' is the desi uncle's way of saying hello. tag your uncle
 - **what happens:** Desi uncles: 'what's the mileage' about a couch, 'too much' for a free item, jugaad fixes, 300 good morning forwards, 'in my time we walked 9 miles', thermostat at 68.
 
-## 109_desi_aunties (not rendered yet)
+## 109_desi_aunties 
 - **length:** 24s  |  **music:** pop
 - **suggested caption:** the achaar jar is older than you. send this to your aunty
 - **what happens:** Desi aunties: 50% off buys 12, the 4-generation pickle, no calls during the serial, the 3-continent gossip network, the saree that suits you leaving with her, 'for your own good'.
 
-## 110_desi_kids (not rendered yet)
+## 110_desi_kids 
 - **length:** 26s  |  **music:** lofi
 - **suggested caption:** you translated for your parents at nine and it made you a diplomat. which one are you?
 - **what happens:** Desi-kid archetypes: translating a bank call at 9, the shoes-off rule, the lunch-box smell, 'who, where, why, no' sleepover, 'be home by 9' at 31, 14 'did you eat' calls.
 
-## 111_immigrant_parents (not rendered yet)
+## 111_immigrant_parents 
 - **length:** 27s  |  **music:** lofi
 - **suggested caption:** the margarine tub has never once held margarine in any language. tag your parents
 - **what happens:** Immigrant-parent classics across cultures: the bag of bags, boxes saved forever, turning off the light you're standing under, converting every price back home, washed foil since 1998, 'we have food at home', the margarine tub.
 
-## 112_first_gen_kids (not rendered yet)
+## 112_first_gen_kids 
 - **length:** 26s  |  **music:** lofi
 - **suggested caption:** you've been a translator, a lawyer and an accountant since you were nine. send this to a first gen friend
 - **what happens:** First-gen kids: filling out mortgage forms at 10, not knowing what parents do, the proud school-event outfits, weekend language school, the whole family at graduation, the loving guilt.
 
-## 113_immigrant_moms (not rendered yet)
+## 113_immigrant_moms 
 - **length:** 24s  |  **music:** jazz
 - **suggested caption:** no immigrant mom has ever not been cooking for 40 people. which one are you?
 - **what happens:** Immigrant moms: 'sit, eat' before hello, the always-on rice cooker, the labeled leftovers fridge, ceiling-view video calls, cooking for 40 when 3 come, no one leaves empty-handed.
 
-## 114_immigrant_dads (not rendered yet)
+## 114_immigrant_dads 
 - **length:** 24s  |  **music:** funk
 - **suggested caption:** dad drove 25 minutes to save 50 cents and nobody is allowed to say it wasn't worth it. tag your dad
 - **what happens:** Immigrant dads: the toolbox, counting cash twice at checkout, the 24-year-old car 'my baby', driving 25 minutes to save pennies of gas, receipt checks, and 'did you eat' as 'i love you'.
 
-## 115_home_remedies (not rendered yet)
+## 115_home_remedies 
 - **length:** 23s  |  **music:** jazz
 - **suggested caption:** every culture has the same exact remedy and it's oil. send this to your grandma
 - **what happens:** Home-remedy households: oil for every ailment, Vicks everywhere, hot water, garlic, the doctor as last resort, 'it works, don't google it'.
 
-## 116_guest_protocol (not rendered yet)
+## 116_guest_protocol 
 - **length:** 24s  |  **music:** bounce
 - **suggested caption:** no culture agrees on anything except you can't leave without leftovers. which one are you?
 - **what happens:** Guest protocol in many households: 'sit sit', tea is not an offer, the good plates, 'i just ate' doesn't count, the car walk, the third goodbye.
 
-## 117_china_cabinet (not rendered yet)
+## 117_china_cabinet 
 - **length:** 23s  |  **music:** jazz
 - **suggested caption:** the good dishes are for a company that never came. tag your house
 - **what happens:** The sacred living room: the unused good dishes, a couch nobody sits on, decorative guest towels, plastic on everything, the 2009 TV sticker, the locked cabinet.
 
-## 118_cousin_network (not rendered yet)
+## 118_cousin_network 
 - **length:** 24s  |  **music:** pop
 - **suggested caption:** you've been introduced to a cousin 4 times and you still don't know how you're related. send this to a cousin
 - **what happens:** Big-family cousins: the cousin who knows a guy, 'second cousin or cousin's cousin?', the 87-member group chat nobody can leave, the stranger-uncle hug, the far cousin's gifts, the loud reunion.
 
-## 119_international_calls (not rendered yet)
+## 119_international_calls 
 - **length:** 23s  |  **music:** synth
 - **suggested caption:** the call is 4 hours and the news is 'nothing new'. which one are you?
 - **what happens:** International calls: shouting because it's far, the 3-second delay, the ceiling-fan video call, the pocket call, calling at 3am by mistake, the 4-hour 'nothing new'.
 
-## 120_big_family_road_trip (not rendered yet)
+## 120_big_family_road_trip 
 - **length:** 24s  |  **music:** funk
 - **suggested caption:** nine people, four seatbelts, six containers of food. tag your road trip crew
 - **what happens:** Big-family road trips: 9 in a van with 4 seatbelts, the trunk feast, motion sickness 11 minutes in, the 9-stop rest area guy, the human GPS of three relatives, arriving by horn.
 
-## 121_turkish_families (not rendered yet)
+## 121_turkish_families 
 - **length:** 24s  |  **music:** jazz
 - **suggested caption:** the spoon across the glass is the only way to end the tea. send this to your turkish friend
 - **what happens:** Affectionate Turkish archetypes: the endless çay and the spoon-on-glass stop signal, the evil eye everywhere, coffee-cup fortune reading, the bazaar carpet 'just looking', the 40-plate 'light' breakfast, the uninvited neighbor with food.
 
-## 122_armenian_families (not rendered yet)
+## 122_armenian_families 
 - **length:** 24s  |  **music:** bounce
 - **suggested caption:** everyone's last name ends in -ian and everyone knows your grandma. which one are you?
 - **what happens:** Affectionate Armenian archetypes: -ian surnames, the khorovats barbecue debate, lavash with everything, the dance circle, 'everything is Armenian', the sacred apricot.
 
-## 123_ethiopian_families (not rendered yet)
+## 123_ethiopian_families 
 - **length:** 23s  |  **music:** lofi
 - **suggested caption:** someone feeding you a bite by hand is the highest form of love. tag whoever gursha'd you
 - **what happens:** Affectionate Ethiopian archetypes: the gursha, the 2-hour coffee ceremony, one big shared plate, the 6-hour clock difference, injera as plate and fork, 'sit, eat'.
 
-## 124_jamaican_families (not rendered yet)
+## 124_jamaican_families 
 - **length:** 24s  |  **music:** bounce
 - **suggested caption:** 'soon come' has never once meant soon. send this to a jamaican friend
 - **what happens:** Affectionate Jamaican archetypes: 'soon come', patties and coco bread, the Sunday dinner that starts at 4 and is ready at 7, the yard, bun and cheese at Easter, everybody's cousin.
 
-## 125_dominican_families (not rendered yet)
+## 125_dominican_families 
 - **length:** 23s  |  **music:** funk
 - **suggested caption:** the merengue wakes up the whole building at 7 am and everyone is okay with it. which one are you?
 - **what happens:** Affectionate Dominican archetypes: the 7am merengue Saturday clean, the 6-hour salon 'blowout', the domino table slam, the all-knowing colmado, heavy mangú breakfast, plastic on the couch since 1998.
 
-## 126_puerto_rican_families (not rendered yet)
+## 126_puerto_rican_families 
 - **length:** 24s  |  **music:** bounce
 - **suggested caption:** christmas lasts two months and no one has a problem with that. tag a boricua
 - **what happens:** Affectionate Puerto Rican archetypes: 200 pasteles till 3am, the 2am parranda, the flag on everything, 5am pernil, the coquí, a Christmas that lasts until January.
 
-## 127_colombian_families (not rendered yet)
+## 127_colombian_families 
 - **length:** 23s  |  **music:** bounce
 - **suggested caption:** an arepa is breakfast, lunch, dinner and a hug. send this to a colombian friend
 - **what happens:** Affectionate Colombian archetypes: arepas at every meal, the tiny-cup tinto, the 11-item bandeja paisa, 'ahoritica', the glitter good-morning image, 'mijo, come'.
 
-## 128_cuban_families (not rendered yet)
+## 128_cuban_families 
 - **length:** 25s  |  **music:** funk
 - **suggested caption:** a cafecito is a very small cup with a very large opinion. which one are you?
 - **what happens:** Affectionate Cuban archetypes: the cafecito that vibrates, the domino-park arguments, the Noche Buena whole pig from 4am, abuela's 200 croquetas, 'mi vida' to everyone, the 1-hour bodega trip.
 
-## 129_haitian_families (not rendered yet)
+## 129_haitian_families 
 - **length:** 24s  |  **music:** jazz
 - **suggested caption:** pikliz is a flavor, a pain, and a personality. tag a haitian friend
 - **what happens:** Affectionate Haitian archetypes: joumou soup on January 1, pikliz on everything, the green épis blend, a party at 7 that starts at 11, Sunday church and feast, 'i made too much'.
 
-## 130_polish_families (not rendered yet)
+## 130_polish_families 
 - **length:** 24s  |  **music:** pop
 - **suggested caption:** the guest slippers are a sign of love and also a dress code. send this to a polish friend
 - **what happens:** Affectionate Polish archetypes: guest slippers at the door, soup before the main course, pierogi for a village, name days, the empty chair at Wigilia, pickling everything.
