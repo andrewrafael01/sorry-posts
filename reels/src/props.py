@@ -506,3 +506,21 @@ def p_smoke(s):
     for cx, cy, r in [(.3, .7, .2), (.5, .5, .26), (.72, .62, .22), (.45, .3, .2), (.62, .25, .15)]:
         d.ellipse([int(s * (cx - r)) * k, int(s * (cy - r)) * k, int(s * (cx + r)) * k, int(s * (cy + r)) * k], fill=(70, 70, 78, 215))
     return _fin(L)
+
+
+def p_fish(s, color="9db4c0"):
+    w, h = s, int(s * .45); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.ellipse([int(w * .1) * k, int(h * .1) * k + 10 * k, int(w * .85) * k, int(h * .9) * k + 10 * k], fill=rgb(color), outline=D, width=3 * k)
+    d.polygon([(int(w * .8) * k, int(h * .5) * k + 10 * k), (w * k, int(h * .1) * k + 10 * k), (w * k, int(h * .9) * k + 10 * k)], fill=shade(rgb(color), .85), outline=D)
+    d.ellipse([int(w * .2) * k, int(h * .35) * k + 10 * k, int(w * .27) * k, int(h * .5) * k + 10 * k], fill=D)
+    for i in range(4): d.arc([int(w * (.35 + i * .1)) * k, int(h * .25) * k + 10 * k, int(w * (.5 + i * .1)) * k, int(h * .75) * k + 10 * k], 270, 90, fill=shade(rgb(color), .7), width=2 * k)
+    return _fin(L)
+
+def p_jar(s, color="e07a2f", text=""):
+    w, h = int(s * .7), s; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.rounded_rectangle([10 * k, int(h * .18) * k, (w + 10) * k, h * k], 18 * k, fill=(220, 235, 245, 200), outline=rgb("9aa8b8"), width=3 * k)
+    d.rectangle([int(w * .1) * k + 10 * k, int(h * .45) * k, int(w * .9) * k + 10 * k, int(h * .95) * k], fill=rgb(color))
+    d.rounded_rectangle([int(w * .12) * k + 10 * k, 6 * k, int(w * .88) * k + 10 * k, int(h * .2) * k], 8 * k, fill=rgb("c0392b"))
+    if text:
+        tl = text_layer(text, int(w * .2), "black", WHITE, maxw=int(w * .8), pad=0); tl = tl.resize((tl.width * k, tl.height * k)); L.paste(tl, (int((w + 20) * k / 2 - tl.width / 2), int(h * .6 * k)), tl)
+    return _fin(L)

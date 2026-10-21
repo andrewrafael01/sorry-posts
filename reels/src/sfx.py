@@ -114,6 +114,9 @@ def make(name):
     if name == "coin":
         t = T(.45); x = (np.sin(2 * np.pi * 1760 * t) * (t < .08) + np.sin(2 * np.pi * 2349 * t) * (t >= .08)) * np.exp(-t * 7); return x * .5
     if name == "womp": return make("fail")
+    if name == "clang":
+        t = T(.7); x = sum(np.sin(2 * np.pi * f * t) * a for f, a in [(523, 1), (1170, .7), (1790, .5), (2650, .3)])
+        return x * np.exp(-t * 6) * .4
     if name == "crunch":
         out = np.zeros(int(.5 * SR))
         for k in range(4):
