@@ -1,0 +1,373 @@
+"""Shot composer: scene / phone / kinetic shots, transitions, camera, grain, audio assembly, lint, render."""
+import math, os, re, subprocess, wave, random
+import numpy as np
+from engine import *
+from chars import *
+import music, sfx
+from phone import UW, UH
+from guys import bubble_layer, card_layer, text_layer
+from props import prop
+
+# --------------------------------------------------------------- post / camera
+from PIL import ImageChops
+_rs = np.random.RandomState(1)
+_GRAIN_IMG = Image.fromarray(np.clip(128 + _rs.randn(H + 64, W + 64) * 5.5, 0, 255).astype(np.uint8)).convert("RGB")
+_yy, _xx = np.mgrid[0:H, 0:W]
+_v = 255 - np.clip(((((_xx - W / 2) / (W / 2)) ** 2 + ((_yy - H / 2) / (H / 2)) ** 2) - .35) * 55, 0, 70)
+_VIG_IMG = Image.fromarray(_v.astype(np.uint8)).convert("RGB")
+
+def camera(img, zoom=1.0, dx=0.0, dy=0.0, rot=0.0):
+    if zoom == 1.0 and not dx and not dy and not rot: return img
+    cw, ch = W / zoom, H / zoom
+    x0 = (W - cw) / 2 + dx; y0 = (H - ch) / 2 + dy
+    x0 = clamp(x0, 0, W - cw); y0 = clamp(y0, 0, H - ch)
+    out = img.crop((int(x0), int(y0), int(x0 + cw), int(y0 + ch))).resize((W, H), Image.BILINEAR)
+    return out.rotate(rot, resample=Image.BILINEAR) if rot else out
+
+def finish(img, t, grain=True):
+    img = ImageChops.multiply(img, _VIG_IMG)
+    if grain:
+        ox, oy = int((t * 997) % 64), int((t * 577) % 64)
+        img = ImageChops.add(img, _GRAIN_IMG.crop((ox, oy, ox + W, oy + H)), 1.0, -128)
+    return img
+
+def hand(t, amp=1.0):
+    return (math.sin(t * 1.9) * 3.2 + math.sin(t * 4.3 + 1) * 1.6) * amp, (math.cos(t * 1.4) * 3.0 + math.sin(t * 3.7) * 1.4) * amp
+
+def shake_at(lt, events):
+    dx = dy = 0.0; zp = 0.0
+    for e in events or []:
+        t0, amp = e[0], e[1]; dur = e[2] if len(e) > 2 else .35
+        u = lt - t0
+        if 0 <= u < dur:
+            k = (1 - u / dur) ** 2
+            dx += math.sin(u * 70) * amp * k; dy += math.cos(u * 83) * amp * k; zp += .035 * k * (amp / 22)
+    return dx, dy, zp
+
+# --------------------------------------------------------------- shots
+class Shot:
+    dur = 3.0; cues = None; music_dip = None; amb = None; cut = "cut"; shake = None
+    def render(self, lt): raise NotImplementedError
+
+def _pt(p, W_=W, H_=H): return p[0] * W_, p[1] * H_
+
+def draw_prop(img, p, lt):
+    at = p.get("at", 0.0)
+    if lt < at: return
+    if p.get("until") is not None and lt > p["until"]: return
+    u = lt - at
+    sc = out_back(u / .28, 1.6) if p.get("pop", True) else 1.0
+    x, y = p["x"] * W, p["y"] * H
+    an = p.get("anim")
+    if an == "bounce": y -= abs(math.sin(u * 6)) * 34
+    elif an == "shake": x += math.sin(u * 45) * 8
+    elif an == "float": y += math.sin(u * 2.6) * 14
+    elif an == "slide": x = lerp(p.get("from", -.3) * W, x, out_cubic(u / p.get("sd", .6)))
+    elif an == "slidey": y = lerp(p.get("from", 1.2) * H, y, out_cubic(u / p.get("sd", .6)))
+    elif an == "fall": y = lerp(p.get("from", -.1) * H, y, out_cubic(u / .45))
+    elif an == "pulse": sc *= 1 + .06 * math.sin(u * 9)
+    elif an == "move": x = lerp(p["x"] * W, p["tx"] * W, in_out(u / p.get("md", 1.0))); y = lerp(p["y"] * H, p.get("ty", p["y"]) * H, in_out(u / p.get("md", 1.0)))
+    if "e" in p: e = emoji_img(p["e"], p.get("size", 200))
+    else:
+        kw = dict(p.get("kw", {}))
+        if p["n"] == "clock" and "minutes_per_s" in p:   # animated clock
+            tot = p.get("start", 0) + u * p["minutes_per_s"]; kw["hour"] = int(tot // 60) % 12; kw["minute"] = int(tot % 60)
+        e = prop(p["n"], p.get("size", 300), **kw)
+    if sc != 1.0: e = e.resize((max(1, int(e.width * sc)), max(1, int(e.height * sc))), Image.BILINEAR)
+    if p.get("rot") or an == "spin" or an == "swing":
+        r = p.get("rot", 0) + (u * 360 if an == "spin" else math.sin(u * 4) * 8 if an == "swing" else 0); e = e.rotate(r, expand=True, resample=Image.BILINEAR)
+    if p.get("flip"): e = e.transpose(Image.FLIP_LEFT_RIGHT)
+    if p.get("shadow") and "n" in p:
+        pass
+    a = p.get("alpha", 1.0)
+    if a < 1: e = e.copy(); e.putalpha(e.getchannel("A").point(lambda v: int(v * a)))
+    img.paste(e, (int(x - e.width / 2), int(y - e.height / 2)), e)
+
+def draw_caption(img, lt, cap):
+    if not cap: return
+    c = cap if isinstance(cap, dict) else dict(text=cap)
+    at = c.get("at", 0.0)
+    if lt < at: return
+    if c.get("until") is not None and lt > c["until"]: return
+    u = lt - at; st = c.get("style", "sub")
+    k = out_back(u / .22, 1.7)
+    hl = c.get("hl")
+    if st == "hook":
+        L = text_layer(c["text"], c.get("size", 92), "black", WHITE, stroke=10, maxw=940, align=c.get("align", "left"), hl=hl, spacing=1.08)
+        paste(img, L, 36 + L.width / 2 if c.get("align", "left") == "left" else W / 2, c.get("y", 330), scale=.6 + .4 * k, alpha=clamp(u / .08))
+    elif st == "title":
+        T_ = text_layer(c["text"], c.get("size", 76), "black", YELLOW, stroke=9, maxw=1000)
+        paste(img, T_, W / 2, c.get("y", 270), scale=.55 + .45 * k, alpha=clamp(u / .08))
+        if c.get("sub"):
+            S_ = text_layer(c["sub"], 52, "xbold", WHITE, stroke=8, maxw=920, hl=hl)
+            paste(img, S_, W / 2, c.get("y", 270) + T_.height / 2 + S_.height / 2 - 4, scale=.7 + .3 * out_back((u - .08) / .25), alpha=clamp((u - .06) / .1))
+    else:   # sub: white bold w/ outline, centered
+        L = text_layer(c["text"], c.get("size", 62), "black", c.get("color", WHITE), stroke=9, maxw=960, hl=hl, spacing=1.12)
+        paste(img, L, W / 2, c.get("y", 300), scale=.65 + .35 * k, alpha=clamp(u / .08))
+
+class SceneShot(Shot):
+    def __init__(self, bg="plain", dur=3.0, actors=(), props=(), lines=(), cap=None, hud=None, pop=None, pops=None,
+                 card=None, cues=None, shake=None, amb=None, tint=None, push=.04, cut="cut", music_dip=None, cast=None, flash=None, caps=None):
+        self.bg, self.dur, self.actors, self.props, self.lines = bg, dur, list(actors), list(props), list(lines)
+        self.caps = caps if caps else ([cap] if cap else [])
+        self.hud, self.pops = hud, (pops if pops else ([pop] if pop else [])); self.card = card
+        self.cues = list(cues or []); self.shake = shake; self.amb, self.tint, self.push, self.cut = amb, tint, push, cut
+        self.music_dip, self.flash = music_dip, flash; self.cast = cast or {}
+        for a in self.actors:
+            pass
+        for ln in self.lines: self.cues.append((ln["at"], ln.get("sfx", "pop"), .6))
+        for p in self.pops: self.cues.append((p.get("at", 1.0), p.get("sfx", "hit"), p.get("sg", .9)))
+        if card: self.cues.append((card.get("at", 1.0), card.get("sfx", "pop"), .8))
+
+    def spec(self, a): return a["c"] if isinstance(a["c"], dict) else self.cast[a["c"]]
+
+    def render(self, lt):
+        img = background(self.bg).copy()
+        for p in self.props:
+            if not p.get("front"): draw_prop(img, p, lt)
+        for i, a in enumerate(self.actors):
+            x = a["x"] * W; pose = a.get("pose", "idle"); yoff = a.get("y", 0)
+            at0 = a.get("at", 0.0)
+            if lt < at0: continue
+            if a.get("until") is not None and lt > a["until"]: continue
+            if a.get("enter"):
+                dd = a.get("enter_dur", .6); p = out_cubic((lt - at0) / dd); x0 = -260 if a["enter"] == "left" else W + 260
+                if lt - at0 < dd: pose = "walk"; x = lerp(x0, x, p)
+            if a.get("exit_at") is not None and lt > a["exit_at"]:
+                dd = a.get("exit_dur", .6); pose = "walk"; x = lerp(x, -300 if a.get("exit", "left") == "left" else W + 300, in_cubic((lt - a["exit_at"]) / dd))
+            if a.get("slide_to") is not None and lt > a.get("slide_at", 0):
+                x = lerp(x, a["slide_to"] * W, in_out((lt - a["slide_at"]) / a.get("slide_dur", .8)))
+                if lt - a["slide_at"] < a.get("slide_dur", .8): pose = a.get("slide_pose", "walk")
+            if a.get("pose_at"):
+                for tp, pz in a["pose_at"]:
+                    if lt >= tp: pose = pz
+            expr = a.get("expr", "smile")
+            if a.get("expr_at"):
+                for te, ez in a["expr_at"]:
+                    if lt >= te: expr = ez
+            jump = 0; squash = 0
+            for hp_ in ([a["hop"]] if isinstance(a.get("hop"), (int, float)) else a.get("hop", [])):
+                u = (lt - hp_) / .45
+                if 0 <= u < 1: jump = math.sin(u * math.pi) * 90; squash = .06 * (1 - u) if u < .15 else 0
+            talking = any(ln["at"] <= lt < ln["at"] + ln.get("dur", 1.5) and ln.get("who") == i for ln in self.lines)
+            place_char(img, self.spec(a), x, GROUND + yoff, t=lt + i * .37, pose=pose, expr=expr, s=a.get("s", 2.2), flip=a.get("flip", False), jump=jump,
+                       talk=talking, seed=i * 1.7, look=a.get("look", 0.0), squash=squash)
+        for p in self.props:
+            if p.get("front"): draw_prop(img, p, lt)
+        if self.tint: 
+            ov = Image.new("RGB", (W, H), self.tint[:3]); img = Image.blend(img, ov, self.tint[3])
+        for ln in self.lines:
+            u = lt - ln["at"]
+            if 0 <= u < ln.get("dur", 1.8):
+                a = self.actors[ln["who"]]; s_ = a.get("s", 2.2)
+                L = bubble_layer(ln["text"], ln.get("size", 44))
+                cx = clamp(a["x"] * W + ln.get("bx", 0), L.width / 2 + 24, W - L.width / 2 - 24)
+                tip_y = GROUND + a.get("y", 0) - 335 * s_ - 40 + ln.get("by", 0)
+                out = clamp((ln.get("dur", 1.8) - u) / .12)
+                paste(img, L, cx, tip_y - L.height / 2, scale=out_back(u / .2, 1.5) * (.9 + .1 * out), alpha=out)
+        for p in self.pops:
+            u = lt - p.get("at", 1.0)
+            if u >= 0 and (p.get("until") is None or lt < p["until"]):
+                L = text_layer(p["text"], p.get("size", 140), "black", p.get("color", YELLOW), stroke=p.get("stroke", 11), maxw=1000)
+                paste(img, L, p.get("x", .5) * W, p.get("y", .45) * H + math.sin(u * 8) * 4, scale=out_back(u / .26, 2.0), rot=p.get("rot", -4))
+        if self.card:
+            c = self.card; u = lt - c.get("at", 1.0)
+            if u >= 0: paste(img, card_layer(c["title"], c.get("sub"), c.get("size", 80)), c.get("x", .5) * W, c.get("y", .48) * H, scale=out_back(u / .28))
+        if self.hud:
+            txt = None
+            for ta, tx in self.hud:
+                if lt >= ta: txt = tx
+            if txt:
+                L = text_layer(txt, 46, "black", WHITE, maxw=500, pad=0)
+                w, h = L.width + 56, L.height + 30; chip = Image.new("RGBA", (w, h), (0, 0, 0, 0)); ImageDraw.Draw(chip).rounded_rectangle([0, 0, w - 1, h - 1], 22, fill=(20, 20, 26, 235))
+                chip.paste(L, (28, 15), L); img.paste(chip, (int(W - w - 50), 470), chip)
+        for c in self.caps: draw_caption(img, lt, c)
+        return img
+
+class PhoneShot(Shot):
+    def __init__(self, ui, dur=None, cap=None, bg=(238, 82, 83), zoom=None, hold=1.2, cues=None, shake=None, cut="cut", music_dip=None, caps=None, bg2=None, card_y=430):
+        self.ui, self.cap, self.bg, self.zoom, self.shake, self.cut, self.music_dip = ui, cap, bg, zoom or [], shake, cut, music_dip
+        self.caps = caps if caps else ([cap] if cap else [])
+        last = max([e["at"] for e in ui.items] + [0])
+        self.dur = dur or (last + hold)
+        self.cues = list(ui.cues) + list(cues or []); self.bg2 = bg2 or tuple(int(c * .82) for c in bg); self.card_y = card_y
+        self._bgimg = None
+        m = Image.new("L", (864, 1350), 0); ImageDraw.Draw(m).rounded_rectangle([0, 0, 863, 1349], 64, fill=255); self.mask = m
+    def _backdrop(self):
+        if self._bgimg is None:
+            im = Image.new("RGB", (W, H), self.bg); d = ImageDraw.Draw(im)
+            for y in range(H): d.line([(0, y), (W, y)], fill=tuple(int(lerp(self.bg[i], self.bg2[i], y / H)) for i in range(3)))
+            for gx in range(0, W + 120, 120):
+                for gy in range(0, H + 120, 120): d.ellipse([gx - 4, gy - 4, gx + 4, gy + 4], fill=tuple(min(255, c + 14) for c in self.bg))
+            self._bgimg = im
+        return self._bgimg
+    def render(self, lt):
+        img = self._backdrop().copy()
+        ui = self.ui.draw(lt)
+        z, fx, fy = 1.0, UW / 2, UH / 2
+        for (t0, t1, zz, px, py) in self.zoom:
+            if lt >= t0:
+                k = in_out((lt - t0) / max(.01, t1 - t0)); z, fx, fy = lerp(z, zz, k), lerp(fx, px, k), lerp(fy, py, k)
+        if z != 1.0:
+            cw, chh = UW / z, UH / z; x0 = clamp(fx - cw / 2, 0, UW - cw); y0 = clamp(fy - chh / 2, 0, UH - chh)
+            ui = ui.crop((int(x0), int(y0), int(x0 + cw), int(y0 + chh)))
+        ui = ui.resize((864, 1350), Image.BILINEAR)
+        sh = Image.new("RGBA", (900, 1386), (0, 0, 0, 0)); ImageDraw.Draw(sh).rounded_rectangle([18, 28, 882, 1378], 64, fill=(0, 0, 0, 90)); img.paste(sh, (84, self.card_y - 10), sh)
+        img.paste(ui, (108, self.card_y), self.mask)
+        for c in self.caps: draw_caption(img, lt, c)
+        return img
+
+class KineticShot(Shot):
+    def __init__(self, items, dur=3.0, bg=(20, 20, 24), bg2=None, cues=None, shake=None, cut="cut", music_dip=None, burst=None, amb=None):
+        self.items, self.dur, self.bg, self.shake, self.cut, self.music_dip, self.amb = items, dur, bg, shake, cut, music_dip, amb
+        self.bg2 = bg2 or bg; self.cues = list(cues or []); self.burst = burst
+        for it in items:
+            if it.get("sfx"): self.cues.append((it.get("at", 0), it["sfx"], it.get("sg", .9)))
+        self._b = None
+    def render(self, lt):
+        if self._b is None:
+            im = Image.new("RGB", (W, H)); d = ImageDraw.Draw(im)
+            for y in range(H): d.line([(0, y), (W, y)], fill=tuple(int(lerp(self.bg[i], self.bg2[i], y / H)) for i in range(3)))
+            self._b = im
+        img = self._b.copy()
+        for it in self.items:
+            u = lt - it.get("at", 0)
+            if u < 0 or (it.get("until") is not None and lt > it["until"]): continue
+            an = it.get("anim", "pop"); txt = it["text"]
+            if it.get("count"):
+                a, b, dd = it["count"]; v = lerp(a, b, in_out(u / dd)); txt = it.get("fmt", "{:,.0f}").format(v)
+            L = text_layer(txt, it.get("size", 120), it.get("weight", "black"), it.get("color", WHITE), stroke=it.get("stroke", 0), stroke_fill=it.get("stroke_fill", BLACK), maxw=it.get("maxw", 960), hl=it.get("hl"), hl_color=it.get("hl_color", YELLOW), align=it.get("align", "center"), spacing=it.get("spacing", 1.08))
+            x, y = it.get("x", .5) * W, it.get("y", .5) * H
+            if an == "slam": sc = 1 + 1.4 * (1 - out_cubic(u / .14)); al = clamp(u / .05); paste(img, L, x + math.sin(u * 60) * 6 * (u < .3), y, scale=sc, alpha=al, rot=it.get("rot", 0))
+            elif an == "slide": paste(img, L, lerp(-.4 * W, x, out_cubic(u / .4)), y, rot=it.get("rot", 0))
+            elif an == "rise": paste(img, L, x, y + 120 * (1 - out_cubic(u / .35)), alpha=clamp(u / .2), rot=it.get("rot", 0))
+            elif an == "shake": paste(img, L, x + math.sin(u * 55) * 7, y + math.cos(u * 61) * 5, scale=out_back(u / .2), rot=it.get("rot", 0))
+            elif an == "wobble": paste(img, L, x, y, scale=out_back(u / .25) * (1 + .03 * math.sin(u * 8)), rot=it.get("rot", 0) + math.sin(u * 5) * 2.5)
+            else: paste(img, L, x, y, scale=out_back(u / .25, 1.8), alpha=clamp(u / .08), rot=it.get("rot", 0))
+        for pr in []: pass
+        return img
+
+# --------------------------------------------------------------- audio assembly
+def ambience(kind, dur, seed=0):
+    n = int(dur * SR); r = np.random.RandomState(abs(hash(kind)) % 9999 + seed)
+    x = r.randn(n)
+    if kind == "room": y = music.lp(x, 280) * .05
+    elif kind == "crowd":
+        am = 1 + .5 * np.sin(np.linspace(0, dur * 2.3, n)) + .3 * np.sin(np.linspace(0, dur * 5.7, n) + 1); y = music.bp(x, 220, 1800) * am * .035
+    elif kind == "street": y = (music.lp(x, 450) * .06 + music.bp(r.randn(n), 800, 3000) * (np.sin(np.linspace(0, dur * 1.7, n)) > .6) * .012)
+    elif kind == "car": y = music.lp(x, 220) * .08
+    elif kind == "night": y = music.lp(x, 300) * .03 + (np.sin(2 * np.pi * 4300 * np.arange(n) / SR) * (np.sin(np.arange(n) / SR * 2 * np.pi * 7) > .85) * .012)
+    elif kind == "gym": y = music.bp(x, 150, 1200) * .03 * (1 + .6 * (np.sin(np.linspace(0, dur * 3.1, n)) > .8))
+    else: y = x * 0
+    return y
+
+class Reel:
+    def __init__(self, name, shots, style="lofi", seed=0, loop=True, gain_music=.62, bpm=None, caption="", story="", title=""):
+        self.name, self.shots, self.style, self.seed, self.loop, self.gm = name, shots, style, seed, loop, gain_music
+        self.caption, self.story, self.title = caption, story, title
+        bpm_, self.bl = music.beat_len(style, seed)
+        if bpm: bpm_, self.bl = bpm, 60.0 / bpm
+        self.bpm = bpm_
+        self.starts = []; t = 0.0
+        for s in shots:
+            nb = max(2, math.ceil(s.dur / self.bl - .2)); s.dur = nb * self.bl
+            self.starts.append(t); t += s.dur
+        self.dur = t
+        self._prev = None
+
+    def frame(self, t):
+        t = min(t, self.dur - 1e-3)
+        i = max(j for j, s in enumerate(self.starts) if s <= t)
+        s, lt = self.shots[i], t - self.starts[i]
+        img = s.render(lt)
+        # camera
+        z = 1.012 + (getattr(s, "push", 0) * (lt / s.dur) if isinstance(s, SceneShot) else 0)
+        hx, hy = hand(t, .5 if isinstance(s, PhoneShot) else 1.0)
+        sx, sy, zp = shake_at(lt, s.shake)
+        img = camera(img, z + zp, hx + sx, hy + sy)
+        # transitions
+        cut = s.cut
+        if cut != "cut" and lt < .3:
+            if cut == "flash":
+                a = max(0, 1 - lt / .14) * .85; img = Image.blend(img, Image.new("RGB", (W, H), WHITE), a) if a > 0 else img
+            elif cut == "dip":
+                a = max(0, 1 - lt / .16); img = Image.blend(img, Image.new("RGB", (W, H), BLACK), a) if a > 0 else img
+            elif cut == "zoom" and lt < .22:
+                k = 1 - lt / .22; img = camera(img, 1 + .35 * k * k)
+            elif cut == "whip" and lt < .24 and i > 0:
+                k = out_cubic(lt / .24); prev = self.shots[i - 1].render(self.shots[i - 1].dur - .04)
+                off = int(W * k); canvas = Image.new("RGB", (W, H)); canvas.paste(prev, (-off, 0)); canvas.paste(img, (W - off, 0))
+                from PIL import ImageFilter
+                img = canvas.filter(ImageFilter.BoxBlur(int(14 * (1 - abs(2 * k - 1)))) ) if 0 < k < 1 else canvas
+            elif cut == "glitch" and lt < .18:
+                r, g, b = img.split(); o = int(18 * (1 - lt / .18))
+                img = Image.merge("RGB", (ImageChops_offset(r, o), g, ImageChops_offset(b, -o)))
+        return finish(img, t)
+
+    def events(self):
+        ev = []
+        for s, t0 in zip(self.shots, self.starts):
+            for c in s.cues or []: ev.append((t0 + c[0], c[1], c[2] if len(c) > 2 else 1.0))
+            if s.cut == "whip": ev.append((t0, "whoosh", .8))
+            if s.cut == "flash": ev.append((t0, "hit", .7))
+            if s.cut == "glitch": ev.append((t0, "tick", 1.2))
+        return ev
+
+    def audio(self):
+        mus, _, _ = music.render_music(self.dur, self.style, self.seed, bpm=self.bpm)
+        n = len(mus)
+        gain = np.ones(n)
+        for s, t0 in zip(self.shots, self.starts):
+            if s.music_dip:
+                a, b, g = s.music_dip; i0, i1 = int((t0 + a) * SR), int((t0 + b) * SR); r = int(.05 * SR)
+                gain[max(0, i0 - r):i0] = np.minimum(gain[max(0, i0 - r):i0], np.linspace(1, g, len(gain[max(0, i0 - r):i0])))
+                gain[i0:i1] = np.minimum(gain[i0:i1], g)
+                gain[i1:i1 + int(.12 * SR)] = np.minimum(gain[i1:i1 + int(.12 * SR)], np.linspace(g, 1, len(gain[i1:i1 + int(.12 * SR)])))
+        out = mus * gain[:, None] * self.gm
+        for s, t0 in zip(self.shots, self.starts):
+            if s.amb:
+                y = ambience(s.amb, s.dur); i = int(t0 * SR); y = y[:n - i]; out[i:i + len(y)] += y[:, None]
+        for t, name, g in self.events():
+            x = sfx.get(name); i = int(t * SR)
+            if i < 0 or i >= n: continue
+            x = x[:n - i]; out[i:i + len(x)] += (x * g * .85)[:, None]
+        if not self.loop:
+            f = int(.5 * SR); out[-f:] *= np.linspace(1, 0, f)[:, None]
+        else:
+            f = int(.06 * SR); out[-f:] *= np.linspace(1, 0, f)[:, None]
+        out = np.tanh(out * 1.5)
+        return out / max(1e-6, np.abs(out).max()) * .92
+
+    def render(self, out_dir, crf=27, preview=False):
+        path = os.path.join(out_dir, self.name + ".mp4")
+        wav = path + ".wav"; a = (self.audio() * 32767).astype(np.int16)
+        with wave.open(wav, "wb") as w: w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(a.tobytes())
+        cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-i", wav,
+               "-c:v", "libx264", "-preset", "veryfast", "-crf", str(crf), "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", path]
+        p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+        for i in range(int(self.dur * FPS)): p.stdin.write(self.frame(i / FPS).tobytes())
+        p.stdin.close(); p.wait(); os.remove(wav)
+        return path
+
+def ImageChops_offset(ch, o):
+    from PIL import ImageChops
+    return ImageChops.offset(ch, o, 0)
+
+# --------------------------------------------------------------- AI-tell linter
+BAN = r"\b(delve|tapestry|realm|robust|seamless|elevate|foster|underscore|showcase|testament|vibrant|crucial|pivotal|leverage|holistic|multifaceted|moreover|furthermore|game[- ]changer|unleash|journey)\b"
+def lint(texts):
+    """texts: list of strings that appear on screen. Returns a list of warnings."""
+    w = []
+    for t in texts:
+        if re.search(BAN, t, re.I): w.append(f"banned word: {t!r}")
+        if "—" in t or " – " in t: w.append(f"em dash: {t!r}")
+        if re.search(r"\bnot (just|only)\b.*\bbut\b", t, re.I) or re.search(r"it'?s not .{1,40}, it'?s", t, re.I): w.append(f"'not X, it's Y' pattern: {t!r}")
+        if re.search(r"\w+, \w+,? and \w+", t) and len(t) < 70 and re.search(r"\b(\w+)s?, (\w+)s?, and (\w+)", t): w.append(f"possible tricolon: {t!r}")
+        if re.search(r"#\w+", t): w.append(f"hashtag on screen: {t!r}")
+        if sum(1 for c in t if ord(c) > 0x1F000) > 2: w.append(f"emoji pile: {t!r}")
+    lens = [len(t.split()) for t in texts if len(t.split()) > 2]
+    run = 1
+    for a, b in zip(lens, lens[1:]):
+        run = run + 1 if abs(a - b) <= 1 else 1
+        if run >= 5: w.append("metronome: 5+ consecutive lines of near-identical length"); break
+    return w
