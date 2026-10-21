@@ -15,8 +15,10 @@ def niche(n):
     if c == "culture": return "desi" if n in (18, *range(101, 111)) else ("immig" if 111 <= n <= 120 else "world")
     return c
 def build_seq(first):
-    items = [(virality.score(n), f"n{n}", niche(n), n) for n in virality.FACT]
-    items += [(s, "o" + i, "old", i) for i, (t, s) in OLD.items()]
+    ready = os.path.join(os.path.dirname(__file__), "..", "ready.txt")
+    only = {int(x) for x in open(ready).read().split()} if os.path.exists(ready) else None
+    items = [(virality.score(n), f"n{n}", niche(n), n) for n in virality.FACT if only is None or n in only]
+    items += [(s, "o" + i, "old", i) for i, (t, s) in OLD.items() if only is None or 0 in only]
     items.sort(key=lambda x: (-x[0], x[1])); seq = []
     while items:   # greedy: best remaining whose niche differs from the previous post
         k = next((j for j, it in enumerate(items) if not seq or it[2] != seq[-1][2] or it[2] == "old"), 0)

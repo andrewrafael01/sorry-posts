@@ -117,6 +117,12 @@ def make(name):
     if name == "clang":
         t = T(.7); x = sum(np.sin(2 * np.pi * f * t) * a for f, a in [(523, 1), (1170, .7), (1790, .5), (2650, .3)])
         return x * np.exp(-t * 6) * .4
+    if name == "crash":     # glass/ceramic breaking: noise burst plus falling shards
+        out = np.zeros(int(.9 * SR)); out[:int(.25 * SR)] += bp(_n(20000, .25), 1500, 9000) * np.exp(-T(.25) * 14) * 2.4
+        rr = np.random.RandomState(7)
+        for k in range(14):
+            t0 = int((.05 + rr.rand() * .7) * SR); seg = np.sin(2 * np.pi * (1800 + rr.rand() * 3200) * T(.12)) * np.exp(-T(.12) * 40) * .3; out[t0:t0 + len(seg)] += seg
+        return out
     if name == "crunch":
         out = np.zeros(int(.5 * SR))
         for k in range(4):

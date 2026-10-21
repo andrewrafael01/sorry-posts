@@ -55,9 +55,9 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** You spot Kyle in aisle 5 and spend 52 minutes dodging him (hiding behind shelves, reading cereal boxes). At checkout he reveals he was hiding from you in aisle 9 too.
 
 ## 011_bmw_guys 
-- **length:** 28s  |  **music:** synth
-- **suggested caption:** every bmw guy has a bmw story and none of them are good. which one are you?
-- **what happens:** BMW owners: the 36-payment lease, the signal-less lane change, the M sticker on a 318i, the 2am rev, the two-spot park, the $1,169 oil change, the 'best car i've ever owned' with smoke coming out.
+- **length:** 44s  |  **music:** trap
+- **suggested caption:** 'the blinker is a subscription.' tag a bmw guy
+- **what happens:** BMW guy sketch: no blinker across three lanes, taking two spots next to a Civic, hazards on for a 40-minute 'two minutes', $2,400 'for the looking', a lease called a long-term rental with equity, and dad's Camry has a heater.
 
 ## 012_mercedes_guys 
 - **length:** 25s  |  **music:** jazz
@@ -90,9 +90,9 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Egyptian archetypes, affectionate: the horn as a language, 'inshallah' meaning 10:40, tea for every problem, 'my cousin knows a guy', uncles debating lunch like a war, 'you didn't eat' after 3 plates.
 
 ## 018_indian_families 
-- **length:** 28s  |  **music:** bounce
-- **suggested caption:** the dabba is never what's written on it. tag the aunty who keeps feeding you
-- **what happens:** Affectionate Indian-family archetypes: the wedding-question uncle, the steel dabba, a 'small' 600-guest wedding, 143 good-morning images, 'call when you reach', chai commitment, 'eat more'.
+- **length:** 46s  |  **music:** bounce
+- **suggested caption:** you can't return a dabba empty. tag the aunty who feeds you
+- **what happens:** Indian family sketch: remove your socks too, one quick chai that lasts 2.5 hours, a dabba must be returned full (you return pasta; she adds pickle and sends it back), a match who is your second cousin ('only second'), and a goodbye that takes three hours.
 
 ## 019_filipino_parties 
 - **length:** 26s  |  **music:** bounce
@@ -110,9 +110,9 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Audi owners: 80 in snow into a ditch, the A3 that's 'basically an R8', showing the cockpit before hello, 'german engineering' at the mechanic, sideways parking, waiting for you to ask about the rings.
 
 ## 022_tesla_guys 
-- **length:** 24s  |  **music:** synth
-- **suggested caption:** 'it's so quiet' he says, to a person who did not ask. send this to a tesla guy
-- **what happens:** Tesla owners: no-gas reminders, autopilot with a phone, 40-minute 'fast' supercharging, the fart sound, calm at 3% range, 'you should get one'.
+- **length:** 42s  |  **music:** synth
+- **suggested caption:** 'it's a computer. with seats.' send this to a tesla guy
+- **what happens:** Tesla guy sketch: the 0-60 'sound of the future' is silence, charging 45 minutes at a Wendy's while 'productive', hands on the wheel for 'legal reasons', can't open the car at 2% phone, the one-bag frunk, and mentioning range in his wedding vows.
 
 ## 023_jeep_guys 
 - **length:** 25s  |  **music:** funk
@@ -155,19 +155,19 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Toyota owners: 300k miles without an oil change, 'it's reliable' as a personality, the Prius mpg announcement, the Camry dad smell, 'what's an oil change?'.
 
 ## 031_italian_families 
-- **length:** 29s  |  **music:** jazz
-- **suggested caption:** sauce or gravy: pick a side and never speak to your cousin again. send this to the italian in your life
-- **what happens:** Affectionate Italian-family archetypes: the 7am Sunday sauce, sauce vs gravy war, can't talk without hands, nonna's 'just pasta' then 3 courses, no cappuccino after noon, the plastic couch, the 45-minute ciao.
+- **length:** 42s  |  **music:** funk
+- **suggested caption:** sauce or gravy, and nonna ends the war with one word. send this to the italian in your life
+- **what happens:** Italian family sketch: sauce on since Thursday, 'gravy' causes a standoff until nonna says 'it's red', five plates in and it's just the antipasto, not eating means you're sick, nonna accepts a Korean fiancée once she learns they eat, and sends food for the neighbor she calls a snake.
 
 ## 032_mexican_families 
-- **length:** 28s  |  **music:** bounce
-- **suggested caption:** the margarine tub has never once contained margarine. which one are you?
-- **what happens:** Affectionate Mexican-family archetypes: Sunday carne asada, the margarine tub of beans, 'ahorita', a 400-tamal production line, the 300-guest 'small' quince, tía's greeting, 'just one concha'.
+- **length:** 46s  |  **music:** bounce
+- **suggested caption:** the plate shows up before you answer the question. which one are you?
+- **what happens:** Mexican family sketch: abuela asks if you've eaten while the plate is already served, tío's carne asada as a character test, mom with the chancla punishing a crime she hasn't identified yet, tía says you got fat as a compliment, a 40-minute goodbye with 11 tupperwares, and mom calling at 3am to ask if you're eating then inviting you over for soup.
 
 ## 033_chinese_families 
-- **length:** 27s  |  **music:** pop
-- **suggested caption:** hot water is a medical system. tag whoever pours the tea first
-- **what happens:** Affectionate Chinese-family archetypes: lazy susan sniper, hot water cures everything, red envelopes, tea etiquette, 4:45 dinner, cut fruit, the check fight.
+- **length:** 44s  |  **music:** lofi
+- **suggested caption:** the apple plate is 'i love you.' tag your chinese friend
+- **what happens:** Chinese family sketch: hot water and socks for any illness, two uncles fighting over a bill that grandma already paid before they sat, 'you got fat' as a compliment, 'best of the second place' for a 96, and silent cut fruit at midnight as an 'i love you'.
 
 ## 034_persian_families 
 - **length:** 28s  |  **music:** pop
@@ -300,9 +300,9 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Gamers: 'one more game' 9pm to 4am, controller replaced same day, 'it's lag', 'MOM I'M IN A GAME' 2 feet away, the loud chewer, 'let me save', 'not addicted'.
 
 ## 060_dog_cat_people 
-- **length:** 26s  |  **music:** bounce
-- **suggested caption:** the dog forgives you for everything and the cat will not forgive you for anything. tag your pet
-- **what happens:** Dog vs cat people: 'WALK?', 'she'll come when she wants', the couch chew look, the cup-off-the-table stare, the both-person, the $1,100 sock, 'i don't spoil him' with a birthday cake.
+- **length:** 41s  |  **music:** bounce
+- **suggested caption:** the dog gets belly rubs from the burglar and the cat shows him where the safe is. tag your pet's owner
+- **what happens:** Dog person narrates a poop with pride; cat knocks a glass off the table at 3am with eye contact. 11,000 dog photos and no wedding photos. Vet visits: the dog's fourth sock; the cat's chart says bit me twice. Burglar: dog gets belly rubs, cat reveals the safe.
 
 ## 061_texans 
 - **length:** 28s  |  **music:** funk
@@ -380,14 +380,14 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Only children: never shared anything, sharing as a legal concept, boredom at 3pm, two parents grading one kid, imaginary friends with jobs, oversized gifts, 'i'm not spoiled'.
 
 ## 076_oldest_siblings 
-- **length:** 28s  |  **music:** funk
-- **suggested caption:** oldest siblings were basically unpaid babysitters. send this to your oldest sibling
-- **what happens:** Oldest siblings: 'you're in charge' at 6, always blamed, the test case for rules, giving away clothes, free babysitting, the call when mom can't cope, 'i'm not bossy'.
+- **length:** 43s  |  **music:** bounce
+- **suggested caption:** you're the family's hr department. send this to your oldest sibling
+- **what happens:** Oldest-sibling sketch: left in charge for 10 minutes and blamed for the baby's broken vase, grounded 3 weeks for being 4 minutes late while the youngest comes home at 2am, the youngest gets an iPad at 4, and at 31 you're the family's HR department.
 
 ## 077_youngest_siblings 
-- **length:** 26s  |  **music:** bounce
-- **suggested caption:** the youngest has been getting away with it since 1998. which one are you?
-- **what happens:** Youngest siblings: got away with it, 3 baby photos, hand-me-downs with her sister's name, the late bedtime, retelling the story, ice cream for breakfast, still 'the baby' at 34.
+- **length:** 39s  |  **music:** funk
+- **suggested caption:** mom says every name in the house before yours. send this to the baby of the family
+- **what happens:** Youngest-sibling sketch: a hand-me-down 'camp tahoe 2009' shirt, mom calling brandon jessica and the dog biscuit before the youngest's name, 400 photos of the oldest and 12 blurry ones of you, instant fake tears so the oldest gets blamed, and at 26 still introduced as the baby.
 
 ## 078_middle_children 
 - **length:** 27s  |  **music:** lofi
@@ -555,14 +555,14 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Desi-kid archetypes: translating a bank call at 9, the shoes-off rule, the lunch-box smell, 'who, where, why, no' sleepover, 'be home by 9' at 31, 14 'did you eat' calls.
 
 ## 111_immigrant_parents 
-- **length:** 27s  |  **music:** lofi
-- **suggested caption:** the margarine tub has never once held margarine in any language. tag your parents
-- **what happens:** Immigrant-parent classics across cultures: the bag of bags, boxes saved forever, turning off the light you're standing under, converting every price back home, washed foil since 1998, 'we have food at home', the margarine tub.
+- **length:** 43s  |  **music:** lofi
+- **suggested caption:** 'what if we need 401.' tag your parents
+- **what happens:** Immigrant parents sketch: 400 plastic bags in a drawer 'for when we need bags', a restaurant order of four waters and pocketed sugar, 'put on two sweaters' in July, a lamp found outside as a birthday gift, and a new couch the parents still keep in plastic 'for guests'.
 
 ## 112_first_gen_kids 
-- **length:** 26s  |  **music:** lofi
-- **suggested caption:** you've been a translator, a lawyer and an accountant since you were nine. send this to a first gen friend
-- **what happens:** First-gen kids: filling out mortgage forms at 10, not knowing what parents do, the proud school-event outfits, weekend language school, the whole family at graduation, the loving guilt.
+- **length:** 39s  |  **music:** cine
+- **suggested caption:** 'she says hello' was a four-minute speech. send this to a first gen kid who translated for their parents
+- **what happens:** A first-gen kid translates for immigrant parents: softening an angry bank speech to 'she says hello', telling dad 'the teacher says i'm the best', describing diarrhea as 'stomach is sad', turning a threat to go to the news into 'thank you for your help'. At 31 in a board meeting mom texts 'what is adjustable rate'.
 
 ## 113_immigrant_moms 
 - **length:** 24s  |  **music:** jazz
@@ -670,9 +670,9 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Affectionate Palestinian archetypes: the cousin's-tree olive oil, the maqluba flip with the whole family watching, za'atar on everything, taita's trays, the instant dabke circle, a cousin in every country.
 
 ## 134_arab_dads 
-- **length:** 24s  |  **music:** synth
-- **suggested caption:** he will never say i love you but he will peel the apple. which one are you?
-- **what happens:** Affectionate Arab-dad archetypes: peeling the fruit for you, news at full volume, 'wallah' as punctuation, the 5:30 am wake-up, the 340,000-mile Camry, love as fixing your tire at midnight.
+- **length:** 39s  |  **music:** synth
+- **suggested caption:** he can't say i love you. he'll fix your tire at midnight. which one are you?
+- **what happens:** Arab dad sketch: peeling an apple as an order, yelling at his brother on the phone about lunch, a 340,000-mile Camry with a check-engine lamp as decoration, 'wallah' price claims, and fixing your tire at midnight then answering 'i love you' with 'your oil is low'.
 
 ## 135_khaleeji_guys 
 - **length:** 24s  |  **music:** trap
@@ -730,19 +730,19 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **what happens:** Affectionate Sri Lankan archetypes: towers of hoppers, 'mild' spice, living-room cricket the neighbor hears, a tuk-tuk through an impossible gap, Ceylon tea provenance, being called 'baby' at 41.
 
 ## 146_desi_moms_whatsapp 
-- **length:** 24s  |  **music:** pop
-- **suggested caption:** good morning, a sunflower, and 14 groups. send this to your mom's good morning text
-- **what happens:** A day on WhatsApp for a desi mom: sunflower good-mornings to 14 groups, the 'doctor in germany' turmeric forward, the 7-minute 'nothing important' voice note, the folded-hands emoji for everything, 40 identical sunset photos, 'call me' that is just goodnight.
+- **length:** 48s  |  **music:** pop
+- **suggested caption:** 'it means i saw it.' send this to your mom's good morning text
+- **what happens:** A desi mom's WhatsApp day: 6am good-morning flowers to 9 groups, a 2011 'doctors in germany' forward, a thumbs-up on a death announcement ('it means i saw it'), a video call of the ceiling fan, a 7-minute voice note, and a 10pm 'urgent' text that's about font size.
 
 ## 147_desi_doctor_pressure 
-- **length:** 26s  |  **music:** cine
-- **suggested caption:** where did the 3 go. tag a desi kid who was compared to sharmaji's son
-- **what happens:** Affectionate desi-kid archetype: Sharmaji's son, the 97 that loses 3 points, doctor/engineer/lawyer menu, 'so no job?' startup scorn, the dentist 'oh', and the twist where they brag to strangers instead of telling you they're proud.
+- **length:** 45s  |  **music:** cine
+- **suggested caption:** sharmaji's son is a composite. your mom made him up in 2003. tag a desi kid who got compared to him
+- **what happens:** Sharmaji's son follows a desi kid from age 9 to 30 (math in his head, a 103 out of 100, a heart surgeon at 24). At 30 the kid's mom is proud only because Sharmaji's son got divorced. Twist: dad learns Sharmaji has no son; mom invented him in 2003 as a motivator.
 
 ## 148_desi_dads_driving 
-- **length:** 24s  |  **music:** funk
-- **suggested caption:** he'll drive 11 miles to save 3 cents. send this to your dad
-- **what happens:** Affectionate desi-dad driving archetypes: the shortcut that adds 40 minutes, driving 11 miles to save 3 cents on gas (costing 60 cents), arguing with the map voice, the honk as a language, circling 20 minutes to avoid $3 parking.
+- **length:** 44s  |  **music:** funk
+- **suggested caption:** 'the driving was fast. the route was long.' send this to your dad
+- **what happens:** Desi dad driving sketch: a shortcut that takes ETA from 18 to 63 minutes, 15 minutes of driving to save 4 cents, the seatbelt chime is 'lying', honking at an old friend as a hello, circling 20 minutes to avoid $3 parking, arriving an hour late saying it was fast.
 
 ## 149_fob_vs_abcd 
 - **length:** 25s  |  **music:** pop
