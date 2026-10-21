@@ -19,7 +19,7 @@ def build_seq(first):
     only = {int(x) for x in open(ready).read().split()} if os.path.exists(ready) else None
     sc2 = lambda n: virality2.score(n) if n in virality2.F else round(virality.score(n) * .8, 1)
     items = [(sc2(n), f"n{n}", niche(n), n) for n in sorted(set(virality.FACT) | set(virality2.F)) if only is None or n in only]
-    items += [(s, "o" + i, "old", i) for i, (t, s) in OLD.items() if only is None or 0 in only]
+    items += [(round(s * .9, 1), "o" + i, "old", i) for i, (t, s) in OLD.items() if only is None or 0 in only]
     items.sort(key=lambda x: (-x[0], x[1])); seq = []
     while items:   # greedy: best remaining whose niche differs from the previous post
         k = next((j for j, it in enumerate(items) if not seq or it[2] != seq[-1][2] or it[2] == "old"), 0)
