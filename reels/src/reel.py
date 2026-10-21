@@ -31,8 +31,8 @@ def finish(img, t, grain=True):
         img = ImageChops.add(img, _GRAIN_IMG.crop((ox, oy, ox + W, oy + H)), 1.0, -128)
     return img
 
-SAFE = .91     # phone UIs and tall screens crop the edges of a 9:16 frame, so the picture is shrunk into a safe zone over a soft backdrop
-def safe(img, s=SAFE, dy=-20):
+SAFE = .80     # phone UIs and tall screens crop the edges of a 9:16 frame, so the picture is shrunk into a safe zone over a soft backdrop
+def safe(img, s=SAFE, dy=-30):
     from PIL import Image as _I
     bg = img.resize((54, 96), _I.BILINEAR).resize((W, H), _I.BICUBIC)
     bg = _I.eval(bg, lambda v: int(v * .55))
@@ -278,6 +278,37 @@ class KineticShot(Shot):
             txt = self.counter; L = text_layer(txt, 40, "bold", (255, 255, 255), pad=0); paste(img, L, W / 2, H * .9, alpha=.55)
         return img
 
+class BarsShot(Shot):
+    """Vertical bars that grow one after another. items: (label, value, color, shown_text). The last bar gets the spotlight."""
+    def __init__(self, items, dur=6.0, title=None, bg=(14, 16, 28), bg2=(30, 34, 60), line=None, stagger=.7, cues=None, unit=""):
+        self.items, self.dur, self.title, self.bg, self.bg2, self.line, self.stagger, self.unit = items, dur, title, bg, bg2, line, stagger, unit
+        self.cues = list(cues or []) + [(.4 + i * stagger, "hit" if i == len(items) - 1 else "pop", .8) for i in range(len(items))]
+        self._b = None
+    def render(self, lt):
+        if self._b is None:
+            im = Image.new("RGB", (W, H)); d = ImageDraw.Draw(im)
+            for y in range(H): d.line([(0, y), (W, y)], fill=tuple(int(lerp(self.bg[i], self.bg2[i], y / H)) for i in range(3)))
+            self._b = im
+        img = self._b.copy(); d = ImageDraw.Draw(img)
+        if self.title:
+            L = text_layer(self.title, 74, "black", WHITE, maxw=900); paste(img, L, W / 2, H * .2, scale=out_back(lt / .3), alpha=clamp(lt / .1))
+        base, top = int(H * .76), int(H * .32); mx = max(v for _, v, _, _ in self.items); n = len(self.items)
+        bw = min(230, int(860 / n) - 24); gap = (880 - bw * n) / max(1, n - 1) if n > 1 else 0; x0 = 100
+        d.line([(60, base), (W - 60, base)], fill=(90, 96, 130), width=4)
+        if self.line is not None:
+            ly = base - (base - top) * self.line[0] / mx
+            for xx in range(60, W - 60, 36): d.line([(xx, ly), (xx + 20, ly)], fill=(255, 255, 255), width=4)
+            L = text_layer(self.line[1], 36, "bold", (255, 255, 255), maxw=500); paste(img, L, 250, ly - 34, alpha=.9)
+        for i, (lab, val, col, shown) in enumerate(self.items):
+            u = lt - (.4 + i * self.stagger)
+            if u < 0: continue
+            g = out_cubic(u / .8); hh = (base - top) * val / mx * g; x = x0 + i * (bw + gap)
+            d.rounded_rectangle([x, base - hh, x + bw, base], 16, fill=col)
+            if g > .6:
+                a = clamp((g - .6) / .4); L = text_layer(shown, 52 if len(shown) < 9 else 40, "black", WHITE, maxw=bw + 60); paste(img, L, x + bw / 2, base - hh - 46, alpha=a)
+            L = text_layer(lab, 34, "bold", (210, 216, 240), maxw=bw + 40); paste(img, L, x + bw / 2, base + 62)
+        return img
+
 # --------------------------------------------------------------- audio assembly
 def ambience(kind, dur, seed=0):
     n = int(dur * SR); r = np.random.RandomState(abs(hash(kind)) % 9999 + seed)
@@ -293,7 +324,8 @@ def ambience(kind, dur, seed=0):
     return y
 
 class Reel:
-    def __init__(self, name, shots, style="lofi", seed=0, loop=True, gain_music=.62, bpm=None, caption="", story="", title=""):
+    def __init__(self, name, shots, style="lofi", seed=0, loop=True, gain_music=.62, bpm=None, caption="", story="", title="", vo=None):
+        self.vo = vo or []   # [(shot_index, text)] read aloud at the start of that shot when a voice engine is available (see voice.py)
         self.name, self.shots, self.style, self.seed, self.loop, self.gm = name, shots, style, seed, loop, gain_music
         self.caption, self.story, self.title = caption, story, title
         bpm_, self.bl = music.beat_len(style, seed)
@@ -356,7 +388,17 @@ class Reel:
                 gain[max(0, i0 - r):i0] = np.minimum(gain[max(0, i0 - r):i0], np.linspace(1, g, len(gain[max(0, i0 - r):i0])))
                 gain[i0:i1] = np.minimum(gain[i0:i1], g)
                 gain[i1:i1 + int(.12 * SR)] = np.minimum(gain[i1:i1 + int(.12 * SR)], np.linspace(g, 1, len(gain[i1:i1 + int(.12 * SR)])))
+        clips = []
+        if self.vo:
+            import voice
+            for idx, text in self.vo:
+                x = voice.speak(text)
+                if x is not None: clips.append((int((self.starts[idx] + .12) * SR), x))
+        for i0, x in clips:
+            i1 = min(n, i0 + len(x)); gain[max(0, i0 - 2000):i1 + 4000] = np.minimum(gain[max(0, i0 - 2000):i1 + 4000], .38)
         out = mus * gain[:, None] * self.gm
+        for i0, x in clips:
+            y = x[:max(0, n - i0)]; out[i0:i0 + len(y)] += (y * 1.25)[:, None]
         for s, t0 in zip(self.shots, self.starts):
             if s.amb:
                 y = ambience(s.amb, s.dur); i = int(t0 * SR); y = y[:n - i]; out[i:i + len(y)] += y[:, None]

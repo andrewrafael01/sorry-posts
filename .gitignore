@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 *.wav
+reels/src/voices/*.onnx
+reels/src/.voice_cache/
