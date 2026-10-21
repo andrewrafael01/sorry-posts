@@ -798,3 +798,63 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **length:** 18s  |  **music:** lofi
 - **suggested caption:** 'is it enough.' it's 18 pounds. tag your korean friend's mom
 - **what happens:** A Korean mom asks if you ate, shows 14 side dishes, mails an 18-pound package of kimchi and asks, 'is it enough'.
+
+## 160_desi_moms_translated 
+- **length:** 23s  |  **music:** bounce
+- **suggested caption:** 'i'm not angry' with your full name. send this to your mom
+- **what happens:** Translations: we'll see = no; do what you want = you will regret it; i'm fine = call me; eat something = i love you; 'i'm not angry' = she used your full name.
+
+## 161_arab_phrases_translated 
+- **length:** 26s  |  **music:** jazz
+- **suggested caption:** 'it's nothing' means 14 dishes. which one are you?
+- **what happens:** Translations: inshallah = no; 5 minutes = 90; wallah = a lie with feeling; just a little tea = you're not leaving; 'it's nothing' = 14 dishes.
+
+## 162_immigrant_dads_translated 
+- **length:** 24s  |  **music:** synth
+- **suggested caption:** 'i'm proud of you' goes to a stranger at the gas station. tag your dad
+- **what happens:** Translations: we'll talk later = never; just drive safe = i love you; what did you eat = i miss you; he's proud of you but tells a stranger.
+
+## 163_mexican_moms_translated 
+- **length:** 25s  |  **music:** bounce
+- **suggested caption:** 'ahorita' is a time zone. send this to your mexican friend's mom
+- **what happens:** Translations: ahorita = between now and next year; ya mero = not close; ven acá = you're in trouble; no tengo nada = 14 pots; estoy bien = she's not.
+
+## 164_italian_grandmas_translated 
+- **length:** 24s  |  **music:** funk
+- **suggested caption:** 'i'm making something light.' it's lasagna. which one are you?
+- **what happens:** Translations: just a little = three plates; something light = lasagna; i'm fine = call the priest; don't bring anything = bring dessert.
+
+## 165_chinese_parents_translated 
+- **length:** 24s  |  **music:** lofi
+- **suggested caption:** everything means i love you. tag your chinese friend
+- **what happens:** Translations: nearly every phrase, from 'did you eat' to 'wear more clothes', means i love you; 'not bad' is the best praise.
+
+## 166_persian_taarof_translated 
+- **length:** 27s  |  **music:** jazz
+- **suggested caption:** 'the house is yours' means don't touch the couch. send this to your persian friend
+- **what happens:** Translations of taarof: don't bring anything = bring dessert and flowers; the house is yours = don't touch the couch; a small dinner = 40 people.
+
+## 167_desi_uncles_translated 
+- **length:** 23s  |  **music:** funk
+- **suggested caption:** 'i know a guy.' he does not exist. which one are you?
+- **what happens:** Translations: just one question = 40 minutes; what's the mileage = hello; i know a guy = nobody; i'm not here to give advice = three hours of advice.
+
+## 168_nigerian_parents_translated 
+- **length:** 26s  |  **music:** funk
+- **suggested caption:** 'i'm not angry' with your full name and surname. tag your nigerian friend
+- **what happens:** Translations: we'll see = no; i'm not angry = full name; the party starts at 4 = it starts at 8; god will provide = also send money.
+
+## 169_immigrant_moms_translated 
+- **length:** 25s  |  **music:** lofi
+- **suggested caption:** 'i don't need anything.' tag your mom
+- **what happens:** Translations: something small = 40 samosas; don't help, sit = why aren't you helping; i'm not hungry = she'll eat yours; i don't need anything = she'll never say.
+
+## 170_filipino_families_translated 
+- **length:** 25s  |  **music:** bounce
+- **suggested caption:** 'ok lang' is never ok lang. which one are you?
+- **what happens:** Translations: ok lang = not ok; kain na = eat now; ito lang dala ko = 20 pounds of snacks; sandali lang = 40 minutes; the slipper means business.
+
+## 171_aunty_whatsapp_lock 
+- **length:** 9s  |  **music:** pop
+- **suggested caption:** 'not urgent.' it's 6:03 am. tag the aunty who sends good morning
+- **what happens:** Lock screen at 6:03am: good-morning flowers, a 'doctors in germany' fridge forward, 'who is this', a 'woman looking for her family' chain, two missed calls and 'not urgent'.
