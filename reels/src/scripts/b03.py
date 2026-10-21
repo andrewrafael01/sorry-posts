@@ -49,7 +49,7 @@ def highschoolers():
     K = dict(front=person("2a6fdb", "light", "brown", glasses="round"), nap=person("6e7a8a", "tan", "black", extra="hoodie"), car=person("e6c94d", "brown", "black", style="cap"), proj=person("a678de", "pale", "red"), late=person("3aa655", "light", "blond"), teach=person("8a5a3a", "tan", "grey", extra="tie"))
     sh = [lineup("high schoolers", ["front", "nap", "car", "proj", "late"], K, "hallway", dur=3.2)]
     sh.append(beat("THE FRONT ROW KID", "hand is up before the question ends", ["before"], "class", [A("front", .3, "smile", "hands_up", 2.1), A("teach", .78, "worried", "talk", 2.1, flip=True)], [P("whiteboard", .65, .38, 520, text="Q: what is the cap")],
-                   [S("it's—", 0, .4, 1.0), S("...let me finish the question", 1, 1.5, 1.7, size=40)], cast=K, dur=3.4))
+                   [S("it's...", 0, .4, 1.0), S("...let me finish the question", 1, 1.5, 1.7, size=40)], cast=K, dur=3.4))
     sh.append(beat("THE \"IS THIS GRADED\" KID", "if it's not graded, he's not there", ["not", "graded,"], "class", [A("nap", .3, "sleepy", "slump", 2.1)], [P("whiteboard", .7, .38, 420, text="worksheet #7")],
                    [S("is this graded", 0, .5, 1.5)], pop=dict(text="no", at=1.8, color=WHITE, y=.45, size=140), tint=(60, 60, 80, .1), cast=K, dur=3.2))
     sh.append(beat("THE 16-YEAR-OLD DRIVER", "his mom's minivan is a status symbol", ["minivan"], "parking", [A("car", .28, "cool", "flex", 2.1)], [P("car", .7, .76, 600, kw=dict(color="9aa3b5")), P("sign", .7, .6, 200, text="MOM'S", fg="1a1a1a")],
@@ -103,7 +103,7 @@ def grandmas():
     sh.append(beat("THE \"JUST A LITTLE\" GRANDMA", "\"just a little\" = a plate you could lie down on", ["a", "little"], "kitchen", [A("gma", .28, "smile", "flex", 2.1), A("kid", .76, "worried", "idle", 2.1, flip=True)], [P("dish", .5, .78, 700, food="f2c94c", at=.8)],
                    [S("just a little", 0, .4, 1.4), S("that's a mountain", 1, 1.6, 1.3)], cues=[(.8, "thud", .8)], cast=K, shake=[(.8, 8, .3)], dur=3.4))
     sh.append(beat("THE WRONG-NAME GRANDMA", "calls you every name before yours", ["every", "name"], "living", [A("gma", .28, "smile", "talk", 2.1), A("kid", .74, "dead", "idle", 2.1, flip=True)], [],
-                   [S("Michael— David— Sandra—", 0, .4, 1.9, size=40), S("...the dog", 0, 2.4, 1.2, size=40), S("it's me", 1, 3.2, 1.0)], cast=K, dur=4.2))
+                   [S("Michael... David... Sandra...", 0, .4, 1.9, size=40), S("...the dog", 0, 2.4, 1.2, size=40), S("it's me", 1, 3.2, 1.0)], cast=K, dur=4.2))
     sh.append(beat("THE GIFT GRANDMA", "gives you socks. with the receipt.", ["socks.", "receipt."], "living", [A("gma", .28, "smile", "cheer", 2.1), A("kid", .74, "smirk", "idle", 2.1, flip=True)], [P("gift", .5, .7, 300, at=.3), P("receipt", .5, .5, 260, lines=[("socks", "$4")], total="$4", at=1.8, rot=3)],
                    [S("in case you want to return them", 0, 1.2, 1.7, size=38)], cues=[(.3, "sparkle", .5)], cast=K, dur=3.6))
     sh.append(beat("THE FORWARD GRANDMA", "sends 11 prayers and a 2009 email chain", ["11", "2009"], "living", [A("gma", .28, "smile", "point", 2.1)], [P("phone", .72, .55, 300, kw=dict(text="FWD: FWD: FWD: Fw: GOOD MORNING"), anim="bounce")], card=dict(title="forwarded 47 times", y=.4, at=1.2), cues=[(.4, "buzz", .6)], cast=K, dur=3.2))
@@ -122,7 +122,7 @@ def egyptian_guys():
                    [S("see you at 7", 1, .3, 1.3), S("inshallah", 0, 1.6, 1.2)], hud=[(0, "7:00 PM"), (2.2, "10:40 PM")], cast=K, dur=3.6))
     sh.append(beat("THE TEA GUY", "no problem can't be solved with a cup of shai", ["cup", "of", "shai"], "living", [A("tea", .3, "cool", "flex", 2.1)], [P("tea", .72, .66, 280, anim="float"), P("tea", .86, .7, 220, at=.5), P("tea", .58, .72, 220, at=.9)],
                    [S("sit. have tea", 0, .4, 1.4)], cues=[(.5, "pop", .5), (.9, "pop", .5)], cast=K, dur=3.2))
-    sh.append(beat("THE \"MY COUSIN\" GUY", "everyone's cousin knows a guy", ["cousin", "knows", "a", "guy"], "street", [A("cousin", .28, "smirk", "talk", 2.1), A("kid", .74, "smile", "idle", 2.1, flip=True)], [],
+    sh.append(beat("THE \"MY COUSIN\" GUY", "his cousin knows a guy. everyone's does.", ["cousin", "knows", "a", "guy."], "street", [A("cousin", .28, "smirk", "talk", 2.1), A("kid", .74, "smile", "idle", 2.1, flip=True)], [],
                    [S("my cousin knows a guy", 0, .4, 1.6), S("is he your real cousin", 1, 2.0, 1.6, size=38), S("we're from the same street", 0, 3.7, 1.7, size=38)], cast=K, dur=5.6))
     sh.append(beat("THE ARGUING UNCLES", "two uncles deciding lunch. sounds like war.", ["lunch.", "war."], "living", [A("uncle", .28, "angry", "point", 2.0), A("cousin", .72, "angry", "point", 2.0, flip=True)], [P("dish", .5, .84, 220)],
                    [S("NO NO NO", 0, .3, 1.0, size=48), S("YOU ARE WRONG", 1, .9, 1.1, size=44), S("(they love each other)", 0, 2.3, 1.2, size=36)], shake=[(.3, 8, .3), (.9, 8, .3)], cast=K, dur=3.6))

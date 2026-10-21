@@ -113,9 +113,10 @@ class SceneShot(Shot):
         self.hud, self.pops = hud, (pops if pops else ([pop] if pop else [])); self.card = card
         self.cues = list(cues or []); self.shake = shake; self.amb, self.tint, self.push, self.cut = amb, tint, push, cut
         self.music_dip, self.flash = music_dip, flash; self.cast = cast or {}
-        for a in self.actors:
-            pass
-        for ln in self.lines: self.cues.append((ln["at"], ln.get("sfx", "pop"), .6))
+        for ln in self.lines:
+            if not (0 <= ln["who"] < len(self.actors)):
+                raise ValueError(f"line {ln['text']!r} refers to actor {ln['who']} but the shot has {len(self.actors)} actors")
+            self.cues.append((ln["at"], ln.get("sfx", "pop"), .6))
         for p in self.pops: self.cues.append((p.get("at", 1.0), p.get("sfx", "hit"), p.get("sg", .9)))
         if card: self.cues.append((card.get("at", 1.0), card.get("sfx", "pop"), .8))
 
@@ -359,7 +360,7 @@ class Reel:
         else:
             f = int(.06 * SR); out[-f:] *= np.linspace(1, 0, f)[:, None]
         out = np.tanh(out * 1.5)
-        return out / max(1e-6, np.abs(out).max()) * .84
+        return out / max(1e-6, np.abs(out).max()) * .76
 
     def render(self, out_dir, crf=27, preview=False):
         path = os.path.join(out_dir, self.name + ".mp4")
