@@ -113,6 +113,18 @@ def make(name):
         return np.concatenate([a, np.zeros(int(.05 * SR)), b]) * 2.0
     if name == "coin":
         t = T(.45); x = (np.sin(2 * np.pi * 1760 * t) * (t < .08) + np.sin(2 * np.pi * 2349 * t) * (t >= .08)) * np.exp(-t * 7); return x * .5
+    if name == "womp": return make("fail")
+    if name == "crunch":
+        out = np.zeros(int(.5 * SR))
+        for k in range(4):
+            t0 = int(k * .11 * SR); seg = lp(_n(11000 + k * 300, .09), 1800) * np.exp(-T(.09) * 40) * 2.2; out[t0:t0 + len(seg)] += seg
+        return out
+    if name == "crinkle":
+        out = np.zeros(int(1.4 * SR)); rr = np.random.RandomState(4)
+        for k in range(60):
+            t0 = int(rr.rand() * 1.25 * SR); d = .02 + rr.rand() * .03; seg = bp(_n(int(rr.rand() * 60000), d), 2500, 9000) * np.exp(-T(d) * 60) * (.6 + rr.rand())
+            out[t0:t0 + len(seg)] += seg * 1.5
+        return out * np.hanning(len(out)) ** .3
     raise KeyError(name)
 
 _cache = {}

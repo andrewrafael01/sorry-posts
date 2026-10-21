@@ -17,7 +17,7 @@ def five_min():
         avatar_color=(238, 130, 160), clock="8:14"),
         caps=[dict(text="she said '5 min' at 7:02. it's 8:14.", style="hook", hl=["8:14."], y=300)], dur=3.0,
         zoom=[(.2, 1.2, 1.16, 540, 400)], cues=[(0, "buzz", .9)], cut="cut")
-    s2 = SceneShot("cafe", 4.0, cast=CAST,
+    s2 = SceneShot("cafe_bread", 4.0, cast=CAST,
         actors=[dict(c="me", x=.30, s=2.3, y=70, pose="slump", expr="sad"), dict(c="waiter", x=.84, s=2.1, flip=True, pose="idle", expr="smile", enter="right")],
         props=[dict(n="clock", x=.84, y=.2, size=170, kw=dict(hour=8, minute=14)),
                dict(n="table", x=.42, y=.835, size=700, front=True, pop=False),
@@ -33,7 +33,7 @@ def five_min():
         avatar_color=(238, 130, 160), clock="8:19"),
         caps=[dict(text="find my doesn't lie", style="sub", y=300)], dur=6.6,
         zoom=[(1.7, 2.6, 1.22, 640, 560), (5.1, 5.7, 1.5, 420, 880)], music_dip=(3.2, 5.2, .12), cut="cut", cues=[(5.2, "boom", .7)])
-    s4 = SceneShot("cafe", 4.6, cast=CAST,
+    s4 = SceneShot("cafe_bread", 4.6, cast=CAST,
         actors=[dict(c="me", x=.2, s=2.3, y=70, pose="slump", expr="smirk"), dict(c="waiter", x=.5, s=2.1, flip=False, pose="wave", expr="smile", at=0),
                 dict(c="dani", x=.84, s=2.2, flip=True, pose="wave", expr="smile", enter="right", at=.3)],
         props=[dict(n="door", x=.95, y=.55, size=620), dict(n="table", x=.22, y=.835, size=620, front=True, pop=False),

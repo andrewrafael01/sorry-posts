@@ -48,9 +48,18 @@ class Messages:
         self.n_msgs = [i for i in self.items if i["kind"] == "msg"]
 
     # ---- bubble rendering (cached)
-    def bubble(self, text, who, sender=None, first=True, last=True, big=False):
-        key = (text, who, sender, first, last, self.dark, big)
+    def bubble(self, text, who, sender=None, first=True, last=True, big=False, audio=None):
+        key = (text, who, sender, first, last, self.dark, big, audio)
         if key in self._cache: return self._cache[key]
+        if audio:
+            w, h = 600, 118; L = Image.new("RGBA", (w + 20, h + 4), (0, 0, 0, 0)); d = ImageDraw.Draw(L)
+            col = BLUE if who == "me" else (GREY_D if self.dark else GREY_L); x0 = 0 if who == "them" else 20; fg = WHITE if (who == "me" or self.dark) else (0, 0, 0)
+            d.rounded_rectangle([x0, 0, x0 + w, h], 59, fill=col)
+            d.ellipse([x0 + 20, 20, x0 + 98, 98], fill=fg); d.polygon([(x0 + 45, 38), (x0 + 45, 80), (x0 + 80, 59)], fill=col)
+            rr = np.random.RandomState(len(audio) + 4)
+            for i in range(26): hh = 8 + int(abs(rr.randn()) * 18); d.rounded_rectangle([x0 + 124 + i * 14, 59 - hh, x0 + 130 + i * 14, 59 + hh], 3, fill=fg)
+            draw_line(L, x0 + w - 98, 36, audio, "semi", 32, fg)
+            self._cache[key] = (L, 0); return self._cache[key]
         size = 54 if not big else 120
         tl = text_layer(text, size, "reg", WHITE if who == "me" or (who == "them" and self.dark) else (0, 0, 0), maxw=700, align="left", pad=0, spacing=1.22)
         if big:
@@ -98,7 +107,7 @@ class Messages:
                 if typing_on:
                     placed.append(("typing", it, y)); y += 96 + (34 if (self.group and first) else 0) + (16 if last else 6); prev_who = it["who"]; continue
                 big = it.get("big", False)
-                L, extra = self.bubble(it["text"], it["who"], it.get("sender") if self.group else None, first, last, big)
+                L, extra = self.bubble(it["text"], it["who"], it.get("sender") if self.group else None, first, last, big, it.get("audio"))
                 gap = 22 if first else 6
                 if big: gap = 18
                 y += gap if prev_who is not None else 0
@@ -194,7 +203,7 @@ class Messages:
             if it["kind"] == "stamp" and it["at"] <= t: y += 66; prev = None
             elif it["kind"] == "msg" and (it["at"] <= t or typing_on):
                 if typing_on: y += 96 + 22; prev = it["who"]; continue
-                big = it.get("big", False); L, _ = self.bubble(it["text"], it["who"], it.get("sender") if self.group else None, prev != it["who"], True, big)
+                big = it.get("big", False); L, _ = self.bubble(it["text"], it["who"], it.get("sender") if self.group else None, prev != it["who"], True, big, it.get("audio"))
                 y += (22 if prev != it["who"] else 6) if prev else 0; y += L.height; prev = it["who"]
             elif it["kind"] == "status" and it["at"] <= t: y += 50
         return max(0, y + 40 - (1290 - 330))
@@ -211,8 +220,10 @@ class Messages:
 
 class LockScreen:
     """Lock screen with a stack of notification cards. items: dict(at, app, title, body, when='now', color=(r,g,b), icon='M')."""
-    def __init__(self, clock="2:14", date="Tuesday, October 14", items=None, wall=((38, 30, 92), (18, 12, 40)), more=None, vibrate=True):
+    def __init__(self, clock="2:14", date="Tuesday, October 14", items=None, wall=((38, 30, 92), (18, 12, 40)), more=None, vibrate=True, dates=None, max_cards=4):
+        self.max_cards = max_cards
         self.clock, self.date, self.items, self.wall, self.more = clock, date, sorted(items or [], key=lambda e: e["at"]), wall, more
+        self.dates = dates or []
         self.cues = []
         for it in self.items:
             if it["at"] >= 0: self.cues.append((it["at"], "buzz" if vibrate else "recv", .6))
@@ -241,17 +252,21 @@ class LockScreen:
             self._bg = im
         img = self._bg.copy(); d = ImageDraw.Draw(img)
         status_bar(img, True, "")
-        dw = font("semi", 38).getlength(self.date); draw_line(img, (UW - dw) / 2, 150, self.date, "semi", 38, (225, 225, 235))
+        date = self.date
+        for ta, tx in self.dates:
+            if t >= ta: date = tx
+        dw = font("semi", 38).getlength(date); draw_line(img, (UW - dw) / 2, 150, date, "semi", 38, (225, 225, 235))
         f = font("med", 250); cw = f.getlength(self.clock); d.text(((UW - cw) / 2, 190), self.clock, font=f, fill=(255, 255, 255))
-        y = 590; shown = [it for it in self.items if it["at"] <= t]
+        y = 590; allshown = [it for it in self.items if it["at"] <= t]
+        shown = allshown[-self.max_cards:]; hidden = len(allshown) - len(shown)
         for it in reversed(shown):   # newest on top
             L = self.card(it); u = t - it["at"]
             slide = out_cubic(u / .3); yy = y - (1 - slide) * 140
             L2 = L.copy()
             if slide < 1: L2.putalpha(L.getchannel("A").point(lambda v: int(v * slide)))
             img.paste(L2, (50, int(yy)), L2); y += L.height + 20
-        if self.more is not None and shown:
-            txt = self.more if isinstance(self.more, str) else f"+{self.more} more notifications"
+        if (self.more is not None or hidden) and shown:
+            txt = self.more if isinstance(self.more, str) else f"+{(self.more or 0) + hidden} more notifications"
             tw = font("med", 34).getlength(txt); draw_line(img, (UW - tw) / 2, y + 6, txt, "med", 34, (210, 210, 225))
         d.rounded_rectangle([UW / 2 - 150, 1470, UW / 2 + 150, 1480], 5, fill=WHITE)
         return img
@@ -278,12 +293,13 @@ class VoiceMemo:
         m, s = divmod(int(sec), 60); ts = f"{m}:{s:02d}.{int((sec % 1) * 100):02d}"
         f = font("med", 120); w = f.getlength(ts); d.text(((UW - w) / 2, 800), ts, font=f, fill=(0, 0, 0))
         if self.end is None or t < self.end:
-            d.ellipse([UW / 2 - 56, 1130, UW / 2 + 56, 1242], fill=(255, 255, 255), outline=(190, 190, 195), width=6); d.ellipse([UW / 2 - 40, 1146, UW / 2 + 40, 1226], fill=(255, 59, 48))
+            d.ellipse([UW / 2 - 56, 1310, UW / 2 + 56, 1422], fill=(255, 255, 255), outline=(190, 190, 195), width=6); d.ellipse([UW / 2 - 40, 1326, UW / 2 + 40, 1406], fill=(255, 59, 48))
         else:
-            d.ellipse([UW / 2 - 56, 1130, UW / 2 + 56, 1242], fill=(255, 59, 48)); d.rectangle([UW / 2 - 22, 1164, UW / 2 + 22, 1208], fill=WHITE)
-        y = 1000
-        for l in self.lines:
-            if l["at"] <= t:
+            d.ellipse([UW / 2 - 56, 1310, UW / 2 + 56, 1422], fill=(255, 59, 48)); d.rectangle([UW / 2 - 22, 1344, UW / 2 + 22, 1388], fill=WHITE)
+        y = 940
+        vis = [l for l in self.lines if l["at"] <= t][-5:]
+        for l in vis:
+            if True:
                 L = text_layer(l["text"], 42, "semi", (60, 60, 67), maxw=940, align="left", pad=0)
                 u = t - l["at"]; L2 = L.copy(); L2.putalpha(L.getchannel("A").point(lambda v: int(v * clamp(u / .15)))); img.paste(L2, (60, y), L2); y += L.height + 14
         d.rounded_rectangle([UW / 2 - 150, 1470, UW / 2 + 150, 1480], 5, fill=(0, 0, 0))

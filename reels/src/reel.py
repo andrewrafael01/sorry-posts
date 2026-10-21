@@ -93,7 +93,7 @@ def draw_caption(img, lt, cap):
     k = out_back(u / .22, 1.7)
     hl = c.get("hl")
     if st == "hook":
-        L = text_layer(c["text"], c.get("size", 92), "black", WHITE, stroke=10, maxw=940, align=c.get("align", "left"), hl=hl, spacing=1.08)
+        L = text_layer(c["text"], c.get("size", 84), "black", WHITE, stroke=9, maxw=960, align=c.get("align", "left"), hl=hl, spacing=1.06)
         paste(img, L, 36 + L.width / 2 if c.get("align", "left") == "left" else W / 2, c.get("y", 330), scale=.6 + .4 * k, alpha=clamp(u / .08))
     elif st == "title":
         T_ = text_layer(c["text"], c.get("size", 76), "black", YELLOW, stroke=9, maxw=1000)
@@ -136,8 +136,8 @@ class SceneShot(Shot):
             if a.get("exit_at") is not None and lt > a["exit_at"]:
                 dd = a.get("exit_dur", .6); pose = "walk"; x = lerp(x, -300 if a.get("exit", "left") == "left" else W + 300, in_cubic((lt - a["exit_at"]) / dd))
             if a.get("slide_to") is not None and lt > a.get("slide_at", 0):
-                x = lerp(x, a["slide_to"] * W, in_out((lt - a["slide_at"]) / a.get("slide_dur", .8)))
-                if lt - a["slide_at"] < a.get("slide_dur", .8): pose = a.get("slide_pose", "walk")
+                x = lerp(x, a["slide_to"] * W, in_out((lt - a.get("slide_at", 0)) / a.get("slide_dur", .8)))
+                if lt - a.get("slide_at", 0) < a.get("slide_dur", .8): pose = a.get("slide_pose", "walk")
             if a.get("pose_at"):
                 for tp, pz in a["pose_at"]:
                     if lt >= tp: pose = pz
@@ -185,10 +185,10 @@ class SceneShot(Shot):
         return img
 
 class PhoneShot(Shot):
-    def __init__(self, ui, dur=None, cap=None, bg=(238, 82, 83), zoom=None, hold=1.2, cues=None, shake=None, cut="cut", music_dip=None, caps=None, bg2=None, card_y=430):
+    def __init__(self, ui, dur=None, cap=None, bg=(238, 82, 83), zoom=None, hold=1.2, cues=None, shake=None, cut="cut", music_dip=None, caps=None, bg2=None, card_y=480):
         self.ui, self.cap, self.bg, self.zoom, self.shake, self.cut, self.music_dip = ui, cap, bg, zoom or [], shake, cut, music_dip
         self.caps = caps if caps else ([cap] if cap else [])
-        last = max([e["at"] for e in ui.items] + [0])
+        last = max([e["at"] for e in getattr(ui, "items", [])] + [0])
         self.dur = dur or (last + hold)
         self.cues = list(ui.cues) + list(cues or []); self.bg2 = bg2 or tuple(int(c * .82) for c in bg); self.card_y = card_y
         self._bgimg = None
@@ -218,8 +218,9 @@ class PhoneShot(Shot):
         return img
 
 class KineticShot(Shot):
-    def __init__(self, items, dur=3.0, bg=(20, 20, 24), bg2=None, cues=None, shake=None, cut="cut", music_dip=None, burst=None, amb=None):
+    def __init__(self, items, dur=3.0, bg=(20, 20, 24), bg2=None, cues=None, shake=None, cut="cut", music_dip=None, burst=None, amb=None, fx=None, fx_y=.45, counter=None):
         self.items, self.dur, self.bg, self.shake, self.cut, self.music_dip, self.amb = items, dur, bg, shake, cut, music_dip, amb
+        self.fx, self.fx_y, self.counter = fx, fx_y, counter
         self.bg2 = bg2 or bg; self.cues = list(cues or []); self.burst = burst
         for it in items:
             if it.get("sfx"): self.cues.append((it.get("at", 0), it["sfx"], it.get("sg", .9)))
@@ -230,6 +231,25 @@ class KineticShot(Shot):
             for y in range(H): d.line([(0, y), (W, y)], fill=tuple(int(lerp(self.bg[i], self.bg2[i], y / H)) for i in range(3)))
             self._b = im
         img = self._b.copy()
+        if self.fx:
+            ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); od = ImageDraw.Draw(ov); cx, cy = W / 2, H * self.fx_y
+            lite = tuple(min(255, int(c * 1.9 + 30)) for c in self.bg)
+            if "rays" in self.fx:
+                for i in range(14):
+                    a0 = lt * .35 + i * (2 * math.pi / 14); a1 = a0 + .12; R = 2400
+                    od.polygon([(cx, cy), (cx + math.cos(a0) * R, cy + math.sin(a0) * R), (cx + math.cos(a1) * R, cy + math.sin(a1) * R)], fill=lite + (34,))
+            if "dots" in self.fx:
+                r_ = np.random.RandomState(5)
+                for i in range(26):
+                    x = r_.rand() * W; sp = 60 + r_.rand() * 140; y = (H + 100 - ((lt * sp + r_.rand() * H) % (H + 200))); rad = 14 + r_.rand() * 44
+                    od.ellipse([x - rad, y - rad, x + rad, y + rad], fill=lite + (46,))
+            if "confetti" in self.fx and lt > self.fx_start if hasattr(self, "fx_start") else "confetti" in self.fx:
+                r_ = np.random.RandomState(9)
+                for i in range(46):
+                    x = r_.rand() * W + math.sin(lt * 3 + i) * 30; y = ((lt * (320 + r_.rand() * 380) + r_.rand() * H) % (H + 100)) - 50; a = lt * 6 + i
+                    col = [(255, 212, 0), (255, 90, 120), (90, 200, 255), (130, 255, 160)][i % 4]
+                    pts = [(x + math.cos(a + k * 1.57) * 18, y + math.sin(a + k * 1.57) * 9) for k in range(4)]; od.polygon(pts, fill=col + (230,))
+            img = img.convert("RGBA"); img.alpha_composite(ov); img = img.convert("RGB")
         for it in self.items:
             u = lt - it.get("at", 0)
             if u < 0 or (it.get("until") is not None and lt > it["until"]): continue
@@ -244,7 +264,8 @@ class KineticShot(Shot):
             elif an == "shake": paste(img, L, x + math.sin(u * 55) * 7, y + math.cos(u * 61) * 5, scale=out_back(u / .2), rot=it.get("rot", 0))
             elif an == "wobble": paste(img, L, x, y, scale=out_back(u / .25) * (1 + .03 * math.sin(u * 8)), rot=it.get("rot", 0) + math.sin(u * 5) * 2.5)
             else: paste(img, L, x, y, scale=out_back(u / .25, 1.8), alpha=clamp(u / .08), rot=it.get("rot", 0))
-        for pr in []: pass
+        if self.counter:
+            txt = self.counter; L = text_layer(txt, 40, "bold", (255, 255, 255), pad=0); paste(img, L, W / 2, H * .9, alpha=.55)
         return img
 
 # --------------------------------------------------------------- audio assembly
@@ -270,7 +291,9 @@ class Reel:
         self.bpm = bpm_
         self.starts = []; t = 0.0
         for s in shots:
-            nb = max(2, math.ceil(s.dur / self.bl - .2)); s.dur = nb * self.bl
+            nb = max(2, round(s.dur / self.bl))
+            if nb * self.bl < s.dur - .25: nb += 1
+            s.dur = nb * self.bl
             self.starts.append(t); t += s.dur
         self.dur = t
         self._prev = None
@@ -336,7 +359,7 @@ class Reel:
         else:
             f = int(.06 * SR); out[-f:] *= np.linspace(1, 0, f)[:, None]
         out = np.tanh(out * 1.5)
-        return out / max(1e-6, np.abs(out).max()) * .92
+        return out / max(1e-6, np.abs(out).max()) * .84
 
     def render(self, out_dir, crf=27, preview=False):
         path = os.path.join(out_dir, self.name + ".mp4")

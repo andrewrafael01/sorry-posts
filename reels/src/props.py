@@ -274,3 +274,235 @@ def p_mop(s):
     d.line([int(s * .22) * k, 10 * k, int(s * .22) * k, int(s * .78) * k], fill=rgb("8a6a45"), width=9 * k)
     d.rounded_rectangle([5 * k, int(s * .76) * k, int(s * .42) * k, int(s * .98) * k], 8 * k, fill=rgb("dfe3ec"), outline=rgb("aab0c0"), width=3 * k)
     return _fin(L)
+
+
+def p_bowl(s, color="3a7bd5"):
+    w, h = s, int(s * .5); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.pieslice([10 * k, -int(h * .4) * k + 20 * k, (w - 10) * k, int(h * 1.6) * k], 0, 180, fill=rgb(color))
+    d.ellipse([10 * k, 10 * k + 20 * k - int(h * .1) * k, (w - 10) * k, int(h * .42) * k + 20 * k], fill=shade(rgb(color), .7))
+    d.ellipse([int(w * .3) * k, int(h * .85) * k + 8 * k, int(w * .7) * k, int(h * .98) * k + 8 * k], fill=shade(rgb(color), .8))
+    return _fin(L)
+
+def p_shelf(s, items=("c0392b", "f4a300", "3aa655", "2a6fdb")):
+    w, h = s, int(s * .7); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.rectangle([10 * k, 10 * k, (w + 10) * k, (h + 10) * k], fill=rgb("b6bccb"))
+    for r in range(3):
+        y = 20 + r * int(h * .32)
+        d.rectangle([10 * k, (y + int(h * .26)) * k, (w + 10) * k, (y + int(h * .3)) * k], fill=rgb("7a8296"))
+        x = 24
+        while x < w - 30:
+            bw = 30 + (x * 7 + r * 13) % 22; bh = 40 + (x * 3 + r * 5) % 40; c = rgb(items[(x // 30 + r) % len(items)])
+            d.rectangle([x * k, (y + int(h * .26) - bh) * k, (x + bw) * k, (y + int(h * .26)) * k], fill=c); x += bw + 6
+    return _fin(L)
+
+def p_bubbleclock(s): return p_clock(s)
+
+
+# ---------------------------------------------------------------- generic comedy props
+def p_tea(s):
+    w, h = s, int(s * .8); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.ellipse([5 * k, int(h * .84) * k, (w - 5) * k, int(h * 1.0) * k], fill=rgb("e8e2d6"), outline=rgb("b7ad98"), width=3 * k)
+    d.polygon([(int(w * .2) * k, int(h * .22) * k), (int(w * .8) * k, int(h * .22) * k), (int(w * .72) * k, int(h * .86) * k), (int(w * .28) * k, int(h * .86) * k)], fill=(210, 120, 40, 235), outline=rgb("f4efe6"))
+    d.rectangle([int(w * .2) * k, int(h * .22) * k, int(w * .8) * k, int(h * .3) * k], fill=(255, 255, 255, 120))
+    for i, x in enumerate((.38, .52, .64)): d.arc([int(w * x) * k, (-12 + i * 3) * k, int(w * (x + .1)) * k, int(h * .2) * k], 90, 270, fill=(255, 255, 255, 160), width=4 * k)
+    return _fin(L)
+
+def p_tupper(s, text="", n=3):
+    w, h = s, int(s * .22 * n) + 30; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    cols = ["e63946", "2a9d8f", "f4a300", "6c8ebf"]
+    for i in range(n):
+        y = h - (i + 1) * int(s * .2) - 4
+        d.rounded_rectangle([10 * k, y * k, (w - 10) * k, (y + int(s * .19)) * k], 8 * k, fill=(236, 240, 248, 235), outline=rgb("a9b3c6"), width=3 * k)
+        d.rounded_rectangle([6 * k, y * k, (w - 6) * k, (y + int(s * .06)) * k], 6 * k, fill=rgb(cols[i % 4]))
+    if text:
+        tl = text_layer(text, int(s * .1), "black", rgb("222"), maxw=int(w * .8), pad=0); tl = tl.resize((tl.width * k, tl.height * k)); L.paste(tl, (int((w + 20) * k / 2 - tl.width / 2), int((h - s * .12) * k)), tl)
+    return _fin(L)
+
+def p_slipper(s, color="3a9bd9"):
+    w, h = s, int(s * .5); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.rounded_rectangle([10 * k, int(h * .3) * k, int(w * .98) * k, int(h * .85) * k], int(h * .3) * k, fill=rgb("f4f4f4"), outline=D, width=4 * k)
+    d.rounded_rectangle([14 * k, int(h * .52) * k, int(w * .94) * k, int(h * .85) * k], int(h * .25) * k, fill=shade(rgb(color), .9))
+    d.polygon([(int(w * .38) * k, int(h * .35) * k), (int(w * .7) * k, int(h * .35) * k), (int(w * .55) * k, int(h * .05) * k)], fill=rgb(color), outline=D)
+    return _fin(L)
+
+def p_pot(s, steam=True, color="b7bcc9"):
+    w, h = s, int(s * .7); L = _canvas(w + 40, h + 60); d = ImageDraw.Draw(L); k = 2
+    d.rounded_rectangle([10 * k, int(h * .45) * k + 40 * k, (w - 10) * k, h * k + 40 * k], 18 * k, fill=rgb(color)); d.rounded_rectangle([0, int(h * .38) * k + 40 * k, w * k, int(h * .55) * k + 40 * k], 10 * k, fill=shade(rgb(color), .85))
+    d.rounded_rectangle([int(w * .4) * k, int(h * .22) * k + 40 * k, int(w * .6) * k, int(h * .4) * k + 40 * k], 8 * k, fill=rgb("5a5f6e"))
+    if steam:
+        for i, x in enumerate((.3, .5, .7)): d.arc([int(w * x) * k, (4 + i * 6) * k, int(w * x + 40) * k, 60 * k], 90, 270, fill=(255, 255, 255, 190), width=5 * k)
+    return _fin(L)
+
+def p_dish(s, food="f4e3b0", garnish="c0392b"):
+    w, h = s, int(s * .4); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.ellipse([5 * k, int(h * .3) * k, (w + 5) * k, int(h * 1.0) * k], fill=rgb("f5f3ee"), outline=rgb("c9c2b2"), width=3 * k)
+    d.pieslice([int(w * .15) * k, 0, int(w * .85) * k, int(h * .9) * k], 180, 360, fill=rgb(food))
+    for x, y in [(.3, .5), (.5, .42), (.66, .55)]: d.ellipse([int(w * x) * k, int(h * y) * k, int(w * x + 22) * k, int(h * y + 22) * k], fill=rgb(garnish))
+    return _fin(L)
+
+def p_mic(s):
+    w, h = int(s * .4), s; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.rounded_rectangle([int(w * .4) * k, int(h * .4) * k, int(w * .65) * k, h * k], 10 * k, fill=rgb("2b2f3a")); d.ellipse([int(w * .15) * k, 4 * k, int(w * .9) * k, int(h * .5) * k], fill=rgb("9aa3b5"), outline=rgb("2b2f3a"), width=5 * k)
+    d.line([int(w * .2) * k, int(h * .2) * k, int(w * .85) * k, int(h * .2) * k], fill=rgb("2b2f3a"), width=3 * k)
+    return _fin(L)
+
+def p_ball(s, kind="soccer"):
+    L = _canvas(s + 10, s + 10); d = ImageDraw.Draw(L); k = 2; c = (s / 2 + 5) * k; r = s / 2 * k
+    if kind == "soccer":
+        d.ellipse([c - r, c - r, c + r, c + r], fill=rgb("f6f6f6"), outline=D, width=4 * k)
+        for a in range(5):
+            ang = a / 5 * 2 * math.pi - math.pi / 2; x, y = c + math.cos(ang) * r * .6, c + math.sin(ang) * r * .6; d.ellipse([x - r * .16, y - r * .16, x + r * .16, y + r * .16], fill=D)
+        d.regular_polygon((c, c, r * .22), 5, fill=D)
+    elif kind == "basket":
+        d.ellipse([c - r, c - r, c + r, c + r], fill=rgb("e07a2f"), outline=D, width=4 * k); d.line([c - r, c, c + r, c], fill=D, width=3 * k); d.line([c, c - r, c, c + r], fill=D, width=3 * k)
+    else:
+        d.ellipse([c - r, c - r, c + r, c + r], fill=rgb("f4f6f0"), outline=D, width=3 * k)
+    return _fin(L)
+
+def p_golfclub(s):
+    w, h = int(s * .5), s; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.line([int(w * .8) * k, 10 * k, int(w * .35) * k, int(h * .92) * k], fill=rgb("9aa3b5"), width=7 * k); d.polygon([(int(w * .2) * k, int(h * .9) * k), (int(w * .6) * k, int(h * .88) * k), (int(w * .65) * k, int(h * .98) * k), (int(w * .15) * k, int(h * .99) * k)], fill=rgb("5a5f6e"))
+    return _fin(L)
+
+def p_bike(s, color="e63946"):
+    w, h = s, int(s * .62); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    for cx in (int(w * .2), int(w * .8)): d.ellipse([(cx - int(h * .38)) * k, int(h * .24) * k, (cx + int(h * .38)) * k, int(h * .98) * k], outline=D, width=7 * k)
+    pts = [(int(w * .2), int(h * .62)), (int(w * .45), int(h * .62)), (int(w * .36), int(h * .3)), (int(w * .62), int(h * .3)), (int(w * .8), int(h * .62)), (int(w * .45), int(h * .62))]
+    d.line([(x * k, y * k) for x, y in pts], fill=rgb(color), width=7 * k); d.line([int(w * .62) * k, int(h * .3) * k, int(w * .6) * k, int(h * .1) * k, int(w * .72) * k, int(h * .1) * k], fill=D, width=6 * k)
+    d.rectangle([int(w * .3) * k, int(h * .22) * k, int(w * .42) * k, int(h * .28) * k], fill=D)
+    return _fin(L)
+
+def p_surfboard(s, color="2ec4b6"):
+    w, h = int(s * .32), s; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.ellipse([10 * k, 10 * k, (w + 10) * k, (h + 10) * k], fill=rgb(color), outline=D, width=4 * k); d.line([(w // 2 + 10) * k, 20 * k, (w // 2 + 10) * k, h * k], fill=rgb("f6f6f6"), width=5 * k)
+    return _fin(L)
+
+def p_helmet(s, color="f4a300"):
+    w, h = s, int(s * .7); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.pieslice([10 * k, 10 * k, (w + 10) * k, int(h * 1.5) * k], 180, 360, fill=rgb(color), outline=D, width=4 * k); d.rectangle([5 * k, int(h * .72) * k, (w + 15) * k, int(h * .85) * k], fill=shade(rgb(color), .8))
+    return _fin(L)
+
+def p_backpack(s, color="2a6fdb"):
+    w, h = int(s * .8), s; L = _canvas(w + 30, h + 20); d = ImageDraw.Draw(L); k = 2
+    cube(d, 10 * k, int(h * .12) * k + 10 * k, w * k, int(h * .85) * k, rgb(color), 14 * k); d.rounded_rectangle([int(w * .2) * k, int(h * .56) * k, int(w * .8) * k, int(h * .9) * k], 10 * k, fill=shade(rgb(color), .8))
+    d.arc([int(w * .3) * k, 4 * k, int(w * .7) * k, int(h * .3) * k], 180, 360, fill=D, width=6 * k)
+    return _fin(L)
+
+def p_tumbler(s, color="2a9d8f"):
+    w, h = int(s * .6), s; L = _canvas(w + 50, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.polygon([(int(w * .08) * k, int(h * .12) * k), (int(w * .92) * k, int(h * .12) * k), (int(w * .78) * k, h * k), (int(w * .22) * k, h * k)], fill=rgb(color)); d.rectangle([int(w * .02) * k, 8 * k, int(w * .98) * k, int(h * .14) * k], fill=shade(rgb(color), .8))
+    d.arc([int(w * .72) * k, int(h * .2) * k, (w + 40) * k, int(h * .62) * k], 270, 90, fill=shade(rgb(color), .8), width=9 * k); d.line([int(w * .55) * k, 8 * k, int(w * .78) * k, -4 * k], fill=D, width=5 * k)
+    return _fin(L)
+
+def p_coffee(s):
+    w, h = int(s * .6), s; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.polygon([(int(w * .05) * k, int(h * .15) * k), (int(w * .95) * k, int(h * .15) * k), (int(w * .8) * k, h * k), (int(w * .2) * k, h * k)], fill=rgb("f6f2ea")); d.rectangle([int(w * .04) * k, 6 * k, int(w * .96) * k, int(h * .18) * k], fill=rgb("3a2a22"))
+    d.rectangle([int(w * .1) * k, int(h * .42) * k, int(w * .9) * k, int(h * .66) * k], fill=rgb("b0703c"))
+    return _fin(L)
+
+def p_clipboard(s, text=""):
+    w, h = int(s * .7), s; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.rounded_rectangle([10 * k, 10 * k, (w + 10) * k, (h + 10) * k], 12 * k, fill=rgb("a8774c")); d.rectangle([int(w * .1) * k + 10 * k, int(h * .1) * k + 10 * k, int(w * .9) * k, int(h * .94) * k], fill=rgb("fbfaf5"))
+    d.rounded_rectangle([int(w * .3) * k, 4 * k, int(w * .7) * k + 10 * k, 36 * k], 8 * k, fill=rgb("8a8f9e"))
+    if text:
+        tl = text_layer(text, int(w * .11), "bold", rgb("222"), maxw=int(w * .72), align="left", pad=0); tl = tl.resize((tl.width * k, tl.height * k)); L.paste(tl, (int(w * .16 * k + 10 * k), int(h * .17 * k)), tl)
+    return _fin(L)
+
+def p_hardhat(s):
+    return p_helmet(s, "f4c20d")
+
+def p_hammer(s):
+    w, h = s, int(s * .6); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.line([int(w * .3) * k, int(h * .95) * k, int(w * .62) * k, int(h * .3) * k], fill=rgb("8a5a3a"), width=11 * k); d.rounded_rectangle([int(w * .4) * k, 8 * k, int(w * .95) * k, int(h * .3) * k], 6 * k, fill=rgb("8f97a8"), outline=D, width=3 * k)
+    return _fin(L)
+
+def p_apple(s):
+    L = _canvas(s + 10, s + 10); d = ImageDraw.Draw(L); k = 2
+    d.ellipse([5 * k, int(s * .18) * k, (s + 5) * k, (s + 3) * k], fill=rgb("d62828")); d.rectangle([int(s * .5) * k, 6 * k, int(s * .56) * k, int(s * .26) * k], fill=rgb("5a3a28")); d.ellipse([int(s * .56) * k, 4 * k, int(s * .86) * k, int(s * .2) * k], fill=rgb("3f9b4e"))
+    return _fin(L)
+
+def p_book(s, color="2a6fdb", text=""):
+    w, h = int(s * .75), s; L = _canvas(w + 30, h + 20); d = ImageDraw.Draw(L); k = 2
+    cube(d, 10 * k, 14 * k, w * k, (h - 4) * k, rgb(color), 14 * k); d.rectangle([10 * k, 14 * k, 26 * k, (h + 10) * k], fill=shade(rgb(color), .75))
+    if text:
+        tl = text_layer(text, int(w * .14), "black", WHITE, maxw=int(w * .7), pad=0); tl = tl.resize((tl.width * k, tl.height * k)); L.paste(tl, (int(36 * k), int(h * .3 * k)), tl)
+    return _fin(L)
+
+def p_forsale(s, text="SOLD"):
+    w, h = int(s * .9), s; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.rectangle([int(w * .08) * k, 10 * k, int(w * .14) * k, (h + 10) * k], fill=rgb("8a6a45")); d.rectangle([int(w * .08) * k, 20 * k, (w - 10) * k, 30 * k], fill=rgb("8a6a45"))
+    d.rounded_rectangle([int(w * .14) * k, 28 * k, (w + 5) * k, int(h * .5) * k], 8 * k, fill=rgb("ffffff"), outline=rgb("d62828"), width=5 * k)
+    tl = text_layer(text, int(w * .2), "black", rgb("d62828"), maxw=int(w * .8), pad=0); tl = tl.resize((tl.width * k, tl.height * k)); L.paste(tl, (int(w * .18 * k), int(40 * k)), tl)
+    return _fin(L)
+
+def p_cone(s):
+    w, h = int(s * .7), s; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.polygon([(int(w * .5) * k + 10 * k, 6 * k), (int(w * .85) * k, int(h * .9) * k), (int(w * .15) * k, int(h * .9) * k)], fill=rgb("f27b21")); d.polygon([(int(w * .4) * k, int(h * .38) * k), (int(w * .6) * k + 20 * k, int(h * .38) * k), (int(w * .66) * k + 20 * k, int(h * .52) * k), (int(w * .36) * k, int(h * .52) * k)], fill=WHITE)
+    d.rectangle([5 * k, int(h * .88) * k, (w + 15) * k, h * k], fill=rgb("f27b21"))
+    return _fin(L)
+
+def p_speaker(s):
+    w, h = s, int(s * .65); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    cube(d, 10 * k, 18 * k, w * k, h * k, rgb("2b2f3a"), 12 * k)
+    for cx in (.28, .72): d.ellipse([int(w * cx - w * .14) * k + 10 * k, int(h * .22) * k + 18 * k, int(w * cx + w * .14) * k + 10 * k, int(h * .22 + w * .28) * k + 18 * k], fill=rgb("12141a"), outline=rgb("5a5f6e"), width=4 * k)
+    return _fin(L)
+
+def p_whiteboard(s, text=""):
+    w, h = s, int(s * .62); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.rectangle([10 * k, 10 * k, (w + 10) * k, (h + 10) * k], fill=rgb("f8fafc"), outline=rgb("8a8f9e"), width=8 * k)
+    if text:
+        tl = text_layer(text, int(s * .085), "bold", rgb("1d4ed8"), maxw=int(w * .84), align="left", pad=0, spacing=1.3); tl = tl.resize((tl.width * k, tl.height * k)); L.paste(tl, (int(36 * k), int(34 * k)), tl)
+    return _fin(L)
+
+def p_cooler(s):
+    w, h = s, int(s * .6); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    cube(d, 10 * k, int(h * .2) * k + 10 * k, w * k, int(h * .7) * k, rgb("2a6fdb"), 12 * k); d.rectangle([10 * k, int(h * .2) * k + 10 * k, (w + 10) * k, int(h * .36) * k + 10 * k], fill=rgb("f4f6f8"))
+    return _fin(L)
+
+def p_grill(s):
+    w, h = s, int(s * .9); L = _canvas(w + 20, h + 60); d = ImageDraw.Draw(L); k = 2
+    d.pieslice([10 * k, 40 * k, (w + 10) * k, int(h * .9) * k + 40 * k], 180, 360, fill=rgb("2b2f3a")); d.rectangle([10 * k, int(h * .44) * k + 40 * k, (w + 10) * k, int(h * .52) * k + 40 * k], fill=rgb("5a5f6e"))
+    for x in (.2, .8): d.line([int(w * x) * k, int(h * .52) * k + 40 * k, int(w * x - 20) * k, (h + 40) * k], fill=rgb("2b2f3a"), width=7 * k)
+    for i, x in enumerate((.3, .5, .7)): d.arc([int(w * x) * k, (0 + i * 4) * k, int(w * x + 36) * k, 40 * k], 90, 270, fill=(220, 220, 225, 170), width=5 * k)
+    return _fin(L)
+
+def p_envelope(s, color="d62828"):
+    w, h = s, int(s * .6); L = _canvas(w + 10, h + 10); d = ImageDraw.Draw(L); k = 2
+    d.rounded_rectangle([5 * k, 5 * k, (w + 5) * k, (h + 5) * k], 8 * k, fill=rgb(color)); d.polygon([(5 * k, 5 * k), ((w // 2 + 5) * k, int(h * .55) * k), ((w + 5) * k, 5 * k)], fill=shade(rgb(color), .85))
+    d.ellipse([int(w * .42) * k, int(h * .4) * k, int(w * .58) * k, int(h * .66) * k], fill=rgb("f2c94c"))
+    return _fin(L)
+
+def p_balloon(s, color="e63946"):
+    w, h = int(s * .7), s; L = _canvas(w + 10, h + 10); d = ImageDraw.Draw(L); k = 2
+    d.ellipse([5 * k, 5 * k, (w + 5) * k, int(h * .75) * k], fill=rgb(color)); d.polygon([(int(w * .5) * k + 5 * k, int(h * .74) * k), (int(w * .4) * k + 5 * k, int(h * .8) * k), (int(w * .6) * k + 5 * k, int(h * .8) * k)], fill=shade(rgb(color), .8))
+    d.line([(w // 2 + 5) * k, int(h * .8) * k, (w // 2 + 5) * k, h * k], fill=rgb("9aa3b5"), width=2 * k)
+    return _fin(L)
+
+def p_gift(s, color="d62828"):
+    w, h = s, int(s * .8); L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    cube(d, 10 * k, int(h * .25) * k + 10 * k, w * k, int(h * .7) * k, rgb(color), 12 * k); d.rectangle([int(w * .45) * k + 10 * k, int(h * .25) * k + 10 * k, int(w * .58) * k + 10 * k, (h + 10) * k], fill=rgb("f2c94c")); d.rectangle([10 * k, int(h * .55) * k, (w + 10) * k, int(h * .66) * k], fill=rgb("f2c94c"))
+    d.ellipse([int(w * .3) * k, 4 * k, int(w * .5) * k + 10 * k, int(h * .3) * k], outline=rgb("f2c94c"), width=5 * k); d.ellipse([int(w * .5) * k, 4 * k, int(w * .72) * k + 10 * k, int(h * .3) * k], outline=rgb("f2c94c"), width=5 * k)
+    return _fin(L)
+
+def p_lanyard(s, text="STAFF"):
+    w, h = int(s * .6), s; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.line([int(w * .2) * k, 6 * k, int(w * .5) * k + 10 * k, int(h * .5) * k, int(w * .85) * k, 6 * k], fill=rgb("2a6fdb"), width=6 * k); d.rounded_rectangle([int(w * .15) * k, int(h * .5) * k, int(w * .85) * k + 10 * k, int(h * .98) * k], 10 * k, fill=WHITE, outline=D, width=4 * k)
+    tl = text_layer(text, int(w * .16), "black", rgb("222"), pad=0); tl = tl.resize((tl.width * k, tl.height * k)); L.paste(tl, (int(w * .22 * k), int(h * .64 * k)), tl)
+    return _fin(L)
+
+def p_notepad(s, text=""):
+    return p_note(s, text, "f8f8f4")
+
+def p_bubbletea(s):
+    w, h = int(s * .6), s; L = _canvas(w + 20, h + 20); d = ImageDraw.Draw(L); k = 2
+    d.polygon([(int(w * .1) * k, int(h * .2) * k), (int(w * .9) * k, int(h * .2) * k), (int(w * .78) * k, h * k), (int(w * .22) * k, h * k)], fill=(235, 200, 150, 235), outline=rgb("f4efe6")); d.rectangle([int(w * .04) * k, 10 * k, int(w * .96) * k, int(h * .22) * k], fill=rgb("f4efe6"))
+    d.line([int(w * .55) * k, 10 * k, int(w * .7) * k, -6 * k], fill=rgb("d62828"), width=7 * k)
+    for x, y in [(.3, .85), (.45, .88), (.6, .84), (.38, .78), (.52, .8)]: d.ellipse([int(w * x) * k, int(h * y) * k - 12 * k, int(w * x + 14) * k, int(h * y) * k + 12 * k], fill=rgb("2a1a14"))
+    return _fin(L)
+
+
+def p_smoke(s):
+    L = _canvas(s, s); d = ImageDraw.Draw(L); k = 2
+    for cx, cy, r in [(.3, .7, .2), (.5, .5, .26), (.72, .62, .22), (.45, .3, .2), (.62, .25, .15)]:
+        d.ellipse([int(s * (cx - r)) * k, int(s * (cy - r)) * k, int(s * (cx + r)) * k, int(s * (cy + r)) * k], fill=(70, 70, 78, 215))
+    return _fin(L)

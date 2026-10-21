@@ -1,0 +1,15 @@
+"""Shared cast so every reel lives in the same world."""
+from reel import *
+ME    = C("6c8ebf", pants="2b3040", hair="brown", extra="hoodie")
+DANI  = C("f2a1b8", hair="black", style="long", skin="tan")
+JAKE  = C("4caf6e", pants="3a3f4f", hair="blond", style="cap", extra=None)
+PRIYA = C("a678de", pants="2a2a3a", hair="black", style="bun", skin="brown", glasses="round")
+MARCUS= C("f08a3c", pants="25252d", hair="black", skin="dark", extra="hoodie")
+TYLER = C("9aa0ad", pants="2f3a52", hair="red", skin="pale")
+MOM   = C("3fb0a8", pants="5a4a6a", hair="grey", style="bob", skin="light")
+DAD   = C("8a6a45", pants="3a3f4f", hair="grey", skin="light", extra="vest")
+ROOMIE= C("e6c94d", pants="2b3040", hair="brown", style="beanie", skin="tan")
+KYLE  = C("c0392b", pants="2b3040", hair="brown", style="short", skin="light", extra="stripe")
+WAITER= C("f4f1ea", pants="1a1a1f", hair="black", skin="brown", extra="tie")
+CAST = dict(me=ME, dani=DANI, jake=JAKE, priya=PRIYA, marcus=MARCUS, tyler=TYLER, mom=MOM, dad=DAD, roomie=ROOMIE, kyle=KYLE, waiter=WAITER)
+PINK = (238, 130, 160)

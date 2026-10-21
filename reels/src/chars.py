@@ -196,13 +196,15 @@ def background(kind):
     elif kind == "kitchen":
         wall(rgb("f1e3c2"), rgb("e6d3a8")); floor(1450, rgb("c9b48a")); d.rectangle([0, 1100, W, 1450], fill=rgb("d8dde6")); d.rectangle([0, 1090, W, 1120], fill=rgb("b8bfcc"))
         for x in range(60, W, 300): d.rectangle([x, 380, x + 240, 760], fill=rgb("b58a5b"), outline=rgb("8a6540"), width=6)
+    elif kind == "bedroom_night":
+        vgrad(img, 0, 1450, rgb("232453"), rgb("30316b")); floor(1450, rgb("3a2e46"))
     elif kind in ("class", "school"):
         wall(rgb("cfe8d8"), rgb("b9d9c6")); floor(1450, rgb("a98f6a")); d.rectangle([90, 420, 990, 880], fill=rgb("2f5d50"), outline=rgb("8a6a45"), width=16)
         d.text((200, 480), "x² + y² = ?", font=font("bold", 70), fill=rgb("e8f0ea"))
     elif kind == "office":
         wall(rgb("dfe6ef"), rgb("cdd6e3")); floor(1450, rgb("7d8697"), rgb("8a93a4"))
         for x in (80, 600): d.rectangle([x, 460, x + 380, 880], fill=rgb("9fd0f5"), outline=rgb("f4f6fa"), width=12)
-    elif kind in ("cafe", "restaurant"):
+    elif kind in ("cafe", "restaurant", "cafe_bread"):
         wall(rgb("e8c9a0"), rgb("d9b488")); floor(1450, rgb("7a4b32"))
         d.rectangle([60, 520, 560, 980], fill=rgb("1c2347"), outline=rgb("6b4630"), width=16); d.line([(310, 520), (310, 980)], fill=rgb("6b4630"), width=10)
         for (bx, by, bw, bh) in [(90, 760, 50, 220), (150, 700, 60, 280), (220, 800, 45, 180), (330, 740, 55, 240), (400, 690, 70, 290), (480, 790, 50, 190)]:
@@ -211,7 +213,7 @@ def background(kind):
                 for wx in range(bx + 8, bx + bw - 10, 20):
                     if (wx * 7 + wy * 3) % 5 < 2: d.rectangle([wx, wy, wx + 8, wy + 12], fill=rgb("ffd77a"))
         for x in (160, 540, 900): d.line([(x, 0), (x, 380)], fill=rgb("3a3a3a"), width=4); d.ellipse([x - 34, 380, x + 34, 440], fill=rgb("ffe9a8")); d.rectangle([x - 22, 362, x + 22, 384], fill=rgb("3a3a3a"))
-        d.rectangle([650, 560, 1000, 700], fill=rgb("2b2f3a"), outline=rgb("6b4630"), width=10); d.text((684, 590), "TODAY:", font=font("black", 40), fill=rgb("f5f5f5")); d.text((684, 640), "bread", font=font("bold", 40), fill=rgb("f2c94c"))
+        d.rectangle([650, 560, 1000, 700], fill=rgb("2b2f3a"), outline=rgb("6b4630"), width=10); d.text((684, 590), "TODAY:" if kind == "cafe_bread" else "MENU", font=font("black", 40), fill=rgb("f5f5f5")); d.text((684, 640), "bread" if kind == "cafe_bread" else "open late", font=font("bold", 40), fill=rgb("f2c94c"))
     elif kind in ("night", "club"):
         vgrad(img, 0, 1500, rgb("1b1740"), rgb("3b2a6b")); floor(1450, rgb("201a3d"))
         for (x, y, r) in [(120, 200, 6), (400, 120, 4), (700, 260, 5), (940, 140, 6), (260, 420, 4), (820, 480, 4)]: d.ellipse([x - r, y - r, x + r, y + r], fill=rgb("fff6c0"))
@@ -219,13 +221,65 @@ def background(kind):
     elif kind in ("park", "outside"):
         vgrad(img, 0, 1200, rgb("78c3f5"), rgb("c8ecff")); d.rectangle([0, 1200, W, H], fill=rgb("63b25a")); d.rectangle([0, 1450, W, H], fill=rgb("58a24f"))
         emoji_at(img, "🌳", 200, 1050, 380); emoji_at(img, "🌳", 880, 1010, 440); emoji_at(img, "☁", 520, 260, 260, .9); emoji_at(img, "☀", 900, 160, 200)
-    elif kind in ("airport", "mall", "store"):
+    elif kind in ("airport", "mall"):
         wall(rgb("e9eef7"), rgb("d3dcec")); floor(1450, rgb("b9c3d6"), rgb("c6cfe0"))
         for x in range(0, W, 270): d.rectangle([x + 20, 420, x + 250, 900], fill=rgb("a9c8ee"), outline=rgb("f3f6fb"), width=10)
+    elif kind == "store":
+        wall(rgb("f3f1e6"), rgb("e3e0cf")); floor(1450, rgb("c9cdd6"), rgb("d6d9e1"))
+        d.rectangle([0, 330, W, 380], fill=rgb("d62828"))
+        for x in range(0, W, 360):
+            d.rectangle([x + 20, 480, x + 330, 1100], fill=rgb("aeb5c6"))
+            for r in range(4):
+                yy = 500 + r * 150; d.rectangle([x + 20, yy + 120, x + 330, yy + 134], fill=rgb("7a8296"))
+                for i in range(7):
+                    col = [rgb("e63946"), rgb("f4a300"), rgb("3aa655"), rgb("2a6fdb"), rgb("c77dff")][(i + r * 2 + x // 360) % 5]; d.rectangle([x + 36 + i * 42, yy + 40, x + 36 + i * 42 + 34, yy + 120], fill=col)
     elif kind == "car":
         vgrad(img, 0, 1100, rgb("4a90e2"), rgb("9fd0f8")); floor(1250, rgb("3a3d4a")); d.line([(0, 1560)  , (W, 1560)], fill=rgb("e8e8e8"), width=8)
     elif kind == "sunset":
         vgrad(img, 0, 1400, rgb("ff8a65"), rgb("ffd180")); floor(1450, rgb("5a4a6a")); emoji_at(img, "🌅", 540, 900, 520, .0)
+    elif kind == "hallway":
+        wall(rgb("c8d3e6"), rgb("b4c2dc")); floor(1450, rgb("8d97ab"), rgb("9aa4b8"))
+        for x in range(0, W, 150):
+            col = [rgb("3a6fd8"), rgb("2a9d8f"), rgb("e07a2f")][(x // 150) % 3]; d.rectangle([x + 6, 480, x + 140, 1250], fill=col, outline=shade(col, .7), width=5)
+            d.rectangle([x + 30, 540, x + 116, 600], fill=shade(col, .8)); d.ellipse([x + 62, 780, x + 84, 802], fill=rgb("dfe3ec"))
+        d.rectangle([0, 1250, W, 1275], fill=rgb("7c8599"))
+    elif kind == "dealer":
+        vgrad(img, 0, 1100, rgb("7cc4f5"), rgb("d6eefc")); d.rectangle([0, 760, W, 1500], fill=rgb("e9ecf2")); d.rectangle([0, 1450, W, H], fill=rgb("5a5f6e"))
+        for x in range(0, W, 120): d.rectangle([x + 20, 760, x + 100, 1000], fill=rgb("a9d4f7"), outline=rgb("f6f8fb"), width=6)
+        for i, x in enumerate(range(40, W, 110)): d.polygon([(x, 340), (x + 70, 340), (x + 35, 410)], fill=[rgb("e63946"), rgb("f4c20d"), rgb("2a6fdb")][i % 3])
+        d.line([(0, 340), (W, 340)], fill=rgb("444"), width=4)
+    elif kind == "hospital":
+        wall(rgb("e8f3f2"), rgb("d3e8e6")); floor(1450, rgb("b6cfd0"), rgb("c4dadb")); d.rectangle([0, 1020, W, 1050], fill=rgb("8fbab8"))
+        d.rectangle([460, 380, 620, 540], fill=rgb("f4f9f9"), outline=rgb("d62828"), width=8); d.rectangle([522, 410, 558, 510], fill=rgb("d62828")); d.rectangle([490, 442, 590, 478], fill=rgb("d62828"))
+        for x in (60, 820): d.rectangle([x, 600, x + 200, 960], fill=rgb("bfe0ee"), outline=rgb("f4f9f9"), width=10)
+    elif kind == "living":
+        wall(rgb("dccdb8"), rgb("cdb99f")); floor(1450, rgb("8a6244"))
+        for i, (x, y, w_, h_) in enumerate([(110, 430, 190, 250), (350, 380, 150, 190), (560, 450, 220, 160), (830, 410, 140, 220)]):
+            d.rectangle([x, y, x + w_, y + h_], fill=rgb("6b4630")); d.rectangle([x + 12, y + 12, x + w_ - 12, y + h_ - 12], fill=[rgb("f1d9b5"), rgb("c9dff0"), rgb("e8c4c4"), rgb("d6e8c8")][i])
+    elif kind == "wedding":
+        vgrad(img, 0, 1450, rgb("3a1c4d"), rgb("7a3a7a")); floor(1450, rgb("2a1a33"))
+        for x in range(0, W + 100, 100): d.polygon([(x, 0), (x + 100, 0), (x + 50, 220)], fill=[rgb("f2c94c"), rgb("e86a92"), rgb("f2c94c"), rgb("5ad1c4")][(x // 100) % 4])
+        for x in (140, 540, 940): d.ellipse([x - 70, 330, x + 70, 470], fill=rgb("ffe9a8")); d.line([(x, 220), (x, 330)], fill=rgb("ccc"), width=4)
+        d.rectangle([60, 900, 1020, 1000], fill=rgb("f6f0e6"))
+    elif kind == "field":
+        vgrad(img, 0, 1000, rgb("7cc4f5"), rgb("d6eefc")); d.rectangle([0, 1000, W, H], fill=rgb("4fa84a"))
+        for i in range(7): d.rectangle([0, 1000 + i * 130, W, 1000 + i * 130 + 65], fill=rgb("58b552"))
+        d.line([(540, 1000), (540, H)], fill=rgb("f6f6f6"), width=8); d.line([(0, 1230), (W, 1230)], fill=rgb("f6f6f6"), width=8)
+    elif kind == "golf":
+        vgrad(img, 0, 900, rgb("8fd0ff"), rgb("e6f6ff")); d.rectangle([0, 900, W, H], fill=rgb("5fb85c")); d.ellipse([-300, 880, 900, 1300], fill=rgb("73c96c")); d.ellipse([300, 1000, 1500, 1500], fill=rgb("52a850"))
+        d.rectangle([800, 700, 812, 960], fill=rgb("f6f6f6")); d.polygon([(812, 700), (900, 730), (812, 760)], fill=rgb("e63946"))
+    elif kind == "beach":
+        vgrad(img, 0, 800, rgb("7cc4f5"), rgb("d6eefc")); d.rectangle([0, 800, W, 1150], fill=rgb("4cc0e0")); d.rectangle([0, 1150, W, H], fill=rgb("f0d9a0"))
+        for i in range(5): d.arc([i * 240 - 40, 820 + (i % 2) * 40, i * 240 + 200, 920 + (i % 2) * 40], 180, 360, fill=rgb("e8f9ff"), width=8)
+        emoji_at(img, "☀", 880, 170, 220)
+    elif kind == "snow":
+        vgrad(img, 0, 1000, rgb("b8d8f0"), rgb("eaf4fc")); d.polygon([(0, 1000), (320, 560), (640, 1000)], fill=rgb("dfe9f3")); d.polygon([(380, 1000), (780, 480), (1080, 1000)], fill=rgb("cdddec")); d.rectangle([0, 1000, W, H], fill=rgb("f8fbff"))
+        for i in range(40): d.ellipse([(i * 97) % W, (i * 211) % 1000, (i * 97) % W + 8, (i * 211) % 1000 + 8], fill=WHITE)
+    elif kind == "highway":
+        vgrad(img, 0, 900, rgb("7cc4f5"), rgb("d6eefc")); d.rectangle([0, 900, W, H], fill=rgb("3d414f")); d.rectangle([0, 880, W, 910], fill=rgb("63b25a"))
+        for y in (1180, 1480): 
+            for x in range(-40, W, 220): d.rectangle([x, y, x + 120, y + 14], fill=rgb("f2f2f2"))
+        d.rectangle([0, 1650, W, 1665], fill=rgb("f2c94c"))
     elif kind == "plain":
         vgrad(img, 0, H, rgb("c9d3e8"), rgb("aeb9d4"))
     else: raise KeyError(kind)
