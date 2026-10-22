@@ -415,12 +415,33 @@ def ambience(kind, dur, seed=0):
     else: y = x * 0
     return y
 
+def _autovoice_scene(s, nar):
+    """Sketch beats with no voice yet: the narrator reads the caption, then each character says its own line in the character's voice, one after the other (lines are pushed back so nothing overlaps; the beat grows to fit)."""
+    import voice
+    if not isinstance(s, SceneShot) or getattr(s, "speech", None) or any(ln.get("voice") for ln in s.lines): return
+    cur = .15; spoke = False
+    for c in s.caps:
+        t = " ".join(x for x in (c.get("text"), c.get("sub")) if x).lower()
+        L = voice.seconds(t, nar)
+        if L: s.speech = [(cur, t, nar)]; cur += L + .12; spoke = True; break
+    for ln in sorted(s.lines, key=lambda l: l["at"]):
+        key = s.actors[ln["who"]].get("c"); key = key if isinstance(key, str) else "kid"
+        vid = voice.voice_for(key); L = voice.seconds(ln["text"], vid)
+        if not L: continue
+        old = ln["at"]; ln["at"] = max(old, cur); ln["voice"] = vid; ln["dur"] = max(ln.get("dur", 1.5), L + .15)
+        s.cues = [(ln["at"] if (c_[0] == old and c_[1] == ln.get("sfx", "pop")) else c_[0], c_[1], c_[2]) for c_ in s.cues]
+        cur = ln["at"] + L + .15; spoke = True
+    if spoke: s.dur = max(s.dur, cur + .45)
+
+
 class Reel:
     def __init__(self, name, shots, style="lofi", seed=0, loop=True, gain_music=.62, bpm=None, caption="", story="", title="", vo=None, snap=True, safe_zone=True, grid=0):
         self.snap, self.safe_zone, self.grid = snap, safe_zone, grid
         import voice
         self.vo = vo or voice.SCRIPTS.get(name, [])   # [(shot_index, text)] narration read at the start of that shot when a voice engine is on (see voice.py)
         self.vo = [(i, t) for i, t in self.vo if not getattr(shots[i], 'segs', None)]
+        if voice.enabled() and not self.vo and voice._engine() == "kokoro":
+            for _s in shots: _autovoice_scene(_s, voice.NARRATOR)
         for idx, text in self.vo:   # fit the picture to the speech so the words land on the right slide
             L = voice.seconds(text)
             if L: shots[idx].dur = max(L + getattr(shots[idx], 'pad', .35), getattr(shots[idx], 'min_dur', 0)) if getattr(shots[idx], 'fit_speech', False) else max(shots[idx].dur, L + .6)
