@@ -6,7 +6,7 @@ import numpy as np
 from scipy.signal import resample_poly
 
 SR = 44100
-V2 = "expressive-v2d"   # cache salt: bump when delivery changes
+V2 = "expressive-v2g"   # cache salt: bump when delivery changes
 HERE = os.path.dirname(__file__)
 CACHE = os.path.join(HERE, ".voice_cache")
 PIPER_MODEL = os.path.join(HERE, "voices", "en_US-ryan-high.onnx")
@@ -125,15 +125,15 @@ _BIG = _re.compile(r"\b(million|billion|trillion|thousand|hundred|percent|years?
 def _delivery(sentence, first, last):
     """Pick speed, pause after and gain for one sentence so the read has shape: a deliberate hook, punchy short lines, a lift on questions, weight on the reveal."""
     words = sentence.split(); n = len(words); end = sentence.rstrip()[-1:]
-    speed, pause, gain = .87, .32, 1.0
-    if first: speed, pause = .83, .52
-    if n <= 3: speed, pause, gain = .80, .48, 1.12          # punch line: "Not years. Days."
-    elif end == "?": speed, pause = .85, .55
-    elif end == "!": speed, pause, gain = .90, .38, 1.12
-    elif n >= 16: speed = .85
+    speed, pause, gain = .90, .28, 1.0
+    if first: speed, pause = .92, .38
+    if n <= 3: speed, pause, gain = .86, .38, 1.12          # punch line: "Not years. Days."
+    elif end == "?": speed, pause = .90, .44
+    elif end == "!": speed, pause, gain = .93, .32, 1.12
+    elif n >= 16: speed = .86
     if _BIG.search(sentence) and n > 3: speed -= .03; gain *= 1.06     # slow slightly into the reveal
     if end == "\u2026" or sentence.rstrip().endswith("..."): pause = .65
-    if last: pause = 0.0; speed = min(speed, .85)
+    if last: pause = 0.0; speed = min(speed, .84)
     return speed, pause, gain
 
 def _kokoro_expressive(text, voice_id=None):
