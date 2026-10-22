@@ -7,3 +7,8 @@
 5. **Render** in the background: `python3 src/build.py bNN name --out <scratchpad>/out_prem`, then look at 4-6 frames of the finished mp4 and run `ffmpeg -af volumedetect` to confirm audio.
 6. **Queue**: copy the mp4 into `reels/`, commit and push, check the raw URL returns 206, then insert a row in Supabase `ig_reels` (title, video_path, caption from `src/captions.py`, scheduled_at as ET converted to UTC, status queued). Captions have line breaks, one call to action and a hashtag block.
 7. Slots: best first, about two hours apart so the feed is not one topic in a row.
+
+## Added: delivery, beat, trial reels
+- **Voice** (`src/voice.py`): sentence-by-sentence delivery with its own pace and real pauses (hook slow, punch lines slower, questions lift, reveals weighted), clause breaths in long sentences. Preflight transcribes every line with speech recognition and blocks a reel when words are lost (wer > 0.12) or the read is faster than 3.2 words/s.
+- **Beat** (`src/reel.py`): `ON_BEAT = True`. Every shot is a whole number of beats and musical cues (notes, dings, pops, hits, whooshes) snap to the sixteenth-note grid. Sync cues that must match the picture exactly (clacks, heartbeats) are not snapped, and the heartbeat reel runs the music at 72 bpm so both agree.
+- **Trial reels**: every video posts three times as an Instagram Trial Reel (non-followers first, graduated by hand in the app), each with a different cover: A stat, B question, C shock (`src/covers.py`). `ig_reels` has `trial`, `cover_url`, `variant`, `group_key`; the `post-reel` function passes `trial_params={"graduation_strategy":"MANUAL"}` and `cover_url`.

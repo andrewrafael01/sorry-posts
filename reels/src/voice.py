@@ -6,6 +6,7 @@ import numpy as np
 from scipy.signal import resample_poly
 
 SR = 44100
+V2 = "expressive-v2d"   # cache salt: bump when delivery changes
 HERE = os.path.dirname(__file__)
 CACHE = os.path.join(HERE, ".voice_cache")
 PIPER_MODEL = os.path.join(HERE, "voices", "en_US-ryan-high.onnx")
@@ -119,6 +120,39 @@ def _kokoro(text, voice_id=None, speed=1.06):
     x, sr = _KK.create(text, voice=vid, speed=speed, lang="en-us")
     return np.asarray(x, dtype=np.float32), sr
 
+import re as _re
+_BIG = _re.compile(r"\b(million|billion|trillion|thousand|hundred|percent|years?|days?|never|last|only|all|every|nobody|gone|left|zero|none|first|one)\b", _re.I)
+def _delivery(sentence, first, last):
+    """Pick speed, pause after and gain for one sentence so the read has shape: a deliberate hook, punchy short lines, a lift on questions, weight on the reveal."""
+    words = sentence.split(); n = len(words); end = sentence.rstrip()[-1:]
+    speed, pause, gain = .87, .32, 1.0
+    if first: speed, pause = .83, .52
+    if n <= 3: speed, pause, gain = .80, .48, 1.12          # punch line: "Not years. Days."
+    elif end == "?": speed, pause = .85, .55
+    elif end == "!": speed, pause, gain = .90, .38, 1.12
+    elif n >= 16: speed = .85
+    if _BIG.search(sentence) and n > 3: speed -= .03; gain *= 1.06     # slow slightly into the reveal
+    if end == "\u2026" or sentence.rstrip().endswith("..."): pause = .65
+    if last: pause = 0.0; speed = min(speed, .85)
+    return speed, pause, gain
+
+def _kokoro_expressive(text, voice_id=None):
+    """Synthesise sentence by sentence with their own pace, then place real silences between them. Long sentences are split at commas with a short breath."""
+    parts = [p.strip() for p in _re.split(r"(?<=[.!?\u2026])\s+", text) if p.strip()]
+    chunks = []; sr_out = 24000
+    for i, sent in enumerate(parts):
+        speed, pause, gain = _delivery(sent, i == 0, i == len(parts) - 1)
+        clauses = [sent]
+        if len(sent.split()) > 14 and "," in sent:      # breath at the middle comma
+            idx = [m.start() for m in _re.finditer(",", sent)]; mid = min(idx, key=lambda k: abs(k - len(sent) / 2)); clauses = [sent[:mid + 1], sent[mid + 1:].strip()]
+        for j, cl in enumerate(clauses):
+            x, sr = _kokoro(cl, voice_id, speed=speed); sr_out = sr
+            x = _master(x, sr, studio=False) * gain
+            chunks.append(x)
+            if j < len(clauses) - 1: chunks.append(np.zeros(int(.16 * sr), np.float32))
+        if pause > 0: chunks.append(np.zeros(int(pause * sr_out), np.float32))
+    return np.concatenate(chunks).astype(np.float32), sr_out
+
 def _biquad(x, sr, kind, f0, gain_db, q=.7):
     """RBJ cookbook shelf / peaking filters."""
     from scipy.signal import lfilter
@@ -152,11 +186,11 @@ def speak(text, voice_id=None):
     text = respell(clean(text))
     if not text: return None
     os.makedirs(CACHE, exist_ok=True)
-    f = os.path.join(CACHE, hashlib.sha1((eng + str(voice_id) + text).encode()).hexdigest() + ".npy")
+    f = os.path.join(CACHE, hashlib.sha1((eng + (V2 if eng == "kokoro" else "") + str(voice_id) + text).encode()).hexdigest() + ".npy")
     if os.path.exists(f): return np.load(f)
     try:
         if eng == "eleven": x, sr = _eleven(text, voice_id)
-        elif eng == "kokoro": x, sr = _kokoro(text, voice_id); x = _master(x, sr)
+        elif eng == "kokoro": x, sr = _kokoro_expressive(text, voice_id); x = _master(x, sr)
         else: x, sr = _piper(text)
     except Exception as e: print("voice: skipped", repr(text)[:40], repr(e)[:60]); return None
     if sr != SR: x = resample_poly(x, SR, sr).astype(np.float32)
@@ -182,7 +216,7 @@ def word_times(text, voice_id=None):
     import difflib, json, re
     x = speak(text, voice_id)
     if x is None: return None
-    f = os.path.join(CACHE, hashlib.sha1(("wt" + _engine() + str(voice_id) + text).encode()).hexdigest() + ".json")
+    f = os.path.join(CACHE, hashlib.sha1(("wt" + _engine() + V2 + str(voice_id) + text).encode()).hexdigest() + ".json")
     if os.path.exists(f): return [tuple(t) for t in json.load(open(f))]
     from scipy.signal import resample_poly
     y = resample_poly(x, 160, 441).astype(np.float32)
@@ -204,3 +238,31 @@ def word_times(text, voice_id=None):
         i = j
     out = [(script[k], float(times[k][0]), float(times[k][1])) for k in range(len(script))]
     json.dump(out, open(f, "w")); return out
+
+
+# ---------------------------------------------------------------- intelligibility check (is it mumbled?)
+def _wer(ref, hyp):
+    r, h = ref, hyp; d = [[0] * (len(h) + 1) for _ in range(len(r) + 1)]
+    for i in range(len(r) + 1): d[i][0] = i
+    for j in range(len(h) + 1): d[0][j] = j
+    for i in range(1, len(r) + 1):
+        for j in range(1, len(h) + 1): d[i][j] = min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (r[i - 1] != h[j - 1]))
+    return d[-1][-1] / max(1, len(r))
+
+NUM = {"0": "zero", "1": "one"}
+def intelligibility(text, voice_id=None):
+    """Transcribe the generated line with speech recognition and compare to the script. Returns {wer, words_per_s, longest_pause}. A clear read comes back near 0 wer."""
+    x = speak(text, voice_id)
+    if x is None: return None
+    from scipy.signal import resample_poly
+    y = resample_poly(x, 160, 441).astype(np.float32)
+    segs, _ = _whisper().transcribe(y, language="en", beam_size=5, word_timestamps=True)
+    words = [w for s in segs for w in s.words]; hyp = [_norm(w.word) for w in words if _norm(w.word)]
+    ref = [_norm(w) for w in clean(text).split() if _norm(w)]
+    # compare as spoken: numerals in the script are written out already; drop punctuation-only tokens
+    NW = set("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy eighty ninety hundred thousand million billion trillion and point".split())
+    isnum = lambda w: w.isdigit() or w in NW or any(c.isdigit() for c in w)
+    nref = len(ref); ref = [w for w in ref if not isnum(w)]; hyp = [w for w in hyp if not isnum(w)]
+    wer = _wer(ref, hyp); L = len(x) / SR
+    gaps = [words[i + 1].start - words[i].end for i in range(len(words) - 1)] or [0]
+    return {"wer": round(wer, 3), "words_per_s": round(nref / L, 2), "longest_pause": round(max(gaps), 2), "asr": " ".join(hyp)}

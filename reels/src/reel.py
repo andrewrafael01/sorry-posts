@@ -434,9 +434,12 @@ def _autovoice_scene(s, nar):
     if spoke: s.dur = max(s.dur, cur + .45)
 
 
+ON_BEAT = True   # every shot boundary lands on a beat and musical cues are snapped to the sixteenth-note grid
+MUSICAL_CUES = ("ding", "pop", "hit", "whoosh", "sparkle", "swipe")
+
 class Reel:
     def __init__(self, name, shots, style="lofi", seed=0, loop=True, gain_music=.62, bpm=None, caption="", story="", title="", vo=None, snap=True, safe_zone=True, grid=0):
-        self.snap, self.safe_zone, self.grid = snap, safe_zone, grid
+        self.snap, self.safe_zone, self.grid = (True if ON_BEAT else snap), safe_zone, grid
         import voice
         self.vo = vo or voice.SCRIPTS.get(name, [])   # [(shot_index, text)] narration read at the start of that shot when a voice engine is on (see voice.py)
         self.vo = [(i, t) for i, t in self.vo if not getattr(shots[i], 'segs', None)]
@@ -457,7 +460,7 @@ class Reel:
         self.caption, self.story, self.title = caption, story, title
         bpm_, self.bl = music.beat_len(style, seed)
         if bpm: bpm_, self.bl = bpm, 60.0 / bpm
-        self.bpm = bpm_
+        self.bpm = bpm_; self.qgrid = self.bl / 4
         self.starts = []; t = 0.0
         for s in shots:
             if self.grid and not self.snap:
@@ -544,6 +547,7 @@ class Reel:
             if s.amb:
                 y = ambience(s.amb, s.dur); i = int(t0 * SR); y = y[:n - i]; out[i:i + len(y)] += y[:, None]
         for t, name, g in self.events():
+            if ON_BEAT and (name in MUSICAL_CUES or (name[:1] == 'n' and name[1:].isdigit())): t = round(t / self.qgrid) * self.qgrid   # land the cue on the beat grid
             x = sfx.get(name); i = int(t * SR)
             if i < 0 or i >= n: continue
             x = x[:n - i]; out[i:i + len(x)] += (x * g * .85)[:, None]

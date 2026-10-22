@@ -95,7 +95,7 @@ def heartbeat():
      ("Send this to someone you want to spend a million with. Not scroll past.", end),
     ]
     beats = [Clean(n, d, 3.0, cut="cut", push=0) for n, d in N]
-    r = Reel("407_heartbeats", beats, style="cine", seed=407, gain_music=.35, snap=False, grid=0, safe_zone=False, vo=[(i, n) for i, (n, d) in enumerate(N)],
+    r = Reel("407_heartbeats", beats, style="cine", seed=407, bpm=72, gain_music=.35, snap=False, grid=0, safe_zone=False, vo=[(i, n) for i, (n, d) in enumerate(N)],
         title="you only get about 3 billion heartbeats", caption="you have about 3 billion heartbeats and this video just spent 66 of them. what are you spending the next million on? send this to someone you want to spend them with",
         story="72 bpm x 1,440 min = 103,680/day; x 365 = 37.8 million/yr; x 80 = 3.02 billion. Age 25 = 946 million. 1 million beats = 9.65 days. Not a literal limit: the fixed-heartbeat rule holds across mammal species but humans live far longer than it predicts. Counter and soundtrack tick together at 72 bpm.")
     for s, t0 in zip(r.shots, r.starts): s.t0 = t0
