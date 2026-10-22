@@ -206,5 +206,13 @@
   "orig": 8,
   "reach": 9,
   "why": "positive send trigger (tag who makes your day better); glowing 3-degree network with a ripple; Christakis & Fowler BMJ 2008 numbers"
+ },
+ "426_not_late": {
+  "hook": 9,
+  "button": 9,
+  "send": 10,
+  "orig": 6.5,
+  "reach": 9,
+  "why": "held: label-heavy fireworks on an age line, visuals not at the bar and orig is low (late-bloomer lists are everywhere)"
  }
 }
