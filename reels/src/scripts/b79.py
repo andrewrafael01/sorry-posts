@@ -18,7 +18,7 @@ def xmas_balls():
         story="Illustrative: parents aged 60, about 20 Christmases if you see them every year. Elastic collisions; balls can only leave through the widening opening.")
 
 def dinner_balls():
-    s = sim.RingSim("EACH BALL IS A DINNER", shape="ring", dur=34.0, sub="LEFT WITH A GRANDMA WHO IS 80 · ABOUT 108", gapf=lambda t: .28 + .03 * t, spin=1.0, g=1400.0, boost=1.0, ball_r=16, n0=108, spawn=0, pile=True, quiet=True, unit="dinners left", seed=9, ra0=4.71,
+    s = sim.RingSim("EACH BALL IS A DINNER", shape="ring", dur=38.0, sub="LEFT WITH A GRANDMA WHO IS 80 · ABOUT 108", gapf=lambda t: .28 + .03 * t, spin=1.0, g=1400.0, boost=1.0, ball_r=16, n0=108, spawn=0, pile=True, quiet=True, unit="dinners left", seed=9, ra0=4.71,
         speech=[(.6, "Each ball is a monthly dinner with a grandma who is eighty. About a hundred and eight.", None), (19.0, "They leave one at a time. Nobody knows which dinner is the last.", None)], final="CALL HER")
     return reel.Reel("423_dinner_balls", [s], style="cine", seed=423, gain_music=.5, loop=True, snap=False, grid=0, safe_zone=False, title="each ball is a dinner left with grandma", caption="x",
         story="Illustrative: 12 visits a year x 9 years (SSA life table at 80) = 108. Elastic collisions; balls can only leave through the widening opening.")
