@@ -13,7 +13,7 @@ MISC = {"172_g_mom", "173_g_dad", "174_g_aunties", "175_g_arab", "176_g_leave", 
 
 def score(name):
     import edu_scores
-    if name in edu_scores.S: return edu_scores.score(name)
+    if name in edu_scores.S: return edu_scores.score(name) + 5   # retention bonus: voiced, paced, fact-checked explainers
     try: n = int(name[:3])
     except ValueError: return 60.0
     if n in virality2.F: return virality2.score(n)
