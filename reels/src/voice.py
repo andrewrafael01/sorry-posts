@@ -53,6 +53,7 @@ def _piper(text):
 
 # Respellings so the in-house voice says foreign names and loanwords right. Only the TTS sees these; on-screen text is untouched.
 LEXICON = {
+ "cryptobiosis": "krip-toh-by-oh-sis", "chimborazo": "chim-bo-rah-zo", "mauna kea": "mau-na kay-ah", "manpo-kei": "mahn-poh-kay", "sagittarius": "sadge-ih-tair-ee-us", "tardigrade": "tar-di-grade", "tardigrades": "tar-di-grades", "hemocyanin": "hee-mo-sy-ah-nin", "microsieverts": "my-kro-see-verts", "potassium-40": "potassium forty", "unvigintillion": "un-vigin-tillion", "hilsa": "hil-sah",
  "tenochtitlan": "teh-notch-teet-lahn", "qahwa": "kah-wah", "suffa": "soo-fah", "sukkar": "soo-kar", "makhazin": "mah-kah-zeen", "safar": "sah-far", "sifr": "sif-er", "qutn": "koo-tn", "laymun": "lay-moon",
  "al-jabr": "al jabr", "al-kuhl": "al kool", "bandhna": "bund-nah", "khat": "kut", "champo": "chum-poh", "jangal": "jun-gul", "pae jama": "pie jah-mah", "bangla": "bung-lah", "lut": "loot", "avatara": "ah-vuh-tah-rah", "thag": "tug", "urdu": "oor-doo",
  "mbappe": "em-bah-pay", "mbappé": "em-bah-pay", "klose": "kloh-zuh", "fontaine": "fon-tain", "muller": "mew-ler", "müller": "mew-ler", "nowitzki": "noh-vit-skee", "ohtani": "oh-tah-nee", "benzema": "ben-zeh-mah", "rahm": "rahm", "canelo": "kah-neh-lo", "alvarez": "al-vah-rez",
