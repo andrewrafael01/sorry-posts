@@ -225,5 +225,14 @@
   "orig": 8,
   "reach": 8,
   "why": "held at 83: very strong for diaspora audience (send 10) but narrower reach; globe visual is clean but plain"
+ },
+ "428_tri_canon": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 5,
+  "reach": 9,
+  "why": "same approved melody-sim format in a triangle; guess-the-song comments",
+  "override": "owner approved: the satisfying melody sims go viral for this account"
  }
 }
