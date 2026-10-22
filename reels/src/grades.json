@@ -3,9 +3,9 @@
   "hook": 9,
   "button": 9,
   "send": 8,
-  "orig": 9,
+  "orig": 8,
   "reach": 9,
-  "why": "flash-forward hook, true scale reveal, 'send to someone who thinks small things dont matter'"
+  "why": "flash-forward hook, true-scale zoom; held at 82 until polish lifts it"
  },
  "402_full_moons": {
   "hook": 9,
@@ -38,5 +38,13 @@
   "orig": 5,
   "reach": 9,
   "why": "same"
+ },
+ "405_sleep_drunk": {
+  "hook": 10,
+  "button": 9,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "opens already at 24h awake with the goggle view, rewinds, then climbs; all-nighter friend send trigger; real study + AAA/NHTSA numbers"
  }
 }

@@ -6,7 +6,10 @@ sys.path.insert(0, os.path.dirname(__file__))
 import build
 S = "/tmp/claude-0/-home-user-sorry-posts/aeda3cd8-6be4-5731-8b3d-d9639f60d4f0/scratchpad/"
 GRADES = os.path.join(os.path.dirname(__file__), "grades.json")   # {"401_domino_moon": {"hook":9,"button":9,"send":9,"orig":8,"reach":9, "why": "..."}}
-def score(g): return round(10 * (.20 * g["hook"] + .20 * g["button"] + .25 * g["send"] + .15 * g["orig"] + .20 * g["reach"]) - 4, 1)
+def score(g):
+    base = 10 * (.20 * g["hook"] + .20 * g["button"] + .25 * g["send"] + .15 * g["orig"] + .20 * g["reach"]) - 4
+    pen = (15 if g["hook"] < 8 else 0) + (10 if g["send"] < 8 else 0)   # a weak hook or no reason to share kills a reel regardless of the average
+    return round(max(0.0, base - pen), 1)
 
 def run(mod, name, sheet=True):
     r = build.load(mod).REELS[name](); problems = []; info = {}
