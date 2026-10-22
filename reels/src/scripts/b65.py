@@ -41,7 +41,7 @@ def life_bar(img, y, frac_used, label_used, a=1.0, video=False):
     w = (x1 - x0) * frac_used
     if w > 4: box(img, x0, y - 22, x0 + max(24, w), y + 22, 22, RED, a)
     tx(img, "0", x0, y + 52, 26, "bold", SOFT, a=a, shadow=False); tx(img, "3,000,000,000", x1 - 90, y + 52, 26, "bold", SOFT, a=a, shadow=False, maxw=400)
-    if label_used: tx(img, label_used, x0 + max(24, w), y - 52, 30, "black", WHITE, a=a, shadow=False, maxw=500)
+    if label_used: tx(img, label_used, min(760, max(260, x0 + max(24, w))), y - 52, 30, "black", WHITE, a=a, shadow=False, maxw=500)
 
 def base(img, b, lt, counter=True):
     tg = getattr(b, "t0", 0.0) + lt; pulse = beat_pulse(tg)

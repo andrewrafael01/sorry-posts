@@ -62,5 +62,21 @@
   "orig": 8,
   "reach": 9,
   "why": "self-referential live counter that ticks on every thump of the audio; spend-a-million-with-someone send trigger; honest caveat that it is not a literal limit"
+ },
+ "408_117_billion": {
+  "hook": 10,
+  "button": 8,
+  "send": 9,
+  "orig": 8.5,
+  "reach": 9,
+  "why": "14:1 stat hook; spiral galaxy where the glowing rim is everyone alive; tag-someone send; ~25 s kept tight on purpose"
+ },
+ "409_parents_days": {
+  "hook": 10,
+  "button": 9,
+  "send": 10,
+  "orig": 7,
+  "reach": 9,
+  "why": "200-days stat hook; 200 gold days morph into one calendar year; call-your-mom send trigger; comment-your-number"
  }
 }
