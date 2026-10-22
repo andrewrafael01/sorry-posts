@@ -166,5 +166,29 @@
   "orig": 7,
   "reach": 9,
   "why": "waiting 10 years costs $421k: two compounding trees grow side by side; comment the age you started; tag a friend in their 20s; 7% assumption stated"
+ },
+ "421_parents_balls": {
+  "hook": 9,
+  "button": 8,
+  "send": 10,
+  "orig": 9,
+  "reach": 9,
+  "why": "the satisfying ball sim with a meaning: each of 200 balls is a day left with your parents and they leave one by one through a widening opening; real collision physics, 0 wall leaks; call-them send"
+ },
+ "422_christmas_balls": {
+  "hook": 9,
+  "button": 8,
+  "send": 10,
+  "orig": 8,
+  "reach": 9,
+  "why": "series variant of 421: each ball is a Christmas; seasonal"
+ },
+ "423_dinner_balls": {
+  "hook": 9,
+  "button": 8,
+  "send": 10,
+  "orig": 8,
+  "reach": 9,
+  "why": "series variant of 421: each ball is a dinner with grandma"
  }
 }

@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops
 import reel as _reel
 from engine import W, H, clamp
-from motion import glow, tx
+from motion import glow, tx, pop as motion_pop
 
 CX, CY, R = 540, 900, 440
 PENTA = [60, 62, 64, 67, 69, 72, 74, 76, 79, 81, 84]
@@ -19,7 +19,8 @@ def hue(h, s=.85, v=1.0): r, g, b = colorsys.hsv_to_rgb(h % 1, s, max(0, min(1, 
 
 class RingSim(_reel.Shot):
     cut = "cut"
-    def __init__(self, title, shape="ring", dur=55.0, spawn=3, spin=.9, gap=.62, g=1500.0, cap=420, seed=1, hue0=.0, unit="balls", sub=None, boost=1.012, ball_r=15, n0=1, mel=None, pgap=.34):
+    def __init__(self, title, shape="ring", dur=55.0, spawn=3, spin=.9, gap=.62, g=1500.0, cap=420, seed=1, hue0=.0, unit="balls", sub=None, boost=1.012, ball_r=15, n0=1, mel=None, pgap=.34, gapf=None, pile=False, label=None, speech=None, quiet=False, final=None, ra0=1.6):
+        self.passes = 18 if pile else 4; self.gapf, self.pile, self.label, self.quiet, self.final, self.ra0 = gapf, pile, label, quiet, final, ra0; self.speech = list(speech or []); self.fit_speech = False; self.gaps = []
         self.title, self.shape, self.dur, self.spawn, self.spin, self.gap, self.g, self.cap, self.hue0, self.unit, self.sub = title, shape, dur, spawn, spin, gap, g, cap, hue0, unit, sub
         self.R = 440 if shape == 'ring' else (380 if shape == 'square' else 400) / math.cos(math.pi / {'tri': 3, 'square': 4, 'hex': 6}[shape]); self.boost, self.br, self.n0, self.pgap = boost, ball_r, n0, pgap; self.mel = mel or ODE; self.rng = np.random.RandomState(seed)
         self.cues = []; self.shake = None; self.fps = 30; self._sim()
@@ -40,22 +41,33 @@ class RingSim(_reel.Shot):
     def _sim(self):
         R = self.R
         rng = self.rng; sub = 8; dt = 1 / (self.fps * sub); nfr = int(self.dur * self.fps) + 2
-        p = np.array([[CX + 30.0 - 40 * q, CY - 120.0 - 20 * q] for q in range(self.n0)]); v = np.array([[260.0 - 130 * q, -120.0 - 60 * q] for q in range(self.n0)]); col = np.array([(self.hue0 + .08 * q) % 1 for q in range(self.n0)]); ids = np.arange(self.n0); nid = self.n0
-        pend = 0; self.frames = []; self.escapes = []; self.hits = []; ra = 1.6; esc = 0
+        if self.pile:
+            pts = []; yy = CY + R - 2 * self.br - 6
+            while len(pts) < self.n0:
+                xx = CX - R * .8
+                while xx < CX + R * .8 and len(pts) < self.n0:
+                    if math.hypot(xx - CX, yy - CY) < R - self.br - 2: pts.append((xx + (len(pts) % 3 - 1) * .5, yy))
+                    xx += 2 * self.br + 1
+                yy -= 2 * self.br
+            p = np.array(pts, float); v = np.zeros_like(p); self.n0 = len(p)
+        else:
+            p = np.array([[CX + 30.0 - 40 * q, CY - 120.0 - 20 * q] for q in range(self.n0)]); v = np.array([[260.0 - 130 * q, -120.0 - 60 * q] for q in range(self.n0)])
+        col = np.array([(self.hue0 + .08 * q) % 1 for q in range(self.n0)]); ids = np.arange(self.n0); nid = self.n0
+        pend = 0; self.frames = []; self.escapes = []; self.hits = []; ra = self.ra0; esc = 0
         n = {"ring": 0, "tri": 3, "square": 4, "hex": 6}[self.shape]
         apo = R * math.cos(math.pi / n) if n else R
         for fr in range(nfr):
-            t = fr / self.fps
+            t = fr / self.fps; g_now = self.gapf(t) if self.gapf else self.gap; self.gaps.append(g_now)
             for _ in range(sub):
                 ra += self.spin * dt * (1 + .25 * math.sin(t * .3))
                 v[:, 1] += self.g * dt; p += v * dt
-                [self._collide(p, v) for _ in range(4)]
+                [self._collide(p, v) for _ in range(self.passes)]
                 spd = np.hypot(v[:, 0], v[:, 1]); fast = spd > 1700
                 if fast.any(): v[fast] *= (1700 / spd[fast])[:, None]
                 d = p - [CX, CY]
                 if n == 0:
                     dist = np.hypot(d[:, 0], d[:, 1]) + 1e-9; nrm = d / dist[:, None]
-                    ang = np.arctan2(d[:, 1], d[:, 0]); rel = (ang - ra + math.pi) % (2 * math.pi) - math.pi; ingap = np.abs(rel) < self.gap / 2; s_ = dist
+                    ang = np.arctan2(d[:, 1], d[:, 0]); rel = (ang - ra + math.pi) % (2 * math.pi) - math.pi; ingap = np.abs(rel) < g_now / 2; s_ = dist
                 else:
                     s_ = np.full(len(p), -1e9); nrm = np.zeros_like(p); kk = np.zeros(len(p), int)
                     for k in range(n):
@@ -84,6 +96,10 @@ class RingSim(_reel.Shot):
                                 a = rng.rand() * 6.283; sp = 150 + rng.rand() * 330
                                 p = np.vstack([p, [c_]]); v = np.vstack([v, [[math.cos(a) * sp, math.sin(a) * sp]]]); col = np.append(col, (self.hue0 + nid * .031) % 1); ids = np.append(ids, nid); nid += 1; pend -= 1; break
             self.frames.append((ids.copy(), p.copy(), col.copy(), ra, esc, len(p)))
+        if self.quiet:
+            self.cues = []; SC = [84, 81, 79, 76, 74, 72, 69, 67, 64, 62, 60, 57, 55, 52, 48]
+            for q, (t, pos, c) in enumerate(self.escapes): fr_n = self.frames[min(len(self.frames) - 1, int(t * self.fps))][5]; self.cues.append((t, "n%d" % SC[int((1 - fr_n / max(1, self.n0)) * (len(SC) - 1))], .35))
+            self._hi = sorted(self.hits); return
         self.cues = []; GRID = .17; hits = sorted(h[0] for h in self.hits); k = 0; i = 0; t = 0.0; mi = 0
         while t < self.dur and i < len(hits):
             j = i
@@ -101,7 +117,7 @@ class RingSim(_reel.Shot):
         fi = min(len(self.frames) - 1, int(lt * self.fps)); ids, p, col, ra, esc, n = self.frames[fi]
         img = Image.new("RGB", (W, H), (6, 6, 14)); ss = 2; S = int(2 * R + 140); lay = Image.new("RGB", (S * ss, S * ss), (6, 6, 14)); d = ImageDraw.Draw(lay)
         ox, oy = CX - S / 2, CY - S / 2; bg = (6, 6, 14)
-        self._ring(d, ra, lt, ss, S)
+        self._cur_gap = self.gaps[fi] if self.gaps else self.gap; self._ring(d, ra, lt, ss, S)
         idl = ids.tolist(); hist = []
         for back in range(10, 0, -1):
             f2 = self.frames[max(0, fi - back)]; hist.append((back, {i: j for j, i in enumerate(f2[0].tolist())}, f2))
@@ -123,6 +139,14 @@ class RingSim(_reel.Shot):
         tx(img, self.title, 540, 240, 66, "black", (255, 255, 255), maxw=940, shadow=False)
         if self.sub: tx(img, self.sub, 540, 375, 44, "bold", (170, 178, 220), maxw=940, shadow=False)
         tx(img, f"{n}", 540, 1560, 150, "black", (255, 255, 255), maxw=700, shadow=False); tx(img, self.unit, 540, 1690, 40, "bold", (150, 158, 200), shadow=False)
+        if self.final and n == 0:
+            lastt = self.escapes[-1][0] if self.escapes else 0; u = clamp((lt - lastt - .8) / .5)
+            if u > 0: tx(img, self.final, 540, CY, 90, "black", (255, 214, 0), a=u, scale=motion_pop(u), maxw=900)
+        for (at, text, vid) in self.speech:
+            import voice, motion
+            L = voice.seconds(text, vid) or 2.0
+            if at <= lt < at + L + .35:
+                wt = voice.word_times(text) if voice.enabled() else None; motion.caption(img, text, lt - at, L, real=[(a + .12, b + .12) for _, a, b in wt] if wt else None)
         ImageDraw.Draw(img).rectangle([0, 0, int(W * clamp(lt / self.dur)), 7], fill=(255, 214, 0))
         return img
     def _ring(self, d, ra, lt, ss, S):
@@ -138,7 +162,7 @@ class RingSim(_reel.Shot):
             N = 240
             for k in range(N):
                 a0 = 2 * math.pi * k / N; a1 = 2 * math.pi * (k + 1.5) / N; rel = (a0 + math.pi / N - ra + math.pi) % (2 * math.pi) - math.pi
-                if abs(rel) < self.gap / 2: continue
+                if abs(rel) < getattr(self, '_cur_gap', self.gap) / 2: continue
                 b = lit(a0); col = tuple(int(c + (255 - c) * b) for c in hue(a0 / (2 * math.pi) + lt * .06, .7, .9))
                 d.line([(c0 + R * ss * math.cos(a), c0 + R * ss * math.sin(a)) for a in (a0, a1)], fill=col, width=int((9 + 5 * b) * ss))
         else:
@@ -159,7 +183,7 @@ class RingSim(_reel.Shot):
         for fi, (ids, p, col, ra, esc, n) in enumerate(self.frames):
             d = p - [CX, CY]
             if n_ == 0:
-                s_ = np.hypot(d[:, 0], d[:, 1]); ang = np.arctan2(d[:, 1], d[:, 0]); rel = np.abs((ang - ra + math.pi) % (2 * math.pi) - math.pi); ingap = rel < self.gap / 2 + .09
+                s_ = np.hypot(d[:, 0], d[:, 1]); ang = np.arctan2(d[:, 1], d[:, 0]); rel = np.abs((ang - ra + math.pi) % (2 * math.pi) - math.pi); ingap = rel < (self.gaps[fi] if self.gaps else self.gap) / 2 + .09
             else:
                 s_ = np.full(len(p), -1e9); kk = np.zeros(len(p), int)
                 for k in range(n_):
