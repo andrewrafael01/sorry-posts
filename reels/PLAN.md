@@ -29,3 +29,11 @@ The 141 template reels (b40-b53: counters, bars, text) are paused as drafts. The
 - Numbers appear inside the scene as part of the action, never as a stat card.
 - Narration by the in-house voice, word-timed. Hook in the first second, payoff at the end, loop-friendly last frame.
 - 50-59 seconds. Layout QA for overlap. Every frame set checked by eye before it is queued.
+
+## Status (updated)
+Gate: `python3 src/preflight.py <module> <reel>` predicts length, layout overlap, physics validity and the graded score BEFORE any render. Score = 10 x (.20 hook + .20 button + .25 send + .15 orig + .20 reach) - 4, minus 15 if hook < 8 and minus 10 if send < 8. Grades live in `src/grades.json` with a one-line reason. Under 85 does not render or queue. Length is a judgment call (25-70 s sanity range), tight beats padded.
+
+Queued today (best first): 407 heartbeats 89.0, 411 dog days 89.0, 409 parents' days 87.5, 405 sleep goggles 86.5, 402 full moons 85.5, 408 117 billion 85.2, 406 phone years 85.0.
+In build: 412 life as one day (86.5).
+Held under 85: 401 domino-to-the-Moon 82 (strong visual, send is only 8), 400/403/404 ball sims 60.5 (send 6, hook 8: the format is proven but copycat; physics is validated, 0 wall leaks), 410 ancestors (visual not good enough yet).
+What passes: reels that make the viewer feel something about their own life and give them a specific person to send it to, with a visual that is new (paw of days, galaxy of the dead, a sky that runs a day, a counter that ticks on the soundtrack).

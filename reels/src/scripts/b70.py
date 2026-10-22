@@ -33,13 +33,13 @@ def scene(img, age, lt):
     img.paste(Image.fromarray(full.astype(np.uint8))); d = ImageDraw.Draw(img, "RGBA"); nk = night_k(h)
     if nk > .02:
         for x, y, b in _stars:
-            c = int(235 * nk * (.35 + .65 * b) * (.7 + .3 * math.sin(lt * 2 + x * 40))); d.ellipse([x * W - 1.6, y * HZ * .9 - 1.6, x * W + 1.6, y * HZ * .9 + 1.6], fill=(c, c, min(255, c + 20), 255))
+            al = int(255 * nk * (.35 + .65 * b) * (.7 + .3 * math.sin(lt * 2 + x * 40))); d.ellipse([x * W - 1.6, y * HZ * .9 - 1.6, x * W + 1.6, y * HZ * .9 + 1.6], fill=(235, 235, 255, al))
     # sun: above the horizon 6:00-18:00; moon the rest
     if 5.2 <= h <= 18.8:
-        u = clamp((h - 6) / 12); ang = math.pi * (1 - u); sx = 540 + 430 * math.cos(ang); sy = HZ - 760 * math.sin(ang) + 10
+        u = clamp((h - 6) / 12); ang = math.pi * (1 - u); sx = 540 + 430 * math.cos(ang); sy = HZ - 600 * math.sin(ang) + 10
         glow(img, sx, sy, 330, (255, 220, 150), .55); glow(img, sx, sy, 150, (255, 245, 210), .8); disc(img, sx, sy, 62, (255, 250, 225))
     else:
-        hh = h if h >= 18.8 else h + 24; u = clamp((hh - 18) / 12); ang = math.pi * (1 - u); mx = 540 + 430 * math.cos(ang); my = HZ - 700 * math.sin(ang) + 10
+        hh = h if h >= 18.8 else h + 24; u = clamp((hh - 18) / 12); ang = math.pi * (1 - u); mx = 540 + 430 * math.cos(ang); my = HZ - 580 * math.sin(ang) + 10
         glow(img, mx, my, 220, (170, 190, 255), .4); disc(img, mx, my, 50, (232, 232, 244)); disc(img, mx + 16, my - 8, 12, (204, 204, 220)); disc(img, mx - 14, my + 14, 9, (204, 204, 220))
     # silhouette hills + a few trees
     pts = [(0, H)] + [(x, HZ - 40 - 36 * math.sin(x * .006) - 26 * math.sin(x * .017 + 1)) for x in range(0, W + 30, 30)] + [(W, H)]

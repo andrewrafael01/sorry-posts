@@ -94,5 +94,13 @@
   "orig": 8,
   "reach": 9,
   "why": "held: visuals not good enough yet"
+ },
+ "412_life_one_day": {
+  "hook": 9,
+  "button": 10,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "what time is it for you? comment bait; sky runs a real day as age changes; tag-someone stuck at 9am"
  }
 }
