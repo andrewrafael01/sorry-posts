@@ -45,7 +45,7 @@ def hud(img, big, sub, col=GOLD):
 def xmas():
     cues_off = []
     def hook(img, lt, p, b):
-        bg(img, lt); t0 = A(b, "twenty", 3.0); n = 20 * eio(seg(lt, t0 - .2, t0 + 1.4)); hud(img, f"{int(round(n))} CHRISTMASES" if lt > t0 - .3 else "HOW MANY CHRISTMASES", "LEFT WITH YOUR PARENTS IF THEY'RE 60"); tree(img, n, lt)
+        bg(img, lt); t0 = A(b, "twenty", 3.0); n = 20 * eio(seg(lt, t0 - .2, t0 + 1.4)); hud(img, f"{int(round(n))} CHRISTMASES" if lt > t0 - .3 else "HOW MANY?", "LEFT WITH YOUR PARENTS IF THEY'RE 60"); tree(img, n, lt)
     def twenty(img, lt, p, b):
         bg(img, lt); hud(img, "20", "NOT 40. NOT 100."); tree(img, 20.0, lt)
     def out(img, lt, p, b):

@@ -134,5 +134,21 @@
   "orig": 8,
   "reach": 9,
   "why": "romantic stat (16.7 years asleep beside your person) with a charming bed/window/moon scene; tag-your-person send+comment"
+ },
+ "417_cat_days": {
+  "hook": 10,
+  "button": 9,
+  "send": 10,
+  "orig": 7,
+  "reach": 8,
+  "why": "cat's whole life as 5,475 dots forming a cat face that dims away; tag-a-cat-person; re-skin of the dog engine for a different audience, posted on a different day"
+ },
+ "418_eighty_summers": {
+  "hook": 8,
+  "button": 7,
+  "send": 9,
+  "orig": 7,
+  "reach": 9,
+  "why": "held: pretty but the hook is generic (80 summers) and nothing new to say"
  }
 }
