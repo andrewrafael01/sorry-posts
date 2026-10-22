@@ -7,7 +7,7 @@ import virality, virality2, schedule
 from rank import niche
 S = "/tmp/claude-0/-home-user-sorry-posts/aeda3cd8-6be4-5731-8b3d-d9639f60d4f0/scratchpad"
 REELS = os.path.join(os.path.dirname(__file__), "..")
-SLOTS = ["08:00", "11:30", "15:00", "18:00", "21:00"]
+SLOTS = ["07:00", "09:30", "12:00", "14:30", "17:00", "19:30", "21:30", "23:30"]
 SILENT = {"002_voice_memo", "003_group_dinner", "006_haha_ranked", "171_aunty_whatsapp_lock"}   # formats with no voice yet: last in line
 MISC = {"172_g_mom", "173_g_dad", "174_g_aunties", "175_g_arab", "176_g_leave", "177_g_parents_normal", "178_g_inshallah", "179_r_dad_fix", "180_n_desi_wedding", "181_n_mom_grocery", "182_n_contacts", "183_n_grandma_rules", "184_r_before_parents"}
 
@@ -35,6 +35,7 @@ def collect():
     return n
 
 BRANCH = "https://raw.githubusercontent.com/andrewrafael01/sorry-posts/claude/100-credits-usage-9ysxsh/reels/{}.mp4"
+INSERTED = set(open(S + "/inserted.txt").read().split()) if os.path.exists(S + "/inserted.txt") else set()
 def edu_meta():
     import build
     out = {}
@@ -69,7 +70,7 @@ if __name__ == "__main__":
         d += dt.timedelta(days=1)
     vals = ",\n".join(f"('{n}','{w}')" for n, w, s in rows)
     meta = edu_meta(); q = lambda t: "$q$" + t + "$q$"
-    ins = ",\n".join(f"({q(meta[n][0])}, '{BRANCH.format(n)}', {q(meta[n][1])})" for n, w, s in rows if n in meta)
+    ins = ",\n".join(f"({q(meta[n][0])}, '{BRANCH.format(n)}', {q(meta[n][1])})" for n, w, s in rows if n in meta and n not in INSERTED)
     pre = ("insert into ig_reels (title, video_path, caption, scheduled_at, status)\nselect v.t, v.p, v.c, timestamptz '2030-01-01', 'draft' from (values\n" + ins + "\n) as v(t, p, c) where not exists (select 1 from ig_reels r where r.video_path = v.p);\n") if ins else ""
     open(S + "/final_order.sql", "w").write(pre +
         "with o(n,ts) as (values\n" + vals + "\n) update ig_reels r set scheduled_at = (o.ts::timestamp at time zone 'America/New_York'), status = 'queued', error = null from o where r.video_path like '%/' || o.n || '.mp4' and r.status in ('draft','failed','queued');\n")
