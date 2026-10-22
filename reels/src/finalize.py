@@ -29,6 +29,14 @@ def collect():
             if d == "out_old" and (name in scene or name in MISC): continue   # silent versions of reels that get a voiced render
             have[name] = f
     n = 0
+    import subprocess
+    def ok(f):
+        if os.path.exists(f + ".wav"): return False   # still rendering
+        r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f], capture_output=True, text=True)
+        try: return float(r.stdout.strip()) > 8
+        except ValueError: return False
+    for name, f in list(have.items()):
+        if not ok(f): del have[name]
     for name, f in have.items():
         dst = os.path.join(REELS, name + ".mp4")
         if not os.path.exists(dst) or os.path.getsize(dst) != os.path.getsize(f): shutil.copy(f, dst); n += 1
