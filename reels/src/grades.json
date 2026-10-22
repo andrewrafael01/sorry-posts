@@ -21,7 +21,8 @@
   "send": 6,
   "orig": 5,
   "reach": 9,
-  "why": "proven format, copycat; guess-the-song comments"
+  "why": "proven format, copycat; guess-the-song comments",
+  "override": "owner approved: the satisfying melody sims go viral for this account"
  },
  "403_hex_king": {
   "hook": 8,
@@ -29,7 +30,8 @@
   "send": 6,
   "orig": 5,
   "reach": 9,
-  "why": "same"
+  "why": "same",
+  "override": "owner approved: the satisfying melody sims go viral for this account"
  },
  "404_square_elise": {
   "hook": 8,
@@ -37,7 +39,8 @@
   "send": 6,
   "orig": 5,
   "reach": 9,
-  "why": "same"
+  "why": "same",
+  "override": "owner approved: the satisfying melody sims go viral for this account"
  },
  "405_sleep_drunk": {
   "hook": 10,

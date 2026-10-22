@@ -20,7 +20,7 @@ def hue(h, s=.85, v=1.0): r, g, b = colorsys.hsv_to_rgb(h % 1, s, max(0, min(1, 
 class RingSim(_reel.Shot):
     cut = "cut"
     def __init__(self, title, shape="ring", dur=55.0, spawn=3, spin=.9, gap=.62, g=1500.0, cap=420, seed=1, hue0=.0, unit="balls", sub=None, boost=1.012, ball_r=15, n0=1, mel=None, pgap=.34, gapf=None, pile=False, label=None, speech=None, quiet=False, final=None, ra0=1.6):
-        self.passes = 18 if pile else 4; self.gapf, self.pile, self.label, self.quiet, self.final, self.ra0 = gapf, pile, label, quiet, final, ra0; self.speech = list(speech or []); self.fit_speech = False; self.gaps = []; self.pgaps = []
+        self.passes = 18 if pile else 10; self.gapf, self.pile, self.label, self.quiet, self.final, self.ra0 = gapf, pile, label, quiet, final, ra0; self.speech = list(speech or []); self.fit_speech = False; self.gaps = []; self.pgaps = []
         self.title, self.shape, self.dur, self.spawn, self.spin, self.gap, self.g, self.cap, self.hue0, self.unit, self.sub = title, shape, dur, spawn, spin, gap, g, cap, hue0, unit, sub
         self.R = 440 if shape == 'ring' else (380 if shape == 'square' else 400) / math.cos(math.pi / {'tri': 3, 'square': 4, 'hex': 6}[shape]); self.boost, self.br, self.n0, self.pgap = boost, ball_r, n0, pgap; self.mel = mel or ODE; self.rng = np.random.RandomState(seed)
         self.cues = []; self.shake = None; self.fps = 30; self._sim()
@@ -38,6 +38,18 @@ class RingSim(_reel.Shot):
             vn = (v[i, 0] - v[j, 0]) * nx + (v[i, 1] - v[j, 1]) * ny
             if vn > 0:
                 v[i, 0] -= vn * nx; v[i, 1] -= vn * ny; v[j, 0] += vn * nx; v[j, 1] += vn * ny
+    def _project(self, p, ra, g_now, pg_now):
+        """Positions only: push any ball that is inside the wall band (and not in the opening) back inside. Used after collisions so a crowd can never squeeze a ball through."""
+        R = self.R; n = {"ring": 0, "tri": 3, "square": 4, "hex": 6}[self.shape]; apo = R * math.cos(math.pi / n) if n else R; d = p - [CX, CY]
+        if n == 0:
+            dist = np.hypot(d[:, 0], d[:, 1]) + 1e-9; nrm = d / dist[:, None]; ang = np.arctan2(d[:, 1], d[:, 0]); rel = (ang - ra + math.pi) % (2 * math.pi) - math.pi; ingap = np.abs(rel) < g_now / 2; s_ = dist
+        else:
+            s_ = np.full(len(p), -1e9); nrm = np.zeros_like(p); kk = np.zeros(len(p), int)
+            for k in range(n):
+                a = ra + 2 * math.pi * (k + .5) / n; nn = np.array([math.cos(a), math.sin(a)]); q = d @ nn; m = q > s_; s_ = np.where(m, q, s_); nrm = np.where(m[:, None], nn, nrm); kk = np.where(m, k, kk)
+            a0_ = ra + math.pi / n; u_ = -d[:, 0] * math.sin(a0_) + d[:, 1] * math.cos(a0_); ingap = (kk == 0) & (np.abs(u_) < pg_now * R * math.sin(math.pi / n))
+        hit = (s_ > apo - self.br) & ~ingap & (s_ < apo + 2 * self.br)
+        if hit.any(): p[hit] -= nrm[hit] * (s_[hit] - (apo - self.br))[:, None]
     def _sim(self):
         R = self.R
         rng = self.rng; sub = 8; dt = 1 / (self.fps * sub); nfr = int(self.dur * self.fps) + 2
@@ -83,6 +95,7 @@ class RingSim(_reel.Shot):
                     if m.any():
                         v[m] -= (2 * vn[m])[:, None] * nrm[m]; v[m] *= self.boost
                         for j in np.nonzero(m)[0]: self.hits.append((t, float(math.atan2(nrm[j][1], nrm[j][0])), float(col[j])))
+                for _ in range(3): self._collide(p, v); self._project(p, ra, g_now, pg_now)   # collisions first, then the wall always has the last word
                 if gone.any():
                     ng = int(gone.sum())
                     for j in np.nonzero(gone)[0]: self.escapes.append((t, p[j].copy(), float(col[j])))
