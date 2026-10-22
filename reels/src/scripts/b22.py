@@ -67,7 +67,7 @@ def all_in_la():
          text_slide("that's about the size of", "the city of los angeles", None, 3, 3.2, 96),
          text_slide("the whole human race", "fits in one city. all of it", None, 4, 3.0, 96),
          text_slide("and still 7 of you", "are asking 'where's the bathroom'", None, 5, 3.2, 90)]
-    return Reel("188_all_in_la", s, style="pop", seed=188, title="what if all humans stood in one city", caption="every human who has ever lived at the same time would fit in LA. tag the person who needs 'space'", story="Math: 8e9 / 6 per m2 = 1.33e9 m2 = 1,333 km2. The city of Los Angeles is about 1,300 km2 including water (about 1,215 km2 land).")
+    return Reel("188_all_in_la", s, style="pop", seed=188, title="what if all humans stood in one city", caption="all 8 billion people alive today would fit in LA. tag the person who needs 'space'", story="Math: 8e9 / 6 per m2 = 1.33e9 m2 = 1,333 km2. The city of Los Angeles is about 1,300 km2 including water (about 1,215 km2 land).")
 
 def words_arabic():
     return facts(189, "words_arabic", "10 english words that are secretly arabic", ["arabic"], [("algebra", "al-jabr: 'the reunion of broken parts'"), ("alcohol", "al-kuhl: a fine powder for eyeliner"), ("coffee", "qahwa"), ("sofa", "suffa: a bench"), ("sugar", "sukkar"), ("magazine", "makhazin: storehouses"), ("safari", "safar: a journey"), ("zero", "sifr: 'empty'"), ("cotton", "qutn"), ("lemon", "laymun")],

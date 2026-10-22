@@ -923,3 +923,68 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **length:** 10s  |  **music:** lofi
 - **suggested caption:** 'dad arrives with a mop.' tag who's visiting
 - **what happens:** A reminders checklist before immigrant parents visit: hide the cereal, buy fruit, clean the bathroom they will check, and dad arrives with his own mop.
+
+## 185_everyone_jumps 
+- **length:** 27s  |  **music:** cine
+- **suggested caption:** 8 billion people jump and the earth moves less than one atom. which one of you is the one who didn't jump?
+- **what happens:** Math: 8e9 people x 50 kg x about 2 m/s jump speed (20 cm jump: v = sqrt(2 x 9.8 x 0.2) = 1.98) = about 8e11 kg m/s of momentum. Earth is 6e24 kg, so recoil = 8e11 / 6e24 = 1.3e-13 m/s. Airtime = 2v/g = 0.4 s, so displacement = about 5e-14 m. A hydrogen atom is about 1e-10 m across, so about 2,000x wider.
+
+## 186_billion_stack 
+- **length:** 22s  |  **music:** synth
+- **suggested caption:** a billion dollars in singles reaches past the edge of space. tag the guy who says 'it's just a billion'
+- **what happens:** Math: a US bill is 0.0043 in = 0.109 mm thick. 1e9 x 0.109 mm = 1.09e8 mm = 109 km. The Karman line (edge of space) is 100 km. A bill weighs about 1 g, so 1e9 g = 1,000 metric tons; a blue whale is about 150 t, so about 7 whales.
+
+## 187_count_billion 
+- **length:** 21s  |  **music:** cine
+- **suggested caption:** a million seconds is 11 days. a billion is 31 years. send this to someone who says 'it's just a few zeros'
+- **what happens:** Math: 1e6 s / 86,400 = 11.6 days. 1e9 s = 11,574 days = 31.7 years. 1e12 s = 31,688 years. The earliest known cave paintings (Chauvet) are around 30,000+ years old.
+
+## 188_all_in_la 
+- **length:** 18s  |  **music:** pop
+- **suggested caption:** every human who has ever lived at the same time would fit in LA. which one are you?
+- **what happens:** Math: 8e9 / 6 per m2 = 1.33e9 m2 = 1,333 km2. The city of Los Angeles is about 1,300 km2 including water (about 1,215 km2 land).
+
+## 189_words_arabic 
+- **length:** 31s  |  **music:** jazz
+- **suggested caption:** you say these every day. send this to your arab friend
+- **what happens:** Verified etymologies: algebra (al-jabr), alcohol (al-kuhl), coffee (qahwa, via Turkish/Italian), sofa (suffa), sugar (sukkar), magazine (makhazin, via Italian/French), safari (safar), zero (sifr), cotton (qutn), lemon (laymun, via Persian/Italian).
+
+## 190_words_hindi 
+- **length:** 32s  |  **music:** bounce
+- **suggested caption:** you've been speaking a little hindi this whole time. send this to a desi friend
+- **what happens:** Verified etymologies: shampoo (champo), jungle (jangal), pajamas (pae jama), bungalow (bangla), loot (lut), bandana (bandhna), cot (khat), khaki (khaki, Persian-Urdu), avatar (avatara, Sanskrit), thug (thag).
+
+## 191_sound_fake 
+- **length:** 37s  |  **music:** cine
+- **suggested caption:** the venus one broke my brain. send this to your smartest friend
+- **what happens:** Checks: bananas are botanical berries; Oxford teaching ~1096 vs Tenochtitlan 1325; Cleopatra (69-30 BC) vs Great Pyramid (~2560 BC) vs Apollo 11 (1969 AD); wombats produce cubic scat; octopuses have 3 hearts; Venus rotates once in 243 Earth days, orbits in 225; sharks ~450M yrs, trees ~350M; ~3.04 trillion trees; Nintendo founded 1889 as a playing card company; Shannon number ~10^120 vs ~10^80 atoms.
+
+## 192_phone_apollo 
+- **length:** 16s  |  **music:** synth
+- **suggested caption:** your phone is about 250,000x more powerful than the computer that landed on the moon. you used it to watch a cat
+- **what happens:** The Apollo Guidance Computer ran about 40,000 instructions/second; a modern phone CPU does on the order of 10^10 per second (and more with its GPU), so roughly 250,000x or more. Rough figure.
+
+## 193_fall_earth 
+- **length:** 20s  |  **music:** cine
+- **suggested caption:** 42 minutes to the other side of the planet. send this to the person who'd go back for their phone
+- **what happens:** Uniform-density model: gravity inside is linear in r, so motion is simple harmonic with period 84.4 min; one way is half: about 42 min. Max speed at center = sqrt(g R) = sqrt(9.8 x 6.37e6) = 7.9 km/s = 28,400 km/h. Ignores air, heat and a non-uniform Earth.
+
+## 194_sun_vanishes 
+- **length:** 20s  |  **music:** cine
+- **suggested caption:** for exactly 8 minutes and 20 seconds nothing would change. send this to the friend who procrastinates
+- **what happens:** Light and gravity both propagate at c; the Sun is 1.496e8 km away; 1.496e8 / 299,792 = 499 s = 8 min 19 s.
+
+## 195_heartbeats 
+- **length:** 16s  |  **music:** pop
+- **suggested caption:** your heart has beaten about 2.9 billion times by 80 and it has never asked for a day off. tag your mom
+- **what happens:** 70 bpm x 60 x 24 = 100,800/day; x 365 = 36.8 million/yr; x 80 = 2.94 billion.
+
+## 196_small_dinner_math 
+- **length:** 21s  |  **music:** lofi
+- **suggested caption:** 6 invited. food for 40. 34 portions left. send this to the host who always cooks for 40
+- **what happens:** Joke math: 6 invited, 40 portions cooked, 6 eaten, 34 left; you leave with 11 containers.
+
+## 197_desi_leaving_math 
+- **length:** 21s  |  **music:** funk
+- **suggested caption:** planned: 1 hour. actual: 5 hours 40 minutes. which one are you?
+- **what happens:** Joke math: 9 'we should go', 7 goodbyes, 11 containers, planned 1 h, actual 5 h 40 min.
