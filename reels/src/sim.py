@@ -20,7 +20,7 @@ def hue(h, s=.85, v=1.0): r, g, b = colorsys.hsv_to_rgb(h % 1, s, max(0, min(1, 
 class RingSim(_reel.Shot):
     cut = "cut"
     def __init__(self, title, shape="ring", dur=55.0, spawn=3, spin=.9, gap=.62, g=1500.0, cap=420, seed=1, hue0=.0, unit="balls", sub=None, boost=1.012, ball_r=15, n0=1, mel=None, pgap=.34, gapf=None, pile=False, label=None, speech=None, quiet=False, final=None, ra0=1.6):
-        self.passes = 18 if pile else 4; self.gapf, self.pile, self.label, self.quiet, self.final, self.ra0 = gapf, pile, label, quiet, final, ra0; self.speech = list(speech or []); self.fit_speech = False; self.gaps = []
+        self.passes = 18 if pile else 4; self.gapf, self.pile, self.label, self.quiet, self.final, self.ra0 = gapf, pile, label, quiet, final, ra0; self.speech = list(speech or []); self.fit_speech = False; self.gaps = []; self.pgaps = []
         self.title, self.shape, self.dur, self.spawn, self.spin, self.gap, self.g, self.cap, self.hue0, self.unit, self.sub = title, shape, dur, spawn, spin, gap, g, cap, hue0, unit, sub
         self.R = 440 if shape == 'ring' else (380 if shape == 'square' else 400) / math.cos(math.pi / {'tri': 3, 'square': 4, 'hex': 6}[shape]); self.boost, self.br, self.n0, self.pgap = boost, ball_r, n0, pgap; self.mel = mel or ODE; self.rng = np.random.RandomState(seed)
         self.cues = []; self.shake = None; self.fps = 30; self._sim()
@@ -42,11 +42,12 @@ class RingSim(_reel.Shot):
         R = self.R
         rng = self.rng; sub = 8; dt = 1 / (self.fps * sub); nfr = int(self.dur * self.fps) + 2
         if self.pile:
-            pts = []; yy = CY + R - 2 * self.br - 6
+            nn_ = {"ring": 0, "tri": 3, "square": 4, "hex": 6}[self.shape]; RA = R * math.cos(math.pi / nn_) if nn_ else R
+            pts = []; yy = CY + RA - 2 * self.br - 6
             while len(pts) < self.n0:
-                xx = CX - R * .8
-                while xx < CX + R * .8 and len(pts) < self.n0:
-                    if math.hypot(xx - CX, yy - CY) < R - self.br - 2: pts.append((xx + (len(pts) % 3 - 1) * .5, yy))
+                xx = CX - RA * .8
+                while xx < CX + RA * .8 and len(pts) < self.n0:
+                    if abs(xx - CX) < RA - self.br - 2 and math.hypot(xx - CX, yy - CY) < RA - self.br - 2: pts.append((xx + (len(pts) % 3 - 1) * .5, yy))
                     xx += 2 * self.br + 1
                 yy -= 2 * self.br
             p = np.array(pts, float); v = np.zeros_like(p); self.n0 = len(p)
@@ -57,7 +58,7 @@ class RingSim(_reel.Shot):
         n = {"ring": 0, "tri": 3, "square": 4, "hex": 6}[self.shape]
         apo = R * math.cos(math.pi / n) if n else R
         for fr in range(nfr):
-            t = fr / self.fps; g_now = self.gapf(t) if self.gapf else self.gap; self.gaps.append(g_now)
+            t = fr / self.fps; g_now = self.gapf(t) if self.gapf else self.gap; self.gaps.append(g_now); pg_now = min(.9, g_now * .6) if self.gapf else self.pgap; self.pgaps.append(pg_now)
             for _ in range(sub):
                 ra += self.spin * dt * (1 + .25 * math.sin(t * .3))
                 v[:, 1] += self.g * dt; p += v * dt
@@ -74,7 +75,7 @@ class RingSim(_reel.Shot):
                         a = ra + 2 * math.pi * (k + .5) / n; nn = np.array([math.cos(a), math.sin(a)]); q = d @ nn; m = q > s_
                         s_ = np.where(m, q, s_); nrm = np.where(m[:, None], nn, nrm); kk = np.where(m, k, kk)
                     a0_ = ra + math.pi / n; u_ = -d[:, 0] * math.sin(a0_) + d[:, 1] * math.cos(a0_)
-                    ingap = (kk == 0) & (np.abs(u_) < self.pgap * R * math.sin(math.pi / n))
+                    ingap = (kk == 0) & (np.abs(u_) < pg_now * R * math.sin(math.pi / n))
                 hit = (s_ > apo - self.br) & ~ingap & (s_ < apo + 2 * self.br); gone = s_ > apo + 3 * self.br
                 if hit.any():
                     vn = (v * nrm).sum(1); m = hit & (vn > 0)
@@ -117,7 +118,7 @@ class RingSim(_reel.Shot):
         fi = min(len(self.frames) - 1, int(lt * self.fps)); ids, p, col, ra, esc, n = self.frames[fi]
         img = Image.new("RGB", (W, H), (6, 6, 14)); ss = 2; S = int(2 * R + 140); lay = Image.new("RGB", (S * ss, S * ss), (6, 6, 14)); d = ImageDraw.Draw(lay)
         ox, oy = CX - S / 2, CY - S / 2; bg = (6, 6, 14)
-        self._cur_gap = self.gaps[fi] if self.gaps else self.gap; self._ring(d, ra, lt, ss, S)
+        self._cur_gap = self.gaps[fi] if self.gaps else self.gap; self._cur_pg = self.pgaps[fi] if self.pgaps else self.pgap; self._ring(d, ra, lt, ss, S)
         idl = ids.tolist(); hist = []
         for back in range(10, 0, -1):
             f2 = self.frames[max(0, fi - back)]; hist.append((back, {i: j for j, i in enumerate(f2[0].tolist())}, f2))
@@ -169,7 +170,8 @@ class RingSim(_reel.Shot):
             n = {"tri": 3, "square": 4, "hex": 6}[self.shape]
             P = lambda a: (c0 + R * ss * math.cos(a), c0 + R * ss * math.sin(a))
             va, vb = P(ra), P(ra + 2 * math.pi / n)
-            for f0, f1 in ((0, .5 - self.pgap / 2), (.5 + self.pgap / 2, 1)):
+            pgc = getattr(self, '_cur_pg', self.pgap)
+            for f0, f1 in ((0, .5 - pgc / 2), (.5 + pgc / 2, 1)):
                 d.line([(va[0] + (vb[0] - va[0]) * f0, va[1] + (vb[1] - va[1]) * f0), (va[0] + (vb[0] - va[0]) * f1, va[1] + (vb[1] - va[1]) * f1)], fill=hue(lt * .06, .7, .9), width=9 * ss)
             for k in range(1, n):
                 a0 = ra + 2 * math.pi * k / n; a1 = a0 + 2 * math.pi / n; mid = ra + 2 * math.pi * (k + .5) / n - math.pi / n + math.pi / n
@@ -188,7 +190,7 @@ class RingSim(_reel.Shot):
                 s_ = np.full(len(p), -1e9); kk = np.zeros(len(p), int)
                 for k in range(n_):
                     a = ra + 2 * math.pi * (k + .5) / n_; q = d @ np.array([math.cos(a), math.sin(a)]); m = q > s_; s_ = np.where(m, q, s_); kk = np.where(m, k, kk)
-                a0 = ra + math.pi / n_; u = -d[:, 0] * math.sin(a0) + d[:, 1] * math.cos(a0); ingap = (kk == 0) & (np.abs(u) < self.pgap * R * math.sin(math.pi / n_) + .09 * R)
+                a0 = ra + math.pi / n_; u = -d[:, 0] * math.sin(a0) + d[:, 1] * math.cos(a0); ingap = (kk == 0) & (np.abs(u) < (self.pgaps[fi] if self.pgaps else self.pgap) * R * math.sin(math.pi / n_) + .09 * R)
             for j, i in enumerate(ids.tolist()):
                 if s_[j] > apo and inside.get(i, True) and not ingap[j]: leaks += 1
                 inside[i] = s_[j] <= apo

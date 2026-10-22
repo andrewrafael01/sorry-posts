@@ -23,3 +23,10 @@ def dinner_balls():
     return reel.Reel("423_dinner_balls", [s], style="cine", seed=423, gain_music=.5, loop=True, snap=False, grid=0, safe_zone=False, title="each ball is a dinner left with grandma", caption="x",
         story="Illustrative: 12 visits a year x 9 years (SSA life table at 80) = 108. Elastic collisions; balls can only leave through the widening opening.")
 REELS.update(xmas_balls=xmas_balls, dinner_balls=dinner_balls)
+
+def kid_summers():
+    s = sim.RingSim("EACH BALL IS A SUMMER", shape="square", dur=34.0, sub="LEFT WITH YOUR KID IF THEY'RE 8 · TEN", gapf=lambda t: .30 + .024 * t, spin=.8, g=1400.0, boost=1.0, ball_r=40, n0=10, spawn=0, pile=True, quiet=True, unit="summers left", seed=4, ra0=4.71,
+        speech=[(.6, "If your kid is eight, you have about ten summers left before they're eighteen. Each ball is one.", None), (15.0, "They leave one at a time. Comment how old yours is, and send this to another parent.", None)], final="THIS SUMMER")
+    return reel.Reel("424_kid_summers", [s], style="cine", seed=424, gain_music=.5, loop=True, snap=False, grid=0, safe_zone=False, title="each ball is a summer left with your kid", caption="x",
+        story="Illustrative: a child aged 8 has about 10 summers at home before 18. Elastic collisions; balls can only leave through the widening opening in the rotating square.")
+REELS.update(kid_summers=kid_summers)
