@@ -5,19 +5,32 @@ from phone import LockScreen
 PAL = [(YELLOW, (46, 52, 96), (24, 28, 60)), (rgb("7dff9a"), (24, 90, 70), (10, 50, 40)), (rgb("ff8f5c"), (110, 40, 28), (60, 20, 16)), (rgb("9ad0ff"), (30, 70, 120), (14, 40, 80)),
        (rgb("ffd23f"), (120, 60, 160), (70, 30, 110)), (rgb("ff9ad0"), (150, 60, 100), (90, 30, 70)), (rgb("a6ffe8"), (20, 80, 100), (10, 40, 60))]
 
-def translated(num, name, who, pairs, last, title, caption, story, style="bounce"):
+def _speak_pair(shot, say, mean, vkey):
+    """The quote is said in a character voice; the meaning is said deadpan by the narrator right after it, and the on-screen reveal is moved to match."""
+    import voice
+    if not voice.enabled(): return
+    pv = voice.voice_for(vkey); nv = voice.NARRATOR if voice._engine() == "kokoro" else None
+    L = voice.seconds(say, pv)
+    if not L: return
+    at2 = .1 + L + .25; shot.items[1]["at"] = at2; shot.speech = [(.1, say, pv), (at2, mean, nv)]
+
+def translated(num, name, who, pairs, last, title, caption, story, style="bounce", vkey="mom"):
     """pairs: [(what they say, what it actually means)]; last = (say, mean) saddest/funniest, shown on a dark card."""
+    vkey = "dad" if any(k in who for k in ("dads", "uncles", "hosts")) else ("nonna" if "grandmas" in who else ("unc" if "arab" in who else vkey))
     anims = ["slam", "pop", "shake", "slide", "pop", "wobble", "slam"]; sfx = ["hit", "pop", "hit", "swipe", "pop", "boing", "hit"]
     n = len(pairs) + 1
     shots = [KineticShot([dict(text=f"{who}, translated", at=0, size=104, weight="black", anim="pop", y=.4, hl=["translated"], maxw=940)], dur=2.2, bg=(16, 16, 20), bg2=(40, 40, 52))]
     for i, (say, mean) in enumerate(pairs):
         col, b1, b2 = PAL[i % len(PAL)]
-        shots.append(KineticShot([dict(text=f"\"{say}\"", at=0, size=118 if len(say) < 14 else 92, weight="black", color=col, anim=anims[i % 7], y=.38, maxw=900, sfx=sfx[i % 7]),
+        sh_ = KineticShot([dict(text=f"\"{say}\"", at=0, size=118 if len(say) < 14 else 92, weight="black", color=col, anim=anims[i % 7], y=.38, maxw=900, sfx=sfx[i % 7]),
                                   dict(text=mean, at=.5, size=78, weight="xbold", color=WHITE, anim="rise", y=.6, maxw=900)],
-                                 dur=min(3.2, 1.7 + .05 * len(mean)), bg=b1, bg2=b2, fx=("rays",), fx_y=.38, counter=f"{i + 1} / {n}"))
+                                 dur=min(3.2, 1.7 + .05 * len(mean)), bg=b1, bg2=b2, fx=("rays",), fx_y=.38, counter=f"{i + 1} / {n}")
+        _speak_pair(sh_, say, mean, vkey)
+        shots.append(sh_)
     say, mean = last
     fin = KineticShot([dict(text=f"\"{say}\"", at=0, size=104 if len(say) < 16 else 84, weight="black", color=rgb("c9c9d6"), anim="pop", y=.38, maxw=900, sfx="pop"),
                        dict(text=mean, at=.6, size=78, weight="xbold", color=WHITE, anim="rise", y=.6, maxw=900)], dur=3.4, bg=(14, 14, 18), bg2=(14, 14, 18), counter=f"{n} / {n}", cues=[(.7, "womp", .4)])
+    _speak_pair(fin, say, mean, vkey)
     fin.music_dip = (.2, 3.2, .2); shots.append(fin)
     return Reel(f"{num}_{name}", shots, style=style, seed=num, title=title, caption=caption, story=story)
 

@@ -3,18 +3,27 @@ from scripts.common import *
 from phone import Messages, LockScreen, VoiceMemo
 
 def chat(num, name, contact, msgs, hook, hl, title, caption, story, group=True, dark=False, clock="9:41", style="pop", bg=(52, 120, 246), color=PINK):
-    ev, t = [], .5
+    import voice
+    speech, ev, t = [], [], .5
     for m in msgs:
         if m[0] == "stamp": ev.append(dict(at=t - .1, stamp=m[1])); t += .35; continue
         who, sender, text = m[0], m[1], m[2]; gap = m[3] if len(m) > 3 else .45 + .05 * len(text)
+        vid = None
+        if voice.enabled() and voice.speakable(text):
+            vid = voice.voice_for("kid" if who == "me" else (sender or contact))
+            sec = voice.seconds(text, vid)
+            if sec: gap = max(.5, sec + .15)
         e = dict(at=t, who=who, text=text, sender=sender)
         if who == "me": e["type_time"] = min(1.0, .03 * len(text) + .2); e["at"] = t + e["type_time"]; t += e["type_time"]
         elif not group: e["typing"] = .5
-        ev.append(e); t += max(.6, gap)
+        ev.append(e)
+        if vid and voice.seconds(text, vid): speech.append((e["at"], text, vid))
+        t += max(.5, gap)
     last = ev[-1]["at"]
     ui = Messages(contact, ev, group=group or None, dark=dark, clock=clock, avatar_color=color)
     shot = PhoneShot(ui, dur=last + 2.6, caps=[dict(text=hook, style="hook", hl=hl, y=290)], bg=bg, zoom=[(last - .3, last + .6, 1.28, 600, 900)],
                      music_dip=(last - .5, last + 1.2, .25), cues=[(last, "boom", .6), (last + .7, "womp", .4)])
+    shot.speech = speech
     return Reel(f"{num}_{name}", [shot], style=style, seed=num, title=title, caption=caption, story=story)
 
 def desi_diwali_chat():

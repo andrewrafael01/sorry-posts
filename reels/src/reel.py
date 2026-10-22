@@ -312,10 +312,18 @@ class BarsShot(Shot):
 class RankingShot(Shot):
     """Countdown list with horizontal bars. items listed rank 1..N as (label, value, shown_text); they reveal from the bottom up and #1 lands last.
     cols = (bar color, #1 color). source = small credit line."""
-    def __init__(self, items, title, source=None, dur=None, bg=(14, 16, 28), bg2=(30, 34, 60), cols=((70, 120, 230), (255, 200, 40)), step=.55, cues=None, crown="#1"):
+    def __init__(self, items, title, source=None, dur=None, bg=(14, 16, 28), bg2=(30, 34, 60), cols=((70, 120, 230), (255, 200, 40)), step=.55, cues=None, crown="#1", say=None):
         self.items, self.title, self.source, self.bg, self.bg2, self.cols, self.step = items, title, source, bg, bg2, cols, step
-        n = len(items); self.n = n; self.dur = dur or (.9 + n * step + 3.0)
-        self.t_of = {i: .8 + (n - 1 - i) * step for i in range(n)}
+        n = len(items); self.n = n; self.speech = []
+        self.t_of = {}; t = .8
+        import voice
+        for i in range(n - 1, -1, -1):     # reveal bottom-up; when narrated, each row waits for its sentence so the words land with the bar
+            self.t_of[i] = t; gap = step
+            if say and voice.enabled():
+                sec = voice.seconds(say[i], voice.NARRATOR if voice._engine() == "kokoro" else None)
+                if sec: self.speech.append((t, say[i], voice.NARRATOR if voice._engine() == "kokoro" else None)); gap = max(step, sec + .25)
+            t += gap
+        self.dur = max(dur or 0, t + 2.6) if self.speech else (dur or (.9 + n * step + 3.0))
         self.cues = list(cues or []) + [(self.t_of[i], "pop", .6) for i in range(1, n)] + [(self.t_of[0], "hit", .95), (self.t_of[0] + .1, "sparkle", .6)]
         self._b = None
     def render(self, lt):
@@ -348,10 +356,18 @@ class RankingShot(Shot):
 
 class VersusShot(Shot):
     """Head to head. rows: (label, left_text, right_text, 'l'|'r'|None for the winner). Rows pop in one by one; the tally shows at the end."""
-    def __init__(self, left, right, rows, title=None, dur=None, step=1.0, bg=(18, 14, 34), bg2=(40, 24, 70), cols=((90, 170, 255), (255, 110, 130)), source=None):
-        self.left, self.right, self.rows, self.title, self.bg, self.bg2, self.cols, self.step, self.source = left, right, rows, title, bg, bg2, cols, step, source
-        self.dur = dur or (1.0 + len(rows) * step + 2.6)
-        self.cues = [(1.0 + i * step, "pop", .7) for i in range(len(rows))] + [(1.0 + len(rows) * step, "hit", .9)]
+    def __init__(self, left, right, rows, title=None, dur=None, step=1.0, bg=(18, 14, 34), bg2=(40, 24, 70), cols=((90, 170, 255), (255, 110, 130)), source=None, say=None):
+        self.left, self.right, self.rows, self.title, self.bg, self.bg2, self.cols, self.source = left, right, rows, title, bg, bg2, cols, source
+        import voice
+        self.speech = []; self.t_row = []; t = 1.0; vid = voice.NARRATOR if voice._engine() == "kokoro" else None
+        for i in range(len(rows)):
+            self.t_row.append(t); gap = step
+            if say and voice.enabled():
+                sec = voice.seconds(say[i], vid)
+                if sec: self.speech.append((t, say[i], vid)); gap = max(step, sec + .3)
+            t += gap
+        self.t_end = t; self.dur = max(dur or 0, t + 2.6) if self.speech else (dur or (1.0 + len(rows) * step + 2.6)); self.step = step
+        self.cues = [(self.t_row[i], "pop", .7) for i in range(len(rows))] + [(self.t_end, "hit", .9)]
         self._b = None
     def render(self, lt):
         if self._b is None:
@@ -368,7 +384,7 @@ class VersusShot(Shot):
         d.line([(W / 2, 330), (W / 2, 1360)], fill=(80, 70, 120), width=4)
         tl = tr = 0
         for i, (lab, lt_, rt_, win) in enumerate(self.rows):
-            u = lt - (1.0 + i * self.step)
+            u = lt - self.t_row[i]
             if u < 0: continue
             y = 520 + i * 200; al = clamp(u / .2); s = out_back(u / .3)
             Ll = text_layer(lab, 34, "bold", (190, 180, 230), maxw=700); paste(img, Ll, W / 2, y - 40, alpha=al)
@@ -378,7 +394,7 @@ class VersusShot(Shot):
                 if won: d.rounded_rectangle([cx - 200, y + 4, cx + 200, y + 84], 24, outline=(120, 255, 160), width=4)
             if win == "l": tl += 1
             elif win == "r": tr += 1
-        end = 1.0 + len(self.rows) * self.step
+        end = self.t_end
         if lt > end:
             u = lt - end; T = text_layer(f"{tl}  -  {tr}", 120, "black", (255, 212, 0), maxw=700); paste(img, T, W / 2, 1560, scale=out_back(u / .35), alpha=clamp(u / .1))
         if self.source:
@@ -400,13 +416,18 @@ def ambience(kind, dur, seed=0):
     return y
 
 class Reel:
-    def __init__(self, name, shots, style="lofi", seed=0, loop=True, gain_music=.62, bpm=None, caption="", story="", title="", vo=None):
+    def __init__(self, name, shots, style="lofi", seed=0, loop=True, gain_music=.62, bpm=None, caption="", story="", title="", vo=None, snap=True, safe_zone=True, grid=0):
+        self.snap, self.safe_zone, self.grid = snap, safe_zone, grid
         import voice
         self.vo = vo or voice.SCRIPTS.get(name, [])   # [(shot_index, text)] narration read at the start of that shot when a voice engine is on (see voice.py)
+        self.vo = [(i, t) for i, t in self.vo if not getattr(shots[i], 'segs', None)]
         for idx, text in self.vo:   # fit the picture to the speech so the words land on the right slide
             L = voice.seconds(text)
-            if L: shots[idx].dur = max(shots[idx].dur, L + .6)
+            if L: shots[idx].dur = max(L + getattr(shots[idx], 'pad', .35), getattr(shots[idx], 'min_dur', 0)) if getattr(shots[idx], 'fit_speech', False) else max(shots[idx].dur, L + .6)
         for s in shots:
+            for sp in getattr(s, "speech", []) or []:
+                L = voice.seconds(sp[1], sp[2])
+                if L: s.dur = max(s.dur, sp[0] + L + (getattr(s, 'pad', .35) if getattr(s, 'fit_speech', False) else .5)) if getattr(s, 'fit_speech', False) is False or True else s.dur
             for ln in getattr(s, "lines", []) or []:
                 if ln.get("voice"):
                     L = voice.seconds(ln["text"], ln["voice"])
@@ -418,9 +439,12 @@ class Reel:
         self.bpm = bpm_
         self.starts = []; t = 0.0
         for s in shots:
-            nb = max(2, round(s.dur / self.bl))
-            if nb * self.bl < s.dur - .25: nb += 1
-            s.dur = nb * self.bl
+            if self.grid and not self.snap:
+                q = self.bl / self.grid; s.dur = math.ceil((t + s.dur) / q - 1e-6) * q - t
+            if self.snap:
+                nb = max(2, round(s.dur / self.bl))
+                if nb * self.bl < s.dur - .25: nb += 1
+                s.dur = nb * self.bl
             self.starts.append(t); t += s.dur
         self.dur = t
         self._prev = None
@@ -482,6 +506,10 @@ class Reel:
         if self.vo is not None or True:
             import voice as _vc
             for s, t0 in zip(self.shots, self.starts):
+                for at, text, vid in getattr(s, "speech", []) or []:
+                    if _vc.speakable(text):
+                        x = _vc.speak(text, vid)
+                        if x is not None: clips.append((int((t0 + at) * SR), x))
                 for ln in getattr(s, "lines", []) or []:
                     if ln.get("voice") and _vc.speakable(ln["text"]):
                         x = _vc.speak(ln["text"], ln["voice"])
@@ -512,7 +540,7 @@ class Reel:
         cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-i", wav,
                "-c:v", "libx264", "-preset", "veryfast", "-crf", str(crf), "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", path]
         p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
-        for i in range(int(self.dur * FPS)): p.stdin.write(safe(self.frame(i / FPS)).tobytes())
+        for i in range(int(self.dur * FPS)): p.stdin.write((safe(self.frame(i / FPS)) if self.safe_zone else self.frame(i / FPS)).tobytes())
         p.stdin.close(); p.wait(); os.remove(wav)
         return path
 

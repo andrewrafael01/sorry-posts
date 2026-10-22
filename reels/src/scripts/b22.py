@@ -66,7 +66,7 @@ def all_in_la():
          num_slide("area needed", 0, 1333, "{:,.0f}", "square kilometers", 2, 3.2, 220),
          text_slide("that's about the size of", "the city of los angeles", None, 3, 3.2, 96),
          text_slide("the whole human race", "fits in one city. all of it", None, 4, 3.0, 96),
-         text_slide("and still 7 of you", "are asking 'where's the bathroom'", None, 5, 3.2, 90)]
+         text_slide("and one of you", "is still asking where the bathroom is", None, 5, 3.2, 90)]
     return Reel("188_all_in_la", s, style="pop", seed=188, title="what if all humans stood in one city", caption="all 8 billion people alive today would fit in LA. tag the person who needs 'space'", story="Math: 8e9 / 6 per m2 = 1.33e9 m2 = 1,333 km2. The city of Los Angeles is about 1,300 km2 including water (about 1,215 km2 land).")
 
 def words_arabic():
@@ -103,7 +103,7 @@ def sun_vanishes():
          num_slide("we'd keep seeing it for", 0, 8.3, "{:,.1f}", "minutes", 0, 3.2, 230),
          text_slide("gravity travels at light speed too", "so earth keeps orbiting an empty spot for 8 minutes", None, 1, 3.6, 84),
          text_slide("then", "everything goes straight, in the dark", None, 2, 3.0, 96),
-         text_slide("the surface cools slowly", "oceans stay liquid for a while. the air doesn't", None, 3, 3.4, 84),
+         text_slide("it gets cold, slowly", "not instantly. the planet holds its heat for a while", None, 3, 3.4, 84),
          text_slide("for 8 minutes", "you'd be completely fine. enjoy it", None, 4, 3.2, 96)]
     return Reel("194_sun_vanishes", s, style="cine", seed=194, title="what if the sun disappeared", caption="for exactly 8 minutes and 20 seconds nothing would change. send this to the friend who procrastinates", story="Light and gravity both propagate at c; the Sun is 1.496e8 km away; 1.496e8 / 299,792 = 499 s = 8 min 19 s.")
 
@@ -142,9 +142,8 @@ VO = {
  "193_fall_earth": [(0, "What if you jumped into a hole through the center of the Earth?"), (2, "You'd hit twenty eight thousand kilometers an hour in the middle."), (3, "And reach the other side in forty two minutes."), (4, "Then you'd stop, right at the opening, and climb out."), (5, "And you could do it all over again.")],
 }
 import voice as _voice
+import scripts.vo_scripts  # noqa: registers the narration for the other fact reels
 _voice.SCRIPTS.update(VO)
 def _v(fn):
-    def w():
-        r = fn(); r.vo = VO.get(r.name, []); return r
-    return w
+    return fn
 REELS = {k: _v(f) for k, f in dict(everyone_jumps=everyone_jumps, billion_stack=billion_stack, count_billion=count_billion, all_in_la=all_in_la, words_arabic=words_arabic, words_hindi=words_hindi, sound_fake=sound_fake, phone_apollo=phone_apollo, fall_earth=fall_earth, sun_vanishes=sun_vanishes, heartbeats=heartbeats, desi_leaving_math=desi_leaving_math, small_dinner_math=small_dinner_math).items()}
