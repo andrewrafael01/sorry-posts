@@ -78,5 +78,21 @@
   "orig": 7,
   "reach": 9,
   "why": "200-days stat hook; 200 gold days morph into one calendar year; call-your-mom send trigger; comment-your-number"
+ },
+ "411_dog_days": {
+  "hook": 10,
+  "button": 9,
+  "send": 10,
+  "orig": 8,
+  "reach": 9,
+  "why": "a dog's whole life drawn as a paw print of 4,380 day-dots that dim away; tag-a-dog-person send; comment your dog's age"
+ },
+ "410_ancestors": {
+  "hook": 9,
+  "button": 9,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "held: visuals not good enough yet"
  }
 }
