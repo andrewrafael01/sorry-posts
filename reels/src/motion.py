@@ -223,3 +223,11 @@ class Beat(_reel.Shot):
         self.boxes = list(BOXES)
         ImageDraw.Draw(img).rectangle([0, 0, int(CW * clamp(lt / self.dur)), 7], fill=(255, 214, 0))
         return img
+
+class Clean(Beat):
+    """Beat without the ambient colour blobs and dust, for scenes that paint their own whole background (sims, scale worlds)."""
+    def render(self, lt):
+        p = clamp(lt / self.dur); img = Image.new("RGB", (CW, CH), (6, 6, 14)); BOXES.clear(); self.draw(img, lt, p, self)
+        if self.cap and self.narr:
+            BOXES.append((150, CH * .74 - 58, CW - 150, CH * .74 + 58, '<caption>', 1.0)); caption(img, self.narr, lt, self.speech_len(), real=self.real_times())
+        self.boxes = list(BOXES); ImageDraw.Draw(img).rectangle([0, 0, int(CW * clamp(lt / self.dur)), 7], fill=(255, 214, 0)); return img

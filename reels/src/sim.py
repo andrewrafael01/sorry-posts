@@ -66,8 +66,9 @@ class RingSim(_reel.Shot):
                 hit = (s_ > apo - self.br) & ~ingap & (s_ < apo + 2 * self.br); gone = s_ > apo + 3 * self.br
                 if hit.any():
                     vn = (v * nrm).sum(1); m = hit & (vn > 0)
+                    p[hit] -= nrm[hit] * (s_[hit] - (apo - self.br))[:, None]   # hard projection: a ball is never allowed past the wall
                     if m.any():
-                        v[m] -= (2 * vn[m])[:, None] * nrm[m]; v[m] *= self.boost; p[m] -= nrm[m] * (s_[m] - (apo - self.br))[:, None]
+                        v[m] -= (2 * vn[m])[:, None] * nrm[m]; v[m] *= self.boost
                         for j in np.nonzero(m)[0]: self.hits.append((t, float(math.atan2(nrm[j][1], nrm[j][0])), float(col[j])))
                 if gone.any():
                     ng = int(gone.sum())
@@ -119,8 +120,8 @@ class RingSim(_reel.Shot):
         for k in range(len(idl)):
             x, y = (p[k][0] - ox) * ss, (p[k][1] - oy) * ss; r = self.br * ss; d.ellipse([x - r, y - r, x + r, y + r], fill=hue(col[k], .7, 1))
         lay = lay.resize((S, S), Image.LANCZOS); img.paste(lay, (int(ox), int(oy)))
-        tx(img, self.title, 540, 300, 66, "black", (255, 255, 255), maxw=940, shadow=False)
-        if self.sub: tx(img, self.sub, 540, 440, 40, "bold", (170, 178, 220), maxw=940, shadow=False)
+        tx(img, self.title, 540, 240, 66, "black", (255, 255, 255), maxw=940, shadow=False)
+        if self.sub: tx(img, self.sub, 540, 375, 44, "bold", (170, 178, 220), maxw=940, shadow=False)
         tx(img, f"{n}", 540, 1560, 150, "black", (255, 255, 255), maxw=700, shadow=False); tx(img, self.unit, 540, 1690, 40, "bold", (150, 158, 200), shadow=False)
         ImageDraw.Draw(img).rectangle([0, 0, int(W * clamp(lt / self.dur)), 7], fill=(255, 214, 0))
         return img

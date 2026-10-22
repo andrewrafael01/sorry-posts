@@ -10,6 +10,9 @@ def sweep(f0, f1, d, shape="sin", curve="lin"):
     return {"sin": np.sin(ph), "saw": saw(ph), "sq": np.sign(np.sin(ph)) * .6, "tri": tri(ph)}[shape]
 
 def make(name):
+    if name.startswith("clk") and name[3:].isdigit():   # wooden domino click, clk<pitch Hz>
+        f = int(name[3:]); t = T(.14)
+        return (np.sin(2 * np.pi * f * t) * np.exp(-t * 45) * .7 + np.sin(2 * np.pi * f * 2.3 * t) * np.exp(-t * 90) * .25 + bp(_n(300, .14), 1500, 6000) * np.exp(-t * 160) * 1.2) * 1.1
     if name.startswith("n") and name[1:].isdigit():   # pitched glass/marimba note, n<midi>
         f = 440 * 2 ** ((int(name[1:]) - 69) / 12); t = T(.7)
         return (np.sin(2 * np.pi * f * t) + .30 * np.sin(2 * np.pi * 2 * f * t) * np.exp(-t * 16) + .12 * np.sin(2 * np.pi * 3.01 * f * t) * np.exp(-t * 30)) * np.exp(-t * 6.5) * (1 - np.exp(-t * 900)) * .55

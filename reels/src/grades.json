@@ -1,0 +1,42 @@
+{
+ "401_domino_moon": {
+  "hook": 9,
+  "button": 9,
+  "send": 8,
+  "orig": 9,
+  "reach": 9,
+  "why": "flash-forward hook, true scale reveal, 'send to someone who thinks small things dont matter'"
+ },
+ "402_full_moons": {
+  "hook": 9,
+  "button": 9,
+  "send": 10,
+  "orig": 7,
+  "reach": 9,
+  "why": "call-your-parents send trigger; grid of 990 spends itself"
+ },
+ "400_ring_ode": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 5,
+  "reach": 9,
+  "why": "proven format, copycat; guess-the-song comments"
+ },
+ "403_hex_king": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 5,
+  "reach": 9,
+  "why": "same"
+ },
+ "404_square_elise": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 5,
+  "reach": 9,
+  "why": "same"
+ }
+}
