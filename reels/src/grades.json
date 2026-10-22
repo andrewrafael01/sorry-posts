@@ -234,5 +234,13 @@
   "reach": 9,
   "why": "same approved melody-sim format in a triangle; guess-the-song comments",
   "override": "owner approved: the satisfying melody sims go viral for this account"
+ },
+ "429_parents_chapter": {
+  "hook": 9,
+  "button": 8,
+  "send": 9,
+  "orig": 7,
+  "reach": 8,
+  "why": "every 20-year-old can say that is me in 3s; no math; send to a specific person (mom/dad)"
  }
 }
