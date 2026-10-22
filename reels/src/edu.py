@@ -73,8 +73,8 @@ class T:
                 t0 = (b.at(words[i], default=.5 + i * .5) - .2) if words else .5 + i * .45; u = eio(seg(lt, t0, t0 + .7)); y = 450 + i * rh
                 col = (cols[i] if cols else PAL[i % len(PAL)]) if (hi is None or i == hi) else (90, 100, 150)
                 if u <= 0: continue
-                txa(img, lab, 70, y, 38, "black", WHITE if (hi is None or i == hi) else MUT, "l", u, 640); txa(img, fmt.format(v * u) + unit, 1010, y, 38, "black", col, "r", u, 380)
-                w = max(14, (930 - 70) * v / mx * u); box(img, 70, y + 32, 70 + w, y + 32 + min(46, rh * .36), 12, col, 1.0)
+                txa(img, lab, 70, y, 46, "black", WHITE if (hi is None or i == hi) else MUT, "l", u, 640); txa(img, fmt.format(v * u) + unit, 1010, y, 46, "black", col, "r", u, 400)
+                w = max(14, (930 - 70) * v / mx * u); box(img, 70, y + 38, 70 + w, y + 38 + min(58, rh * .42), 14, col, 1.0)
         return draw
 
     @staticmethod
@@ -142,14 +142,14 @@ class T:
     @staticmethod
     def race(title, items, unit="", theme="deep", fmt="{:,.0f}", secs=3.0):
         """Runners cross the screen at speeds proportional to the values. items: [(label, speed)]."""
-        mx = max(v for _, v in items); n = len(items); rh = min(190, 820 / n)
+        mx = max(v for _, v in items); n = len(items); rh = min(210, 800 / n)
         def draw(img, lt, p, b):
             paint(img, theme, lt); tx(img, title, 540, 330, 56, "black", WHITE, maxw=1000, a=clamp(lt / .3)); d = ImageDraw.Draw(img)
             for i, (lab, v) in enumerate(items):
                 y = 440 + i * rh; col = PAL[i % len(PAL)]; frac = clamp((lt - .5) / secs) * (v / mx)
-                d.line([(90, y + 50), (990, y + 50)], fill=(70, 78, 130), width=4); x = 90 + 900 * min(1.0, frac)
-                txa(img, lab, 90, y, 36, "black", WHITE, "l", 1.0, 600); txa(img, fmt.format(v) + unit, 1010, y, 36, "black", col, "r", clamp((lt - 1.0) / .4), 360)
-                glow(img, x, y + 50, 34, col, .5); disc(img, x, y + 50, 20, col, 1.0, outline=WHITE, ow=3)
+                d.line([(90, y + 62), (990, y + 62)], fill=(70, 78, 130), width=8); x = 90 + 900 * min(1.0, frac)
+                txa(img, lab, 90, y, 48, "black", WHITE, "l", 1.0, 600); txa(img, fmt.format(v) + unit, 1010, y, 48, "black", col, "r", clamp((lt - 1.0) / .4), 400)
+                glow(img, x, y + 62, 44, col, .55); disc(img, x, y + 62, 28, col, 1.0, outline=WHITE, ow=4)
         return draw
 
     @staticmethod
