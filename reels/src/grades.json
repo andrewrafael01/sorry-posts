@@ -118,5 +118,21 @@
   "orig": 8.5,
   "reach": 9,
   "why": "camera walks a candlelit table of 108 plates and the plates behind you go dark; call-your-grandma send; no repeat of a posted topic"
+ },
+ "415_christmases_left": {
+  "hook": 9,
+  "button": 8.5,
+  "send": 10,
+  "orig": 7.5,
+  "reach": 9,
+  "why": "seasonal (Oct-Dec) emotional hook; tree lights go out one per year with descending chimes then relight when you 'show up'"
+ },
+ "416_sleep_together": {
+  "hook": 9,
+  "button": 9,
+  "send": 10,
+  "orig": 8,
+  "reach": 9,
+  "why": "romantic stat (16.7 years asleep beside your person) with a charming bed/window/moon scene; tag-your-person send+comment"
  }
 }
