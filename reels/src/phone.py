@@ -311,12 +311,12 @@ class Search:
     A later event clears the box and starts again. 'final' (optional) is a completion that gets selected and bolded on the last event."""
     def __init__(self, events, clock="9:41", dark=False, accent=(66, 133, 244), hint="Search"):
         self.events = sorted(events, key=lambda e: e["at"]); self.clock, self.dark, self.accent, self.hint = clock, dark, accent, hint
-        self.items = [dict(at=e["at"] + e.get("type_time", 1.0) + .85 * len(e["sugg"])) for e in self.events]
+        self.items = [dict(at=e["at"] + e.get("type_time", 1.0) + e.get("gap", .85) * len(e["sugg"])) for e in self.events]
         self.cues = []
         for e in self.events:
             tt = e.get("type_time", 1.0)
             for k in range(int(tt * 9)): self.cues.append((e["at"] + k / 9, "key", .5))
-            for j in range(len(e["sugg"])): self.cues.append((e["at"] + tt + .25 + j * .85, "pop", .5))
+            for j in range(len(e["sugg"])): self.cues.append((e["at"] + tt + .25 + j * e.get("gap", .85), "pop", .5))
     def draw(self, t):
         bg = (24, 25, 29) if self.dark else (255, 255, 255); fg = (240, 240, 245) if self.dark else (32, 33, 36); mut = (150, 152, 160) if self.dark else (112, 117, 122)
         img = Image.new("RGB", (UW, UH), bg); d = ImageDraw.Draw(img); status_bar(img, self.dark, self.clock)
@@ -334,7 +334,7 @@ class Search:
         d.line([(0, 300), (UW, 300)], fill=(60, 62, 68) if self.dark else (232, 234, 237), width=2)
         y = 330
         for j, s in enumerate(cur["sugg"]):
-            ta = cur["at"] + tt + .25 + j * .85
+            ta = cur["at"] + tt + .25 + j * cur.get("gap", .85)
             if t < ta: break
             a = clamp((t - ta) / .18); sel = cur.get("final") == s
             lay = text_layer(q + s, 44, "semi", fg if not sel else self.accent, maxw=860, align="left", pad=4, spacing=1.12)

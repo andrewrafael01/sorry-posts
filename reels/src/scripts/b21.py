@@ -3,18 +3,41 @@ from scripts.common import *
 from phone import Search, Notes
 
 def search_reel(num, name, hook, hl, events, title, caption, story, dark=False, bg=(40, 90, 200), style="pop", hold=3.0):
+    import voice
+    speech = []
+    if voice.enabled() and voice._engine() == "kokoro":
+        nar, me = voice.NARRATOR, voice.voice_for("me"); cur = .15; hl_ = voice.seconds(hook, nar)
+        if hl_: speech.append((cur, hook, nar)); cur += hl_ + .3
+        for e in sorted(events, key=lambda e: e["at"]):
+            q = e["q"].strip(); lq = voice.seconds(q, me) or 0; e["at"] = cur; e["type_time"] = max(e.get("type_time", 1.0), lq + .1)
+            if lq: speech.append((cur, q, me))
+            ls = [voice.seconds(x, nar) or 0 for x in e["sugg"]]; e["gap"] = max(.85, max(ls or [0]) + .25); t0 = cur + e["type_time"] + .25
+            for j, x in enumerate(e["sugg"]):
+                if ls[j]: speech.append((t0 + j * e["gap"], x, nar))
+            cur = t0 + len(e["sugg"]) * e["gap"] + .5
     ui = Search(events, dark=dark)
     last = max(i["at"] for i in ui.items)
     shot = PhoneShot(ui, dur=last + hold, caps=[dict(text=hook, style="hook", hl=hl, y=290)], bg=bg, music_dip=(last - .2, last + 1.2, .3), cues=[(last, "boom", .5), (last + .6, "womp", .4)])
+    if speech: shot.speech = speech
     return Reel(f"{num}_{name}", [shot], style=style, seed=num, title=title, caption=caption, story=story)
 
 def notes_reel(num, name, hook, hl, nt, lines, title, caption, story, dark=False, bg=(250, 160, 20), style="lofi", accent=(255, 159, 10), back="Notes", gap=1.0):
-    ev, t = [], .7
+    import voice
+    ev, t, speech = [], .7, []
+    kk = voice.enabled() and voice._engine() == "kokoro"
+    if kk:
+        hl_ = voice.seconds(hook, voice.NARRATOR)
+        if hl_: speech.append((.15, hook, voice.NARRATOR)); t = .15 + hl_ + .4
     for ln in lines:
         kind, text = ln if isinstance(ln, tuple) else ("line", ln)
-        ev.append(dict(at=t, text=text, kind=kind)); t += gap + (.25 if len(text) > 30 else 0)
+        ev.append(dict(at=t, text=text, kind=kind)); step = gap + (.25 if len(text) > 30 else 0)
+        if kk:
+            L = voice.seconds(text, voice.NARRATOR)
+            if L: speech.append((t, text, voice.NARRATOR)); step = max(step, L + .3)
+        t += step
     ui = Notes(nt, ev, dark=dark, accent=accent, back=back)
     shot = PhoneShot(ui, dur=t + 2.4, caps=[dict(text=hook, style="hook", hl=hl, y=290)], bg=bg, music_dip=(t - .6, t + .8, .3), cues=[(t - gap, "boom", .5), (t, "womp", .4)])
+    if speech: shot.speech = speech
     return Reel(f"{num}_{name}", [shot], style=style, seed=num, title=title, caption=caption, story=story)
 
 def g_mom():
