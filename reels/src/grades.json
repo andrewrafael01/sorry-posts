@@ -214,5 +214,13 @@
   "orig": 6.5,
   "reach": 9,
   "why": "held: label-heavy fireworks on an age line, visuals not at the bar and orig is low (late-bloomer lists are everywhere)"
+ },
+ "427_reunions_left": {
+  "hook": 9,
+  "button": 8,
+  "send": 10,
+  "orig": 8,
+  "reach": 8,
+  "why": "held at 83: very strong for diaspora audience (send 10) but narrower reach; globe visual is clean but plain"
  }
 }
