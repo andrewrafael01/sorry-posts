@@ -36,8 +36,8 @@ CONF = {
  "425_happiness_spreads": dict(col=(255, 150, 190), A=("3 STEPS", "YOUR HAPPINESS TRAVELS THAT FAR", .85), B=("A stranger you'll", "never meet is happier because of you", "stranger", .60), C=("TAG THEM", .95)),
 }
 
-def frame_at(name, frac):
-    mp4 = os.path.join(MP4, name + ".mp4")
+def frame_at(name, frac, src=None):
+    mp4 = os.path.join(MP4, (src or name) + ".mp4")
     dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", mp4], capture_output=True, text=True).stdout.strip())
     t = max(0.2, min(dur - .3, dur * frac)); tmp = f"/tmp/cover_{name}_{int(frac * 1000)}.png"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{t:.2f}", "-i", mp4, "-frames:v", "1", tmp], check=True)
@@ -60,16 +60,16 @@ def hl_lines(img, l1, l2, word, col, y=330, size=84, gap=112):
                 if p: tx(img, p, x + w / 2, yy, size, "black", c, maxw=1000, shadow=True); x += w
         else: tx(img, line, W / 2, yy, size, "black", WHT, maxw=1000)
 
-def make(name):
+def make(name, src=None):
     c = CONF[name]; os.makedirs(OUT, exist_ok=True); col = c["col"]; outs = []
     # A: STAT - the number is the thumbnail
-    big, small, f = c["A"]; im = scrim(frame_at(name, f))
+    big, small, f = c["A"]; im = scrim(frame_at(name, f, src))
     tx(im, big, W / 2, 440, 240 if len(big) <= 6 else (160 if len(big) <= 9 else 120), "black", col, maxw=1000); tx(im, small, W / 2, 1330, 52, "black", WHT, maxw=980)
     outs.append(("A", im))
     # B: QUESTION - a curiosity gap with one word picked out
-    l1, l2, word, f = c["B"]; im = scrim(frame_at(name, f)); hl_lines(im, l1, l2, word, col, 345, 78, 104); tx(im, "WATCH TILL THE END", W / 2, 1330, 44, "black", col, maxw=900); outs.append(("B", im))
+    l1, l2, word, f = c["B"]; im = scrim(frame_at(name, f, src)); hl_lines(im, l1, l2, word, col, 345, 78, 104); tx(im, "WATCH TILL THE END", W / 2, 1330, 44, "black", col, maxw=900); outs.append(("B", im))
     # C: SHOCK - the dramatic frame, almost no text
-    text, f = c["C"]; im = scrim(frame_at(name, f), .85, .9); tx(im, text, W / 2, 1330, 104 if len(text) <= 12 else 80, "black", WHT, maxw=980); outs.append(("C", im))
+    text, f = c["C"]; im = scrim(frame_at(name, f, src)); tx(im, text, W / 2, 1330, 104 if len(text) <= 12 else 80, "black", WHT, maxw=980); outs.append(("C", im))
     paths = []
     for v, im in outs:
         p = os.path.join(OUT, f"{name}_{v}.jpg"); im.save(p, quality=90); paths.append(p)
