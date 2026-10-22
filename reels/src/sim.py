@@ -22,7 +22,7 @@ class RingSim(_reel.Shot):
     def __init__(self, title, shape="ring", dur=55.0, spawn=3, spin=.9, gap=.62, g=1500.0, cap=420, seed=1, hue0=.0, unit="balls", sub=None, boost=1.012, ball_r=15, n0=1, mel=None, pgap=.34, gapf=None, pile=False, label=None, speech=None, quiet=False, final=None, ra0=1.6):
         self.passes = 18 if pile else 10; self.gapf, self.pile, self.label, self.quiet, self.final, self.ra0 = gapf, pile, label, quiet, final, ra0; self.speech = list(speech or []); self.fit_speech = False; self.gaps = []; self.pgaps = []
         self.title, self.shape, self.dur, self.spawn, self.spin, self.gap, self.g, self.cap, self.hue0, self.unit, self.sub = title, shape, dur, spawn, spin, gap, g, cap, hue0, unit, sub
-        self.R = 440 if shape == 'ring' else (380 if shape == 'square' else 400) / math.cos(math.pi / {'tri': 3, 'square': 4, 'hex': 6}[shape]); self.boost, self.br, self.n0, self.pgap = boost, ball_r, n0, pgap; self.mel = mel or ODE; self.rng = np.random.RandomState(seed)
+        self.R = 440 if shape == 'ring' else (380 if shape == 'square' else (235 if shape == 'tri' else 400)) / math.cos(math.pi / {'tri': 3, 'square': 4, 'hex': 6}[shape]); self.boost, self.br, self.n0, self.pgap = boost, ball_r, n0, pgap; self.mel = mel or ODE; self.rng = np.random.RandomState(seed)
         self.cues = []; self.shake = None; self.fps = 30; self._sim()
     def _collide(self, p, v):
         """Elastic equal-mass collisions between balls (exchange the velocity component along the line of centres, then push the overlap apart)."""
