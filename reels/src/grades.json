@@ -150,5 +150,21 @@
   "orig": 7,
   "reach": 9,
   "why": "held: pretty but the hook is generic (80 summers) and nothing new to say"
+ },
+ "419_dad_sundays": {
+  "hook": 9,
+  "button": 9,
+  "send": 10,
+  "orig": 8,
+  "reach": 9,
+  "why": "mechanical flip counter of Sundays left with dad runs down 2 years a second with ratchet clacks; call-your-dad send; SSA life table anchor"
+ },
+ "420_two_trees": {
+  "hook": 9,
+  "button": 9,
+  "send": 10,
+  "orig": 7,
+  "reach": 9,
+  "why": "waiting 10 years costs $421k: two compounding trees grow side by side; comment the age you started; tag a friend in their 20s; 7% assumption stated"
  }
 }
