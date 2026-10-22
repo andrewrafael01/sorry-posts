@@ -46,5 +46,21 @@
   "orig": 8,
   "reach": 9,
   "why": "opens already at 24h awake with the goggle view, rewinds, then climbs; all-nighter friend send trigger; real study + AAA/NHTSA numbers"
+ },
+ "406_phone_ten_years": {
+  "hook": 9,
+  "button": 9,
+  "send": 9,
+  "orig": 7,
+  "reach": 10,
+  "why": "payoff-first hook (ten red years) then rewinds to derive it; 'what's your number' comment bait; tag-someone; sliver-merge visual is new, topic is saturated"
+ },
+ "407_heartbeats": {
+  "hook": 10,
+  "button": 9,
+  "send": 10,
+  "orig": 8,
+  "reach": 9,
+  "why": "self-referential live counter that ticks on every thump of the audio; spend-a-million-with-someone send trigger; honest caveat that it is not a literal limit"
  }
 }

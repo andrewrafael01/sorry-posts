@@ -1,6 +1,6 @@
 """Cheap gate to run BEFORE any render (seconds, not 10 minutes).
 python3 preflight.py b61 domino_moon           -> predicted length, layout QA, sim validation, contact sheet, grade gate
-Exit code 1 (and 'BLOCKED') if the reel would be outside 50-59 s, has layout problems, leaks physics, or its graded score is under 85."""
+Exit code 1 (and 'BLOCKED') if the reel would be outside the sane range, has layout problems, leaks physics, or its graded score is under 85."""
 import sys, os, json
 sys.path.insert(0, os.path.dirname(__file__))
 import build
@@ -14,7 +14,8 @@ def score(g):
 def run(mod, name, sheet=True):
     r = build.load(mod).REELS[name](); problems = []; info = {}
     info["predicted_s"] = round(r.dur, 1); info["beats"] = [round(s.dur, 1) for s in r.shots]
-    if not 50 <= r.dur <= 59: problems.append(f"length {r.dur:.1f}s is outside 50-59 s")
+    if r.dur < 25 or r.dur > 70: problems.append(f"length {r.dur:.1f}s is outside the 25-70 s sanity range")
+    info["length_note"] = "tight is fine: keep it as long as the idea needs, no padding"
     import qa
     os.environ["VOICE"] = os.environ.get("VOICE", "on")
     res = qa.check(r, step=.5); info["layout_issues"] = len(res)
