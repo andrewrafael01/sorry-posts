@@ -941,7 +941,7 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 
 ## 188_all_in_la 
 - **length:** 18s  |  **music:** pop
-- **suggested caption:** every human who has ever lived at the same time would fit in LA. which one are you?
+- **suggested caption:** all 8 billion people alive today would fit in LA. which one are you?
 - **what happens:** Math: 8e9 / 6 per m2 = 1.33e9 m2 = 1,333 km2. The city of Los Angeles is about 1,300 km2 including water (about 1,215 km2 land).
 
 ## 189_words_arabic 
@@ -988,3 +988,48 @@ Captions below are suggested post text. Cultural reels are written as affectiona
 - **length:** 21s  |  **music:** funk
 - **suggested caption:** planned: 1 hour. actual: 5 hours 40 minutes. which one are you?
 - **what happens:** Joke math: 9 'we should go', 7 goodbyes, 11 containers, planned 1 h, actual 5 h 40 min.
+
+## 198_highest_paid 
+- **length:** 20s  |  **music:** trap
+- **suggested caption:** Ronaldo makes $9.51 every second. who's your number 1?
+- **what happens:** Forbes 2026 list (May 2025 to May 2026 earnings): Ronaldo $300M, Canelo $170M, Messi $140M, LeBron $137.8M, Ohtani $127.6M, Curry $124.7M, Rahm $107M, Benzema $104M, Durant $103.8M, Hamilton $100M (a few outlets differ slightly on Benzema and Curry). Math: $300M / 31,536,000 s = $9.51 per second; /365 = $821,918 per day.
+
+## 199_richest_people 
+- **length:** 21s  |  **music:** synth
+- **suggested caption:** Musk is worth more than #2, #3 and #4 combined. send this to the person who 'needs a raise'
+- **what happens:** Forbes World's Billionaires 2026 (as reported): Musk $839B, Page $257B, Brin $237B, Bezos $224B, Zuckerberg $222B, Ellison $190B, Arnault family $171B, Huang $154B, Buffett $149B, Ortega $148B. Math: 257+237+224 = 718 < 839; 839e9 / (1e6 x 365) = 2,298 years.
+
+## 200_ronaldo_vs_elon 
+- **length:** 20s  |  **music:** cine
+- **suggested caption:** Ronaldo would need 2,797 years to earn what Elon Musk is worth. which one are you?
+- **what happens:** Math: $839B / $300M per year = 2,797 years; 2026 - 2,797 = about 771 BC (traditional founding of Rome: 753 BC). Sources: Forbes 2026 athletes list and Forbes 2026 billionaires list.
+
+## 201_messi_vs_ronaldo 
+- **length:** 16s  |  **music:** trap
+- **suggested caption:** it's 2-2. pick one in the comments. no, you can't say both
+- **what happens:** Messi 8 Ballon d'Or vs Ronaldo 5 (SI). Forbes 2026 earnings: Ronaldo $300M, Messi $140M. Instagram ~670M vs ~511M (2026 lists, vary by snapshot). World Cup goals all-time after the 2026 tournament per Reuters: Messi 21, Cristiano Ronaldo 11.
+
+## 202_insta_followers 
+- **length:** 15s  |  **music:** pop
+- **suggested caption:** Ronaldo has twice the US population in followers. you have 400. send this to the person who has 3,000 and posts like 5 million
+- **what happens:** Follower counts vary by snapshot (Epidemic Sound, SocialPilot and others, 2026): Ronaldo ~666-679M, Messi ~511M, Selena Gomez ~403-415M, Kylie Jenner ~390M, Dwayne Johnson ~390M, Ariana Grande ~371M, Kim Kardashian ~353M, Beyonce ~307M. US population ~340M.
+
+## 203_nba_scorers 
+- **length:** 20s  |  **music:** trap
+- **suggested caption:** LeBron is 5,053 points clear of Kareem. who do you think is the GOAT? i'll wait
+- **what happens:** Regular-season career points entering 2026-27 (The Analyst / bet365): LeBron 43,440; Kareem 38,387; Malone 36,928; Kobe 33,643; Durant 32,597 (passed Jordan 21 March 2026); Jordan 32,292; Nowitzki 31,560; Chamberlain 31,419; Harden 29,339; Shaq 28,596. 43,440 - 38,387 = 5,053; 5,053 / 40 = 126.
+
+## 204_wc_scorers 
+- **length:** 18s  |  **music:** cine
+- **suggested caption:** Mbappe passed Messi. Fontaine scored 13 in one tournament and nobody has touched it. which one is crazier?
+- **what happens:** Per Reuters factbox compiled after the 2026 third-place match: Mbappe 22 (22 matches), Messi 21 (33), Klose 16 (24), Ronaldo (Brazil) 15, Gerd Muller 14, Fontaine 13. Fontaine's 13 came at the 1958 World Cup (widely documented single-tournament record).
+
+## 205_fastest_sport 
+- **length:** 17s  |  **music:** trap
+- **suggested caption:** a badminton smash is 565 km/h. send this to the friend who says badminton is 'not a real sport'
+- **what happens:** Badminton smash 565 km/h (Satwiksairaj Rankireddy, Guinness-verified 2023); jai alai pelota ~306 km/h (measured top speed); squash ball ~267 km/h; tennis serve 263.4 km/h (Sam Groth, Challenger level; unofficial for ATP); baseball 170.3 km/h (Chapman, 2010); Bolt's peak 44.7 km/h. F1 top speeds are about 370 km/h.
+
+## 206_fastest_animals 
+- **length:** 16s  |  **music:** bounce
+- **suggested caption:** Usain Bolt loses to an ostrich. which one are you?
+- **what happens:** Approximate maximum speeds: peregrine falcon in a dive ~389 km/h; cheetah ~112; pronghorn ~88; ostrich ~70; Usain Bolt peak ~44.7 km/h.

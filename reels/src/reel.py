@@ -309,6 +309,82 @@ class BarsShot(Shot):
             L = text_layer(lab, 34, "bold", (210, 216, 240), maxw=bw + 40); paste(img, L, x + bw / 2, base + 62)
         return img
 
+class RankingShot(Shot):
+    """Countdown list with horizontal bars. items listed rank 1..N as (label, value, shown_text); they reveal from the bottom up and #1 lands last.
+    cols = (bar color, #1 color). source = small credit line."""
+    def __init__(self, items, title, source=None, dur=None, bg=(14, 16, 28), bg2=(30, 34, 60), cols=((70, 120, 230), (255, 200, 40)), step=.55, cues=None, crown="#1"):
+        self.items, self.title, self.source, self.bg, self.bg2, self.cols, self.step = items, title, source, bg, bg2, cols, step
+        n = len(items); self.n = n; self.dur = dur or (.9 + n * step + 3.0)
+        self.t_of = {i: .8 + (n - 1 - i) * step for i in range(n)}
+        self.cues = list(cues or []) + [(self.t_of[i], "pop", .6) for i in range(1, n)] + [(self.t_of[0], "hit", .95), (self.t_of[0] + .1, "sparkle", .6)]
+        self._b = None
+    def render(self, lt):
+        if self._b is None:
+            im = Image.new("RGB", (W, H)); d = ImageDraw.Draw(im)
+            for y in range(H): d.line([(0, y), (W, y)], fill=tuple(int(lerp(self.bg[i], self.bg2[i], y / H)) for i in range(3)))
+            self._b = im
+        img = self._b.copy(); d = ImageDraw.Draw(img)
+        L = text_layer(self.title, 62, "black", WHITE, maxw=880); paste(img, L, W / 2, 250, scale=out_back(lt / .3), alpha=clamp(lt / .1))
+        n = self.n; mx = max(v for _, v, _ in self.items); y0 = 430; rh = min(124, int(1240 / n)); x0 = 70; bmax = 560
+        for i, (lab, val, shown) in enumerate(self.items):
+            u = lt - self.t_of[i]
+            if u < 0: continue
+            g = out_cubic(u / .45); y = y0 + i * rh; top = i == 0
+            col = self.cols[1] if top else self.cols[0]; bw = max(40, int(bmax * val / mx * g))
+            if top: d.rounded_rectangle([x0 - 14, y - 6, W - 60, y + rh - 14], 22, outline=self.cols[1], width=5)
+            rk = text_layer(f"{i + 1}", 46, "black", self.cols[1] if top else (150, 160, 200), maxw=80); paste(img, rk, x0 + 20, y + rh / 2 - 8, alpha=g)
+            d.rounded_rectangle([x0 + 70, y + 12, x0 + 70 + bw, y + rh - 26], 14, fill=col)
+            nm = text_layer(lab, 38, "xbold", (10, 12, 24) if top else WHITE, maxw=bmax - 20, align="left", pad=0); 
+            if nm.width < bw - 30: img.paste(nm, (x0 + 90, int(y + rh / 2 - 8 - nm.height / 2)), nm)
+            else:
+                paste(img, nm, x0 + 70 + bw + 20 + nm.width / 2, y + rh / 2 - 8, alpha=g)
+            vt = text_layer(shown, 40, "black", WHITE, maxw=300)
+            vx = x0 + 70 + bw + 16 + vt.width / 2 if nm.width < bw - 30 else min(W - 60 - vt.width / 2, x0 + 70 + bw + 40 + nm.width + vt.width / 2)
+            if nm.width >= bw - 30: vx = min(W - 80 - vt.width / 2, x0 + 70 + bw + 20 + nm.width + 20 + vt.width / 2)
+            paste(img, vt, vx, y + rh / 2 - 8, alpha=g)
+        if self.source:
+            Ls = text_layer(self.source, 30, "bold", (170, 180, 215), maxw=900); paste(img, Ls, W / 2, H * .9, alpha=.8)
+        return img
+
+class VersusShot(Shot):
+    """Head to head. rows: (label, left_text, right_text, 'l'|'r'|None for the winner). Rows pop in one by one; the tally shows at the end."""
+    def __init__(self, left, right, rows, title=None, dur=None, step=1.0, bg=(18, 14, 34), bg2=(40, 24, 70), cols=((90, 170, 255), (255, 110, 130)), source=None):
+        self.left, self.right, self.rows, self.title, self.bg, self.bg2, self.cols, self.step, self.source = left, right, rows, title, bg, bg2, cols, step, source
+        self.dur = dur or (1.0 + len(rows) * step + 2.6)
+        self.cues = [(1.0 + i * step, "pop", .7) for i in range(len(rows))] + [(1.0 + len(rows) * step, "hit", .9)]
+        self._b = None
+    def render(self, lt):
+        if self._b is None:
+            im = Image.new("RGB", (W, H)); d = ImageDraw.Draw(im)
+            for y in range(H): d.line([(0, y), (W, y)], fill=tuple(int(lerp(self.bg[i], self.bg2[i], y / H)) for i in range(3)))
+            self._b = im
+        img = self._b.copy(); d = ImageDraw.Draw(img)
+        if self.title:
+            L = text_layer(self.title, 54, "black", WHITE, maxw=880); paste(img, L, W / 2, 230, alpha=clamp(lt / .2))
+        a = out_back(lt / .35)
+        for side, nm, cx in (("l", self.left, W * .27), ("r", self.right, W * .73)):
+            col = self.cols[0] if side == "l" else self.cols[1]
+            L = text_layer(nm, 64, "black", col, maxw=420); paste(img, L, cx, 380, scale=a)
+        d.line([(W / 2, 330), (W / 2, 1360)], fill=(80, 70, 120), width=4)
+        tl = tr = 0
+        for i, (lab, lt_, rt_, win) in enumerate(self.rows):
+            u = lt - (1.0 + i * self.step)
+            if u < 0: continue
+            y = 520 + i * 200; al = clamp(u / .2); s = out_back(u / .3)
+            Ll = text_layer(lab, 34, "bold", (190, 180, 230), maxw=700); paste(img, Ll, W / 2, y - 40, alpha=al)
+            for side, txt, cx in (("l", lt_, W * .27), ("r", rt_, W * .73)):
+                won = win == side; col = (120, 255, 160) if won else ((170, 170, 190) if win else WHITE)
+                T = text_layer(txt, 62 if len(txt) < 9 else 46, "black", col, maxw=420); paste(img, T, cx, y + 40, scale=s * (1.08 if won else 1), alpha=al)
+                if won: d.rounded_rectangle([cx - 200, y + 4, cx + 200, y + 84], 24, outline=(120, 255, 160), width=4)
+            if win == "l": tl += 1
+            elif win == "r": tr += 1
+        end = 1.0 + len(self.rows) * self.step
+        if lt > end:
+            u = lt - end; T = text_layer(f"{tl}  -  {tr}", 120, "black", (255, 212, 0), maxw=700); paste(img, T, W / 2, 1560, scale=out_back(u / .35), alpha=clamp(u / .1))
+        if self.source:
+            Ls = text_layer(self.source, 30, "bold", (170, 160, 210), maxw=900); paste(img, Ls, W / 2, H * .9, alpha=.8)
+        return img
+
 # --------------------------------------------------------------- audio assembly
 def ambience(kind, dur, seed=0):
     n = int(dur * SR); r = np.random.RandomState(abs(hash(kind)) % 9999 + seed)
@@ -325,7 +401,16 @@ def ambience(kind, dur, seed=0):
 
 class Reel:
     def __init__(self, name, shots, style="lofi", seed=0, loop=True, gain_music=.62, bpm=None, caption="", story="", title="", vo=None):
-        self.vo = vo or []   # [(shot_index, text)] read aloud at the start of that shot when a voice engine is available (see voice.py)
+        import voice
+        self.vo = vo or voice.SCRIPTS.get(name, [])   # [(shot_index, text)] narration read at the start of that shot when a voice engine is on (see voice.py)
+        for idx, text in self.vo:   # fit the picture to the speech so the words land on the right slide
+            L = voice.seconds(text)
+            if L: shots[idx].dur = max(shots[idx].dur, L + .6)
+        for s in shots:
+            for ln in getattr(s, "lines", []) or []:
+                if ln.get("voice"):
+                    L = voice.seconds(ln["text"], ln["voice"])
+                    if L: ln["dur"] = max(ln.get("dur", 1.0), L + .1)
         self.name, self.shots, self.style, self.seed, self.loop, self.gm = name, shots, style, seed, loop, gain_music
         self.caption, self.story, self.title = caption, story, title
         bpm_, self.bl = music.beat_len(style, seed)
@@ -392,8 +477,15 @@ class Reel:
         if self.vo:
             import voice
             for idx, text in self.vo:
-                x = voice.speak(text)
+                x = voice.speak(text, None)
                 if x is not None: clips.append((int((self.starts[idx] + .12) * SR), x))
+        if self.vo is not None or True:
+            import voice as _vc
+            for s, t0 in zip(self.shots, self.starts):
+                for ln in getattr(s, "lines", []) or []:
+                    if ln.get("voice") and _vc.speakable(ln["text"]):
+                        x = _vc.speak(ln["text"], ln["voice"])
+                        if x is not None: clips.append((int((t0 + ln["at"]) * SR), x))
         for i0, x in clips:
             i1 = min(n, i0 + len(x)); gain[max(0, i0 - 2000):i1 + 4000] = np.minimum(gain[max(0, i0 - 2000):i1 + 4000], .38)
         out = mus * gain[:, None] * self.gm

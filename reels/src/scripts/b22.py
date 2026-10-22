@@ -141,6 +141,8 @@ VO = {
  "187_count_billion": [(0, "How long does it take to count out loud?"), (1, "To a million, one number a second, is eleven days."), (2, "To a billion is thirty one years, without sleeping."), (3, "To a trillion is thirty one thousand seven hundred years."), (4, "Thirty one thousand years ago, people were just starting to paint on cave walls."), (5, "A million is a vacation. A billion is a life.")],
  "193_fall_earth": [(0, "What if you jumped into a hole through the center of the Earth?"), (2, "You'd hit twenty eight thousand kilometers an hour in the middle."), (3, "And reach the other side in forty two minutes."), (4, "Then you'd stop, right at the opening, and climb out."), (5, "And you could do it all over again.")],
 }
+import voice as _voice
+_voice.SCRIPTS.update(VO)
 def _v(fn):
     def w():
         r = fn(); r.vo = VO.get(r.name, []); return r

@@ -3,17 +3,24 @@ from arch import *
 
 def meta(r, title, caption, story): r.title, r.caption, r.story = title, caption, story; return r
 
-def talk(*ls, t0=.35):
+def talk(*ls, t0=.35, voices=None):
     """auto-times a back-and-forth. each item: (who, text[, gap_after[, sfx]])"""
     out, t = [], t0
     for l in ls:
         who, text = l[0], l[1]; gap = min(l[2], .5) * .5 if len(l) > 2 else .12
         d = max(.85, .22 * len(text.split()) + .42); kw = dict(sfx=l[3]) if len(l) > 3 else {}
+        if voices:
+            import voice
+            if voice.speakable(text):
+                kw["voice"] = voices[who]; sec = voice.seconds(text, voices[who])
+                if sec: d = max(.85, sec + .1)
         out.append(S(text, who, t, d, **kw)); t += d + gap
     return out, round(t + .35, 2)
 
 def sc(K, label, bg, who, ls, props=(), sub=None, hl=(), **kw):
-    say, dur = talk(*ls)
+    import voice
+    vs = [voice.voice_for(a["c"]) for a in who] if voice.enabled() else None
+    say, dur = talk(*ls, voices=vs)
     return beat(label, sub, hl, bg, who, props, say, dur=max(dur, kw.pop("min", 3.2)), cast=K, **kw)
 
 # ------------------------------------------------------------------ 147 sharmaji's son
