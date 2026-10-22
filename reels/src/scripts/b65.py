@@ -67,7 +67,9 @@ def heartbeat():
     def year(img, lt, p, b):
         tg, pu = base(img, b, lt); heart(img, 540, 700, 11 * (1 + .09 * pu), pulse=pu)
         n = 37.8e6 * eio(seg(lt, .4, A(b, "year", 2.5) + .5)); tx(img, f"{n / 1e6:.0f} million a year", 540, 330, 70, "black", GOLD, maxw=980)
-        m = 3.02e9 * eio(seg(lt, A(b, "three", 3.0), b.dur - .4)); tx(img, f"{m / 1e9:.2f} billion at 80", 540, 430, 54, "black", WHITE, maxw=980, a=clamp((lt - A(b, "three", 3.0) + .3) / .3)); trace(img, tg)
+        m = 3.02e9 * eio(seg(lt, A(b, "three", 3.0), b.dur - .4)); aa = clamp((lt - A(b, "three", 3.0) + .3) / .3)
+        if aa > .05: tx(img, f"{m / 1e9:.2f} billion at 80", 540, 430, 54, "black", WHITE, maxw=980, a=aa)
+        trace(img, tg)
     def age25(img, lt, p, b):
         tg, pu = base(img, b, lt); frac = 946e6 / 3.02e9; heart(img, 540, 640, 10 * (1 + .09 * pu), pulse=pu)
         tx(img, "AGE 25", 540, 300, 60, "black", GOLD, shadow=False); life_bar(img, 1000, frac * eio(seg(lt, .4, 2.0)), "~946 million used", 1.0)
