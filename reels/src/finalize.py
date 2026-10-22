@@ -39,7 +39,7 @@ INSERTED = set(open(S + "/inserted.txt").read().split()) if os.path.exists(S + "
 def edu_meta():
     import build
     out = {}
-    for m in ("b40", "b41", "b42", "b43", "b44", "b45", "b46", "b47", "b48", "b49", "b50", "b51"):
+    for m in ("b40", "b41", "b42", "b43", "b44", "b45", "b46", "b47", "b48", "b49", "b50", "b51", "b52", "b53"):
         for k, fn in build.load(m).REELS.items():
             r = fn(); out[r.name] = (r.title or k, r.caption)
     return out

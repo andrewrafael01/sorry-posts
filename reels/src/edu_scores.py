@@ -49,6 +49,12 @@ S = {
  "327_tallest_buildings_ranked": (8, 8, 8, 5, 8), "328_biggest_countries_ranked": (8, 8, 8, 5, 8), "329_most_populated_countries_ranked": (8, 8, 9, 5, 9), "330_longest_rivers_ranked": (8, 8, 8, 5, 8),
  "331_highest_mountains_ranked": (8, 8, 8, 5, 8), "332_most_spoken_languages_ranked": (9, 8, 9, 6, 9), "333_oldest_living_things_ranked": (9, 9, 8, 7, 8), "334_speed_ladder": (9, 9, 8, 7, 8),
  "335_deadliest_animals_ranked": (10, 9, 9, 6, 9), "336_moons_bigger_than_mercury": (9, 9, 8, 7, 8),
+ "337_earth_equator_bulge": (9, 8, 8, 6, 8), "338_escape_velocity_ladder": (8, 8, 7, 6, 7), "339_earth_smoother_than_billiard_ball": (9, 9, 8, 8, 8), "340_metric_system_logic": (8, 9, 8, 6, 8),
+ "341_centennial_light_bulb": (9, 9, 8, 7, 8), "342_trex_closer_to_us_than_stegosaurus": (10, 10, 9, 8, 9), "343_bacteria_vs_human_cells": (9, 9, 9, 7, 8), "344_pyramid_block_every_2_minutes": (9, 9, 8, 7, 8),
+ "345_eiffel_tower_summer_growth": (9, 8, 8, 7, 8), "346_the_great_dying": (9, 9, 8, 7, 8),
+ "347_birthday_twins_22_million": (9, 8, 10, 7, 9), "348_trees_per_person": (9, 9, 8, 6, 8), "349_dog_years_formula": (10, 9, 10, 7, 9), "350_krakatoa_loudest_sound": (9, 9, 8, 7, 8),
+ "351_stars_you_can_see": (8, 8, 8, 5, 8), "352_left_handed_one_in_ten": (8, 8, 9, 6, 8), "353_plastic_garbage_truck_minute": (9, 9, 8, 6, 8), "354_hottest_vs_coldest_on_earth": (8, 8, 8, 5, 8),
+ "355_spf_math_100_vs_50": (9, 9, 9, 6, 9),
 }
 def score(name):
     h, b, s, o, r = S[name]; return round(10 * (.20 * h + .20 * b + .25 * s + .15 * o + .20 * r) - 4, 1)
