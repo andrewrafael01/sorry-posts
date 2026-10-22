@@ -30,7 +30,6 @@ def rice():
      N("A man asks a king for a reward. One grain of rice on the first square of a chessboard, then double it on every square after. The king laughs. He shouldn't.", T.kinetic([("1 GRAIN OF RICE", WHITE, 80), ("DOUBLED 64 TIMES", GOLD, 80)])),
      N("Square one, one grain. Square two, two. Square three, four. By square ten, five hundred twelve grains. Still a small handful.", T.steps("grains on each square", [("1", "square 1"), ("4", "square 3"), ("512", "square 10")], words=["one", "four", "five"])),
      N("By square twenty, over a million. By square thirty, over five hundred million grains. Now it's a lot.", T.steps("keep doubling", [("524,288", "square 20"), ("536,870,912", "square 30")], words=["twenty", "thirty"])),
-     N("Square forty, over five hundred billion grains. Square fifty, over five hundred trillion.", T.steps("it speeds up", [("549 billion", "square 40"), ("562 trillion", "square 50")], words=["forty", "fifty"])),
      N("The final square alone holds nine quintillion grains. All sixty four squares together: eighteen point four quintillion.", T.num("all 64 squares", tot, fmt="{:,.0f}", bottom="grains of rice", sub="18.4 quintillion", word="eighteen", base=130)),
      N("That's about four hundred sixty billion tonnes of rice. The whole world grows around five hundred million tonnes a year, so this one chessboard is nine hundred years of global harvests.", T.num("that weighs", 461, fmt="{:,.0f}", bottom="billion tonnes", color=GRN, sub="about 900 years of world rice", word="four", dur=1.4)),
      N("This is exponential growth. It looks slow, then it explodes. The same math runs viruses, compound interest, and every viral video.", T.kinetic([("SLOW", CY, 100), ("SLOW", CY, 100), ("BOOM", GOLD, 140)])),
@@ -73,6 +72,7 @@ def thunder():
      N("So every three seconds you count means about one kilometer. Count nine seconds, and the lightning was about three kilometers away.", T.steps("seconds to distance", [("3 seconds", "1 km"), ("9 seconds", "3 km"), ("15 seconds", "5 km")], words=["three", "nine", "fifteen"])),
      N("If you use miles, it's five seconds per mile. Count ten seconds, and it's two miles away.", T.steps("or in miles", [("5 seconds", "1 mile"), ("10 seconds", "2 miles")], words=["five", "ten"])),
      N("Here's the safety rule. If you count thirty seconds or less, you're within the range where lightning can still strike you. Go inside.", T.num("30 seconds or less", 30, fmt="{:.0f}", post=" s", bottom="means get inside", color=PINK, word="thirty")),
+     N("Lightning can strike up to about ten miles from a storm, so even a clear blue sky overhead isn't always safe.", T.num("lightning can strike", 10, fmt="{:.0f}", post=" miles away", color=ORG, bottom="from the storm itself", word="ten", dur=1.0)),
      N("And wait thirty minutes after the last thunder before you go back out. Storms can still reach you after they seem to pass.", T.kinetic([("LAST THUNDER", WHITE, 80), ("WAIT 30 MIN", GOLD, 110)])),
     ]
     return R(219, "thunder_math", "count the seconds between lightning and thunder", "3 seconds between lightning and thunder = 1 km. send this to the friend who stays outside during storms",
@@ -87,7 +87,7 @@ def deck():
      N("Multiply them all and you get about eight followed by sixty seven zeros.", T.num("possible orders", 8.07, fmt="{:.2f}", post=" × 10⁶⁷", color=GOLD, bottom="an 8 followed by 67 zeros", word="eight", base=150, dur=2.0)),
      N("The entire Earth has about one point three times ten to the fiftieth atoms. That sounds huge, but a deck of cards has about six hundred quadrillion times more orders than the Earth has atoms.", T.steps("compare", [("1.3 × 10⁵⁰", "atoms in the whole Earth"), ("8.1 × 10⁶⁷", "ways to order a deck")], words=["entire", "deck"], size=76)),
      N("If every person alive shuffled a deck every second since the universe began, they would barely have scratched it.", T.stat("8 billion people", "1 shuffle / second", "for 13.8 billion years", CY, "not even a dent", 120)),
-     N("So the next time you shuffle, remember. That exact order has almost certainly never happened before, and never will again.", T.kinetic([("NEVER BEFORE", WHITE, 90), ("NEVER AGAIN", GOLD, 110)])),
+     N("So the next time you shuffle, remember. That exact order has almost certainly never happened before, and never will again, no matter how many people shuffle.", T.kinetic([("NEVER BEFORE", WHITE, 90), ("NEVER AGAIN", GOLD, 110)])),
     ]
     return R(220, "deck_of_cards", "every card shuffle is unique", "a shuffled deck is in an order that has never existed before. 52! = 8 x 10^67. send this to the card shark in your group",
              "52! = 80,658,175,170,943,878,571,660,636,856,403,766,975,289,505,440,883,277,824,000,000,000,000 = 8.07e67. Earth has about 1.3e50 atoms. 8e9 people x 4.4e17 s = 3.5e27 shuffles = 4e-41 of 52!.", "jazz", n)
@@ -126,7 +126,7 @@ def pi_digits():
      N("NASA's most precise calculations for sending spacecraft across the solar system use just fifteen digits after the decimal point.", T.num("NASA uses", 15, fmt="{:.0f}", bottom="digits of pi", color=GOLD, sub="3.141592653589793", word="fifteen", dur=1.0)),
      N("What about the whole universe? To measure the entire observable universe to the width of a single hydrogen atom, you need only thirty nine digits.", T.num("the whole universe", 39, fmt="{:.0f}", bottom="digits, to one atom's width", color=PINK, word="thirty", dur=1.2)),
      N("Yet computers have calculated pi to over a hundred trillion digits, just to prove they can.", T.num("record digits", 100, fmt="{:,.0f}", post=" trillion", bottom="and counting", color=GRN, word="hundred", dur=1.4)),
-     N("So memorizing seventy thousand digits, like the record holder, is a talent. But the universe itself only asks for thirty nine.", T.kinetic([("39 DIGITS", GOLD, 130), ("is the whole universe", WHITE, 56)])),
+     N("So memorizing seventy thousand digits, like the record holder, is a talent. But the universe itself only asks for thirty nine. Every digit after that is just for fun.", T.kinetic([("39 DIGITS", GOLD, 130), ("is the whole universe", WHITE, 56)])),
     ]
     return R(223, "pi_digits", "how many digits of pi do you need", "NASA uses 15 digits of pi. the whole universe needs 39. send this to your math teacher",
              "NASA JPL: 15 digits suffice for interplanetary navigation; 39 digits of pi give the circumference of a circle the size of the observable universe (about 93 billion light years) to within the width of a hydrogen atom. Record: over 100 trillion digits (2022).", "synth", n)
