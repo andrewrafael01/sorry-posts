@@ -3,3 +3,5 @@ __pycache__/
 *.wav
 reels/src/voices/*.onnx
 reels/src/.voice_cache/
+reels/src/voices/*.bin
+reels/src/assets/
