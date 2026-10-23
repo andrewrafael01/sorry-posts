@@ -250,5 +250,13 @@
   "orig": 8,
   "reach": 9,
   "why": "every 18-30 year old has this chat; the typing-then-stopped beat is the original detail; no stats, no bait"
+ },
+ "431_friend_stopped": {
+  "hook": 9,
+  "button": 8,
+  "send": 10,
+  "orig": 8,
+  "reach": 9,
+  "why": "everyone has this friend; the typed-then-deleted draft is the distinct device; the line \"saw this and thought of you\" is something they actually send; no stats, no bait"
  }
 }
