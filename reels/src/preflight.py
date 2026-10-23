@@ -35,7 +35,8 @@ def run(mod, name, sheet=True):
                 q = voice.intelligibility(nr)
                 if q: vq.append((q["wer"], q["words_per_s"]))
                 if q and q["wer"] > .12: problems.append(f"voice unclear (wer {q['wer']}): {nr[:50]}")
-                if q and q["words_per_s"] > 3.7: problems.append(f"voice too fast ({q['words_per_s']} words/s): {nr[:50]}")
+                if q and q["words_per_s"] > (4.2 if len([x for x in nr.replace("?", ".").replace("!", ".").split(".") if x.strip()]) == 1 else 3.7):   # a one-sentence line has no pauses to dilute the rate
+                    problems.append(f"voice too fast ({q['words_per_s']} words/s): {nr[:50]}")
         if vq: info["voice"] = {"worst_wer": max(v[0] for v in vq), "max_words_per_s": max(v[1] for v in vq)}
     g = json.load(open(GRADES)).get(r.name) if os.path.exists(GRADES) else None
     if not g: problems.append("no graded factors in grades.json (grade it harshly first)")

@@ -15,6 +15,7 @@ HERE = os.path.dirname(__file__); OUT = os.path.join(HERE, "..", "covers"); MP4 
 Y = (255, 214, 0); WHT = (255, 255, 255)
 # name: dict(col=accent, A=(big, small, frame_frac), B=(line1, line2, highlight word, frame_frac), C=(text, frame_frac))
 CONF = {
+ "430_group_chat": dict(col=(255, 190, 120), A=("THE GROUP CHAT", "THAT WENT QUIET", .56), B=("When did the group chat", "get so quiet?", "quiet", .60), C=("NOBODY LEFT IT", .72)),
  "428_tri_canon": dict(col=(120, 220, 255), A=("YOU KNOW THIS SONG", "EVERY BOUNCE IS A NOTE", .70), B=("Can you name the song", "the ball is playing?", "song", .55), C=("IT'S PLAYING A SONG", .90)),
  "400_ring_ode": dict(col=(255, 214, 0), A=("WHICH SONG?", "EVERY BOUNCE IS A NOTE", .70), B=("Can you name the song", "the ball is playing?", "song", .55), C=("IT'S PLAYING A SONG", .90)),
  "403_hex_king": dict(col=(255, 120, 150), A=("WHICH SONG?", "EVERY BOUNCE IS A NOTE", .70), B=("Do you know the song", "this ball is playing?", "song", .55), C=("WATCH THEM MULTIPLY", .90)),

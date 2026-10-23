@@ -242,5 +242,13 @@
   "orig": 7,
   "reach": 8,
   "why": "every 20-year-old can say that is me in 3s; no math; send to a specific person (mom/dad)"
+ },
+ "430_group_chat": {
+  "hook": 9,
+  "button": 8,
+  "send": 10,
+  "orig": 8,
+  "reach": 9,
+  "why": "every 18-30 year old has this chat; the typing-then-stopped beat is the original detail; no stats, no bait"
  }
 }
