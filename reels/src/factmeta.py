@@ -48,3 +48,12 @@ M.update({
  "486_antarctica_water": (CY, "60%", "OF ALL FRESH WATER", "60% of Earth's fresh", "water is in Antarctica", "60%", "FROZEN IN ONE PLACE", .45),
  "487_challenger_deep": (CY, "THE OCEAN", "IS DEEPER THAN EVEREST IS TALL", "The ocean is deeper", "than Everest is tall", "deeper", "EVEREST WOULD DROWN", .45),
 })
+
+M.update({
+ "464_jingle_ring": (RD, "NAME THIS SONG", "EVERY BOUNCE IS A NOTE", "Can you name the song", "the balls are playing?", "song", "WHICH SONG IS THIS?", .5),
+ "465_twinkle_hex": (BL, "NAME THIS SONG", "EVERY BOUNCE IS A NOTE", "You know this song", "the balls are playing", "know", "YOU KNOW THIS ONE", .5),
+ "466_auld_square": (G, "NAME THIS SONG", "EVERY BOUNCE IS A NOTE", "The song everyone sings", "at midnight", "midnight", "THE MIDNIGHT SONG", .5),
+ "467_frere_tri": (GR, "NAME THIS SONG", "YOU LEARNED IT AS A KID", "A song you learned", "as a kid", "kid", "YOU KNOW THIS", .5),
+ "468_row_ring": (CY, "NAME THIS SONG", "EVERY BOUNCE IS A NOTE", "Row, row, row", "your balls", "balls", "ROW ROW ROW", .5),
+ "469_mary_square": (OR, "NAME THIS SONG", "EVERY BOUNCE IS A NOTE", "Which song is this?", "every bounce is a note", "song", "WHICH SONG?", .5),
+})
