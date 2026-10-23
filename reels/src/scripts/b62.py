@@ -61,11 +61,6 @@ def moons():
         days = 29.5 * ph; hud(img, f"{days:.1f} days" if lt > ts else "29.5 days", "FROM FULL MOON TO FULL MOON", (255, 255, 255))
         hl = 12 if lt > A(b, "twelve", 3.6) else 0
         grid(img, TOTAL, 0, lt, hl_first=hl)
-        if hl: tx(img, "12 = one year", 540, 700, 40, "black", GOLD, a=clamp((lt - A(b, "twelve", 3.6)) / .3), shadow=False)
-        t3 = A(b, "nine", b.dur - 1.3)
-        if t3 < lt and not lt > A(b, "seventythree", b.dur - .8): tx(img, "80 YEARS = 989", 540, 1310, 50, "black", GOLD, a=clamp((lt - t3) / .3), shadow=False, maxw=900)
-        t4 = A(b, "seventythree", b.dur - .8)
-        if lt > t4: tx(img, "73 YEARS = 903", 540, 1310, 50, "black", (255, 140, 150), a=clamp((lt - t4) / .3), shadow=False, maxw=900)
     def eighteen(img, lt, p, b):
         t0 = A(b, "eighteen", .3); t1 = A(b, "gone", 2.8); g = 222 * eio(seg(lt, t0, t1))
         hud(img, f"{int(g)}", "GONE BY AGE 18", (255, 140, 150)); moon_phase(img, 540, 520, 150, (lt * .12) % 1.0); grid(img, TOTAL, g, lt)
@@ -92,18 +87,14 @@ def moons():
         if k > .05: starfield(img, lt, 10)
         glow(img, 540, 650, 520 * k + 120, (150, 170, 255), .35 * k); moon_phase(img, 540, 650, int(120 + 100 * k), .5); grid(img, TOTAL, g, lt, pulse=0, scale=1) if k < .98 else None
     N = [
-     ("You will see about nine hundred and ninety full moons in your whole life. That's it. That's the entire supply.", hook),
-     ("A full moon comes around every twenty-nine and a half days. Twelve and a bit every year. Eighty years gives you nine hundred eighty-nine. The world average is closer to seventy-three, which is about nine hundred.", cycle),
-     ("By eighteen, over two hundred are already gone. Most of them, you never even noticed.", eighteen),
-     ("If you're twenty-five, three hundred and nine are behind you. Six hundred eighty are left.", twentyfive),
-     ("At thirty, you've used up three hundred and seventy-one. At forty, nearly five hundred.", decades),
-     ("Be honest. How many did you actually stop and look at? Ten? Twenty?", honest),
-     ("Now think about your parents. At sixty, they have about two hundred and fifty left.", parents),
-     ("Not years. Full moons. Every one of them is a night to call and say, go look outside.", call),
-     ("Tonight, if it's out, look up. Then tell someone to do the same.", end),
+     ("You will see nearly a thousand full moons in your whole life. That's the entire supply.", hook),
+     ("A full moon comes every twenty-nine and a half days. Live to eighty and it adds up to just under a thousand.", cycle),
+     ("If you're twenty-five, around three hundred of them are already gone.", twentyfive),
+     ("Be honest. How many did you actually stop and look at?", honest),
+     ("Tonight, if it's out, go look up.", end),
     ]
     beats = [Clean(n, d, 3.0, cut="cut", push=0) for n, d in N]
     return Reel("402_full_moons", beats, style="cine", seed=402, gain_music=.5, snap=False, grid=0, safe_zone=False, vo=[(i, n) for i, (n, d) in enumerate(N)],
-        title="you will only see 990 full moons", caption="you only get about 990 full moons in a whole life. send this to your parents and tell them to go look outside tonight",
+        title="you will only see 990 full moons", caption="you only get about 990 full moons in a whole life",
         story="Synodic month 29.53 days -> 12.37 full moons a year. 80 years = 989; age 18 = 223 used; age 25 = 309 used (680 left); age 60 = 742 used (about 247 left).")
 REELS = dict(full_moons=moons)

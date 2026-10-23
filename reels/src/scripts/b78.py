@@ -72,10 +72,9 @@ def trees():
      ("Waiting ten years to start investing costs you about four hundred twenty thousand dollars.", hook),
      ("Two friends invest three hundred dollars a month. Alex starts at twenty five. Sam waits until thirty five.", two),
      ("Ten years later, Sam finally starts.", sam),
-     ("Both keep going, same amount, every month, until they're sixty five.", grow),
+     ("Both keep going, same amount every month, until age sixty five.", grow),
      ("Alex ends up with about seven hundred eighty seven thousand. Sam, about three hundred sixty six.", result),
-     ("Alex only put in thirty six thousand dollars more. Time did the rest.", why),
-     ("Comment the age you started. And send this to someone in their twenties.", end),
+     ("Alex only put in thirty six thousand dollars more. The extra years did the rest.", why),
     ]
     beats = [Clean(n, d, 3.0, cut="cut", push=0) for n, d in N]
     return Reel("420_two_trees", beats, style="cine", seed=420, gain_music=.55, snap=False, grid=0, safe_zone=False, vo=[(i, n) for i, (n, d) in enumerate(N)],

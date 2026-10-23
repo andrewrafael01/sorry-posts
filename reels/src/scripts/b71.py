@@ -68,17 +68,15 @@ def coffee():
     def tubs35(img, lt, p, b):
         bg(img); k = int(35 * eio(seg(lt, .3, b.dur - .6))); hud(img, f"{k} BATHTUBS", "150 LITERS EACH"); tubgrid(img, k, 7, 560, 130, 160, lt)
     def three(img, lt, p, b):
-        bg(img); t0 = A(b, "three", 2.5); k = 35 + int(70 * eio(seg(lt, t0 + .2, b.dur - .4))); hud(img, f"{k}" if lt < t0 else f"{k} BATHTUBS", "AT 3 CUPS A DAY" if lt > t0 else "BE HONEST. HOW MANY CUPS?", WHITE if lt < t0 else GOLD)
+        bg(img); t0 = A(b, "three", 2.5); k = 35 + int(70 * eio(seg(lt, t0 + .2, b.dur - .4))); hud(img, f"{k}" if lt < t0 else f"{k} BATHTUBS", "AT 3 CUPS A DAY" if lt > t0 else "AND IF IT'S THREE A DAY?", WHITE if lt < t0 else GOLD)
         tubgrid(img, k, 15, 520, 62, 80, lt)
     def end(img, lt, p, b):
-        bg(img); hud(img, "YOUR NUMBER?", "COMMENT CUPS A DAY"); cup(img, 540, 780, 150, 1.0, lt)
+        bg(img); hud(img, "ONE CUP AT A TIME", "ADDS UP"); cup(img, 540, 780, 150, 1.0, lt)
     N = [
      ("If you drink one cup of coffee a day, you will drink about thirty five bathtubs of it.", hook),
-     ("One cup a day, from twenty to eighty, is over twenty one thousand cups.", cups),
-     ("A cup is about a quarter of a liter. That's five thousand liters of coffee.", liters),
-     ("A bathtub holds around a hundred and fifty. So that's thirty five bathtubs.", tubs35),
-     ("Now be honest. Is it one cup? Or three? Three a day is a hundred and five bathtubs.", three),
-     ("Comment your cups a day. And send this to your coffee person.", end),
+     ("One cup a day, from twenty to eighty. Thirty five bathtubs, full to the top.", tubs35),
+     ("And if it's three cups a day? That's over a hundred bathtubs.", three),
+     ("One cup at a time adds up.", end),
     ]
     beats = [Clean(n, d, 3.0, cut="cut", push=0) for n, d in N]
     return Reel("413_coffee_bathtubs", beats, style="cine", seed=413, gain_music=.5, snap=False, grid=0, safe_zone=False, vo=[(i, n) for i, (n, d) in enumerate(N)],

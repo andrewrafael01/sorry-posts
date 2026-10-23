@@ -64,22 +64,18 @@ def phone_years():
         a = clamp((lt - A(b, "five", 2.0)) / .4)
         for k in range(10, 12): box(img, SX0 + SP * k - 0, SY0, SX0 + SP * k + SP - 12, SY0 + SP - 12, 8, RED, a) if k == 10 else None
     def compare(img, lt, p, b):
-        hud(img, "10 YEARS", "= FIRST GRADE TO A DRIVER'S LICENSE", GOLD); squares(img, lt, red_upto=60, merge=1.0)
+        hud(img, "10 YEARS", "FIRST GRADE TO A DRIVER'S LICENSE", GOLD); squares(img, lt, red_upto=60, merge=1.0)
         tx(img, "6", 220, 1100, 70, "black", WHITE, a=clamp((lt - .3) / .3), shadow=False); tx(img, "16", 860, 1100, 70, "black", WHITE, a=clamp((lt - 1.0) / .3), shadow=False)
     def cta(img, lt, p, b):
-        hud(img, "YOUR NUMBER?", "CHECK SCREEN TIME RIGHT NOW", GOLD); phone(img, 540, 840, 330, 560, 1.0, lt, "?")
+        hud(img, "A DECADE", "YOU CAN'T SCROLL BACK", GOLD); phone(img, 540, 840, 330, 560, 1.0, lt, "?")
     N = [
-     ("You will spend about ten years of your life looking at your phone. Not a guess. Math. Here it is.", hook),
-     ("Open your screen time. Be honest. Let's say four hours a day.", four),
-     ("Surveys say we pick the phone up anywhere from ninety to two hundred times a day.", pick),
-     ("Four hours a day is sixty one days a year. Two whole months, gone, every single year.", days),
-     ("Do that from eighteen to seventy eight, and the days add up to three thousand six hundred and fifty. Ten years, exactly.", add),
-     ("Some twenty twenty four surveys put the average American closer to five hours. That's twelve and a half years.", five),
-     ("Ten years is first grade all the way to your driver's license. It's more than twice as long as the average person stays at one job. Gone to a screen.", compare),
-     ("Check yours right now. Multiply your hours by fifteen, and that's your days a year. Then send this to someone whose number scares you.", cta),
+     ("At four hours a day, you will spend about ten years of your life looking at your phone.", hook),
+     ("Four hours a day is two whole months, gone, every single year.", days),
+     ("Ten years. That's first grade all the way to your driver's license.", compare),
+     ("A decade of your life you can't scroll back.", cta),
     ]
     beats = [Clean(n, d, 3.0, cut="cut", push=0) for n, d in N]
     return Reel("406_phone_ten_years", beats, style="cine", seed=406, gain_music=.5, snap=False, grid=0, safe_zone=False, vo=[(i, n) for i, (n, d) in enumerate(N)],
-        title="you will spend 10 years on your phone", caption="4 hours a day from 18 to 78 is 10 years of your life. what's your screen time? send this to someone whose number scares you",
+        title="you will spend 10 years on your phone", caption="four hours a day is about ten years of your life",
         story="4 h x 365 = 1,460 h = 60.8 days/yr; x 60 years (18 to 78) = 3,650 days = 10.0 years. At 5 h/day: 4,562 days = 12.5 years. Reviews.org 2024 survey reports about 5 h/day for US adults (other surveys range 3.3-6.6 h).")
 REELS = dict(phone_years=phone_years)
