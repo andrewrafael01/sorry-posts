@@ -58,13 +58,13 @@ def happy():
     def stranger(img, lt, p, b):
         bg(img); hud(img, "3 STEPS AWAY", "SOMEONE YOU'LL NEVER MEET", (120, 220, 255)); net(img, lt, 3.1 + .1 * math.sin(lt * 4))
     def end(img, lt, p, b):
-        bg(img); w = 3.2; hud(img, "TAG THEM", "THE PERSON WHO MAKES YOUR DAY BETTER", GOLD); net(img, lt, w)
+        bg(img); w = 3.2; hud(img, "BE THAT PERSON", "FOR SOMEONE ELSE, TODAY", GOLD); net(img, lt, w)
     N = [
      ("Your happiness doesn't stop at you. A study of nearly five thousand people, over twenty years, found it spreads.", hook),
      ("A happy friend makes you about fifteen percent more likely to be happy.", one),
      ("A friend of a friend, about ten percent. And one more step out, about six. A stranger you'll never meet.", two),
      ("So when you make one person's day, you might be changing someone three steps away.", stranger),
-     ("Tag the person who makes your day better. Then be that for someone else today.", end),
+     ("The person who makes your day better probably has no idea. Be that for someone today.", end),
     ]
     beats = [Clean(n, d, 3.0, cut="cut", push=0) for n, d in N]
     return Reel("425_happiness_spreads", beats, style="cine", seed=425, gain_music=.55, snap=False, grid=0, safe_zone=False, vo=[(i, n) for i, (n, d) in enumerate(N)],

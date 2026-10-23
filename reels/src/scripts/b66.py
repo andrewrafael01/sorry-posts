@@ -46,10 +46,10 @@ def galaxy_reel():
      ("About a hundred and seventeen billion humans have ever lived. Eight billion are alive today.", counts),
      ("Give every person who ever lived one star, and the sky is ninety three percent dark.", dark),
      ("You are one of the glowing few, standing at the very edge of the biggest crowd in history.", edge),
-     ("Every dark star was someone's whole world. Tag someone on the bright edge with you.", end),
+     ("Every dark star was someone's whole world. You are standing on the bright edge.", end),
     ]
     beats = [Clean(n, d, 3.0, cut="cut", push=0) for n, d in N_]
     return Reel("408_117_billion", beats, style="cine", seed=408, gain_music=.55, snap=False, grid=0, safe_zone=False, vo=[(i, n) for i, (n, d) in enumerate(N_)],
-        title="for every person alive, 14 have died", caption="117 billion humans have ever lived and only 8 billion are alive. tag someone on the bright edge with you",
+        title="for every person alive, 14 have died", caption="117 billion humans have ever lived and only 8 billion are alive. you are on the bright edge",
         story="Population Reference Bureau (Kaneda & Haub 2022): about 117 billion humans ever born, 8 billion alive today = about 7%; (117-8)/8 = 13.6 dead per living person. Estimates range about 100-120 billion depending on assumptions. 1 star = 100 million people: 1,170 stars, 80 glowing.")
 REELS = dict(galaxy=galaxy_reel)
