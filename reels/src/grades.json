@@ -717,5 +717,41 @@
   "reach": 9,
   "why": "bespoke: one continuous timeline world, sky fades from desert to space, spans measured live",
   "bar": 85
+ },
+ "490_ring_tones": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 6,
+  "reach": 9,
+  "why": "rebuilt satisfying sim: exact live count, tones, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "491_hex_tones": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 6,
+  "reach": 9,
+  "why": "rebuilt satisfying sim: exact live count, tones, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "492_square_tones": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 6,
+  "reach": 9,
+  "why": "rebuilt satisfying sim: exact live count, tones, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "493_tri_tones": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 6,
+  "reach": 9,
+  "why": "rebuilt satisfying sim: exact live count, tones, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
  }
 }

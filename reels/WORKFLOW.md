@@ -28,3 +28,7 @@
 
 ## Grading without bait (Oct 22)
 The old rubric gave `button` and `send` full marks for "comment / tag / send this" endings, which are now banned. Honest bait-free scoring: `button` = how quotable the last line is, `send` = would someone forward it unprompted (a strong "that's me" or "wait, what" fact). With that, a good fact reel scores 78-82 where the old rubric gave it 85+. Bait-free fact reels carry `"bar": 78` in grades.json; the 85 gate stays for everything else. Do not inflate factors to reach the bar: pick better, less-known facts instead.
+
+## Every reel is bespoke (owner, Oct 23)
+- No template-engine reels. Each reel gets its own hand-built scene(s) from `premium.py` (shaded spheres, bloom, parallax, water, camera moves) or its own mechanic. `facts.py` is for prototyping only; nothing built only from it gets queued.
+- Ball sims use `sim2.py` (`BallSim`): pure black background, glossy sprites with trails and bloom, an exact live count that never caps or freezes, plain tones (pitch follows hit height). No melodies, no "guess the song".
