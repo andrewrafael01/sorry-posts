@@ -88,6 +88,7 @@ def russia():
     N = [
      ("Russia has a larger surface area than the planet Pluto.", words_scene(["RUSSIA IS", "BIGGER THAN", "PLUTO"], D3, [SOFT, GOLD, OR], 108)),
      ("Russia is a little larger than the entire surface of Pluto.", circles_scene("RUSSIA > PLUTO", "SURFACE AREA, MILLION KM2", D3, [("Pluto", 16.7, (215, 190, 170), "16.7"), ("Russia", 17.1, (230, 90, 90), "17.1")], area=True, maxr=300, baseline=1000)),
+     ("Pluto is about two thirds the width of our Moon. A country is bigger than that whole world's surface.", words_scene(["PLUTO IS", "SMALLER THAN", "OUR MOON"], D3, [SOFT, (215, 190, 170), WHITE], 96)),
      ("One country is bigger than a planet. A dwarf one, but still a planet.", words_scene(["ONE COUNTRY", "BIGGER THAN", "A WORLD"], D3, [SOFT, WHITE, GOLD], 100)),
     ]
     return make_reel(479, "russia_pluto", "russia is bigger than pluto", N, story="Russia 17.1 million km2; Pluto surface about 16.65 million km2.")
