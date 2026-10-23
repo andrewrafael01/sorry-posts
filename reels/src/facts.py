@@ -9,6 +9,7 @@ import motion, voice
 
 GOLD = (255, 214, 0); WHITE = (255, 255, 255); SOFT = (190, 198, 235); RED = (255, 105, 120); GREEN = (110, 230, 160)
 BLUE = (110, 170, 255); ORANGE = (255, 170, 90); PINKC = (255, 130, 190); VIOLET = (170, 140, 255); CYAN = (90, 220, 240); DIM = (52, 58, 92)
+CY = CYAN; GR = GREEN; OR = ORANGE; RD = RED
 def T(b, w, d=None, occ=0): return b.at(w, occ, d)
 
 def bgfill(img, bg, lt=0.0):
@@ -105,7 +106,7 @@ def timeline_scene(big, sub, bg, events, t_lo, t_hi, fmt, gaps=(), col=GOLD, y_a
         for (i, j, text) in gaps:
             if i in shown and j in shown and shown[j] > .9:
                 xa, xb = xf(events[i][0]), xf(events[j][0]); a = eio(seg(tc, events[j][0], events[j][0] + (t_hi - t_lo) * .05)); yy = y_axis + 40
-                line(img, [(xa, yy), (xb, yy)], 4, WHITE, a=a * .8); tx(img, text, (xa + xb) / 2, yy + 50, 30, "black", WHITE, a=a, maxw=520, shadow=False)
+                line(img, [(xa, yy), (xb, yy)], 4, WHITE, a=a * .8); tx(img, text, min(max((xa + xb) / 2, 300), 780), yy + 50, 30, "black", WHITE, a=a, maxw=520, shadow=False)
     return draw
 
 # ---------------------------------------------------------------------------------------------- compare circles

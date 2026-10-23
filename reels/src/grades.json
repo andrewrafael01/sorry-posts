@@ -593,7 +593,7 @@
   "bar": 78
  },
  "476_baikal_fifth": {
-  "hook": 8,
+  "hook": 9,
   "button": 8,
   "send": 8,
   "orig": 8,
@@ -625,6 +625,78 @@
   "send": 8,
   "orig": 8,
   "reach": 8,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "480_olympus_mons": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "481_moon_road_trip": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "482_venus_hotter": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "483_sunlight_age": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 9,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "484_bristlecone_pyramid": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "485_tallest_tree": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "486_antarctica_water": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "487_challenger_deep": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
   "why": "bait-free surprising fact reel, honest rubric",
   "bar": 78
  }

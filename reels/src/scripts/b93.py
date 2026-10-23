@@ -17,7 +17,7 @@ def sunmass():
     N = [
      ("The Sun loses about four million tons of mass every single second.", words_scene(["THE SUN LOSES", "4 MILLION TONS", "EVERY SECOND"], D1, [SOFT, GOLD, WHITE], 96)),
      ("It turns that mass into the energy that lights your day. This counter is running at the real rate.", counter_scene(4000000, lambda n: f"{int(n):,} t", "SUN MASS CONVERTED TO LIGHT, LIVE", D1, col=GOLD)),
-     ("It has been doing that for four and a half billion years, and it has barely made a dent.", words_scene(["4.5 BILLION YEARS", "BARELY A DENT"], D1, [GOLD, SOFT], 100)),
+     ("It has been doing this for billions of years, and it has barely made a dent.", words_scene(["4.5 BILLION YEARS", "BARELY A DENT"], D1, [GOLD, SOFT], 100)),
      ("Every sunrise is the Sun getting a little lighter.", words_scene(["EVERY SUNRISE", "COSTS THE SUN", "MASS"], D1, [SOFT, WHITE, GOLD], 100)),
     ]
     return make_reel(471, "sun_loses_mass", "the sun loses 4 million tons every second", N, story="Fusion converts about 4.3 million tonnes of mass to energy per second (E=mc2 at 3.8e26 W).")
@@ -87,7 +87,7 @@ def sahara():
 def russia():
     N = [
      ("Russia has a larger surface area than the planet Pluto.", words_scene(["RUSSIA IS", "BIGGER THAN", "PLUTO"], D3, [SOFT, GOLD, OR], 108)),
-     ("Russia covers about seventeen million square kilometers. Pluto's whole surface is about sixteen and a half million.", circles_scene("RUSSIA > PLUTO", "SURFACE AREA, MILLION KM2", D3, [("Pluto", 16.7, (215, 190, 170), "16.7"), ("Russia", 17.1, (230, 90, 90), "17.1")], area=True, maxr=300, baseline=1000)),
+     ("Russia is a little larger than the entire surface of Pluto.", circles_scene("RUSSIA > PLUTO", "SURFACE AREA, MILLION KM2", D3, [("Pluto", 16.7, (215, 190, 170), "16.7"), ("Russia", 17.1, (230, 90, 90), "17.1")], area=True, maxr=300, baseline=1000)),
      ("One country is bigger than a planet. A dwarf one, but still a planet.", words_scene(["ONE COUNTRY", "BIGGER THAN", "A WORLD"], D3, [SOFT, WHITE, GOLD], 100)),
     ]
     return make_reel(479, "russia_pluto", "russia is bigger than pluto", N, story="Russia 17.1 million km2; Pluto surface about 16.65 million km2.")

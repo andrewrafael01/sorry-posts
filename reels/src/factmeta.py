@@ -27,3 +27,24 @@ M = {
  "458_eiffel_summer": (G, "THE EIFFEL TOWER", "GROWS IN SUMMER", "The Eiffel Tower is", "taller in summer", "taller", "+15 CM IN THE HEAT", .50),
  "463_bees_teaspoon": (G, "12 BEES", "ONE TEASPOON", "One teaspoon of honey", "took 12 bees a lifetime", "12", "12 LIVES OF WORK", .50),
 }
+
+M.update({
+ "470_andromeda_light": (VI, "OLDER THAN US", "THE LIGHT FROM ANDROMEDA", "Andromeda's light is", "older than humanity", "older", "LIGHT OLDER THAN HUMANS", .40),
+ "471_sun_loses_mass": (G, "4 MILLION TONS", "THE SUN LOSES EVERY SECOND", "The Sun loses 4 million", "tons every second", "4 million", "THE SUN IS SHRINKING", .40),
+ "472_seafloor_mars": (CY, "MARS", "BETTER MAPPED THAN THE SEA", "We've mapped more of Mars", "than our own seafloor", "Mars", "MARS BEATS OUR OCEANS", .45),
+ "473_chess_atoms": (G, "MORE CHESS GAMES", "THAN ATOMS", "More chess games than", "atoms in the universe", "chess", "10^120 GAMES", .45),
+ "474_born_with_bones": (OR, "300 BONES", "YOU LOST ~100", "You were born with", "about 100 extra bones", "100", "YOU HAD MORE BONES", .45),
+ "475_pulsar_716": (BL, "716 SPINS", "EVERY SECOND", "A star spins 716 times", "every second", "716", "716 TIMES A SECOND", .40),
+ "476_baikal_fifth": (CY, "ONE LAKE", "HOLDS 1/5 OF FRESH WATER", "One lake holds a fifth", "of Earth's fresh water", "fifth", "1/5 OF EARTH'S WATER", .45),
+ "477_iss_sunrises": (G, "16 SUNRISES", "EVERY DAY", "Astronauts see 16", "sunrises a day", "16", "16 SUNRISES A DAY", .40),
+ "478_green_sahara": (GR, "THE SAHARA", "WAS GREEN", "6,000 years ago the", "Sahara was green", "green", "THE SAHARA WAS A GARDEN", .45),
+ "479_russia_pluto": (RD, "RUSSIA", "BIGGER THAN PLUTO", "Russia is bigger", "than Pluto", "Pluto", "A COUNTRY > A PLANET", .45),
+ "480_olympus_mons": (OR, "A VOLCANO", "2.5X TALLER THAN EVEREST", "A volcano on Mars is", "2.5x taller than Everest", "2.5x", "MARS HAS A GIANT", .45),
+ "481_moon_road_trip": (G, "DRIVE TO THE MOON", "160 DAYS", "Driving to the Moon", "would take 160 days", "160", "160 DAYS OF DRIVING", .45),
+ "482_venus_hotter": (RD, "VENUS", "HOTTER THAN MERCURY", "Venus is hotter", "than Mercury", "hotter", "CLOSER ISN'T HOTTER", .45),
+ "483_sunlight_age": (G, "SUNLIGHT", "IS TENS OF THOUSANDS OF YEARS OLD", "The sunlight on your face", "is tens of thousands of years old", "old", "OLD LIGHT", .45),
+ "484_bristlecone_pyramid": (GR, "A TREE", "OLDER THAN THE PYRAMIDS", "A tree in California is", "older than the pyramids", "tree", "OLDER THAN GIZA", .45),
+ "485_tallest_tree": (GR, "THE TALLEST TREE", "BEATS THE STATUE OF LIBERTY", "The tallest tree is taller", "than Lady Liberty", "taller", "TALLER THAN LIBERTY", .45),
+ "486_antarctica_water": (CY, "60%", "OF ALL FRESH WATER", "60% of Earth's fresh", "water is in Antarctica", "60%", "FROZEN IN ONE PLACE", .45),
+ "487_challenger_deep": (CY, "THE OCEAN", "IS DEEPER THAN EVEREST IS TALL", "The ocean is deeper", "than Everest is tall", "deeper", "EVEREST WOULD DROWN", .45),
+})
