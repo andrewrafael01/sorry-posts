@@ -258,5 +258,284 @@
   "orig": 8,
   "reach": 9,
   "why": "everyone has this friend; the typed-then-deleted draft is the distinct device; the line \"saw this and thought of you\" is something they actually send; no stats, no bait"
+ },
+ "432_venus_day": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "well-known fact, clean hook",
+  "bar": 78
+ },
+ "433_trees_vs_stars": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "trees vs stars: known, strong image",
+  "bar": 78
+ },
+ "434_sun_earths": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "1.3M Earths in the Sun: known, strong number",
+  "bar": 78
+ },
+ "435_space_drive": {
+  "hook": 9,
+  "button": 9,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "space is an hour-long drive: personal commute framing, fresh angle",
+  "bar": 78
+ },
+ "436_saturn_floats": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "floats in water: known, great visual",
+  "bar": 78
+ },
+ "437_moon_fingernail": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "fingernail comparison makes a slow fact tangible",
+  "bar": 78
+ },
+ "438_sugar_cube": {
+  "hook": 10,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "whole-humanity-in-a-sugar-cube hook",
+  "bar": 78
+ },
+ "439_brain_watts": {
+  "hook": 9,
+  "button": 9,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "20 W vs 20 MW: the six-zeros punchline",
+  "bar": 78
+ },
+ "440_blood_cells": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "441_oxford_aztec": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "442_cleopatra_moon": {
+  "hook": 9,
+  "button": 9,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "443_sharks_trees": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "444_mammoth_pyramid": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "445_lightning_hotter": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "446_core_hot": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "447_cloud_elephants": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "448_gps_einstein": {
+  "hook": 9,
+  "button": 9,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "449_apollo_phone": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "452_blink_ten_percent": {
+  "hook": 9,
+  "button": 8,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "454_pluto_lap": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "455_mauna_kea": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "456_great_red_spot": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "457_pacific_vs_land": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "458_eiffel_summer": {
+  "hook": 8,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 8,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "463_bees_teaspoon": {
+  "hook": 9,
+  "button": 9,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "464_jingle_ring": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 5,
+  "reach": 9,
+  "why": "approved melody-sim format; owner approved",
+  "override": "owner approved: the satisfying melody sims go viral for this account"
+ },
+ "465_twinkle_hex": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 5,
+  "reach": 9,
+  "why": "approved melody-sim format; owner approved",
+  "override": "owner approved: the satisfying melody sims go viral for this account"
+ },
+ "466_auld_square": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 5,
+  "reach": 9,
+  "why": "approved melody-sim format; owner approved",
+  "override": "owner approved: the satisfying melody sims go viral for this account"
+ },
+ "467_frere_tri": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 5,
+  "reach": 9,
+  "why": "approved melody-sim format; owner approved",
+  "override": "owner approved: the satisfying melody sims go viral for this account"
+ },
+ "468_row_ring": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 5,
+  "reach": 9,
+  "why": "approved melody-sim format; owner approved",
+  "override": "owner approved: the satisfying melody sims go viral for this account"
+ },
+ "469_mary_square": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 5,
+  "reach": 9,
+  "why": "approved melody-sim format; owner approved",
+  "override": "owner approved: the satisfying melody sims go viral for this account"
  }
 }

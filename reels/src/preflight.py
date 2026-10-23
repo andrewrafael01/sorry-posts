@@ -43,7 +43,7 @@ def run(mod, name, sheet=True):
     else:
         info["score"] = score(g)
         if g.get("override"): info["override"] = g["override"]
-        elif info["score"] < 85: problems.append(f"graded {info['score']} < 85")
+        elif info["score"] < g.get("bar", 85): problems.append(f"graded {info['score']} < {g.get('bar', 85)}")
     if sheet:
         from PIL import Image
         n = 12; sh = Image.new("RGB", (6 * 270, 2 * 480))

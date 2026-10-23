@@ -25,3 +25,6 @@
 - Close with one real line that fits the reel (an observation or an honest question the viewer would answer in their head). The reel earns the send; it does not ask for it.
 - 3-5 specific hashtags. No #fyp #viral #explorepage.
 - Sims keep a guess-the-song caption line only as a plain statement, never "comment the song".
+
+## Grading without bait (Oct 22)
+The old rubric gave `button` and `send` full marks for "comment / tag / send this" endings, which are now banned. Honest bait-free scoring: `button` = how quotable the last line is, `send` = would someone forward it unprompted (a strong "that's me" or "wait, what" fact). With that, a good fact reel scores 78-82 where the old rubric gave it 85+. Bait-free fact reels carry `"bar": 78` in grades.json; the 85 gate stays for everything else. Do not inflate factors to reach the bar: pick better, less-known facts instead.
