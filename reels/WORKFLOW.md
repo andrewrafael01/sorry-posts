@@ -19,3 +19,9 @@
 - Stay realistic: use a figure that is defensible, say "about", never stack assumptions.
 - Every reel ends on one small thing they can do tonight, and one person to send it to.
 - Check: could a 22-year-old say "that's me" in the first 3 seconds? If not, rewrite it.
+
+## No engagement bait (owner, Oct 22)
+- No "tag someone", "comment your X", "send this to", "share if" in the voice, on-screen text or caption. Meta demotes explicit tag/comment/share asks, and they read as spam.
+- Close with one real line that fits the reel (an observation or an honest question the viewer would answer in their head). The reel earns the send; it does not ask for it.
+- 3-5 specific hashtags. No #fyp #viral #explorepage.
+- Sims keep a guess-the-song caption line only as a plain statement, never "comment the song".
