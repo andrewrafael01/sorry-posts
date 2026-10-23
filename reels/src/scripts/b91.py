@@ -60,7 +60,7 @@ def lightning():
      ("A bolt of lightning is about five times hotter than the surface of the Sun.", words_scene(["LIGHTNING", "IS 5 TIMES HOTTER", "THAN THE SUN"], D2, [BLUE, SOFT, GOLD], 96)),
      ("Lava is around twelve hundred degrees Celsius. The surface of the Sun is about fifty five hundred.", thermo_scene("HOW HOT?", "DEGREES CELSIUS", D2, it[:2], vmax=30000, anchors=["Lava", "Sun"])),
      ("Lightning heats the air around it to roughly thirty thousand.", thermo_scene("30,000 C", "A LIGHTNING BOLT", D2, it, vmax=30000, anchors=["Lava", "Sun", "thirty"])),
-     ("And it does all of that in a fraction of a second.", words_scene(["ALL OF IT", "IN A FRACTION", "OF A SECOND"], D2, [BLUE, SOFT, WHITE], 100)),
+     ("Gone in a fraction of a second.", words_scene(["ALL OF IT", "IN A FRACTION", "OF A SECOND"], D2, [BLUE, SOFT, WHITE], 100)),
     ]
     return make_reel(445, "lightning_hotter", "lightning is five times hotter than the sun", N, story="Lightning channel about 30,000 K; solar photosphere about 5,800 K.")
 
@@ -96,6 +96,8 @@ def apollo():
     it = [("Apollo 11 guidance computer", 4, ORANGE, "4 KB"), ("A modern phone", 8000000, BLUE, "8 GB")]
     N = [
      ("The computer that guided Apollo eleven to the Moon had about four kilobytes of memory.", words_scene(["APOLLO 11", "RAN ON ABOUT", "4 KB OF MEMORY"], D2, [ORANGE, SOFT, GOLD], 96)),
+     ("That is less than a single photo on your phone.", words_scene(["LESS THAN", "ONE PHOTO", "ON YOUR PHONE"], D2, [SOFT, WHITE, GOLD], 104)),
+     ("It still navigated three hundred and eighty four thousand kilometers to the Moon and back.", words_scene(["384,000 KM", "TO THE MOON", "AND BACK"], D2, [GOLD, SOFT, WHITE], 100)),
      ("Your phone has around two million times more.", bars_scene("MEMORY (LOG SCALE)", it, D2, log=True, anchors=["four", "phone"], top=640, gapy=250)),
      ("They still made it.", words_scene(["AND THEY", "STILL MADE IT"], D2, [SOFT, GOLD], 112)),
     ]
@@ -123,6 +125,7 @@ def maunakea():
      ("Mount Everest is not the tallest mountain on Earth.", words_scene(["EVEREST", "IS NOT THE", "TALLEST MOUNTAIN"], D4, [WHITE, SOFT, GREEN], 100)),
      ("Mauna Kea in Hawaii is over ten thousand meters from its base to its summit.", bars_scene("MOUNTAIN HEIGHT", it, D4, anchors=["Everest", "Mauna"], top=640, gapy=250)),
      ("Most of it sits underwater. Everest is just the highest above the sea.", words_scene(["MOST OF IT", "IS UNDERWATER"], D4, [GREEN, SOFT], 104)),
+     ("And measured from the center of the Earth, the tallest point is Chimborazo in Ecuador, because the planet bulges at the equator.", words_scene(["FARTHEST FROM", "EARTH'S CENTER:", "CHIMBORAZO"], D4, [SOFT, WHITE, GREEN], 88)),
     ]
     return make_reel(455, "mauna_kea", "everest is not the tallest mountain on earth", N, story="Mauna Kea about 10,210 m from base on the ocean floor; 4,207 m above sea level. Everest 8,849 m above sea level.")
 
@@ -160,8 +163,9 @@ def bees():
     N = [
      ("A worker bee makes about one twelfth of a teaspoon of honey in her entire life.", words_scene(["ONE BEE'S LIFE", "ONE TWELFTH", "OF A TEASPOON"], D1, [SOFT, GOLD, WHITE], 96)),
      ("So one spoonful on your toast took twelve bees their whole lives.", dots_scene("12 BEES", "ONE TEASPOON OF HONEY", D1, 12, total=12, cols=4, col_hl=GOLD, col_rest=DIM, label_hl="THEIR WHOLE LIVES", anchor="twelve", big_fmt=lambda k: f"{k} BEES")),
+     ("To fill a single jar, a hive visits around two million flowers.", words_scene(["ONE JAR", "~2 MILLION", "FLOWERS"], D1, [SOFT, GOLD, WHITE], 104)),
      ("Every spoonful is twelve lifetimes of work.", words_scene(["EVERY SPOONFUL", "IS TWELVE", "LIFETIMES OF WORK"], D1, [SOFT, GOLD, WHITE], 96)),
     ]
     return make_reel(463, "bees_teaspoon", "12 bees make one teaspoon of honey in their whole lives", N, story="One worker bee produces about 1/12 teaspoon of honey in her lifetime.")
 
-REELS = dict(blood=blood, oxford=oxford, cleopatra=cleopatra, sharks=sharks, mammoth=mammoth, lightning=lightning, core=core, cloud=cloud, gps=gps, apollo=apollo, blink=blink, pluto=pluto, maunakea=maunakea, redspot=redspot, pacific=pacific, eiffel=eiffel, bees=bees)
+REELS = dict(blood=blood, oxford=oxford, cleopatra=cleopatra, sharks=sharks, mammoth=mammoth, lightning=lightning, core=core, cloud=cloud, gps=gps, apollo=apollo, blink=blink, pluto=pluto, maunakea=maunakea, redspot=redspot, pacific=pacific, bees=bees)

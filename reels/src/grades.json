@@ -537,5 +537,95 @@
   "reach": 9,
   "why": "approved melody-sim format; owner approved",
   "override": "owner approved: the satisfying melody sims go viral for this account"
+ },
+ "470_andromeda_light": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 9,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "471_sun_loses_mass": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "472_seafloor_mars": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "473_chess_atoms": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "474_born_with_bones": {
+  "hook": 9,
+  "button": 8,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "475_pulsar_716": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "476_baikal_fifth": {
+  "hook": 8,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 8,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "477_iss_sunrises": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "478_green_sahara": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
+ },
+ "479_russia_pluto": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 8,
+  "why": "bait-free surprising fact reel, honest rubric",
+  "bar": 78
  }
 }

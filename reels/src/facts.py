@@ -114,7 +114,7 @@ def circles_scene(big, sub, bg, items, area=False, baseline=1010, maxr=300, col=
     vm = max(v for _, v, _, _ in items); n = len(items)
     def draw(img, lt, p, b):
         bgfill(img, bg, lt); hud(img, big, sub, col)
-        rs = [maxr * (math.sqrt(v / vm) if area else v / vm) for _, v, _, _ in items]; tot = sum(2 * r for r in rs) + 40 * (n - 1); x = 540 - tot / 2
+        rs = [maxr * (math.sqrt(v / vm) if area else v / vm) for _, v, _, _ in items]; tot = sum(2 * r for r in rs) + 40 * (n - 1); sc = min(1.0, 940 / tot); rs = [r * sc for r in rs]; tot = sum(2 * r for r in rs) + 40 * (n - 1); x = 540 - tot / 2
         for i, (lab, v, c, shown) in enumerate(items):
             r = rs[i]; t0 = .5 + i * (b.dur * .55 / n); u = eio(seg(lt, t0, t0 + 1.0)); cx = x + r; x += 2 * r + 40
             disc(img, cx, baseline - r * u, max(2, r * u), c, a=.95); glow(img, cx, baseline - r * u, r * u * 1.3, c, .25)
