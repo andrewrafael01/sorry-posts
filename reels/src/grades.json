@@ -879,5 +879,14 @@
   "reach": 9,
   "why": "disc floats free while the picture sways, then the sway stops dead and the float vanishes; text-free",
   "bar": 85
+ },
+ "525_footsteps": {
+  "hook": 9,
+  "button": 10,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "bars step out of time over stripes, then the stripes melt and they lock in sync; show not tell; stripes return at the end so it loops straight back into the effect",
+  "bar": 85
  }
 }
