@@ -852,5 +852,14 @@
   "reach": 9,
   "why": "single ball, ring shrinks every hit, tones climb, ripples, exact bounce count, black bg",
   "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "522_lilac_chaser": {
+  "hook": 9,
+  "button": 9,
+  "send": 9,
+  "orig": 7,
+  "reach": 10,
+  "why": "stare at the cross; a green dot chases the gap and then the lilac dots vanish; famous illusion, bespoke render; replay to test; the format has proven mass reach",
+  "bar": 85
  }
 }
