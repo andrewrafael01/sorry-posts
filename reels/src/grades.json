@@ -753,5 +753,14 @@
   "reach": 9,
   "why": "rebuilt satisfying sim: exact live count, tones, black bg",
   "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "494_checker_shadow": {
+  "hook": 10,
+  "button": 9,
+  "send": 9,
+  "orig": 6,
+  "reach": 10,
+  "why": "the most shareable illusion: A and B are the same gray, proven live by a bar and a mask; known but always works",
+  "bar": 85
  }
 }
