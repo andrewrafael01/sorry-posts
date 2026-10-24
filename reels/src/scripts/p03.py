@@ -15,5 +15,5 @@ REELS = dict(
     ring=mk("ring_tones", 490, "ring", "x", gapf=ramp, spin=.9, boost=1.0, seed=2, ball_r=8, n0=6),
     hex=mk("hex_tones", 491, "hex", "x", pgap=.42, spin=.7, boost=1.0, seed=3, ball_r=8, n0=6),
     square=mk("square_tones", 492, "square", "x", pgap=.36, spin=.6, boost=1.0, seed=4, ball_r=8, n0=6),
-    tri=mk("tri_tones", 493, "tri", "x", pgap=.46, spin=.45, boost=1.0, seed=6, ball_r=7, n0=6),
+    tri=mk("tri_tones", 493, "tri", "x", pgap=.46, spin=.45, boost=1.0, seed=6, ball_r=7, n0=6, cap=240),
 )

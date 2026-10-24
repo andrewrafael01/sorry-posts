@@ -558,12 +558,12 @@ class Reel:
         out = np.tanh(out * 1.5)
         return out / max(1e-6, np.abs(out).max()) * .76
 
-    def render(self, out_dir, crf=27, preview=False):
+    def render(self, out_dir, crf=18, preview=False):
         path = os.path.join(out_dir, self.name + ".mp4")
         wav = path + ".wav"; a = (self.audio() * 32767).astype(np.int16)
         with wave.open(wav, "wb") as w: w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(a.tobytes())
         cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-i", wav,
-               "-c:v", "libx264", "-preset", "veryfast", "-crf", str(crf), "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", path]
+               "-c:v", "libx264", "-preset", "medium", "-crf", str(crf), "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", path]
         p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
         for i in range(int(self.dur * FPS)): p.stdin.write((safe(self.frame(i / FPS)) if self.safe_zone else self.frame(i / FPS)).tobytes())
         p.stdin.close(); p.wait(); os.remove(wav)

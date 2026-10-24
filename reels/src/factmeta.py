@@ -57,3 +57,9 @@ M.update({
  "468_row_ring": (CY, "NAME THIS SONG", "EVERY BOUNCE IS A NOTE", "Row, row, row", "your balls", "balls", "ROW ROW ROW", .5),
  "469_mary_square": (OR, "NAME THIS SONG", "EVERY BOUNCE IS A NOTE", "Which song is this?", "every bounce is a note", "song", "WHICH SONG?", .5),
 })
+
+M.update({
+ "490_ring_tones": (G, "WATCH THE COUNT", "3 NEW BALLS EVERY ESCAPE", "Every escape spawns", "3 new balls", "3 new", "WATCH IT EXPLODE", .75),
+ "491_hex_tones": (CY, "WATCH THE COUNT", "3 NEW BALLS EVERY ESCAPE", "Every escape spawns", "3 new balls", "3 new", "WATCH IT EXPLODE", .75),
+ "492_square_tones": (OR, "WATCH THE COUNT", "3 NEW BALLS EVERY ESCAPE", "Every escape spawns", "3 new balls", "3 new", "WATCH IT EXPLODE", .75),
+})
