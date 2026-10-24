@@ -825,5 +825,14 @@
   "reach": 9,
   "why": "stare then a real static scene drifts; replayed and sent",
   "bar": 85
+ },
+ "519_rotating_snakes": {
+  "hook": 10,
+  "button": 9,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "static ochre grid of ring discs that visibly crawl and spin though nothing moves; replayed to test it",
+  "bar": 85
  }
 }
