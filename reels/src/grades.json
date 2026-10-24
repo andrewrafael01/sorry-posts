@@ -870,5 +870,14 @@
   "reach": 9,
   "why": "ball swells every bounce, tones fall as it gets bigger, exact count, black bg",
   "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "524_ouchi": {
+  "hook": 9,
+  "button": 10,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "disc floats free while the picture sways, then the sway stops dead and the float vanishes; text-free",
+  "bar": 85
  }
 }
