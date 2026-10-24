@@ -897,5 +897,14 @@
   "reach": 9,
   "why": "straight red lines bow over the glowing fan, spokes melt and the lines are dead straight, then it loops back; show not tell",
   "bar": 85
+ },
+ "527_spirograph_ball": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 9,
+  "reach": 9,
+  "why": "gravity rotates a golden angle every bounce, glowing trail draws a star-polygon, exact count, tones",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
  }
 }

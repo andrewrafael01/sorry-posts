@@ -8,4 +8,5 @@ def mk(name, num, ttl="The ring shrinks\nevery time the ball bounces", **kw):
                          story="Single ball under gravity in a ring; every wall hit shrinks the ring by a fixed step. Exact bounce count; pitch climbs with the count.")
     return f
 REELS = dict(shrink=mk("shrinking_ring", 521, shrink=3.6, seed=1),
-             grow=mk("growing_ball", 523, ttl="The ball grows\nevery time it bounces", shrink=0.0, grow=3.2, ball_max=200, ball_r=10, descend=True, hue0=.92, hold=3.0))
+             grow=mk("growing_ball", 523, ttl="The ball grows\nevery time it bounces", shrink=0.0, grow=3.2, ball_max=200, ball_r=10, descend=True, hue0=.92, hold=3.0),
+             spiro=mk("spirograph_ball", 527, ttl="The gravity turns\nevery time it bounces", shrink=0.0, gang=2.399963, trail=220, g=2800.0, fixed=34.0, ball_r=14, hue0=.30, hold=1.0, tail=1.5))

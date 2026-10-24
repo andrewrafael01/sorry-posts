@@ -12,21 +12,24 @@ from sim2 import sprite, PENTA_NOTES
 
 class ShrinkRing(reel.Shot):
     cut = "cut"
-    def __init__(self, title, R0=440.0, Rmin=84.0, shrink=3.0, grow=0.0, ball_max=None, descend=False, ball_r=15, g=1500.0, seed=1, hold=3.0, tail=2.5, hue0=.55):
-        self.title, self.R0, self.Rmin, self.shrink, self.br, self.g, self.hue0, self.grow, self.ball_max, self.descend = title, R0, Rmin, shrink, ball_r, g, hue0, grow, ball_max, descend
+    def __init__(self, title, R0=440.0, Rmin=84.0, shrink=3.0, grow=0.0, ball_max=None, descend=False, gang=0.0, trail=0, fixed=None, ball_r=15, g=1500.0, seed=1, hold=3.0, tail=2.5, hue0=.55):
+        self.title, self.R0, self.Rmin, self.shrink, self.br, self.g, self.hue0, self.grow, self.ball_max, self.descend, self.gang, self.trail, self.fixed = title, R0, Rmin, shrink, ball_r, g, hue0, grow, ball_max, descend, gang, trail, fixed
         self.fps = 30; self.cues = []; self.rng = np.random.RandomState(seed); self._sim(hold, tail)
     def _sim(self, hold, tail):
-        sub = 30; dt = 1 / (self.fps * sub); p = np.array([CX + 60.0, CY - 160.0]); v = np.array([430.0, -260.0]); R = self.R0; b = float(self.br)
+        sub = 30; dt = 1 / (self.fps * sub); p = np.array([CX + 60.0, CY - 160.0]); v = np.array([430.0, -260.0]); R = self.R0; b = float(self.br); gv = np.array([0.0, self.g])
         self.frames = []; self.hits = []; hits = 0; t = 0.0; done_t = None; fr = 0
         while True:
             for _ in range(sub):
-                v[1] += self.g * dt; p += v * dt; t += dt
+                v += gv * dt; p += v * dt; t += dt
+                if self.fixed and done_t is None and t >= self.fixed: done_t = t
                 d = p - [CX, CY]; dist = math.hypot(*d)
                 if dist > R - b:
                     n = d / dist; vn = v @ n
                     p = np.array([CX, CY]) + n * (R - b)
                     if vn > 0:
-                        v -= 2 * vn * n; hits += 1; self.hits.append((t, math.atan2(n[1], n[0]), hits)); self.last_hit = t
+                        v -= 2 * vn * n; hits += 1
+                        if self.gang: c_, s2_ = math.cos(self.gang), math.sin(self.gang); gv = np.array([c_ * gv[0] - s2_ * gv[1], s2_ * gv[0] + c_ * gv[1]])
+                        self.hits.append((t, math.atan2(n[1], n[0]), hits)); self.last_hit = t
                         R = max(self.Rmin, R - self.shrink); b = min(self.ball_max or 1e9, b + self.grow); p = np.array([CX, CY]) + n * min(dist, R - b)
                         if (R <= self.Rmin or (self.ball_max and b >= self.ball_max)) and done_t is None: done_t = t
                 sp = math.hypot(*v)
@@ -66,6 +69,11 @@ class ShrinkRing(reel.Shot):
         if self.done_t is not None and t > self.done_t: flash = max(0.0, 1 - (t - self.done_t) / .5)
         wc = tuple(min(255, int(x + 255 * flash)) for x in col)
         d.ellipse([c0 - R * ss, c0 - R * ss, c0 + R * ss, c0 + R * ss], outline=wc, width=int(10 * ss))
+        if self.trail:
+            j0 = max(0, fi - self.trail); pts = [((self.frames[j][0][0] - ox) * ss, (self.frames[j][0][1] - oy) * ss) for j in range(j0, fi + 1)]
+            for i in range(1, len(pts)):
+                u = (i / len(pts)) ** 1.6; tc = hue((hcol - .25 * (1 - u)) % 1, .8, 1.0); tc = tuple(int(x * u * .9) for x in tc)
+                d.line([pts[i - 1], pts[i]], fill=tc, width=int((2 + 5 * u) * ss))
         lay = lay.resize((S, S), Image.LANCZOS); img.paste(lay, (int(ox), int(oy)))
         # ball with a short comet trail
         for back in (6, 5, 4, 3, 2, 1):
