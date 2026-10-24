@@ -843,5 +843,14 @@
   "reach": 9,
   "why": "red-looking berries turn out gray when the blue cast leaves; known viral illusion, bespoke render, honest pure-gray pixels; live divider sweeps across the same berries; ending flashes the cast on/off then lands on the opening frame so it loops",
   "bar": 85
+ },
+ "521_shrinking_ring": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 8,
+  "reach": 9,
+  "why": "single ball, ring shrinks every hit, tones climb, ripples, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
  }
 }
