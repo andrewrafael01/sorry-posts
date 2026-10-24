@@ -762,5 +762,32 @@
   "reach": 10,
   "why": "the most shareable illusion: A and B are the same gray, proven live by a bar and a mask; known but always works",
   "bar": 85
+ },
+ "495_fraser_spiral": {
+  "hook": 10,
+  "button": 9,
+  "send": 9,
+  "orig": 7,
+  "reach": 10,
+  "why": "\"this is not a spiral\": the image alone stops the scroll; traced and tinted proof; shareable",
+  "bar": 85
+ },
+ "496_cafe_wall": {
+  "hook": 10,
+  "button": 9,
+  "send": 9,
+  "orig": 7,
+  "reach": 9,
+  "why": "are these lines tilted: the thin-mortar wall is the strongest cafe wall; straightedge proof and the shift-and-vanish demo are satisfying",
+  "bar": 85
+ },
+ "497_stare_aftereffect": {
+  "hook": 10,
+  "button": 9,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "interactive: stare then the still face breathes; people replay and send",
+  "bar": 85
  }
 }

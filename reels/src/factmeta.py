@@ -63,3 +63,10 @@ M.update({
  "491_hex_tones": (CY, "WATCH THE COUNT", "3 NEW BALLS EVERY ESCAPE", "Every escape spawns", "3 new balls", "3 new", "WATCH IT EXPLODE", .75),
  "492_square_tones": (OR, "WATCH THE COUNT", "3 NEW BALLS EVERY ESCAPE", "Every escape spawns", "3 new balls", "3 new", "WATCH IT EXPLODE", .75),
 })
+
+M.update({
+ "494_checker_shadow": (G, "A OR B?", "WHICH IS DARKER", "Which square is", "darker, A or B?", "darker", "THEY'RE THE SAME GRAY", .5),
+ "495_fraser_spiral": (VI, "THIS IS NOT", "A SPIRAL", "Which way does", "this spiral?", "spiral", "NO SPIRAL HERE", .5),
+ "496_cafe_wall": (OR, "ARE THESE LINES", "TILTED?", "Are these lines", "tilted?", "tilted", "THEY'RE PARALLEL", .5),
+ "497_stare_aftereffect": (CY, "STARE AT THE DOT", "THEN LOOK AT THE FACE", "Stare at the dot,", "then look at the face", "face", "DOES IT MOVE?", .5),
+})
