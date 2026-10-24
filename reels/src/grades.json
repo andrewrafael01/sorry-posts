@@ -834,5 +834,14 @@
   "reach": 9,
   "why": "static ochre grid of ring discs that visibly crawl and spin though nothing moves; replayed to test it",
   "bar": 85
+ },
+ "520_gray_strawberries": {
+  "hook": 9,
+  "button": 10,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "red-looking berries turn out gray when the blue cast leaves; known viral illusion, bespoke render, honest pure-gray pixels; live divider sweeps across the same berries; ending flashes the cast on/off then lands on the opening frame so it loops",
+  "bar": 85
  }
 }
