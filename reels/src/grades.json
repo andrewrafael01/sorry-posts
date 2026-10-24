@@ -861,5 +861,14 @@
   "reach": 10,
   "why": "stare at the cross; a green dot chases the gap and then the lilac dots vanish; famous illusion, bespoke render; replay to test; the format has proven mass reach",
   "bar": 85
+ },
+ "523_growing_ball": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball swells every bounce, tones fall as it gets bigger, exact count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
  }
 }
