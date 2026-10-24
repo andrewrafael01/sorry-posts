@@ -789,5 +789,41 @@
   "reach": 9,
   "why": "interactive: stare then the still face breathes; people replay and send",
   "bar": 85
+ },
+ "498_checker3d": {
+  "hook": 10,
+  "button": 9,
+  "send": 9,
+  "orig": 8,
+  "reach": 10,
+  "why": "ray-traced 3D checker-shadow with a shadow on/off proof; the strongest, most shareable illusion built properly",
+  "bar": 85
+ },
+ "499_spiral3d": {
+  "hook": 10,
+  "button": 9,
+  "send": 9,
+  "orig": 8,
+  "reach": 10,
+  "why": "Fraser spiral on a lit 3D plate, camera descends, one ring traced in 3D, rainbow tint proof",
+  "bar": 85
+ },
+ "500_cafe3d": {
+  "hook": 10,
+  "button": 9,
+  "send": 9,
+  "orig": 7,
+  "reach": 9,
+  "why": "glazed tile wall under a key light, 3D laser lines on every grout line, tiles fade away, rows line up and the effect dies",
+  "bar": 85
+ },
+ "501_after3d": {
+  "hook": 10,
+  "button": 9,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "stare then a real static scene drifts; replayed and sent",
+  "bar": 85
  }
 }

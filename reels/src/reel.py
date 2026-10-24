@@ -564,10 +564,20 @@ class Reel:
         with wave.open(wav, "wb") as w: w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(a.tobytes())
         cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-i", wav,
                "-c:v", "libx264", "-preset", "medium", "-crf", str(crf), "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", path]
-        p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
-        for i in range(int(self.dur * FPS)): p.stdin.write((safe(self.frame(i / FPS)) if self.safe_zone else self.frame(i / FPS)).tobytes())
+        p = subprocess.Popen(cmd, stdin=subprocess.PIPE); n_fr = int(self.dur * FPS); nw = int(os.environ.get("REEL_WORKERS", "1"))
+        if nw > 1:   # parallel frames for heavy single-reel renders (ray-traced scenes); order is preserved by imap
+            import multiprocessing as _mp
+            global _PAR_SELF; _PAR_SELF = self
+            with _mp.get_context("fork").Pool(nw) as pool:
+                for b in pool.imap(_par_frame, range(n_fr), chunksize=4): p.stdin.write(b)
+        else:
+            for i in range(n_fr): p.stdin.write((safe(self.frame(i / FPS)) if self.safe_zone else self.frame(i / FPS)).tobytes())
         p.stdin.close(); p.wait(); os.remove(wav)
         return path
+
+_PAR_SELF = None
+def _par_frame(i):
+    r = _PAR_SELF; return (safe(r.frame(i / FPS)) if r.safe_zone else r.frame(i / FPS)).tobytes()
 
 def ImageChops_offset(ch, o):
     from PIL import ImageChops
