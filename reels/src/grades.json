@@ -888,5 +888,14 @@
   "reach": 9,
   "why": "bars step out of time over stripes, then the stripes melt and they lock in sync; show not tell; stripes return at the end so it loops straight back into the effect",
   "bar": 85
+ },
+ "526_hering": {
+  "hook": 9,
+  "button": 10,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "straight red lines bow over the glowing fan, spokes melt and the lines are dead straight, then it loops back; show not tell",
+  "bar": 85
  }
 }
