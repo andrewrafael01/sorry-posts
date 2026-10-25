@@ -915,5 +915,14 @@
   "reach": 9,
   "why": "identical neon bars look wildly different on dusk railway, ghost copy slides down and matches exactly; no words",
   "bar": 85
+ },
+ "530_stream_bounce": {
+  "hook": 9,
+  "button": 9,
+  "send": 9,
+  "orig": 9,
+  "reach": 9,
+  "why": "same motion looks like pass-through in silence and a collision with a click; sound changes what you see; no words",
+  "bar": 85
  }
 }
