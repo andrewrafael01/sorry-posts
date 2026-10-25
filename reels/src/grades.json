@@ -942,5 +942,41 @@
   "reach": 9,
   "why": "two identical orange spheres seem to pulse as the rings around them swell, then matching white rings draw on; no words",
   "bar": 85
+ },
+ "533_cute_flame": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "cute smiling flame of glittering dots, spin direction flips at will; text-free",
+  "override": "owner requested: cute dot-cloud spinners like the reference reel"
+ },
+ "534_cute_heart": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "cute smiling heart of glittering dots, spin direction flips at will; text-free",
+  "override": "owner requested: cute dot-cloud spinners like the reference reel"
+ },
+ "535_cute_star": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "cute smiling star of glittering dots, spin direction flips at will; text-free",
+  "override": "owner requested: cute dot-cloud spinners like the reference reel"
+ },
+ "536_cute_ghost": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "cute smiling ghost of glittering dots, spin direction flips at will; text-free",
+  "override": "owner requested: cute dot-cloud spinners like the reference reel"
  }
 }
