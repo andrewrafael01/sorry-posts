@@ -933,5 +933,14 @@
   "reach": 9,
   "why": "pendulum wave braid with plain tones on every pass, snaps back to one line",
   "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "532_breathing_ebbinghaus": {
+  "hook": 9,
+  "button": 10,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "two identical orange spheres seem to pulse as the rings around them swell, then matching white rings draw on; no words",
+  "bar": 85
  }
 }
