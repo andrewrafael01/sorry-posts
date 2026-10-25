@@ -32,3 +32,6 @@ The old rubric gave `button` and `send` full marks for "comment / tag / send thi
 ## Every reel is bespoke (owner, Oct 23)
 - No template-engine reels. Each reel gets its own hand-built scene(s) from `premium.py` (shaded spheres, bloom, parallax, water, camera moves) or its own mechanic. `facts.py` is for prototyping only; nothing built only from it gets queued.
 - Ball sims use `sim2.py` (`BallSim`): pure black background, glossy sprites with trails and bloom, an exact live count that never caps or freezes, plain tones (pitch follows hit height). No melodies, no "guess the song".
+
+## Illusion reels: show, never explain (owner rule, Oct 25)
+No more explained illusion reels (no voice, no on-screen explanation). Illusions are text-free and music-only (or silent), and prove themselves by showing (reveal, match, loop). Explained reels 500_cafe3d, 501_after3d, 520_gray_strawberries are drafts. Sims keep only the title and live count.
