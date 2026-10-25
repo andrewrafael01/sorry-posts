@@ -906,5 +906,14 @@
   "reach": 9,
   "why": "gravity rotates a golden angle every bounce, glowing trail draws a star-polygon, exact count, tones",
   "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "528_ponzo_tracks": {
+  "hook": 9,
+  "button": 10,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "identical neon bars look wildly different on dusk railway, ghost copy slides down and matches exactly; no words",
+  "bar": 85
  }
 }
