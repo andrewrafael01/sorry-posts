@@ -924,5 +924,14 @@
   "reach": 9,
   "why": "same motion looks like pass-through in silence and a collision with a click; sound changes what you see; no words",
   "bar": 85
+ },
+ "531_pendulum_wave": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 8,
+  "reach": 9,
+  "why": "pendulum wave braid with plain tones on every pass, snaps back to one line",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
  }
 }
