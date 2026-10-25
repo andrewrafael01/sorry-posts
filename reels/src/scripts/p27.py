@@ -51,7 +51,7 @@ def build(name, seed):
     px, py = xs[pick].astype(np.float32), ys[pick].astype(np.float32); z = S["th"] * np.sqrt(np.clip(dn[py.astype(int), px.astype(int)], 0, 1)) * rs.choice([-1, 1], n)
     z = z + rs.randn(n) * .008
     P = np.stack([(px - M / 2) / (M / 2), -(py - M / 2) / (M / 2), z], -1).astype(np.float32)
-    h = S["hue"][0] + (S["hue"][1] - S["hue"][0]) * (py / M) + rs.randn(n) * .01; amp = np.full(n, 1.15, np.float32)
+    h = S["hue"][0] + (S["hue"][1] - S["hue"][0]) * (py / M) + rs.randn(n) * .01; amp = np.full(n, S.get('amp', 1.15), np.float32)
     # face: denser, bright white dots on both faces, nudged just proud of the surface
     fy, fx = np.nonzero(fm); m = 5500; pk = rs.randint(0, len(fx), m); qx, qy = fx[pk].astype(np.float32), fy[pk].astype(np.float32); side = rs.choice([-1, 1], m)
     fz = (S["th"] * np.sqrt(np.clip(dn[qy.astype(int), qx.astype(int)], 0, 1)) + .012) * side

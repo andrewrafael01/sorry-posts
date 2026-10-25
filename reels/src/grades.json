@@ -978,5 +978,41 @@
   "reach": 9,
   "why": "cute smiling ghost of glittering dots, spin direction flips at will; text-free",
   "override": "owner requested: cute dot-cloud spinners like the reference reel"
+ },
+ "537_cute_cat": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "cute smiling cat of glittering dots, spin direction flips at will; text-free",
+  "override": "owner requested: cute dot-cloud spinners like the reference reel"
+ },
+ "538_cute_mushroom": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "cute smiling mushroom of glittering dots, spin direction flips at will; text-free",
+  "override": "owner requested: cute dot-cloud spinners like the reference reel"
+ },
+ "539_cute_cloud": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "cute smiling cloud of glittering dots, spin direction flips at will; text-free",
+  "override": "owner requested: cute dot-cloud spinners like the reference reel"
+ },
+ "540_cute_bunny": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "cute smiling bunny of glittering dots, spin direction flips at will; text-free",
+  "override": "owner requested: cute dot-cloud spinners like the reference reel"
  }
 }
