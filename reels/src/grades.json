@@ -1014,5 +1014,23 @@
   "reach": 9,
   "why": "cute smiling bunny of glittering dots, spin direction flips at will; text-free",
   "override": "owner requested: cute dot-cloud spinners like the reference reel"
+ },
+ "541_hex_shrink": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball in a rotating polygon that shrinks every hit, tones climb, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "542_square_shrink": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball in a rotating polygon that shrinks every hit, tones climb, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
  }
 }
