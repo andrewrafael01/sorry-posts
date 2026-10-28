@@ -70,7 +70,7 @@ class ShrinkRing(reel.Shot):
         d.line(pts + [pts[0], pts[1]], fill=col, width=int(width * ss), joint="curve")
     def render(self, lt):
         fi = min(len(self.frames) - 1, int(lt * self.fps)); p, R, hits, t, b = self.frames[fi]
-        img = Image.new("RGB", (W, H), (0, 0, 0)); ss = 2; S = int(2 * self.R0 + 220); ox, oy = CX - S / 2, CY - S / 2
+        img = Image.new("RGB", (W, H), (0, 0, 0)); ss = 2; S = int(2 * (self.R0 / math.cos(math.pi / self.sides) if self.sides else self.R0) + 220); ox, oy = CX - S / 2, CY - S / 2
         lay = Image.new("RGB", (S * ss, S * ss), (0, 0, 0)); d = ImageDraw.Draw(lay); c0 = S * ss / 2
         hcol = (self.hue0 + hits * .0035) % 1; col = hue(hcol, .75, 1.0)
         # ghost rings: each hit leaves its old ring behind, expanding slightly while it fades

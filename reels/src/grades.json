@@ -1032,5 +1032,41 @@
   "reach": 9,
   "why": "ball in a rotating polygon that shrinks every hit, tones climb, exact bounce count, black bg",
   "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "543_pentagon_trail": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball sim variant: tones climb, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "544_glow_trail_ring": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball sim variant: tones climb, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "545_octagon_turning_gravity": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball sim variant: tones climb, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "546_triangle_shrink": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball sim variant: tones climb, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
  }
 }
