@@ -1068,5 +1068,77 @@
   "reach": 9,
   "why": "ball sim variant: tones climb, exact bounce count, black bg",
   "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "547_heptagon_turning_gravity": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "ball sim variant: tones, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "548_hexagon_growing_ball": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "ball sim variant: tones, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "549_square_turning_gravity": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "ball sim variant: tones, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "550_ring_gravity_120": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "ball sim variant: tones, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "551_ring_gravity_70": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "ball sim variant: tones, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "552_decagon_shrink": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "ball sim variant: tones, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "553_pentagon_growing_ball": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "ball sim variant: tones, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "554_ring_shrink_fast": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "ball sim variant: tones, exact bounce count, black bg",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
  }
 }
