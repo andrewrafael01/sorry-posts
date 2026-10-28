@@ -564,6 +564,9 @@ class Reel:
         with wave.open(wav, "wb") as w: w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(a.tobytes())
         cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-i", wav,
                "-c:v", "libx264", "-preset", "medium", "-crf", str(crf), "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", path]
+        if os.environ.get("REEL_SHIP"):   # lean mode: one encode straight to a post-ready file (about 13-15 MB), no 150 MB intermediate and no second pass
+            gain = os.environ.get("REEL_SHIP_GAIN", "-6dB")
+            cmd = cmd[:cmd.index("-c:v")] + ["-c:v", "libx264", "-preset", "fast", "-crf", "22", "-maxrate", "4400k", "-bufsize", "8800k", "-profile:v", "high", "-pix_fmt", "yuv420p"] + (["-af", f"volume={gain}"] if gain != "0" else []) + ["-c:a", "aac", "-b:a", "128k", "-shortest", "-movflags", "+faststart", path]
         p = subprocess.Popen(cmd, stdin=subprocess.PIPE); n_fr = int(self.dur * FPS); nw = int(os.environ.get("REEL_WORKERS", "1"))
         if nw > 1:   # parallel frames for heavy single-reel renders (ray-traced scenes); order is preserved by imap
             import multiprocessing as _mp
