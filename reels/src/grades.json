@@ -1140,5 +1140,41 @@
   "reach": 9,
   "why": "ball sim variant: tones, exact bounce count, black bg",
   "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "555_hex_spawn2": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "escape-spawn ball sim variant, proven format",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "556_hex_spawn5": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "escape-spawn ball sim variant, proven format",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "557_square_spawn2": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "escape-spawn ball sim variant, proven format",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "558_ring_spawn6": {
+  "hook": 8,
+  "button": 9,
+  "send": 6,
+  "orig": 7,
+  "reach": 9,
+  "why": "escape-spawn ball sim variant, proven format",
+  "override": "owner approved: the satisfying ball sims go viral for this account"
  }
 }
