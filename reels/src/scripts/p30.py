@@ -14,4 +14,9 @@ REELS = dict(
     hex5=mk("hex_spawn5", 556, "hex", 5, pgap=.30, spin=.6, boost=1.0, seed=12, ball_r=7, n0=4, hue0=.60),
     sq2=mk("square_spawn2", 557, "square", 2, pgap=.40, spin=.8, boost=1.0, seed=13, ball_r=9, n0=8, hue0=.30),
     ring10=mk("ring_spawn6", 558, "ring", 6, gapf=ramp, spin=1.2, boost=1.0, seed=14, ball_r=6, n0=3, hue0=.90),
+    hex4=mk("hex_spawn4", 559, "hex", 4, pgap=.34, spin=.7, boost=1.0, seed=21, ball_r=7, n0=4, hue0=.00),
+    hex6=mk("hex_spawn6", 560, "hex", 6, pgap=.30, spin=.6, boost=1.0, seed=22, ball_r=7, n0=3, hue0=.45),
+    hex7=mk("hex_spawn7", 561, "hex", 7, pgap=.28, spin=.5, boost=1.0, seed=23, ball_r=6, n0=3, hue0=.75),
+    sq5=mk("square_spawn5", 562, "square", 5, pgap=.32, spin=.6, boost=1.0, seed=24, ball_r=7, n0=4, hue0=.20),
+    hex5b=mk("hex_spawn5_b", 563, "hex", 5, pgap=.30, spin=.5, boost=1.0, seed=25, ball_r=7, n0=3, hue0=.35),
 )
