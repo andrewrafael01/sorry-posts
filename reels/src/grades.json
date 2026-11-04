@@ -1177,7 +1177,7 @@
   "why": "escape-spawn ball sim variant, proven format",
   "override": "owner approved: the satisfying ball sims go viral for this account"
  },
- "559_hex_spawn4": {
+ "559_hex_spawn6": {
   "hook": 8,
   "button": 9,
   "send": 6,
@@ -1186,7 +1186,7 @@
   "why": "escape-spawn ball sim variant, the format that broke out (3,235 views)",
   "override": "owner approved: the satisfying ball sims go viral for this account"
  },
- "560_hex_spawn6": {
+ "560_ring_spawn4": {
   "hook": 8,
   "button": 9,
   "send": 6,
@@ -1195,7 +1195,7 @@
   "why": "escape-spawn ball sim variant, the format that broke out (3,235 views)",
   "override": "owner approved: the satisfying ball sims go viral for this account"
  },
- "561_hex_spawn7": {
+ "561_square_spawn3": {
   "hook": 8,
   "button": 9,
   "send": 6,
@@ -1204,7 +1204,7 @@
   "why": "escape-spawn ball sim variant, the format that broke out (3,235 views)",
   "override": "owner approved: the satisfying ball sims go viral for this account"
  },
- "562_square_spawn5": {
+ "562_hex_spawn3": {
   "hook": 8,
   "button": 9,
   "send": 6,
