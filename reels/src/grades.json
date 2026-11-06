@@ -1266,5 +1266,86 @@
   "reach": 9,
   "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
   "override": "owner requested: bounce to real songs"
+ },
+ "569_song_mountain_king": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "570_song_canon_in_d": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "571_song_greensleeves": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "572_song_carol_of_the_bells": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "573_song_joy_to_the_world": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "574_song_deck_the_halls": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "575_song_merry_christmas": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "576_song_happy_birthday": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "577_song_row_row_row": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
  }
 }
