@@ -1428,5 +1428,14 @@
   "reach": 9,
   "why": "what-if with real numbers, deadpan captions; format requested by owner",
   "override": "owner requested: what-if reels like the reference"
+ },
+ "587_whatif_everyone_flushes": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "low-poly 3D what-if with real numbers, voiced deadpan with swearing, word-by-word captions; format requested by owner from reference reels",
+  "override": "owner requested: what-if reels like the reference"
  }
 }
