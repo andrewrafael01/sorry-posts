@@ -1437,5 +1437,32 @@
   "reach": 9,
   "why": "low-poly 3D what-if with real numbers, voiced deadpan with swearing, word-by-word captions; format requested by owner from reference reels",
   "override": "owner requested: what-if reels like the reference"
+ },
+ "588_whatif_treadmill": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "dumb what-if in the low-poly world, escalating counter, swearing deadpan voice, word-by-word captions; owner-requested format",
+  "override": "owner requested: dumb viral what-ifs like the reference reels"
+ },
+ "589_whatif_everyone_screams": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "dumb what-if in the low-poly world, escalating counter, swearing deadpan voice, word-by-word captions; owner-requested format",
+  "override": "owner requested: dumb viral what-ifs like the reference reels"
+ },
+ "590_whatif_everyone_punches_you": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "dumb what-if in the low-poly world, escalating counter, swearing deadpan voice, word-by-word captions; owner-requested format",
+  "override": "owner requested: dumb viral what-ifs like the reference reels"
  }
 }

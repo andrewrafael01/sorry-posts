@@ -52,11 +52,11 @@ def b_tm_fly(img, lt, p, b):
     img.paste(street(lt, None, cam, extra=extra)); mkq("What if a treadmill got 1 km/h faster every minute?")(img); hudn(img, "Treadmill speed", "387 km/h", "out of the building"); big_word(img, b, lt)
 TM_N = [
  ("What if a treadmill got one kilometer per hour faster every minute?", mk_tm_beat(1, 4, lambda p, t: lp.Cam((3.2, 2.0, .5), (0, 1.0, 4.0), 66))),
- ("Minute ten. You're jogging. Doing great, sweetie.", mk_tm_beat(5, 12, lambda p, t: lp.Cam((3.0 - p, 1.9, .8), (0, 1.0, 4.0), 66))),
- ("Minute twenty. Sprinting now. Also regretting every life choice.", mk_tm_beat(15, 22, lambda p, t: lp.Cam((2.6, 1.7, 1.3), (0, 1.0, 4.0), 62))),
- ("Minute forty four. You're Usain Bolt. On a treadmill. In a sweaty gym in Ohio.", mk_tm_beat(36, 45, lambda p, t: lp.Cam((2.4, 1.6, 1.8), (0, 1.1, 4.0), 60))),
- ("Minute one hundred. Faster than a cheetah. Your shoes are on fire.", mk_tm_beat(90, 110, lambda p, t: lp.Cam((2.2, 1.5, 2.0), (0, 1.0, 4.0), 58), fire=True)),
- ("Minute three hundred. Faster than a bullet train. The gym is now a crime scene.", mk_tm_beat(250, 320, lambda p, t: lp.Cam((2.0 + math.sin(t * 50) * .05, 1.4, 2.2), (0, 1.0, 4.0), 56), fire=True)),
+ ("Minute 10. You're jogging. Doing great, sweetie.", mk_tm_beat(5, 12, lambda p, t: lp.Cam((3.0 - p, 1.9, .8), (0, 1.0, 4.0), 66))),
+ ("Minute 20. Sprinting now. Also regretting every life choice.", mk_tm_beat(15, 22, lambda p, t: lp.Cam((2.6, 1.7, 1.3), (0, 1.0, 4.0), 62))),
+ ("Minute 44. You're the fastest man alive. On a treadmill. In a sweaty gym in Ohio.", mk_tm_beat(36, 45, lambda p, t: lp.Cam((2.4, 1.6, 1.8), (0, 1.1, 4.0), 60))),
+ ("Minute 100. Faster than a cheetah. Your shoes are on fire.", mk_tm_beat(90, 110, lambda p, t: lp.Cam((2.2, 1.5, 2.0), (0, 1.0, 4.0), 58), fire=True)),
+ ("Minute 300. Faster than a bullet train. The gym is now a crime scene.", mk_tm_beat(250, 320, lambda p, t: lp.Cam((2.0 + math.sin(t * 50) * .05, 1.4, 2.2), (0, 1.0, 4.0), 56), fire=True)),
  ("And then you launch through the wall, three parked cars, and into a different zip code.", b_tm_fly),
  ("Congratulations. You've invented the worst sport on Earth.", mk_tm_beat(1, 4, lambda p, t: lp.Cam((3.2, 2.0, .5), (0, 1.0, 4.0), 66))),
 ]
@@ -96,10 +96,10 @@ def b_sc_space(img, lt, p, b):
     img.paste(space_beat(lt)); mkq("What if every human on Earth screamed at the same time?")(img); hudn(img, "Loudness in space", "0 dB", "no air. no sound."); big_word(img, b, lt)
 SC_N = [
  ("What if every human on Earth screamed at the exact same time?", mk_sc_beat(0, 0, None, lambda p, t: lp.Cam((0, 2.4, -3 + 3 * p), (0, 4.0, 40), 64))),
- ("One scream is a hundred and ten decibels. Loud. Rude. But fine.", mk_sc_beat(0, 110, None, lambda p, t: lp.Cam((0, 2.2, -2 + 2 * p), (0, 3.5, 40), 62), wave=True)),
- ("Eight billion screams? Two hundred and nine decibels.", mk_sc_beat(110, 209, None, lambda p, t: lp.Cam((0, 2.2, 0 + 2 * p), (0, 3.5, 40), 60), wave=True)),
- ("Past a hundred and ninety four, sound stops being sound. It becomes a shock wave. Which is bad.", mk_sc_beat(209, 209, lambda b: b.at("wave", 0, 2.0) - .2, lambda p, t: lp.Cam((math.sin(t * 40) * .15, 2.2 + math.cos(t * 44) * .15, 2), (0, 3.5, 40), 60))),
- ("Every window on Earth: gone. Every bird: also gone. Cars: now airborne.", mk_sc_beat(209, 209, lambda b: -1.0, lambda p, t: lp.Cam((26, 20, -24 + 6 * p), (0, 8, 40), 62))),
+ ("One scream is 110 decibels. That's rude. But fine.", mk_sc_beat(0, 110, None, lambda p, t: lp.Cam((0, 2.2, -2 + 2 * p), (0, 3.5, 40), 62), wave=True)),
+ ("8 billion screams? 209 decibels.", mk_sc_beat(110, 209, None, lambda p, t: lp.Cam((0, 2.2, 0 + 2 * p), (0, 3.5, 40), 60), wave=True)),
+ ("Past 194 decibels, sound stops being sound. It becomes a shock wave. Which is bad.", mk_sc_beat(209, 209, lambda b: b.at("wave", 0, 2.0) - .2, lambda p, t: lp.Cam((math.sin(t * 40) * .15, 2.2 + math.cos(t * 44) * .15, 2), (0, 3.5, 40), 60))),
+ ("Every window on Earth: gone. Every bird: also gone. Cars: now airborne.", mk_sc_beat(209, 209, lambda b: -1.0, lambda p, t: lp.Cam((0, 24 - 4 * p, -14), (0, 5, 46), 72))),
  ("Meanwhile in space, nobody hears a thing. The aliens are so confused.", b_sc_space),
  ("Then everyone loses their voice for four days. Honestly? Worth it.", mk_sc_beat(0, 0, lambda b: -9.0, lambda p, t: lp.Cam((0, 2.4, -3 + 3 * p), (0, 4.0, 40), 64))),
 ]
@@ -138,11 +138,11 @@ def mk_pq_beat(kind, count0, count1, cam_fn, sub_fn):
     return draw
 PQ_N = [
  ("What if every human on Earth punched you once?", mk_pq_beat("street", 0, 3, lambda p, t: lp.Cam((3.2, 2.0, -2.5 + .5 * p), (0, 1.2, 8), 62), lambda v: "one per second")),
- ("That's eight billion punches. One every second. It would take two hundred and sixty years.", mk_pq_beat("street", 3, 8.2e9, lambda p, t: lp.Cam((4, 3.0 + 10 * p, -3 - 6 * p), (0, 1.0, 20 + 30 * p), 62), lambda v: f"{v / 3.15e7:,.0f} years of punching")),
- ("The line would be almost five million kilometers long.", mk_pq_beat("street", 8.2e9, 8.2e9, lambda p, t: lp.Cam((0, 4 + 60 * p, -10 - 20 * p), (0, 0, 60 + 80 * p), 64), lambda v: "line length 4.9 million km")),
- ("That's the Moon and back six times. It also wraps Earth a hundred and twenty two times.", mk_pq_beat("earth", 8.2e9, 8.2e9, None, lambda v: "wraps earth 122 times")),
- ("You'd die on punch one. The other eight billion punch a very confused corpse.", mk_pq_beat("street", 8.2e9, 8.2e9, lambda p, t: lp.Cam((3.2, 2.0, -2.5), (0, 1.2, 8), 62), lambda v: "still going")),
- ("Eight billion people agreeing on something. And it's violence. Classic humanity.", mk_pq_beat("street", 8.2e9, 8.2e9, lambda p, t: lp.Cam((6, 2.6 + 6 * p, -4 - 10 * p), (0, 1.0, 40), 60), lambda v: "")),
+ ("That's 8 billion punches. One every second. It would take 260 years.", mk_pq_beat("street", 3, 8.2e9, lambda p, t: lp.Cam((4, 3.0 + 10 * p, -3 - 6 * p), (0, 1.0, 20 + 30 * p), 62), lambda v: f"{v / 3.15e7:,.0f} years of punching")),
+ ("The line would be almost 5 million kilometers long.", mk_pq_beat("street", 8.2e9, 8.2e9, lambda p, t: lp.Cam((0, 4 + 60 * p, -10 - 20 * p), (0, 0, 60 + 80 * p), 64), lambda v: "line length 4.9 million km")),
+ ("That's the Moon and back 6 times. It also wraps around Earth 122 times.", mk_pq_beat("earth", 8.2e9, 8.2e9, None, lambda v: "wraps earth 122 times")),
+ ("You'd die on the first punch. Everyone else punches a very confused corpse.", mk_pq_beat("street", 8.2e9, 8.2e9, lambda p, t: lp.Cam((3.2, 2.0, -2.5), (0, 1.2, 8), 62), lambda v: "still going")),
+ ("8 billion people finally agree on something. And it's violence. Classic humanity.", mk_pq_beat("street", 8.2e9, 8.2e9, lambda p, t: lp.Cam((6, 2.6 + 6 * p, -4 - 10 * p), (0, 1.0, 40), 60), lambda v: "")),
 ]
 def punches():
     shots = [Clean(n, d, 3.0, cut="cut", push=0, cap=False) for n, d in PQ_N]
