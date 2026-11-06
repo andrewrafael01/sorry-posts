@@ -24,7 +24,7 @@ export default async function build({ lib, tl, hud }) {
         for (let i = 0; i < 300; i++) { const d = deb[i]; const r2 = rr * .7 * (d.v / 30); if (rr > 3) debris.set(i, Math.cos(d.a) * r2, 1 + d.up * (1 - Math.pow(clamp(rr / 200), 2)) * (rr / 80), 14 + Math.sin(d.a) * r2, 1); else debris.set(i, 0, 0, 0, 0); } debris.done();
         B.render();
       }
-      hud.question('What if every jerk was twice as fast as the last?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else { const hand = rate * .3; hud.counter('Strokes per second', fmt(rate), 'hand speed ' + fmt(hand) + ' m/s' + (hand > 100 ? ' · sound is 343' : '')); }
+      hud.question('What if every *jerk* was twice as fast as the last?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else { const hand = rate * .3; hud.counter('Strokes per second', fmt(rate), 'hand speed ' + fmt(hand) + ' m/s' + (hand > 100 ? ' · sound is 343' : '')); }
     }
   };
 }

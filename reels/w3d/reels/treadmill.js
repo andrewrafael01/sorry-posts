@@ -22,7 +22,7 @@ export default async function build({ lib, tl, hud }) {
         for (let i = 0; i < 60; i++) trail.set(i, ((i * 13) % 5) / 3 - .8, 1.4 + (i % 4) * .2, z - 1.2 - i * .35, 1 - i * .012); trail.done(); city.cars.forEach((c) => { c.m.position.z = c.z0; });
         B.renderer.render(B.scene, B.camera);
       }
-      hud.question('What if a treadmill got 1 km/h faster every minute?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else hud.counter('Treadmill speed', fly ? '387 km/h' : fmt(sp) + ' km/h', fly ? 'out of the building' : 'minute ' + Math.floor(sp));
+      hud.question('What if a *treadmill* got 1 km/h faster every minute?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else hud.counter('Treadmill speed', fly ? '387 km/h' : fmt(sp) + ' km/h', fly ? 'out of the building' : 'minute ' + Math.floor(sp));
     }
   };
 }

@@ -1,23 +1,24 @@
 <!doctype html><html><head><meta charset="utf-8"><style>
 html,body{margin:0;background:#000;overflow:hidden;width:1080px;height:1920px;position:relative}
 canvas{position:absolute;left:0;top:0;width:1080px;height:1920px}
-.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 46%,rgba(0,0,0,0) 56%,rgba(0,0,0,.30) 100%);pointer-events:none}
-.fadeb{position:absolute;left:0;right:0;bottom:0;height:520px;background:linear-gradient(to top,rgba(8,14,24,.50),rgba(8,14,24,0));pointer-events:none}
-.fadet{position:absolute;left:0;right:0;top:0;height:520px;background:linear-gradient(to bottom,rgba(8,14,24,.40),rgba(8,14,24,0));pointer-events:none}
-.t{position:absolute;color:#fff;font-family:'Liberation Serif','Times New Roman',serif;text-shadow:0 2px 14px rgba(0,0,0,.45)}
-#q{left:70px;right:70px;top:110px;text-align:center;font-size:62px;line-height:1.14;font-weight:400}
-#lab{left:64px;top:92px;font-family:'Liberation Sans',Arial,sans-serif;font-size:22px;letter-spacing:5px;text-transform:uppercase;font-weight:700;opacity:.92}
-#val{left:62px;top:122px;font-size:92px;font-weight:400;letter-spacing:1px}
-#sub{left:64px;top:232px;font-family:'Liberation Sans',Arial,sans-serif;font-size:20px;letter-spacing:4px;text-transform:uppercase;font-weight:700;opacity:.9}
-body.sm #q{top:56px;font-size:40px}
-body.sm #lab{top:176px}
-body.sm #val{top:206px}
-body.sm #sub{top:316px}
-#cap{left:80px;right:80px;top:1440px;text-align:center;font-size:54px;font-style:italic;line-height:1.2;text-shadow:0 2px 3px rgba(0,0,0,.65),0 0 22px rgba(0,0,0,.55)}
-#big{left:0;right:0;top:1250px;text-align:center;font-family:'DejaVu Sans',Arial,sans-serif;font-weight:800;font-size:116px;color:#fff;-webkit-text-stroke:12px #000;paint-order:stroke fill;text-transform:uppercase;display:none}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 58%,rgba(0,0,0,.34) 100%);pointer-events:none}
+.t{position:absolute;color:#fff;font-family:'Liberation Serif','Times New Roman',serif;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+#q{left:60px;right:60px;top:150px;text-align:center;font-size:62px;line-height:1.16;font-weight:400;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+#q i{font-style:italic}
+#lab{left:80px;top:552px;font-family:'Liberation Sans',Arial,sans-serif;font-size:22px;letter-spacing:4px;text-transform:uppercase;font-weight:700;opacity:.95}
+#val{left:76px;top:580px;font-size:112px;font-weight:400;letter-spacing:0;line-height:1.1}
+#val.hot{color:#f0846e}
+#note{left:80px;top:714px;font-size:34px;font-style:italic;color:#dcdcdc;opacity:.95}
+#tag{left:80px;top:766px;font-family:'Liberation Sans',Arial,sans-serif;font-size:19px;letter-spacing:3px;text-transform:uppercase;font-weight:700;opacity:.9}
+#tag:empty{display:none}
+#tag:before{content:'';display:inline-block;width:9px;height:9px;border-radius:50%;background:#f0543c;margin-right:10px;vertical-align:middle}
+body.B #q{top:480px;font-size:68px}
+body.B #lab{top:292px}body.B #val{top:320px}body.B #note{top:454px;font-family:'Liberation Sans',Arial,sans-serif;font-style:normal;font-size:20px;letter-spacing:4px;text-transform:uppercase;font-weight:700}body.B #tag{display:none}
+#cap{left:90px;right:90px;top:1296px;text-align:center;font-size:50px;font-style:italic;line-height:1.2;text-shadow:0 2px 3px rgba(0,0,0,.65),0 0 24px rgba(0,0,0,.5)}
+#big{display:none}
 </style></head><body>
-<canvas id="c" width="1080" height="1920"></canvas><div class="fadet"></div><div class="fadeb"></div><div class="vig"></div>
-<div class="t" id="q"></div><div class="t" id="lab"></div><div class="t" id="val"></div><div class="t" id="sub"></div><div class="t" id="cap"></div><div class="t" id="big"></div>
+<canvas id="c" width="1080" height="1920"></canvas><div class="vig"></div>
+<div class="t" id="q"></div><div class="t" id="lab"></div><div class="t" id="val"></div><div class="t" id="note"></div><div class="t" id="tag"></div><div class="t" id="cap"></div><div class="t" id="big"></div>
 <script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
 <script type="module">
 import * as lib from '/lib.js';
@@ -25,10 +26,11 @@ const qs = new URLSearchParams(location.search); const name = qs.get('reel'); co
 const tl = await (await fetch(tlUrl)).json(); const mod = await import('/reels/' + name + '.js');
 const $ = (id) => document.getElementById(id);
 const hud = {
-  question(text, a = 1, small = false) { $('q').textContent = text; $('q').style.opacity = a; document.body.classList.toggle('sm', !!small); },
-  counter(label, value, sub) { $('lab').textContent = label || ''; $('val').textContent = value || ''; $('sub').textContent = sub || ''; $('lab').style.opacity = label ? .92 : 0; },
+  layout(l) { document.body.classList.toggle('B', l === 'B'); },
+  question(text, a = 1, small = false) { $('q').innerHTML = text.replace(/\*(.+?)\*/g, '<i>$1</i>'); $('q').style.opacity = a; document.body.classList.toggle('sm', !!small); },
+  counter(label, value, note, tag, hot) { $('lab').textContent = label || ''; $('val').textContent = value || ''; $('val').classList.toggle('hot', !!hot); $('note').textContent = note || ''; $('tag').textContent = tag || ''; $('lab').style.opacity = label ? .95 : 0; },
   caption(text, a = 1) { $('cap').textContent = text; $('cap').style.opacity = a; },
-  big(text, s = 1) { const b = $('big'); b.style.display = text ? 'block' : 'none'; b.textContent = text; b.style.transform = 'scale(' + s + ')'; },
+  big() {},
 };
 function chunkFor(beat, lt) {
   const W = beat.words; let idx = 0; for (let i = 0; i < W.length; i++) if (lt >= W[i][1]) idx = i;

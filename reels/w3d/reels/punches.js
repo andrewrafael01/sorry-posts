@@ -1,6 +1,6 @@
 export default async function build({ lib, tl, hud }) {
   const { THREE, makeStage, ground, road, tree, Crowd, buildEarth, R, clamp, smooth, lerp } = lib; const fmt = (v) => Math.round(v).toLocaleString('en-US');
-  const A = makeStage({ shadowExtent: 60, fogNear: 100, fogFar: 380 }); ground(A.scene, 0x86b86c, 1600); road(A.scene, 0, 120, 8, 500); const r = R(3); for (let z = 10; z < 240; z += 16) for (const s of [-1, 1]) tree(A.scene, s * (8 + r() * 6), z, .9 + r() * .4, z | 0);
+  const A = makeStage({ shadowExtent: 60, fogNear: 100, fogFar: 380 }); ground(A.scene, 0x86a672, 1600); road(A.scene, 0, 120, 8, 500); const r = R(3); for (let z = 10; z < 240; z += 16) for (const s of [-1, 1]) tree(A.scene, s * (8 + r() * 6), z, .9 + r() * .4, z | 0);
   const line = new Crowd(A.scene, 300, 21), hero = new Crowd(A.scene, 1, 6);
   for (let i = 0; i < 300; i++) { const o = line.p[i]; o.x = 0; o.z = 1.1 + i * .62; o.yaw = Math.PI; o.anim = i === 0 ? 'punch' : 'idle'; o.phase = i * .13; }
   const hp = hero.p[0]; hp.x = 0; hp.z = 0; hp.yaw = 0; hp.anim = 'idle'; hp.shirt.set(0xffd13a);
@@ -14,7 +14,7 @@ export default async function build({ lib, tl, hud }) {
         const cams = [[3.2, 2.0, -2.5 + .5 * p, 0, 1.2, 8, 62], [4, 3 + 10 * p, -3 - 6 * p, 0, 1, 20 + 30 * p, 62], [0, 4 + 60 * p, -10 - 20 * p, 0, 0, 60 + 80 * p, 64], 0, [3.2, 2.0, -2.5, 0, 1.2, 8, 62], [6, 2.6 + 6 * p, -4 - 10 * p, 0, 1, 40, 60]];
         A.cam(...cams[bi]); A.follow(0, 20); line.p[0].phase = t * 0; line.update(t); hero.update(t); line.p.forEach((o, i) => { o.vis = i < 300; }); A.renderer.render(A.scene, A.camera);
       }
-      hud.question('What if every human on Earth punched you once?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else { const v = lerp(V[bi][0], V[bi][1], smooth(p)); hud.counter('Punches', fmt(v), bi === 1 ? fmt(v / 3.15e7) + ' years of punching' : bi === 2 ? 'line length 4.9 million km' : bi === 3 ? 'wraps earth 122 times' : bi === 4 ? 'still going' : ''); }
+      hud.question('What if every human on Earth *punched* you once?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else { const v = lerp(V[bi][0], V[bi][1], smooth(p)); hud.counter('Punches', fmt(v), bi === 1 ? fmt(v / 3.15e7) + ' years of punching' : bi === 2 ? 'line length 4.9 million km' : bi === 3 ? 'wraps earth 122 times' : bi === 4 ? 'still going' : ''); }
     }
   };
 }

@@ -1,6 +1,6 @@
 export default async function build({ lib, tl, hud }) {
   const { THREE, makeStage, ground, tree, mat, addBox, Crowd, Particles, R, clamp, smooth, lerp } = lib; const fmt = (v) => Math.round(v).toLocaleString('en-US');
-  const A = makeStage({ shadowExtent: 34, fogNear: 80, fogFar: 300 }); ground(A.scene, 0x86b86c, 600); const r = R(6);
+  const A = makeStage({ shadowExtent: 34, fogNear: 80, fogFar: 300 }); ground(A.scene, 0x86a672, 600); const r = R(6);
   const path = new THREE.Mesh(new THREE.PlaneGeometry(6, 120), new THREE.MeshStandardMaterial({ color: 0xcfc3a6, roughness: 1 })); path.rotation.x = -Math.PI / 2; path.position.set(0, .02, 20); path.receiveShadow = true; A.scene.add(path);
   for (let q = 0; q < 10; q++) tree(A.scene, q % 2 ? -13 : 14, 4 + q * 7, 1.3, q);
   const brown = new THREE.MeshStandardMaterial({ color: 0x6d4524, roughness: .55 }); const pile = [0, 1, 2, 3].map((k) => { const m = new THREE.Mesh(new THREE.SphereGeometry(.5, 24, 16), brown); m.castShadow = true; m.receiveShadow = true; A.scene.add(m); return m; });
@@ -20,7 +20,7 @@ export default async function build({ lib, tl, hud }) {
       const hr = hero.p[0]; hr.x = 1.6; hr.z = 6; hr.yaw = -Math.PI / 2; hr.anim = 'idle'; hero.update(t);
       hp[0].visible = f > .45; hp[0].position.set(8.5, 0, 11); hp[0].rotation.y = Math.PI; hp[1].visible = f > .75; hp[1].position.set(8.5, 0, 16); hp[1].rotation.y = Math.PI; hp[2].visible = f > .95; hp[2].position.set(12.5, 0, 13.5); hp[2].rotation.y = Math.PI;
       for (let i = 0; i < 40; i++) { if (bi === 4) { const a = t * 9 + i * .7; spr.set(i, 8.5 + Math.sin(a) * .8, 1.6 + Math.cos(a) * .35, 11 - 1.9 - (i % 8) * .22, 1); } else spr.set(i, 0, 0, 0, 0); } spr.done();
-      A.render(); hud.question('What if you kept every shit you ever took?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else hud.counter('You shat', fmt(MS[bi](p)) + ' kg', SB[bi]);
+      A.render(); hud.question('What if you *kept* every shit you ever took?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else hud.counter('You shat', fmt(MS[bi](p)) + ' kg', SB[bi]);
     }
   };
 }

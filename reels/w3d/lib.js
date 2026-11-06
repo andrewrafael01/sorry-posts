@@ -12,6 +12,15 @@ export const lerp = (a, b, t) => a + (b - a) * t;
 export function makeStage(o = {}) {
   if (!globalThis.__r) { const canvas = document.getElementById('c'); const rr = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true }); rr.setSize(W, H, false); rr.setPixelRatio(1); rr.shadowMap.enabled = true; rr.shadowMap.type = THREE.PCFSoftShadowMap; rr.toneMapping = THREE.ACESFilmicToneMapping; rr.outputColorSpace = THREE.SRGBColorSpace; globalThis.__r = rr; }
   const renderer = globalThis.__r; renderer.toneMappingExposure = o.exposure ?? 1.05;
+  if (!globalThis.__post) {
+    const target = new THREE.WebGLRenderTarget(W, H, { type: THREE.HalfFloatType, samples: 4 }); const pc = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1); const ps = new THREE.Scene();
+    const pm = new THREE.ShaderMaterial({ uniforms: { t: { value: target.texture }, px: { value: new THREE.Vector2(1 / W, 1 / H) }, focus: { value: .56 }, band: { value: .2 }, amt: { value: 11.0 } },
+      vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }',
+      fragmentShader: 'uniform sampler2D t; uniform vec2 px; uniform float focus; uniform float band; uniform float amt; varying vec2 vUv; void main(){ float d = max(abs(vUv.y - focus) - band, 0.0); float r = clamp(d * 3.2, 0.0, 1.0); r = r * r * amt; vec3 c = texture2D(t, vUv).rgb; float w = 1.0; for (int i = 0; i < 20; i++) { float a = float(i) * 2.39996; float rr = sqrt((float(i) + 0.5) / 20.0) * r; c += texture2D(t, vUv + vec2(cos(a), sin(a)) * rr * px).rgb; w += 1.0; } c /= w; float l = dot(c, vec3(0.2126, 0.7152, 0.0722)); c = mix(vec3(l), c, 0.9); c *= vec3(1.03, 1.0, 0.96); gl_FragColor = vec4(c, 1.0);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}' });
+    ps.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), pm)); const orig = renderer.render.bind(renderer);
+    renderer.render = (scene, camera) => { if (scene === ps) { orig(scene, camera); return; } renderer.setRenderTarget(target); orig(scene, camera); renderer.setRenderTarget(null); orig(ps, pc); };
+    globalThis.__post = { target, pm };
+  }
   const scene = new THREE.Scene();
   const fogc = new THREE.Color(o.fog ?? 0xcfe3f6); scene.fog = new THREE.Fog(fogc, o.fogNear ?? 90, o.fogFar ?? 380);
   const camera = new THREE.PerspectiveCamera(60, W / H, .1, 2000);
@@ -42,7 +51,7 @@ export function mat(color, o = {}) { return new THREE.MeshStandardMaterial(Objec
 export function addBox(scene, x, y, z, w, h, d, color, o = {}) {
   const m = new THREE.Mesh(o.round ? new RoundedBoxGeometry(w, h, d, 3, o.round) : new THREE.BoxGeometry(w, h, d), o.material || mat(color, o.mat)); m.position.set(x, y, z); if (o.ry) m.rotation.y = o.ry; m.castShadow = o.cast !== false; m.receiveShadow = o.receive !== false; scene.add(m); return m;
 }
-export function ground(scene, color = 0x86b86c, size = 1200, o = {}) {
+export function ground(scene, color = 0x86a672, size = 1200, o = {}) {
   const cv = document.createElement('canvas'); cv.width = cv.height = 256; const g = cv.getContext('2d'); const base = new THREE.Color(color); g.fillStyle = '#' + base.getHexString(); g.fillRect(0, 0, 256, 256); const r = rnd(2);
   for (let i = 0; i < 2600; i++) { const s = 1 + r() * 3; g.fillStyle = `rgba(${r() < .5 ? '255,255,255' : '0,40,0'},${.035 + r() * .05})`; g.fillRect(r() * 256, r() * 256, s, s); }
   const t = new THREE.CanvasTexture(cv); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(size / 14, size / 14); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
@@ -83,20 +92,21 @@ const PANTS = [0x2c3e6b, 0x3a3f4b, 0x6b4f3a, 0x23395d, 0x4d5b73, 0x5b6b3a];
 const HAIRS = [0x2b1d14, 0x5a3a22, 0xe0b04a, 0x101010, 0x8a8a8a, 0xb5532a];
 export class Crowd {
   constructor(scene, n, seed = 1) {
-    this.n = n; this.p = []; const r = rnd(seed);
-    const rb = (w, h, d, rad) => new RoundedBoxGeometry(w, h, d, 2, rad);
-    const defs = { legL: rb(1, 1, 1, .12), legR: rb(1, 1, 1, .12), torso: rb(1, 1, 1, .14), armL: rb(1, 1, 1, .14), armR: rb(1, 1, 1, .14), handL: new THREE.SphereGeometry(.5, 10, 8), handR: new THREE.SphereGeometry(.5, 10, 8), head: new THREE.SphereGeometry(.5, 18, 14), hair: new THREE.SphereGeometry(.5, 14, 10, 0, Math.PI * 2, 0, Math.PI * .6) };
-    this.parts = {}; for (const k in defs) { const im = new THREE.InstancedMesh(defs[k], new THREE.MeshStandardMaterial({ roughness: .75 }), n); im.castShadow = true; im.receiveShadow = true; im.frustumCulled = false; scene.add(im); this.parts[k] = im; }
+    this.n = n; this.p = []; const r = rnd(seed); const bx = (w, h, d) => new THREE.BoxGeometry(w, h, d);
+    const defs = { legL: bx(1, 1, 1), legR: bx(1, 1, 1), torso: bx(1, 1, 1), armL: bx(1, 1, 1), armR: bx(1, 1, 1), handL: bx(1, 1, 1), handR: bx(1, 1, 1), head: bx(1, 1, 1), hair: bx(1, 1, 1) };
+    this.parts = {}; for (const k in defs) { const im = new THREE.InstancedMesh(defs[k], new THREE.MeshStandardMaterial({ roughness: .9, metalness: 0 }), n); im.castShadow = true; im.receiveShadow = true; im.frustumCulled = false; scene.add(im); this.parts[k] = im; }
+    // faces: a transparent decal on the front of every head (eyes, brows, mouth)
+    const cv = document.createElement('canvas'); cv.width = 128; cv.height = 96; const g = cv.getContext('2d'); g.fillStyle = '#1b1210'; g.fillRect(22, 40, 20, 14); g.fillRect(86, 40, 20, 14); g.fillRect(18, 28, 28, 7); g.fillRect(82, 28, 28, 7); g.fillStyle = '#5a2f26'; g.fillRect(48, 72, 32, 7);
+    const ft = new THREE.CanvasTexture(cv); ft.colorSpace = THREE.SRGBColorSpace; ft.magFilter = THREE.NearestFilter; const face = new THREE.InstancedMesh(new THREE.PlaneGeometry(1, .75), new THREE.MeshBasicMaterial({ map: ft, transparent: true, alphaTest: .3 }), n); face.frustumCulled = false; scene.add(face); this.parts.face = face;
     for (let i = 0; i < n; i++) {
-      const o = { x: 0, z: 0, y: 0, yaw: 0, scale: 1, anim: 'idle', phase: r() * 6.28, speed: 1, pitch: 0, extra: 0, shirt: new THREE.Color(SHIRTS[(r() * SHIRTS.length) | 0]), pants: new THREE.Color(PANTS[(r() * PANTS.length) | 0]), skin: new THREE.Color(SKINS[(r() * SKINS.length) | 0]), hair: new THREE.Color(HAIRS[(r() * HAIRS.length) | 0]), h: .92 + r() * .16, vis: true };
+      const o = { x: 0, z: 0, y: 0, yaw: 0, scale: 1, anim: 'idle', phase: r() * 6.28, speed: 1, pitch: 0, extra: 0, shirt: new THREE.Color(SHIRTS[(r() * SHIRTS.length) | 0]), pants: new THREE.Color(r() < .25 ? 0xf2f2f4 : PANTS[(r() * PANTS.length) | 0]), skin: new THREE.Color(SKINS[(r() * SKINS.length) | 0]), hair: new THREE.Color(HAIRS[(r() * HAIRS.length) | 0]), h: .92 + r() * .16, vis: true };
       this.p.push(o); const set = (k, c) => this.parts[k].setColorAt(i, c);
       set('legL', o.pants); set('legR', o.pants); set('torso', o.shirt); set('armL', o.shirt); set('armR', o.shirt); set('handL', o.skin); set('handR', o.skin); set('head', o.skin); set('hair', o.hair);
     }
-    for (const k in this.parts) this.parts[k].instanceColor.needsUpdate = true;
-    this._m = new THREE.Matrix4(); this._a = new THREE.Matrix4(); this._b = new THREE.Matrix4(); this._q = new THREE.Quaternion(); this._e = new THREE.Euler(); this._v = new THREE.Vector3(); this._s = new THREE.Vector3(); this._root = new THREE.Matrix4(); this._up = new THREE.Matrix4();
+    for (const k in this.parts) if (this.parts[k].instanceColor) this.parts[k].instanceColor.needsUpdate = true;
+    this._m = new THREE.Matrix4(); this._a = new THREE.Matrix4(); this._b = new THREE.Matrix4(); this._root = new THREE.Matrix4(); this._up = new THREE.Matrix4();
   }
   _put(k, i, upper, px, py, pz, rotX, ox, oy, oz, sx, sy, sz) {
-    // world = root * upper * T(pivot) * Rx(rot) * T(offset) * S(size)
     const m = this._m; m.copy(this._root); if (upper) m.multiply(this._up);
     this._a.makeTranslation(px, py, pz); m.multiply(this._a);
     if (rotX) { this._a.makeRotationX(rotX); m.multiply(this._a); }
@@ -105,31 +115,29 @@ export class Crowd {
   update(t) {
     for (let i = 0; i < this.n; i++) {
       const o = this.p[i], s = o.scale * o.h;
-      if (!o.vis) { this._s.set(0, 0, 0); this._m.makeScale(0, 0, 0); for (const k in this.parts) this.parts[k].setMatrixAt(i, this._m); continue; }
+      if (!o.vis) { this._m.makeScale(0, 0, 0); for (const k in this.parts) this.parts[k].setMatrixAt(i, this._m); continue; }
       let swing = 0, armUp = 0, bob = 0, hipDrop = 0, legFwd = 0, pitch = o.pitch, armSwing = 0, headNod = 0; const w = Math.sin(o.phase + t * 8.5 * o.speed);
       switch (o.anim) {
         case 'walk': swing = .62 * w; armSwing = .55 * w; bob = Math.abs(w) * .05; break;
         case 'run': swing = 1.0 * w; armSwing = .95 * w; bob = Math.abs(w) * .12; pitch += .18; break;
         case 'panic': swing = .9 * Math.sin(o.phase + t * 13); armUp = -2.7 + .3 * Math.sin(o.phase + t * 17); bob = Math.abs(Math.sin(o.phase + t * 13)) * .1; break;
         case 'squat': hipDrop = .42 + .03 * Math.sin(o.phase + t * 14); legFwd = -1.35; pitch = .45 + .12 * Math.sin(o.phase + t * 11); armSwing = .9 * Math.sin(o.phase + t * 10); bob = Math.abs(Math.sin(o.phase + t * 14)) * .03; headNod = .15 * Math.sin(o.phase + t * 9); break;
-        case 'bend': pitch = 1.0 + .3 * Math.max(0, Math.sin(o.phase + t * 5)); swing = 0; armSwing = .5 * Math.sin(o.phase + t * 5); headNod = .3 * Math.sin(o.phase + t * 5); bob = Math.abs(Math.sin(o.phase + t * 5)) * .04; break;
-        case 'punch': armUp = 0; armSwing = 0; swing = 0; o._punch = true; break;
+        case 'bend': pitch = 1.0 + .3 * Math.max(0, Math.sin(o.phase + t * 5)); armSwing = .5 * Math.sin(o.phase + t * 5); headNod = .3 * Math.sin(o.phase + t * 5); bob = Math.abs(Math.sin(o.phase + t * 5)) * .04; break;
+        case 'punch': break;
         case 'jump': bob = Math.abs(Math.sin(o.phase + t * 5)) * .6; armUp = -2.6; break;
         case 'sprint': swing = 1.2 * w; armSwing = 1.1 * w; bob = Math.abs(w) * .2; pitch += .3; break;
         default: bob = Math.sin(o.phase + t * 2.2) * .012; armSwing = .22 * Math.sin(o.phase + t * 1.7); swing = .08 * Math.sin(o.phase * 1.3 + t * 1.1); headNod = .12 * Math.sin(o.phase + t * 1.3); pitch += .05 * Math.sin(o.phase + t * 1.9);
       }
       this._root.makeRotationY(o.yaw + (o.anim === 'idle' ? .18 * Math.sin(o.phase + t * 0.9) : 0)); this._root.setPosition(o.x, o.y + bob * s, o.z); this._a.makeScale(s, s, s); this._root.multiply(this._a);
-      this._up.makeTranslation(0, .8 - hipDrop, 0); this._b.makeRotationX(pitch); this._up.multiply(this._b); this._a.makeTranslation(0, -(.8 - hipDrop), 0); this._up.multiply(this._a);
-      this._up.makeTranslation(0, 0, 0); this._up.copy(this._root).invert().multiply(this._root); // identity placeholder
-      this._up.identity(); this._up.makeTranslation(0, .8 - hipDrop, 0); this._b.makeRotationX(pitch); this._up.multiply(this._b); this._a.makeTranslation(0, -(.8 - hipDrop), 0); this._up.multiply(this._a);
-      const hy = .8 - hipDrop;
-      this._put('legL', i, false, -.12, hy, 0, swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .22, .8, .24);
-      this._put('legR', i, false, .12, hy, 0, -swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .22, .8, .24);
-      this._put('torso', i, true, 0, 0, 0, 0, 0, hy + .3, 0, .54, .62, .3);
-      let aL = armUp ? armUp : -swing * 0 + armSwing, aR = armUp ? armUp : -armSwing; if (o.anim === 'punch') { aR = -1.5 + .3 * Math.sin(o.phase + t * 9); aL = .3; }
-      this._put('armL', i, true, -.36, hy + .56, 0, aL, 0, -.27, 0, .15, .6, .16); this._put('armR', i, true, .36, hy + .56, 0, aR, 0, -.27, 0, .15, .6, .16);
-      this._put('handL', i, true, -.36, hy + .56, 0, aL, 0, -.62, 0, .13, .13, .13); this._put('handR', i, true, .36, hy + .56, 0, aR, 0, -.62, 0, .13, .13, .13);
-      this._put('head', i, true, 0, 0, 0, headNod, 0, hy + .93, 0, .36, .38, .36); this._put('hair', i, true, 0, 0, 0, headNod, 0, hy + .98, -.01, .39, .36, .39);
+      const hy = .8 - hipDrop; this._up.makeTranslation(0, hy, 0); this._b.makeRotationX(pitch); this._up.multiply(this._b); this._a.makeTranslation(0, -hy, 0); this._up.multiply(this._a);
+      this._put('legL', i, false, -.13, hy, 0, swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .24, .8, .26);
+      this._put('legR', i, false, .13, hy, 0, -swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .24, .8, .26);
+      this._put('torso', i, true, 0, 0, 0, 0, 0, hy + .31, 0, .58, .64, .32);
+      let aL = armUp ? armUp : armSwing, aR = armUp ? armUp : -armSwing; if (o.anim === 'punch') { aR = -1.5 + .3 * Math.sin(o.phase + t * 9); aL = .3; }
+      this._put('armL', i, true, -.4, hy + .6, 0, aL, 0, -.28, 0, .17, .62, .19); this._put('armR', i, true, .4, hy + .6, 0, aR, 0, -.28, 0, .17, .62, .19);
+      this._put('handL', i, true, -.4, hy + .6, 0, aL, 0, -.66, 0, .15, .14, .17); this._put('handR', i, true, .4, hy + .6, 0, aR, 0, -.66, 0, .15, .14, .17);
+      this._put('head', i, true, 0, 0, 0, headNod, 0, hy + .93, 0, .44, .44, .44); this._put('hair', i, true, 0, 0, 0, headNod, 0, hy + 1.1, -.03, .47, .17, .48);
+      this._put('face', i, true, 0, 0, 0, headNod, 0, hy + .9, .222, .4, .4, 1);
     }
     for (const k in this.parts) this.parts[k].instanceMatrix.needsUpdate = true;
   }
@@ -152,7 +160,7 @@ export class Particles {
 // ---------------------------------------------------------------------------------------------- shared worlds
 export function buildStreet(scene, o = {}) {
   const r = rnd(o.seed ?? 11); const out = { buildings: [], cars: [], manholes: [], crowd: null };
-  ground(scene, o.grass ?? 0x86b86c, 1600); road(scene, 0, 90, 14, 400);
+  ground(scene, o.grass ?? 0x86a672, 1600); road(scene, 0, 90, 14, 400);
   for (const s of [-1, 1]) { const w = new THREE.Mesh(new THREE.BoxGeometry(4.4, .2, 400), new THREE.MeshStandardMaterial({ color: 0xc9c4b8, roughness: 1 })); w.position.set(s * 9.2, .1, 90); w.receiveShadow = true; scene.add(w); }
   for (let z = -10; z < 220; z += 32) for (const s of [-1, 1]) { const w = 12 + r() * 6; out.buildings.push(building(scene, s * (19 + w / 2), z + (r() - .5) * 6, w, 16 + r() * 44, 15, [0xd9c7a8, 0xc9d3dc, 0xbdb2a0, 0xe0c6b0, 0xa9bccc, 0xcfa9a0][(r() * 6) | 0], (z * 17 + s * 5) | 0)); }
   for (let z = -4; z < 220; z += 12) for (const s of [-1, 1]) tree(scene, s * 11.4, z + 4, .85 + r() * .3, (z * 3 + s) | 0);

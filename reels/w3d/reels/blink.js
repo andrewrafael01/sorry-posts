@@ -12,7 +12,7 @@ export default async function build({ lib, tl, hud }) {
       A.cam(...cams[bi](p)); A.follow(0, 6); const f = FR[bi](p);
       SEAT.forEach((s, i) => { const o = cr.p[i]; o.x = s[0]; o.z = s[1]; o.yaw = i === 6 ? 0 : (s[0] < 0 ? Math.PI / 2 : -Math.PI / 2); o.anim = 'idle'; o.speed = .4; }); cr.p[6].shirt; cr.update(t);
       const n = Math.floor(f * 200); for (let q = 0; q < 220; q++) { if (q < n) { const a = q * 2.399, r = 1.0 + 5.5 * f * Math.pow(((q * 7) % 100) / 100, .6); const sc = .22 + .2 * ((q % 5) / 5); M.makeScale(sc, sc, sc); M.setPosition(Math.cos(a) * r * .9, 1.0 + ((q * 13) % 60) / 60 * 2.4 * Math.min(1, f * 2 + .2) + Math.sin(t * 1.5 + q) * .1, 5 + Math.sin(a) * r * .9); gas.setMatrixAt(q, M); } else gas.setMatrixAt(q, HID); } gas.instanceMatrix.needsUpdate = true;
-      A.render(); hud.question('What if you farted every time you blinked?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else { const v = FA[bi](p); hud.counter('Farts', fmt(v), fmt(v * .09) + ' L of gas'); }
+      A.render(); hud.question('What if you *farted* every time you blinked?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else { const v = FA[bi](p); hud.counter('Farts', fmt(v), fmt(v * .09) + ' L of gas'); }
     }
   };
 }

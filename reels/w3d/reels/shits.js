@@ -2,7 +2,7 @@
 export default async function build({ lib, tl, hud }) {
   const { THREE, makeStage, ground, road, building, tree, Crowd, Particles, R, clamp, smooth, lerp, wander } = lib;
   const st = makeStage({ shadowExtent: 48, fogNear: 120, fogFar: 520 }); const { scene } = st; const r = R(7);
-  ground(scene, 0x84b86a, 1600); const sx = (x) => x;
+  ground(scene, 0x86a672, 1600); const sx = (x) => x;
   // park paths
   for (const [x, w] of [[0, 4.6], [-14, 3], [15, 3]]) { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, 300), new THREE.MeshStandardMaterial({ color: 0xcfc3a6, roughness: 1 })); m.rotation.x = -Math.PI / 2; m.position.set(x, .02, 90); m.receiveShadow = true; scene.add(m); }
   for (let z = -10; z < 260; z += 12) for (const s of [-1, 1]) tree(scene, s * (10 + r() * 30), z + r() * 6, .9 + r() * .5, (z * 7 + s * 3) | 0);
@@ -42,7 +42,7 @@ export default async function build({ lib, tl, hud }) {
       for (let f = 0; f < 260; f++) { const i = f % N, o = crowd.p[i]; if (!o.vis || (aer && k < .35) || (!aer && f > 120)) { flies.set(f, 0, 0, 0, 0); continue; } const a = t * 6 + f * 2.1; flies.set(f, o.x + Math.cos(a) * .5, (aer ? .9 : 1.5) + Math.sin(t * 9 + f) * .25, o.z + Math.sin(a) * .5, 1); }
       flies.done(); st.renderer.render(scene, st.camera);
       // HUD
-      hud.question('What if every human on Earth took a shit at the same time?', 1, bi > 0);
+      hud.question('What if every human on Earth took a *shit* at the same time?', 1, bi > 0);
       if (bi === 1) hud.counter('Shit produced', fmt(MASS * smooth(p * 1.1)) + ' kg', '8.2 billion people · 128 g each');
       else if (bi === 2) hud.counter('Shit produced', fmt(MASS) + ' kg', 'three empire state buildings');
       else if (bi === 3) hud.counter('Depth over Central Park', Math.round(29 * smooth(p * 1.2)) + ' cm', 'of shit');

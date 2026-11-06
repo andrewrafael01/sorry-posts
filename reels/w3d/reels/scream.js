@@ -21,7 +21,7 @@ export default async function build({ lib, tl, hud }) {
         city.cars.forEach((c, i) => { const lift = (bi >= 4) ? Math.min(5, tt * 6) * Math.abs(Math.sin(c.z0)) : 0; c.m.position.y = lift; c.m.rotation.z = lift * .3; });
         A.renderer.render(A.scene, A.camera);
       }
-      hud.question('What if every human on Earth screamed at the same time?', 1, bi > 0);
+      hud.question('What if every human on Earth *screamed* at the same time?', 1, bi > 0);
       const lo = L[bi][0], hi = L[bi][1]; if (bi === 0) hud.counter('', '', ''); else hud.counter(bi === 5 ? 'Loudness in space' : 'Loudness', Math.round(lerp(lo, hi, smooth(p))) + ' dB', bi === 5 ? 'no air. no sound.' : bi >= 3 && bi <= 4 ? 'past 194 db it is a shock wave' : '');
     }
   };

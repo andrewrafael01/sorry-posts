@@ -42,7 +42,7 @@ export default async function build({ lib, tl, hud }) {
       st.renderer.render(st.scene, st.camera);
       // HUD
       const frac = bi <= 2 ? 0 : bi === 3 ? smooth(clamp((lt - 1) / Math.max(.5, beat.dur - 1.4))) * .6 : bi === 4 ? .6 + .3 * p : bi === 5 ? .9 + .07 * p : bi === 6 ? .97 + .03 * smooth(p) : 1;
-      hud.question('What if every human on Earth flushed the toilet at the exact same time?', 1, bi > 0);
+      hud.question('What if every human on Earth *flushed* the toilet at the exact same time?', 1, bi > 0);
       if (bi >= 2) hud.counter('Water flushed', fmt(LIT * frac) + ' L', frac > 0 ? '= ' + fmt(LIT * frac / POOL) + ' olympic pools' : ''); else if (bi === 1) hud.counter('Flushes', fmt(8.2e9 * clamp((lt - 1) / 4)) , '8.2 billion people · 6 liters each'); else hud.counter('', '', '');
     }
   };

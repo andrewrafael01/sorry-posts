@@ -1,6 +1,6 @@
 export default async function build({ lib, tl, hud }) {
   const { THREE, makeStage, ground, tree, building, buildEarth, Crowd, Particles, R, clamp, smooth, lerp, wander } = lib; const fmt = (v) => Math.round(v).toLocaleString('en-US');
-  const A = makeStage({ shadowExtent: 48, fogNear: 120, fogFar: 520 }); ground(A.scene, 0x84b86a, 1600); const r = R(7);
+  const A = makeStage({ shadowExtent: 48, fogNear: 120, fogFar: 520 }); ground(A.scene, 0x86a672, 1600); const r = R(7);
   for (const [x, w] of [[0, 4.6], [-14, 3], [15, 3]]) { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, 300), new THREE.MeshStandardMaterial({ color: 0xcfc3a6, roughness: 1 })); m.rotation.x = -Math.PI / 2; m.position.set(x, .02, 90); m.receiveShadow = true; A.scene.add(m); }
   for (let z = -10; z < 260; z += 12) for (const s of [-1, 1]) tree(A.scene, s * (10 + r() * 30), z + r() * 6, .9 + r() * .5, (z * 7 + s * 3) | 0);
   for (let z = -10; z < 260; z += 30) for (const s of [-1, 1]) building(A.scene, s * (78 + r() * 8), z, 24, 40 + r() * 80, 24, [0xd9c7a8, 0xc9d3dc, 0xbdb2a0, 0xe0c6b0, 0xa9bccc][(r() * 5) | 0], (z * 13 + s) | 0);
@@ -18,7 +18,7 @@ export default async function build({ lib, tl, hud }) {
           if (on) { for (let c = 0; c < 7 && pi < NP; c++) { const u = ((t * 1.6 + c * .13 + i * .07) % 1); chunk.set(pi++, o.x + Math.sin(o.yaw) * (.6 + .9 * u), 1.0 - 1.0 * u * u + .25, o.z + Math.cos(o.yaw) * (.6 + .9 * u), 1); } M.makeScale(1, 1, 1); M.setPosition(o.x + Math.sin(o.yaw) * 1.3, .03, o.z + Math.cos(o.yaw) * 1.3); puddle.setMatrixAt(i, M); } else puddle.setMatrixAt(i, HID); }
         for (; pi < NP; pi++) chunk.set(pi, 0, 0, 0, 0); chunk.done(); puddle.instanceMatrix.needsUpdate = true; crowd.update(t); A.renderer.render(A.scene, A.camera);
       }
-      hud.question('What if every human on Earth puked at the same time?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else { const l = LV[bi](p); hud.counter('Puke', fmt(l) + ' L', '= ' + fmt(l / 2.5e6) + ' olympic pools'); }
+      hud.question('What if every human on Earth *puked* at the same time?', 1, bi > 0); if (bi === 0) hud.counter('', '', ''); else { const l = LV[bi](p); hud.counter('Puke', fmt(l) + ' L', '= ' + fmt(l / 2.5e6) + ' olympic pools'); }
     }
   };
 }
