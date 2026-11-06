@@ -1401,5 +1401,32 @@
   "reach": 9,
   "why": "ball bounces out a recognizable public-domain song on the glow-trail ring (the container that got 1,502 views)",
   "override": "owner requested: bounce to real songs"
+ },
+ "584_whatif_hole_through_earth": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "what-if sim with real live numbers (gravity train), deadpan captions; format requested by owner from a reference reel",
+  "override": "owner requested: what-if reels like the reference"
+ },
+ "585_whatif_sun_disappears": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "what-if with real numbers, deadpan captions; format requested by owner",
+  "override": "owner requested: what-if reels like the reference"
+ },
+ "586_whatif_drive_to_the_moon": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 7,
+  "reach": 9,
+  "why": "what-if with real numbers, deadpan captions; format requested by owner",
+  "override": "owner requested: what-if reels like the reference"
  }
 }
