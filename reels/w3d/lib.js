@@ -111,14 +111,14 @@ export class Crowd {
         case 'walk': swing = .62 * w; armSwing = .55 * w; bob = Math.abs(w) * .05; break;
         case 'run': swing = 1.0 * w; armSwing = .95 * w; bob = Math.abs(w) * .12; pitch += .18; break;
         case 'panic': swing = .9 * Math.sin(o.phase + t * 13); armUp = -2.7 + .3 * Math.sin(o.phase + t * 17); bob = Math.abs(Math.sin(o.phase + t * 13)) * .1; break;
-        case 'squat': hipDrop = .42; legFwd = -1.35; pitch = .45; armSwing = .6; break;
-        case 'bend': pitch = 1.05; swing = 0; armSwing = .25; headNod = .2 * Math.sin(o.phase + t * 6); break;
+        case 'squat': hipDrop = .42 + .03 * Math.sin(o.phase + t * 14); legFwd = -1.35; pitch = .45 + .12 * Math.sin(o.phase + t * 11); armSwing = .9 * Math.sin(o.phase + t * 10); bob = Math.abs(Math.sin(o.phase + t * 14)) * .03; headNod = .15 * Math.sin(o.phase + t * 9); break;
+        case 'bend': pitch = 1.0 + .3 * Math.max(0, Math.sin(o.phase + t * 5)); swing = 0; armSwing = .5 * Math.sin(o.phase + t * 5); headNod = .3 * Math.sin(o.phase + t * 5); bob = Math.abs(Math.sin(o.phase + t * 5)) * .04; break;
         case 'punch': armUp = 0; armSwing = 0; swing = 0; o._punch = true; break;
         case 'jump': bob = Math.abs(Math.sin(o.phase + t * 5)) * .6; armUp = -2.6; break;
         case 'sprint': swing = 1.2 * w; armSwing = 1.1 * w; bob = Math.abs(w) * .2; pitch += .3; break;
-        default: bob = Math.sin(o.phase + t * 2.2) * .008; armSwing = .04 * w;
+        default: bob = Math.sin(o.phase + t * 2.2) * .012; armSwing = .22 * Math.sin(o.phase + t * 1.7); swing = .08 * Math.sin(o.phase * 1.3 + t * 1.1); headNod = .12 * Math.sin(o.phase + t * 1.3); pitch += .05 * Math.sin(o.phase + t * 1.9);
       }
-      this._root.makeRotationY(o.yaw); this._root.setPosition(o.x, o.y + bob * s, o.z); this._a.makeScale(s, s, s); this._root.multiply(this._a);
+      this._root.makeRotationY(o.yaw + (o.anim === 'idle' ? .18 * Math.sin(o.phase + t * 0.9) : 0)); this._root.setPosition(o.x, o.y + bob * s, o.z); this._a.makeScale(s, s, s); this._root.multiply(this._a);
       this._up.makeTranslation(0, .8 - hipDrop, 0); this._b.makeRotationX(pitch); this._up.multiply(this._b); this._a.makeTranslation(0, -(.8 - hipDrop), 0); this._up.multiply(this._a);
       this._up.makeTranslation(0, 0, 0); this._up.copy(this._root).invert().multiply(this._root); // identity placeholder
       this._up.identity(); this._up.makeTranslation(0, .8 - hipDrop, 0); this._b.makeRotationX(pitch); this._up.multiply(this._b); this._a.makeTranslation(0, -(.8 - hipDrop), 0); this._up.multiply(this._a);
@@ -133,6 +133,13 @@ export class Crowd {
     }
     for (const k in this.parts) this.parts[k].instanceMatrix.needsUpdate = true;
   }
+}
+export const tri = (x, a, b) => { const L = b - a; let u = ((x - a) % (2 * L) + 2 * L) % (2 * L); return u < L ? a + u : b - (u - L); };
+// wandering position that bounces inside a rectangle; returns [x, z, yaw]
+export function wander(x0, z0, ang, sp, t, bx0, bx1, bz0, bz1) {
+  const vx = Math.sin(ang) * sp, vz = Math.cos(ang) * sp; const x = tri(x0 + vx * t, bx0, bx1), z = tri(z0 + vz * t, bz0, bz1);
+  const fx = (((x0 + vx * t - bx0) % (2 * (bx1 - bx0)) + 2 * (bx1 - bx0)) % (2 * (bx1 - bx0))) < (bx1 - bx0) ? 1 : -1, fz = (((z0 + vz * t - bz0) % (2 * (bz1 - bz0)) + 2 * (bz1 - bz0)) % (2 * (bz1 - bz0))) < (bz1 - bz0) ? 1 : -1;
+  return [x, z, Math.atan2(vx * fx, vz * fz)];
 }
 // ---------------------------------------------------------------------------------------------- particles
 export class Particles {
@@ -155,7 +162,7 @@ export function buildStreet(scene, o = {}) {
   for (let z = 9; z < 130; z += 11) for (const x of [-3.6, 0, 3.6]) { const m = new THREE.Mesh(new THREE.CylinderGeometry(.55, .55, .08, 24), mat(0x2f3138, { roughness: .5, metalness: .4 })); m.position.set(x, .06, z); m.receiveShadow = true; m.castShadow = true; scene.add(m); out.manholes.push({ m, x, z }); }
   const crowd = new Crowd(scene, 150, 5); out.crowd = crowd; out.ppl = [];
   for (let i = 0; i < 150; i++) { const o2 = crowd.p[i]; const side = r() < .5 ? -1 : 1; out.ppl.push({ x: side * (8.2 + r() * 2), z0: r() * 140, dir: r() < .5 ? 1 : -1, sp: .8 + r() * .9 }); }
-  out.updateCrowd = (t, panicT = null) => { for (let i = 0; i < 150; i++) { const q = out.ppl[i], o2 = crowd.p[i]; const panic = panicT !== null && t > panicT + (q.z0 % 3) * .2; const k = panic ? 3 : 1; o2.anim = panic ? 'panic' : 'walk'; o2.speed = panic ? 1.4 : .5; o2.x = q.x; o2.z = ((q.z0 + q.dir * q.sp * t * k) % 150 + 150) % 150; o2.yaw = q.dir > 0 ? 0 : Math.PI; } crowd.update(t); };
+  out.updateCrowd = (t, panicT = null) => { for (let i = 0; i < 150; i++) { const q = out.ppl[i], o2 = crowd.p[i]; const panic = panicT !== null && t > panicT + (q.z0 % 3) * .2; const k = panic ? 3 : 1.7; o2.anim = panic ? 'panic' : 'walk'; o2.speed = panic ? 1.5 : .95; o2.x = q.x; o2.z = ((q.z0 + q.dir * q.sp * t * k) % 150 + 150) % 150; o2.yaw = q.dir > 0 ? 0 : Math.PI; } crowd.update(t); };
   return out;
 }
 export function buildEarth(scene, Rr = 6) {
