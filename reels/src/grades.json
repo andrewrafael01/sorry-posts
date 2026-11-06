@@ -1545,5 +1545,32 @@
   "reach": 9,
   "why": "what-if in the reference template (three.js)",
   "override": "owner requested: unhinged what-ifs in the reference style"
+ },
+ "600_whatif_everyone_has_sex": {
+  "hook": 9,
+  "button": 8,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "relatable crude what-if in the reference template (three.js), non-explicit",
+  "override": "owner requested: more unhinged what-ifs for shares"
+ },
+ "601_whatif_drinks_double": {
+  "hook": 9,
+  "button": 8,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "relatable crude what-if in the reference template (three.js), non-explicit",
+  "override": "owner requested: more unhinged what-ifs for shares"
+ },
+ "602_whatif_fart_when_you_lie": {
+  "hook": 9,
+  "button": 8,
+  "send": 9,
+  "orig": 8,
+  "reach": 9,
+  "why": "relatable crude what-if in the reference template (three.js), non-explicit",
+  "override": "owner requested: more unhinged what-ifs for shares"
  }
 }
