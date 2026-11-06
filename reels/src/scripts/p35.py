@@ -33,7 +33,7 @@ def city():
 def fresh(st):
     s = lp.Scene(); s.boxes = list(st.boxes); s.flat = list(st.flat); s.quads = list(st.quads); return s
 
-def street(lt, burst_t0, cam, flood=0.0, hz=None):
+def street(lt, burst_t0, cam, flood=0.0, hz=None, extra=None):
     st, cars, man, crowd = city(); sc = fresh(st); rs = random.Random(5)
     for (x, z, col) in cars: sc.car(x, z - (lt * 2.0 if abs(x) < 3 else 0.0) * (1 if x > 0 else 0), 0 if x > 0 else math.pi, col)
     for (x, z0, dr, sp, col, ph) in crowd:
@@ -51,6 +51,7 @@ def street(lt, burst_t0, cam, flood=0.0, hz=None):
                 sc.disc((x + math.cos(a) * sp * tt, .3 + 15 * tt - 9.8 * tt * tt * .9 + (q % 4) * .4, z + math.sin(a) * sp * tt * .6), .12, (215, 236, 255))
             yc = 22 * tb - 4.9 * tb * tb
             if yc > 0: sc.box((x, .3 + yc, z), (1.0, .12, 1.0), (60, 62, 70), tb * 5 + k)
+    if extra: extra(sc)
     if flood > 0:
         for z in np.arange(0, 140, 14): sc.floor((0, .14, z + 7), (14 + flood * 22, .06, 14), (84, 146, 226))
     return lp.render(sc, cam, sky=((110, 165, 235), (212, 230, 246)), fog=((212, 230, 246), 70.0, 260.0))
