@@ -47,6 +47,9 @@ class Scene:
             wx = x + (lx * c + lz * sn) * s; wz = z + (-lx * sn + lz * c) * s; self.box((wx, ly * s, wz), (size[0] * s, size[1] * s, size[2] * s), col, yaw)
         w = math.sin(t * 9.0); bob = abs(math.sin(t * 9.0)) * .06 if anim in ("walk", "run") else (abs(math.sin(t * 14.0)) * .1 if anim == "panic" else 0)
         sw = .22 if anim == "walk" else (.34 if anim == "run" else 0.0)
+        if anim == "squat":
+            put(-.11, .24, .18, (.17, .46, .19), pants); put(.11, .24, .18, (.17, .46, .19), pants); put(0, .78, 0, (.5, .56, .26), shirt)
+            put(-.33, .72, .06, (.14, .5, .14), shirt); put(.33, .72, .06, (.14, .5, .14), shirt); put(0, 1.2, .04, (.3, .3, .3), skin); put(0, 1.36, .02, (.32, .1, .32), hair); return
         put(-.11, .4 + bob, w * sw, (.17, .8, .19), pants); put(.11, .4 + bob, -w * sw, (.17, .8, .19), pants)
         put(0, 1.1 + bob, 0, (.5, .6, .26), shirt)
         if anim == "panic": put(-.33, 1.35 + bob, 0, (.14, .6, .14), shirt); put(.33, 1.35 + bob, 0, (.14, .6, .14), shirt)

@@ -1464,5 +1464,23 @@
   "reach": 9,
   "why": "dumb what-if in the low-poly world, escalating counter, swearing deadpan voice, word-by-word captions; owner-requested format",
   "override": "owner requested: dumb viral what-ifs like the reference reels"
+ },
+ "591_whatif_everyone_shits": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "vulgar dumb what-if in the low-poly world with real numbers, swearing voice, word-by-word captions; owner-requested",
+  "override": "owner requested: vulgar dumb what-ifs like the reference reels"
+ },
+ "592_whatif_piss_a_pool": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "vulgar dumb what-if in the low-poly world with real numbers, swearing voice, word-by-word captions; owner-requested",
+  "override": "owner requested: vulgar dumb what-ifs like the reference reels"
  }
 }
