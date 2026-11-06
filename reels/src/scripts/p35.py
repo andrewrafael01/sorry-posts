@@ -125,12 +125,12 @@ def b_wash(img, lt, p, b):
 
 N = [
  ("What if every human on Earth flushed the toilet at the exact same time?", b_bath1, []),
- ("That's eight billion flushes. Forty-nine billion litres, all going down at once.", b_bath2, []),
+ ("That's eight billion flushes. Forty nine billion liters, all going down at once.", b_bath2, []),
  ("Your pipes? Fine. For about one second.", b_calm, []),
  ("Then the sewers say absolutely not. Every manhole cover on Earth launches like a shitty little rocket.", b_burst, []),
  ("Streets turn into rivers. Cars float. Somebody's Roomba is gone forever.", b_flood, []),
  ("From space, Earth looks like it's having a nervous breakdown.", b_space, []),
- ("Forty-nine billion litres. That's nineteen thousand Olympic swimming pools of regret.", b_pools, []),
+ ("Forty nine billion liters. That's nineteen thousand Olympic swimming pools of regret.", b_pools, []),
  ("Then the water drains. And honestly? Half of them still didn't wash their hands.", b_wash, []),
 ]
 def flush():
