@@ -1347,5 +1347,59 @@
   "reach": 9,
   "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
   "override": "owner requested: bounce to real songs"
+ },
+ "578_song_mary_little_lamb": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song on the glow-trail ring (the container that got 1,502 views)",
+  "override": "owner requested: bounce to real songs"
+ },
+ "579_song_hot_cross_buns": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song on the glow-trail ring (the container that got 1,502 views)",
+  "override": "owner requested: bounce to real songs"
+ },
+ "580_song_when_the_saints": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song on the glow-trail ring (the container that got 1,502 views)",
+  "override": "owner requested: bounce to real songs"
+ },
+ "581_song_london_bridge": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song on the glow-trail ring (the container that got 1,502 views)",
+  "override": "owner requested: bounce to real songs"
+ },
+ "582_song_yankee_doodle": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song on the glow-trail ring (the container that got 1,502 views)",
+  "override": "owner requested: bounce to real songs"
+ },
+ "583_song_auld_lang_syne": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song on the glow-trail ring (the container that got 1,502 views)",
+  "override": "owner requested: bounce to real songs"
  }
 }
