@@ -1518,5 +1518,32 @@
   "reach": 9,
   "why": "vulgar dumb what-if in the low-poly world with real numbers, swearing voice, word-by-word captions; owner-requested",
   "override": "owner requested: vulgar dumb what-ifs like the reference reels"
+ },
+ "597_whatif_fart_doubling": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "what-if in the reference template (three.js)",
+  "override": "owner requested: unhinged what-ifs in the reference style"
+ },
+ "598_whatif_hold_in_farts": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "what-if in the reference template (three.js)",
+  "override": "owner requested: unhinged what-ifs in the reference style"
+ },
+ "599_whatif_giant_turd": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "what-if in the reference template (three.js)",
+  "override": "owner requested: unhinged what-ifs in the reference style"
  }
 }
