@@ -1221,5 +1221,50 @@
   "reach": 9,
   "why": "escape-spawn ball sim variant, the format that broke out (3,235 views)",
   "override": "owner approved: the satisfying ball sims go viral for this account"
+ },
+ "564_song_ode_to_joy": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "565_song_jingle_bells": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "566_song_fur_elise": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "567_song_twinkle": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
+ },
+ "568_song_silent_night": {
+  "hook": 9,
+  "button": 9,
+  "send": 7,
+  "orig": 8,
+  "reach": 9,
+  "why": "ball bounces out a recognizable public-domain song, exact bounce count, black bg",
+  "override": "owner requested: bounce to real songs"
  }
 }

@@ -12,8 +12,8 @@ from sim2 import sprite, PENTA_NOTES
 
 class ShrinkRing(reel.Shot):
     cut = "cut"
-    def __init__(self, title, R0=440.0, Rmin=84.0, shrink=3.0, grow=0.0, ball_max=None, descend=False, gang=0.0, trail=0, fixed=None, sides=0, spin=0.0, ball_r=15, g=1500.0, seed=1, hold=3.0, tail=2.5, hue0=.55):
-        self.title, self.R0, self.Rmin, self.shrink, self.br, self.g, self.hue0, self.grow, self.ball_max, self.descend, self.gang, self.trail, self.fixed, self.sides, self.spin = title, R0, Rmin, shrink, ball_r, g, hue0, grow, ball_max, descend, gang, trail, fixed, sides, spin
+    def __init__(self, title, R0=440.0, Rmin=84.0, shrink=3.0, grow=0.0, ball_max=None, descend=False, gang=0.0, trail=0, fixed=None, sides=0, spin=0.0, melody=None, ball_r=15, g=1500.0, seed=1, hold=3.0, tail=2.5, hue0=.55):
+        self.title, self.R0, self.Rmin, self.shrink, self.br, self.g, self.hue0, self.grow, self.ball_max, self.descend, self.gang, self.trail, self.fixed, self.sides, self.spin, self.melody = title, R0, Rmin, shrink, ball_r, g, hue0, grow, ball_max, descend, gang, trail, fixed, sides, spin, melody
         self.fps = 30; self.cues = []; self.rng = np.random.RandomState(seed); self._sim(hold, tail)
     def _sim(self, hold, tail):
         sub = 30; dt = 1 / (self.fps * sub); p = np.array([CX + 60.0, CY - 160.0]); v = np.array([430.0, -260.0]); R = self.R0; b = float(self.br); gv = np.array([0.0, self.g])
@@ -50,11 +50,13 @@ class ShrinkRing(reel.Shot):
         self.dur = t; self.R_end = R; self.n_hits = hits; self.done_t = done_t
         self.rhist = [f[1] for f in self.frames]
         # plain tones: pitch climbs with the bounce count; never more than 2 per 60 ms
-        slots = {}; N = max(1, len(self.hits))
+        slots = {}; N = max(1, len(self.hits)); nc = 0
         for (ht, ang, k) in self.hits:
             s = int(ht / .06)
             if slots.get(s, 0) >= 2: continue
             slots[s] = slots.get(s, 0) + 1
+            if self.melody:       # a real song: every bounce plays the next note of the tune, in order
+                self.cues.append((ht, "n%d" % self.melody[nc % len(self.melody)], .36)); nc += 1; continue
             idx = min(len(PENTA_NOTES) - 1, int((k / N) ** .85 * (len(PENTA_NOTES) - 1) + .5))
             if self.descend: idx = len(PENTA_NOTES) - 1 - idx
             self.cues.append((ht, "n%d" % PENTA_NOTES[idx], .30))

@@ -38,3 +38,6 @@ No more explained illusion reels (no voice, no on-screen explanation). Illusions
 
 ## Lean rendering (owner request, Oct 28)
 Lean is now the default (set REEL_FULL=1 for the old heavy render). Run `nice -n 10 python3 build.py <mod> <name> --out <dir>` so a render is one encode straight to a post-ready file (about 13-15 MB, audio at -6 dB; sims add `REEL_SHIP_GAIN=0`). No 150 MB intermediate, no second ffmpeg pass. Skip contact-sheet previews except one frame per new design. Batch several reels per background job and ship them together in one commit and one SQL insert.
+
+## Songs (owner request, Nov 6; supersedes the old "plain tones, no melody" rule for these reels)
+Ball sims may now bounce out real songs, one note per bounce (`melody=` in sim3). Public-domain tunes only (Ode to Joy, Jingle Bells, Für Elise, Twinkle Twinkle, Silent Night, ...). No chart songs: their melodies are still under copyright and Instagram's audio matching can mute or flag the reel.
