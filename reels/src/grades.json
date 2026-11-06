@@ -1491,5 +1491,32 @@
   "reach": 9,
   "why": "adult-humor doubling what-if with real physics (sound barrier at about 1,143 strokes/s, light speed at 1e9/s), non-explicit visuals; owner-requested",
   "override": "owner requested: adult what-ifs in the reference style"
+ },
+ "594_whatif_keep_every_shit": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "vulgar dumb what-if in the low-poly world with real numbers, swearing voice, word-by-word captions; owner-requested",
+  "override": "owner requested: vulgar dumb what-ifs like the reference reels"
+ },
+ "595_whatif_fart_every_blink": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "vulgar dumb what-if in the low-poly world with real numbers, swearing voice, word-by-word captions; owner-requested",
+  "override": "owner requested: vulgar dumb what-ifs like the reference reels"
+ },
+ "596_whatif_everyone_pukes": {
+  "hook": 9,
+  "button": 8,
+  "send": 8,
+  "orig": 8,
+  "reach": 9,
+  "why": "vulgar dumb what-if in the low-poly world with real numbers, swearing voice, word-by-word captions; owner-requested",
+  "override": "owner requested: vulgar dumb what-ifs like the reference reels"
  }
 }

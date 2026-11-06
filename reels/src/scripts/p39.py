@@ -39,7 +39,7 @@ def hippo_beat(frac, cam_fn, mass_fn, sub, label="You shat"):
     return draw
 A_N = [
  ("What if you kept every single shit you ever took?", hippo_beat(lambda p: 0.0, lambda p, t: lp.Cam((2.5, 2.6, -2.5), (-1, 1.2, 8), 64), lambda p: 0, "age 0")),
- ("You shit about 128 grams a day. That's nothing. Cute, even.", hippo_beat(lambda p: .08 * p, lambda p, t: lp.Cam((3.5 - p, 2.6, -1.5), (-2, 1.0, 8), 62), lambda p: 128 * (1 + 364 * p), "year one")),
+ ("You shit about 128 grams a day. That's nothing. Cute, even.", hippo_beat(lambda p: .08 * p, lambda p, t: lp.Cam((3.5 - p, 2.6, -1.5), (-2, 1.0, 8), 62), lambda p: .128 * (1 + 364 * p), "year one")),
  ("By 80 years old, that's 3,700 kilos. A mountain. Of your own shit.", hippo_beat(lambda p: .1 + .9 * smooth(p), lambda p, t: lp.Cam((4 + 5 * p, 3.0 + 3 * p, -4), (-1, 1.5, 9), 64), lambda p: 3738 * smooth(p), "age 80")),
  ("That's two and a half hippos. You made that. Alone. Congratulations.", hippo_beat(lambda p: 1.0, lambda p, t: lp.Cam((14 - 6 * p, 4, 2), (6, 1.4, 12), 64), lambda p: 3738, "two and a half hippos")),
  ("Fun fact. Hippos spray their shit with their tail like a lawn sprinkler. Absolute legends.", hippo_beat(lambda p: 1.0, lambda p, t: lp.Cam((12, 2.6, 4 + 2 * p), (8, 1.5, 12), 58), lambda p: 3738, "hippos do it better")),
@@ -70,7 +70,7 @@ def blink_beat(frac_fn, cam_fn, farts_fn, sub):
 B_N = [
  ("What if you farted every single time you blinked?", blink_beat(lambda p: 0.0, lambda p, t: lp.Cam((2.5, 2.2, -1), (0, 1.3, 6), 66), lambda p: 0, "")),
  ("You blink about 15,000 times a day. That's 15,000 farts. Daily.", blink_beat(lambda p: .05 * p, lambda p, t: lp.Cam((2.6, 2.2, -.6), (0, 1.3, 6), 64), lambda p: 15000 * p, None)),
- ("At 90 milliliters each, that's 1,350 liters of ass gas. Every day. Your coworkers have questions.", blink_beat(lambda p: .05 + .3 * p, lambda p, t: lp.Cam((2.6, 2.4, 0), (0, 1.3, 6), 62), lambda p: 15000 + 15000 * p, None)),
+ ("Each fart is 90 milliliters. That's 1,350 liters of ass gas. Every day. Your coworkers have questions.", blink_beat(lambda p: .05 + .3 * p, lambda p, t: lp.Cam((2.6, 2.4, 0), (0, 1.3, 6), 62), lambda p: 15000 + 15000 * p, None)),
  ("Week one. Nobody makes eye contact. Not even Karen. Karen, who has seen everything.", blink_beat(lambda p: .35 + .25 * p, lambda p, t: lp.Cam((0, 3.0, 0), (0, 1.0, 7), 70), lambda p: 105000 + 100000 * p, None)),
  ("In 37 days, the entire conference room is full of your ass. Meeting adjourned.", blink_beat(lambda p: .6 + .4 * p, lambda p, t: lp.Cam((3 - 3 * p, 3.4, -1.5), (0, 1.0, 6), 72), lambda p: 555000 * (1 + 0 * p), None)),
  ("Nobody can prove it was you. Except literally everyone.", blink_beat(lambda p: 1.0, lambda p, t: lp.Cam((2.4, 2.2, -1), (0, 1.3, 6), 66), lambda p: 555000, None)),
