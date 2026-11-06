@@ -41,3 +41,10 @@ Lean is now the default (set REEL_FULL=1 for the old heavy render). Run `nice -n
 
 ## Songs (owner request, Nov 6; supersedes the old "plain tones, no melody" rule for these reels)
 Ball sims may now bounce out real songs, one note per bounce (`melody=` in sim3). Public-domain tunes only (Ode to Joy, Jingle Bells, Für Elise, Twinkle Twinkle, Silent Night, ...). No chart songs: their melodies are still under copyright and Instagram's audio matching can mute or flag the reel.
+
+## What-if reels: three.js renderer (owner request, Nov 6: "ditch the Roblox style, identical to the reference")
+The flat-shaded Python 3D (lowpoly.py) is retired for what-ifs. New pipeline in `reels/w3d` (run `npm install` there first):
+1. `src/tl3d.py` exports the voiced timeline (`<key>.json` beats + word times) and the mixed audio (`<key>.wav`) from the narration lines.
+2. `w3d/reels/<name>.js` builds the scene in three.js (soft shadows, PBR, gradient sky, instanced people) and drives it from the timeline; HUD, question and italic subtitles are HTML overlays (`page.html`).
+3. `node render.js <name> <timeline.json> <out.mp4>` renders frames in headless Chromium (SwiftShader, about 1 s/frame) and encodes a post-ready file. `node stills.js` makes quick stills.
+4. `shipfast.sh` ships it; add the entry to `captions.json` and the hourly registrar queues it.
