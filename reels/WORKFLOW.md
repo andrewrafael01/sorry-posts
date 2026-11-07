@@ -48,3 +48,6 @@ The flat-shaded Python 3D (lowpoly.py) is retired for what-ifs. New pipeline in 
 2. `w3d/reels/<name>.js` builds the scene in three.js (soft shadows, PBR, gradient sky, instanced people) and drives it from the timeline; HUD, question and italic subtitles are HTML overlays (`page.html`).
 3. `node render.js <name> <timeline.json> <out.mp4>` renders frames in headless Chromium (SwiftShader, about 1 s/frame) and encodes a post-ready file. `node stills.js` makes quick stills.
 4. `shipfast.sh` ships it; add the entry to `captions.json` and the hourly registrar queues it.
+
+## Humor engine
+Before voicing any new script: read reels/HUMOR.md, write 8 candidate lines per beat, keep the funniest, then run `python3 reels/src/humor.py <timeline.json>`. A lint pass only means no AI tells; it does not prove funny.
