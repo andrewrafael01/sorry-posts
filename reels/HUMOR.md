@@ -5,6 +5,9 @@ Research notes: brainrot works as anti-humor against predictable jokes, as in-gr
 (capcut.com/resource/brainrot-meme, dazeddigital.com brainrot article). Sketch craft: game of the scene, heighten, rule of three,
 misdirection, specificity (comedipedia / writingworkshops / Ken Levine "rule of 3s").
 
+## The hook rule (first second)
+The first spoken words must be the shock, not the setup: open on the payoff image/line, then ask the what-if. Cursing is allowed and works (adult account): "Holy shit, that sneeze just launched my neighbor. What if every sneeze doubled?" The first frame shows the climax image + hook text, not the calm start. No logo, no throat-clearing, no "What if" alone as line one.
+
 ## The engine
 1. **FUT** (first unusual thing) in the first line. One premise, one rule ("every scroll costs 1 IQ"). Never explain it twice.
 2. **Play the game, don't change it.** Every beat is the same rule at a bigger number. Cut any beat that doesn't heighten.
