@@ -39,13 +39,13 @@ export default async function build({ lib, tl, hud }) {
     crowd.update(t);
     // props follow bodies
     const poseHead = (o) => { const sc = o.scale * o.h; return [o.x, o.y + 1.73 * sc, o.z]; };
-    hd.visible = true; { const q = poseHead(ph); hd.position.set(q[0], q[1] + .1 * ph.scale, q[2]); hd.rotation.y = ph.yaw; hd.scale.setScalar(ph.scale * 1.05); }
+    hd.visible = true; { const q = poseHead(ph); hd.position.set(q[0], q[1] - .1 * ph.scale, q[2]); hd.rotation.y = ph.yaw; hd.scale.setScalar(ph.scale * 1.05); }
     throne.visible = bi === 7 || bi === 5 || bi === 6 || bi === 0; plat.visible = bi === 3 || bi === 4; if (bi === 0) { throne.position.set(0, 0, 4.7); throne.rotation.y = 0; } else { throne.position.set(0, 0, 8.1); throne.rotation.y = Math.PI; }
     phone.position.copy(pos); phone.rotation.set(-.3, bi <= 2 ? Math.PI : 0, .1); glow.position.copy(pos); glow.intensity = pos.y > -5 ? (bi === 7 ? 0 : 2.5) : 0; phone.visible = pos.y > -5;
     for (let i = 0; i < 40; i++) { const u = ((t * .6 + i * .0731) % 1); sparks.set(i, pos.x + Math.cos(i * 2.4) * .6, pos.y + u * 1.4, pos.z + Math.sin(i * 1.7) * .6, bi >= 6 && bi < 7 ? 1 - u : 0); } sparks.done();
     st.cam(...cam); st.follow(0, 10); st.render();
     const n = bi >= 4 ? lerp(N_[bi - 1], N_[bi], smooth(p)) : N_[bi]; const bat = bi < 7 ? 100 : Math.max(0, Math.round(100 * (1 - p * 2.2)));
-    hud.egypt(true, bi === 7 ? '#d9503a' : bi >= 6 ? '#2f9a4f' : '#d9a12b'); hud.question(bi === 0 ? 'What if the Ancient Egyptians had one *phone*?' : '', bi === 0 ? 1 : 0);
+    hud.egypt(true, bi === 7 ? '#d9503a' : bi >= 6 ? '#2f9a4f' : '#d9a12b', bi === 0); hud.question(bi === 0 ? 'What if the Ancient Egyptians had one *phone*?' : '', bi === 0 ? 1 : 0);
     if (bi === 0) hud.counter('', '', ''); else { hud.counter('Scrolls taken', fmt(n), '≈ ' + NOTES[bi], bi >= 6 ? 'BATTERY ' + bat + '%' : '2560 BC', false); }
   } };
 }

@@ -42,7 +42,7 @@ body.egypt #cap{top:520px;left:72px;right:130px;text-align:left;font-size:50px;l
 body.egypt #tag{background:var(--tc,#d9a12b);padding:5px 14px;border-radius:5px;display:inline-block;font-size:19px;color:#fff;top:466px}
 body.egypt #tag:before{display:none}
 body.egypt #lab{top:268px;font-size:24px}body.egypt #val{top:296px;font-size:104px}body.egypt #note{top:408px;font-size:36px}
-body.egypt #q{top:700px;font-size:78px;opacity:.9}
+body.egypt #q{top:330px;font-size:78px;opacity:.9}
 </style></head><body>
 <canvas id="c" width="1080" height="1920"></canvas><div class="vig"></div>
 <div class="t" id="q"></div><div class="t" id="lab"></div><div class="t" id="val"></div><div class="t" id="note"></div><div class="t" id="tag"></div><div class="t" id="cap"></div><div class="t" id="big"></div><div class="t" id="tm"></div><div class="t" id="alive"><small>ALIVE</small><b id="aliveN">100</b></div><div class="t" id="day"></div><div class="t" id="feed"></div><div class="t" id="mm"><span>ISLAND</span><i></i><u id="mmdot"></u></div><div class="t" id="pop"></div>
@@ -61,7 +61,7 @@ const hud = {
   tm(text) { $('tm').textContent = text || ''; },
   pop(text, a = 1) { $('pop').textContent = text || ''; $('pop').style.opacity = text ? a : 0; },
   royale(on, alive, day, feed, dot) { document.body.classList.toggle('royale', !!on); for (const id of ['alive', 'day', 'feed', 'mm']) $(id).style.display = on ? 'block' : 'none'; if (!on) return; $('aliveN').textContent = alive; $('day').textContent = day || ''; $('feed').innerHTML = (feed || []).map((f) => '<div style="opacity:' + (f[2] ?? 1) + '">' + f[0] + '</div>').join(''); if (dot) { const d = $('mmdot'); d.style.left = dot[0] + 'px'; d.style.top = dot[1] + 'px'; } },
-  egypt(on, tagColor) { document.body.classList.toggle('egypt', !!on); if (tagColor) document.body.style.setProperty('--tc', tagColor); },
+  egypt(on, tagColor, capOff) { document.body.classList.toggle('egypt', !!on); $('cap').style.visibility = capOff ? 'hidden' : 'visible'; if (tagColor) document.body.style.setProperty('--tc', tagColor); },
   style(c) { document.body.classList.toggle('C', c === 'C'); },
 };
 function chunkFor(beat, lt) {
