@@ -9,13 +9,13 @@ export default async function build({ lib, tl, hud }) {
   const NT = [[0, 0], [1, 2], [4, 7], [9, 11], [15, 19], [19, 22], [22, 25], [25, 25]];
   const starts = []; { let c = 0; for (const bt of tl.beats) { starts.push(c); c += bt.dur; } }
   const nAt = (t) => { let k = 0; for (let i = 0; i < starts.length; i++) if (t >= starts[i]) k = i; const p = clamp((t - starts[k]) / (tl.beats[k].dur || 1)); return lerp(NT[k][0], NT[k][1], p); };
-  const S = { t: 0, h: 0, v: 0, tl: -1 };
+  let closeup = false; const S = { t: 0, h: 0, v: 0, tl: -1 };
   const stepTo = (t) => { if (t < S.t) { S.t = 0; S.h = 0; S.v = 0; } const dt = 1 / 120; while (S.t < t) { const n = nAt(S.t); const F = Math.min(4e4, .01 * Math.pow(2, n - 1)) * (n > 0 ? 1 : 0); const a = (F - 800) / 80; if (F > 800 || S.h > 0) { S.v += (F > 800 ? a : -9.8) * dt; S.h += S.v * dt; if (S.h < 0) { S.h = 0; S.v = 0; } } S.t += dt; } };
-  const place = (bd, Y, t, n, puff) => { bd.bedG.position.y = Y; const P = bd.person; P.anim = 'sit'; P.x = 0; P.y = .06 + Y; P.z = 3.5; P.yaw = 0; P.extra = clamp(n / 40) * .6; bd.crowd.setFace(n > 3 && n < 20 ? 'shock' : 'calm'); bd.crowd.update(t); bd.blanket.userData.update(t, .1 + .1 * Math.sin(t * 6), 0, puff * (bd === bA && lib.__closeup ? .25 : 1)); bd.strings.forEach((m, k) => m.position.set(-.1 + k * .2, 1.62, 3.84)); };
+  const place = (bd, Y, t, n, puff) => { bd.bedG.position.y = Y; const P = bd.person; P.anim = 'sit'; P.x = 0; P.y = .06 + Y; P.z = 3.5; P.yaw = 0; P.extra = clamp(n / 40) * .6; bd.crowd.setFace(n > 3 && n < 20 ? 'shock' : 'calm'); bd.crowd.update(t); bd.blanket.userData.update(t, .1 + .1 * Math.sin(t * 6), 0, puff * (bd === bA && closeup ? .25 : 1)); bd.strings.forEach((m, k) => m.position.set(-.1 + k * .2, 1.62, 3.84)); };
   return {
     frame({ t, bi, lt, p, beat }) {
       stepTo(t); const n = nAt(t); const h = S.h, Y = 30 * Math.asinh(h / 25); const puff = clamp((n - 2) / 8) * (.65 + .35 * Math.sin(t * 7));
-      lib.__closeup = bi === 3; const inRoom = bi <= 3 || (bi === 4 && Y < 3.2); const inSpace = bi >= 6; const shake = Math.sin(t * 60) * clamp(n / 30) * .06;
+      closeup = bi === 3; const inRoom = bi <= 3 || (bi === 4 && Y < 3.2); const inSpace = bi >= 6; const shake = Math.sin(t * 60) * clamp(n / 30) * .06;
       if (inRoom) {
         const Yr = Math.min(Y, 3.2); place(bA, Yr, t, n, puff); A.scene.fog.color.set(new THREE.Color(0x4a5070).lerp(new THREE.Color(0x6b8a3a), clamp(n / 14) * .6));
         const cams = [[4.8, 2.1, 6.6, .3, 1.6, 4.0, 52], [4.6, 2.0, 6.3, .2, 1.6, 4.0, 50], [5.4 + shake, 2.5, 7.4, 0, 1.6, 4.4, 56], [.6 + shake, 2.5, 5.9, 0, 2.2, 3.5, 34, -.1 + shake * .3], [4.2 + shake, 3.0 + Yr * .5, 7.0, 0, 1.8 + Yr * .6, 4.2, 56]]; A.cam(...cams[bi]); A.follow(0, 4);
