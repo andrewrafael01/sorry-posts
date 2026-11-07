@@ -24,9 +24,21 @@ body.B #lab{top:292px}body.B #val{top:320px}body.B #note{top:454px;font-family:'
 body.C #note{font-family:'Liberation Sans',Arial,sans-serif;font-style:normal;font-size:26px;letter-spacing:3px;text-transform:uppercase;font-weight:700;top:715px}
 body.C #tag{top:808px}
 #pop{left:60px;right:60px;top:1400px;text-align:center;font-family:'Liberation Sans',Arial,sans-serif;font-weight:900;font-size:100px;letter-spacing:-2px;color:#ffd92a;-webkit-text-stroke:9px #111;paint-order:stroke fill;text-shadow:0 6px 0 #111;text-transform:uppercase;line-height:1;opacity:0}
+
+#alive{right:46px;top:150px;width:150px;padding:8px 14px 8px 18px;background:rgba(30,26,24,.9);border-left:6px solid #f0b43c;font-family:'Liberation Sans',Arial,sans-serif;display:none}
+#alive small{display:block;font-size:20px;letter-spacing:2px;font-weight:700;color:#f0b43c}#alive b{display:block;font-size:64px;line-height:1;font-weight:900}
+#day{right:46px;top:290px;width:260px;text-align:right;font-family:'Liberation Sans',Arial,sans-serif;font-weight:800;font-size:22px;letter-spacing:1px;display:none;text-shadow:0 2px 4px rgba(0,0,0,.8)}
+#feed{right:46px;top:335px;width:520px;font-family:'Liberation Sans',Arial,sans-serif;display:none}
+#feed div{margin:6px 0 0 auto;width:max-content;max-width:520px;background:rgba(40,40,44,.82);padding:6px 12px;font-size:23px;font-weight:700;color:#e8e8ec}#feed div b{color:#ffd23f}
+#mm{left:44px;top:150px;width:150px;height:150px;border-radius:14px;background:#5163c7;border:4px solid #3a3f6e;display:none;overflow:hidden}
+#mm i{position:absolute;left:18px;top:18px;width:112px;height:104px;border-radius:50% 45% 55% 50%;background:#6fbf4a;border:3px solid #2d5a1e}
+#mm span{position:absolute;left:0;right:0;top:2px;text-align:center;font:800 13px 'Liberation Sans',Arial,sans-serif;color:#fff}
+#mm u{position:absolute;width:12px;height:12px;border-radius:50%;background:#ff3d3d;border:2px solid #fff;text-decoration:none}
+body.royale #cap{top:1180px;font-family:'Liberation Sans',Arial,sans-serif;font-style:normal;font-weight:900;font-size:64px;color:#fff;-webkit-text-stroke:8px #000;paint-order:stroke fill;text-shadow:0 5px 0 #000}
+body.royale #q,body.royale #lab,body.royale #val,body.royale #note,body.royale #tag,body.royale #tm{display:none}
 </style></head><body>
 <canvas id="c" width="1080" height="1920"></canvas><div class="vig"></div>
-<div class="t" id="q"></div><div class="t" id="lab"></div><div class="t" id="val"></div><div class="t" id="note"></div><div class="t" id="tag"></div><div class="t" id="cap"></div><div class="t" id="big"></div><div class="t" id="tm"></div><div class="t" id="pop"></div>
+<div class="t" id="q"></div><div class="t" id="lab"></div><div class="t" id="val"></div><div class="t" id="note"></div><div class="t" id="tag"></div><div class="t" id="cap"></div><div class="t" id="big"></div><div class="t" id="tm"></div><div class="t" id="alive"><small>ALIVE</small><b id="aliveN">100</b></div><div class="t" id="day"></div><div class="t" id="feed"></div><div class="t" id="mm"><span>ISLAND</span><i></i><u id="mmdot"></u></div><div class="t" id="pop"></div>
 <script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
 <script type="module">
 import * as lib from '/lib.js';
@@ -41,6 +53,7 @@ const hud = {
   big() {},
   tm(text) { $('tm').textContent = text || ''; },
   pop(text, a = 1) { $('pop').textContent = text || ''; $('pop').style.opacity = text ? a : 0; },
+  royale(on, alive, day, feed, dot) { document.body.classList.toggle('royale', !!on); for (const id of ['alive', 'day', 'feed', 'mm']) $(id).style.display = on ? 'block' : 'none'; if (!on) return; $('aliveN').textContent = alive; $('day').textContent = day || ''; $('feed').innerHTML = (feed || []).map((f) => '<div style="opacity:' + (f[2] ?? 1) + '">' + f[0] + '</div>').join(''); if (dot) { const d = $('mmdot'); d.style.left = dot[0] + 'px'; d.style.top = dot[1] + 'px'; } },
   style(c) { document.body.classList.toggle('C', c === 'C'); },
 };
 function chunkFor(beat, lt) {
