@@ -15,8 +15,8 @@ export default async function build({ lib, tl, hud }) {
   return { frame({ t, bi, lt, p }) {
     const m = lerp(M[bi], M[bi + 1] ?? M[bi], smooth(p)); const k = clamp(m / 24), aura = 100 * Math.pow(2, m);
     const HX = 0, HZ = 6; h.x = HX; h.z = HZ; h.yaw = 0; h.anim = 'idle'; h.speed = .6; h.y = bi >= 6 ? .15 + .3 * Math.sin(t * 1.5) + (bi - 6 + p) * .5 : 0; h.extra = 0; hero.update(t);
-    sg.position.set(HX, h.y + 1.25 * 1.0 * 1.0 + .66 * 1.25 * .0 + 1.25 * .93 - 1.25 * .0, HZ + .28 * 1.25); sg.position.y = h.y + 2.3; sg.position.z = HZ + .31; sg.scale.set(1.2, 1, 1);
-    const R0 = .8 + k * 7 * (.4 + .6 * k); const cy = h.y + 1.3; shells.forEach((s, i) => { s.position.set(HX, cy + .2, HZ + 1.2); s.scale.setScalar((2.5 + R0 * 2.2) * (i ? 1.6 : 1) * (1 + .04 * Math.sin(t * 6 + i))); s.material.opacity = (.18 + .5 * k) * (i ? .5 : 1); });
+    sg.position.set(HX, h.y + 1.25 * 1.0 * 1.0 + .66 * 1.25 * .0 + 1.25 * .93 - 1.25 * .0, HZ + .28 * 1.25); sg.position.y = h.y + 2.3; sg.position.z = HZ + .31; sg.visible = false;
+    const R0 = .8 + k * 7 * (.4 + .6 * k); const cy = h.y + 1.3; shells.forEach((s, i) => { s.position.set(HX, cy + .2, HZ - 1.6); s.scale.setScalar((2.5 + R0 * 2.2) * (i ? 1.6 : 1) * (1 + .04 * Math.sin(t * 6 + i))); s.material.opacity = (.18 + .5 * k) * (i ? .5 : 1); });
     rings.forEach((g, i) => { const u = ((t * (.4 + k) + i / 4) % 1); g.position.set(HX, cy - .9 + u * .3, HZ); g.scale.setScalar(.6 + u * R0 * 2.8); g.material.opacity = (1 - u) * .5 * clamp(k * 3 + .1); });
     // people: stare, bow, then float in orbit
     for (let i = 0; i < NP; i++) { const o = ppl.p[i], q = pp[i]; o.scale = 1; o.vis = true; let x = q.x, z = q.z, y = 0, anim = 'idle';
