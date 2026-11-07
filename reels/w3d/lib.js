@@ -105,7 +105,7 @@ export class Crowd {
     this.faces = { calm: mkFace(false), shock: mkFace(true) };
     const face = new THREE.InstancedMesh(new THREE.PlaneGeometry(1, .75), new THREE.MeshBasicMaterial({ map: this.faces.calm, transparent: true, alphaTest: .3 }), n); face.frustumCulled = false; scene.add(face); this.parts.face = face;
     for (let i = 0; i < n; i++) {
-      const o = { x: 0, z: 0, y: 0, yaw: 0, scale: 1, anim: 'idle', phase: r() * 6.28, speed: 1, pitch: 0, extra: 0, shirt: new THREE.Color(SHIRTS[(r() * SHIRTS.length) | 0]), pants: new THREE.Color(r() < .25 ? 0xf2f2f4 : PANTS[(r() * PANTS.length) | 0]), skin: new THREE.Color(SKINS[(r() * SKINS.length) | 0]), hair: new THREE.Color(HAIRS[(r() * HAIRS.length) | 0]), h: .92 + r() * .16, vis: true };
+      const o = { x: 0, z: 0, y: 0, yaw: 0, scale: 1, anim: 'idle', phase: r() * 6.28, speed: 1, pitch: 0, extra: 0, shirt: new THREE.Color(SHIRTS[(r() * SHIRTS.length) | 0]), pants: new THREE.Color(r() < .25 ? 0xf2f2f4 : PANTS[(r() * PANTS.length) | 0]), skin: new THREE.Color(SKINS[(r() * SKINS.length) | 0]), hair: new THREE.Color(HAIRS[(r() * HAIRS.length) | 0]), h: .92 + r() * .16, vis: true, arms: null, M: { handL: new THREE.Matrix4(), handR: new THREE.Matrix4(), head: new THREE.Matrix4(), torso: new THREE.Matrix4() } };
       this.p.push(o); const set = (k, c) => this.parts[k].setColorAt(i, c);
       set('legL', o.pants); set('legR', o.pants); set('torso', o.shirt); set('armL', o.shirt); set('armR', o.shirt); set('handL', o.skin); set('handR', o.skin); set('head', o.skin); set('hair', o.hair); set('neck', o.skin);
     }
@@ -113,15 +113,18 @@ export class Crowd {
     this._m = new THREE.Matrix4(); this._a = new THREE.Matrix4(); this._b = new THREE.Matrix4(); this._root = new THREE.Matrix4(); this._up = new THREE.Matrix4();
   }
   setFace(nm) { this.parts.face.material.map = this.faces[nm] || this.faces.calm; }
-  _put(k, i, upper, px, py, pz, rotX, ox, oy, oz, sx, sy, sz) {
+  _put(k, i, upper, px, py, pz, rotX, ox, oy, oz, sx, sy, sz, rotZ = 0) {
     const m = this._m; m.copy(this._root); if (upper) m.multiply(this._up);
     this._a.makeTranslation(px, py, pz); m.multiply(this._a);
+    if (rotZ) { this._a.makeRotationZ(rotZ); m.multiply(this._a); }
     if (rotX) { this._a.makeRotationX(rotX); m.multiply(this._a); }
-    this._a.makeTranslation(ox, oy, oz); m.multiply(this._a); this._a.makeScale(sx, sy, sz); m.multiply(this._a); this.parts[k].setMatrixAt(i, m);
+    this._a.makeTranslation(ox, oy, oz); m.multiply(this._a);
+    const cap = this._cur && this._cur.M[k]; if (cap) cap.copy(m);
+    this._a.makeScale(sx, sy, sz); m.multiply(this._a); this.parts[k].setMatrixAt(i, m);
   }
   update(t) {
     for (let i = 0; i < this.n; i++) {
-      const o = this.p[i], s = o.scale * o.h;
+      const o = this.p[i], s = o.scale * o.h; this._cur = o;
       if (!o.vis) { this._m.makeScale(0, 0, 0); for (const k in this.parts) this.parts[k].setMatrixAt(i, this._m); continue; }
       let swing = 0, armUp = 0, bob = 0, hipDrop = 0, legFwd = 0, pitch = o.pitch, armSwing = 0, headNod = 0; const w = Math.sin(o.phase + t * 8.5 * o.speed);
       switch (o.anim) {
@@ -142,8 +145,9 @@ export class Crowd {
       this._put('legR', i, false, .13, hy, 0, -swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .24, .8, .26);
       this._put('torso', i, true, 0, 0, 0, 0, 0, hy + .31, 0, .58, .64, .32);
       let aL = armUp ? armUp : armSwing, aR = armUp ? armUp : -armSwing; if (o.anim === 'punch') { aR = -1.5 + .3 * Math.sin(o.phase + t * 9); aL = .3; } if (o.extra) { const v = o.extra * Math.sin(t * 52 + o.phase); aL += v; aR -= v; headNod += o.extra * .25 * Math.sin(t * 41); }
-      this._put('armL', i, true, -.4, hy + .6, 0, aL, 0, -.28, 0, .17, .62, .19); this._put('armR', i, true, .4, hy + .6, 0, aR, 0, -.28, 0, .17, .62, .19);
-      this._put('handL', i, true, -.4, hy + .6, 0, aL, 0, -.66, 0, .15, .14, .17); this._put('handR', i, true, .4, hy + .6, 0, aR, 0, -.66, 0, .15, .14, .17);
+      let zL = 0, zR = 0; if (o.arms) { aL = o.arms.lx; aR = o.arms.rx; zL = o.arms.lz || 0; zR = o.arms.rz || 0; }
+      this._put('armL', i, true, -.4, hy + .6, 0, aL, 0, -.28, 0, .17, .62, .19, zL); this._put('armR', i, true, .4, hy + .6, 0, aR, 0, -.28, 0, .17, .62, .19, zR);
+      this._put('handL', i, true, -.4, hy + .6, 0, aL, 0, -.66, 0, .15, .14, .17, zL); this._put('handR', i, true, .4, hy + .6, 0, aR, 0, -.66, 0, .15, .14, .17, zR);
       this._put('neck', i, true, 0, 0, 0, headNod * .4, 0, hy + .68, 0, .2, .2, .2);
       this._put('head', i, true, 0, 0, 0, headNod, 0, hy + .93, 0, .44, .44, .44); this._put('hair', i, true, 0, 0, 0, headNod, 0, hy + 1.1, -.03, .47, .17, .48);
       this._put('face', i, true, 0, 0, 0, headNod, 0, hy + .9, .222, .4, .4, 1);
@@ -223,3 +227,9 @@ export function beach(scene, o = {}) {
   const dress = o.dress ?? 1; for (let i = 0; i < 10 * dress; i++) { const x = (r() - .5) * 90, z = shoreZ - 12 - r() * 50; towel(x, z, [0xe65a4f, 0x3f8fd2, 0xf2c84b, 0x6bbf8a, 0xf08fb0][(r() * 5) | 0], r() * 3); if (r() < .4) umb(x + 1.5, z, [0xe65a4f, 0xf2c84b, 0x3f8fd2, 0xffffff][(r() * 4) | 0]); }
   return { sea, seaMat, boats, gulls, clouds, update(t) { seaMat.uniforms.time.value = t; boats.forEach((b, i) => { b.position.y = Math.sin(t * 1.1 + i) * .12; b.rotation.z = Math.sin(t * .9 + i * 2) * .04; b.position.x += 0; }); gulls.forEach((gg) => { const u = gg.userData, a = u.ph + t * u.sp; gg.position.set(u.cx + Math.cos(a) * u.rad, u.y + Math.sin(a * 2) * 1.2, u.cz + Math.sin(a) * u.rad * .5); gg.rotation.y = -a + Math.PI; const f = Math.sin(t * 7 + u.ph) * .5; gg.children[0].rotation.z = f; gg.children[1].rotation.z = -f; }); clouds.forEach((c, i) => { c.position.x += .004 * (i % 3 + 1); }); } };
 }
+
+// ---------------------------------------------------------------------------------------------- props that follow the body, simple physics
+const _am = new THREE.Matrix4(), _at = new THREE.Matrix4(), _ar = new THREE.Matrix4(), _ae = new THREE.Euler();
+export function attach(mesh, o, key, off = [0, 0, 0], rot = [0, 0, 0]) { _am.copy(o.M[key]); _at.makeTranslation(off[0], off[1], off[2]); _am.multiply(_at); if (rot[0] || rot[1] || rot[2]) { _ae.set(rot[0], rot[1], rot[2]); _ar.makeRotationFromEuler(_ae); _am.multiply(_ar); } mesh.matrixAutoUpdate = false; mesh.matrix.copy(_am); mesh.matrixWorldNeedsUpdate = true; mesh.visible = o.vis; }
+// ball-drop with bounces: height above floor at time t after release (y0, vy0 up), restitution e
+export function dropBounce(y0, vy0, t, e = .38, g = 9.8) { let y = y0, v = vy0, tt = t; for (let n = 0; n < 12; n++) { const disc = v * v + 2 * g * y; const tf = (v + Math.sqrt(Math.max(0, disc))) / g; if (tt < tf) return { y: Math.max(0, y + v * tt - .5 * g * tt * tt), settled: false }; tt -= tf; v = e * (-(v - g * tf)); y = 0; if (v < .4) return { y: 0, settled: true }; } return { y: 0, settled: true }; }
