@@ -1,0 +1,11 @@
+#!/bin/bash
+# sequential render queue: waits for the jerk render (chain9), then runs each reel:key one at a time
+cd /home/user/sorry-posts/reels/w3d
+S=/tmp/claude-0/-home-user-sorry-posts/aeda3cd8-6be4-5731-8b3d-d9639f60d4f0/scratchpad
+while pgrep -f "chain9.sh|render.js" >/dev/null; do sleep 20; done
+for pair in "$@"; do r=${pair%%:*}; k=${pair##*:}
+  [ -f $S/out_v/${k}_done ] && continue
+  node render.js $r $S/t3/$k.json $S/out_v/$k.mp4 30 3 2>&1 | tail -2
+  ../shipfast.sh $S/out_v 6 14 24 $k 2>&1 | tail -2 && touch $S/out_v/${k}_done
+done
+echo QUEUE_DONE
