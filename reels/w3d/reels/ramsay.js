@@ -66,7 +66,7 @@ export default async function build({ lib, tl, hud }) {
   return { frame({ t, bi, lt, p }) {
     bi = Math.min(bi, 6); for (let i = 0; i < P.length; i++) { P[i].vis = false; P[i].arms = null; P[i].extra = 0; P[i].pitch = 0; P[i].hs = 1; }
     [ladle, pizza, tray, trayRim, star, ketchup, rawSign, clip, ...NUG, ...pans, ice.parent && ice].forEach((m) => m && (m.visible = false));
-    tears.clear(); sparks.clear(); frostP.clear(); let shock = false;
+    tears.clear(); sparks.clear(); frostP.clear(); [...kb, gb, hb, ib].forEach((b) => (b.sp.visible = false)); let shock = false;
     // default seated kids
     seatKids.forEach((o, i) => { const s = SEAT[i]; sit(o, s[0], s[1], s[2]); });
     const H = kids[0]; sit(H, HSEAT[0], HSEAT[1], HSEAT[2]);
