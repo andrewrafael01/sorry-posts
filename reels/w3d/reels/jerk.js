@@ -6,6 +6,10 @@ export default async function build({ lib, tl, hud }) {
   const B = makeStage({ shadowExtent: 52, fogNear: 110, fogFar: 420 }); const town = buildStreet(B.scene, {}); const debris = new Particles(B.scene, 300, 0xd77a30, .4, { emissive: 0xff5a00, rough: .7 }); const rg = []; for (let i = 0; i < 3; i++) { const m = new THREE.Mesh(new THREE.TorusGeometry(1, .15, 8, 80), new THREE.MeshBasicMaterial({ color: 0xfff0d0, transparent: true, opacity: .8 })); m.rotation.x = Math.PI / 2; B.scene.add(m); rg.push(m); }
   const RT = [[1, 1], [1, 2], [4, 8], [32, 64], [500, 1200], [1200, 20000], [1e6, 1e9], [1e9, 1e9]]; const ST = [0, 0, 0, 0, 1, 2, 3, 3];
   const rs = R(5); const deb = []; for (let i = 0; i < 300; i++) deb.push({ a: rs() * 6.283, v: 10 + rs() * 40, up: 8 + rs() * 24 });
+  const starts = []; { let c = 0; for (const bt of tl.beats) { starts.push(c); c += bt.dur; } }
+  const rateAt = (t) => { let k = 0; for (let i = 0; i < starts.length; i++) if (t >= starts[i]) k = i; const p = clamp((t - starts[k]) / (tl.beats[k].dur || 1)); return RT[k][0] * Math.pow(RT[k][1] / RT[k][0], p); };
+  const S = { t: 0, ph: 0, x: 0, v: 0, hx: 0, hv: 0 };
+  const stepTo = (t) => { if (t < S.t) { S.t = 0; S.ph = 0; S.x = 0; S.v = 0; S.hx = 0; S.hv = 0; } const dt = 1 / 240; while (S.t < t) { const r = rateAt(S.t); const f = r < 5 ? r : 5 + 3 * Math.log2(r / 5); S.ph += 2 * Math.PI * Math.min(f, 16) * dt; const u = .5 + .5 * Math.sin(S.ph); S.v += (900 * (u - S.x) - 34 * S.v) * dt; S.x += S.v * dt; S.hv += (400 * (S.x - S.hx) - 20 * S.hv) * dt; S.hx += S.hv * dt; S.t += dt; } };
   return {
     frame({ t, bi, lt, p }) {
       const rate = RT[bi][0] * Math.pow(RT[bi][1] / RT[bi][0], p) , stage = ST[bi];
@@ -18,9 +22,9 @@ export default async function build({ lib, tl, hud }) {
         bd.crowd.setFace(bi >= 2 && bi <= 3 ? 'shock' : 'calm'); P.extra = Math.min(.5, Math.log2(Math.max(1, rate)) * .035); P.speed = 1;
         if (standing) { P.anim = 'idle'; P.x = -.4 + jit * .3; P.y = 0; P.z = 2.7; P.yaw = Math.PI; P.scale = 1.25; P.extra = .35; } else { P.anim = 'sit'; P.x = jit * .4; P.y = .06 + Math.abs(jit) * .2; P.z = 3.5; P.yaw = 0; }
         bd.crowd.update(t);
-        bd.blanket.visible = !standing; bd.lump.visible = !standing; bd.strings.forEach((m, k) => { m.visible = !standing; m.position.set(-.1 + k * .2, 1.62, 3.84); });
-        bd.blanket.position.x = jit; bd.blanket.rotation.z = jit * .3; bd.blanket.position.y = 1.08 + Math.abs(bump) * .3; bd.blanket.material.color.set(onFire ? 0x35456b : 0x4d6faa);
-        bd.lump.position.y = bd.base.lumpY + bump * 1.6; bd.lump.position.x = jit; bd.lump.scale.set(1.0, .7 + Math.abs(bump) * 3, 1.4 + bump * 2);
+        bd.blanket.visible = !standing;  bd.strings.forEach((m, k) => { m.visible = !standing; m.position.set(-.1 + k * .2, 1.62, 3.84); });
+        stepTo(t); bd.blanket.userData.update(t, S.x, S.v); bd.blanket.material.color.set(onFire ? 0x35456b : 0x4d6faa); P.y += (S.hx - .5) * .02; P.extra *= 1;
+        
         const D = new THREE.Object3D(); for (let i = 0; i < 34; i++) { const on = onFire || standing; const u = (i * .6180339) % 1, v = (i * .7548777) % 1; const fl = .5 + .5 * Math.abs(Math.sin(t * 9 + i * 2.1)); if (on && !standing) { D.position.set((u - .5) * 2.2, 1.34, 3.9 + v * 2.1); D.scale.set(.9, .45 + fl * .8, .9); D.rotation.set(0, i, Math.sin(t * 6 + i) * .15); } else { D.position.set(0, -9, 0); D.scale.set(0, 0, 0); } D.updateMatrix(); bd.cones.setMatrixAt(i, D.matrix); D.position.y += 0; } bd.cones.instanceMatrix.needsUpdate = true;
         const rsd = R(21); for (let i = 0; i < 36; i++) { const x = (rsd() - .5) * 5.0, z = (i % 4 === 0 ? 1.9 + rsd() * .5 : 3.0 + rsd() * 2.4), ry = rsd() * 3, sc = .4 + rsd() * .8; D.position.set(x, .08 + (standing ? 0 : -9), z); D.rotation.set(0, ry, 0); D.scale.set(standing ? sc : 0, 1, standing ? sc * .8 : 0); D.updateMatrix(); bd.slabs.setMatrixAt(i, D.matrix); } bd.slabs.instanceMatrix.needsUpdate = true;
         const re = R(33); for (let i = 0; i < 28; i++) { const x = (re() - .5) * 4.5, z = 1.2 + re() * 3.4; D.position.set(x, standing ? .22 + .15 * Math.abs(Math.sin(t * 5 + i)) : -9, z); D.rotation.set(t + i, i, 0); D.scale.set(1, 1, 1); D.updateMatrix(); bd.embers.setMatrixAt(i, D.matrix); } bd.embers.instanceMatrix.needsUpdate = true;
@@ -28,7 +32,7 @@ export default async function build({ lib, tl, hud }) {
         const seed = Math.floor(t * 14); const rb = R(seed * 7 + 3); let bi2 = 0; const V = new THREE.Vector3(), V2 = new THREE.Vector3();
         for (let k = 0; k < 10; k++) { V.set(-.4 + (rb() - .5) * 1.2, .5 + rb() * 1.7, 2.7 + (rb() - .5) * .6); for (let sgm = 0; sgm < 6; sgm++) { if (bi2 >= 60) break; V2.set(V.x + (rb() - .5) * .9, V.y + (rb() - .5) * .9, V.z + (rb() - .5) * .5); const len = V.distanceTo(V2); D.position.copy(V).add(V2).multiplyScalar(.5); D.lookAt(V2); D.scale.set(standing ? .035 : 0, standing ? .035 : 0, standing ? len : 0); D.updateMatrix(); bd.bolt.setMatrixAt(bi2++, D.matrix); V.copy(V2); } }
         for (; bi2 < 60; bi2++) { D.position.set(0, -9, 0); D.scale.set(0, 0, 0); D.updateMatrix(); bd.bolt.setMatrixAt(bi2, D.matrix); } bd.bolt.instanceMatrix.needsUpdate = true;
-        for (let i = 0; i < 40; i++) { if (bi >= 4 && stage >= 1) { const a = t * 3 + i; smoke.set(i, 2.6 * Math.sin(i * 1.7) * .8, 3.1 + Math.sin(i) * .4 + ((t * .4 + i * .13) % 1) * .6, 3.6 + Math.cos(i * 2.3) * 2.2 + Math.sin(a) * .2, .9); } else smoke.set(i, 0, 0, 0, 0); } smoke.done();
+        for (let i = 0; i < 40; i++) { if (bi >= 4 && stage >= 1) { const a = t * 3 + i; smoke.set(i, 2.6 * Math.sin(i * 1.7) * .8, 3.1 + Math.sin(i) * .4 + ((t * .4 + i * .13) % 1) * .6, 3.6 + Math.cos(i * 2.3) * 2.2 + Math.sin(a) * .2, .5); } else smoke.set(i, 0, 0, 0, 0); } smoke.done();
         for (let i = 0; i < 44; i++) fire.set(i, 0, 0, 0, 0); fire.done();
         ringsA.forEach((m) => { m.visible = false; });
         A.render();

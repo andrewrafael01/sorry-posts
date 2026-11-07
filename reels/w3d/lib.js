@@ -94,7 +94,7 @@ const HAIRS = [0x2b1d14, 0x5a3a22, 0xe0b04a, 0x101010, 0x8a8a8a, 0xb5532a];
 export class Crowd {
   constructor(scene, n, seed = 1) {
     this.n = n; this.p = []; const r = rnd(seed); const bx = (w, h, d) => new THREE.BoxGeometry(w, h, d);
-    const defs = { legL: bx(1, 1, 1), legR: bx(1, 1, 1), torso: bx(1, 1, 1), armL: bx(1, 1, 1), armR: bx(1, 1, 1), handL: bx(1, 1, 1), handR: bx(1, 1, 1), head: bx(1, 1, 1), hair: bx(1, 1, 1) };
+    const rb = (r) => new RoundedBoxGeometry(1, 1, 1, 3, r); const defs = { legL: rb(.28), legR: rb(.28), torso: rb(.24), armL: rb(.32), armR: rb(.32), handL: rb(.35), handR: rb(.35), head: rb(.24), hair: rb(.2) };
     this.parts = {}; for (const k in defs) { const im = new THREE.InstancedMesh(defs[k], new THREE.MeshStandardMaterial({ roughness: .9, metalness: 0 }), n); im.castShadow = true; im.receiveShadow = true; im.frustumCulled = false; scene.add(im); this.parts[k] = im; }
     // faces: transparent decals (calm / shock) with brows, sclera, iris, nose, mouth
     const mkFace = (shock) => { const cv = document.createElement('canvas'); cv.width = 256; cv.height = 192; const g = cv.getContext('2d'); const eye = (x) => { const w = shock ? 46 : 40, h = shock ? 36 : 24; g.fillStyle = '#f4f4f0'; g.fillRect(x - w / 2, 84 - h / 2, w, h); g.fillStyle = '#3b6ea5'; g.fillRect(x - 11 + (shock ? 0 : 4), 84 - (shock ? 11 : 9), 22, shock ? 22 : 18); g.fillStyle = '#10151c'; g.fillRect(x - 5 + (shock ? 0 : 4), 84 - 5, 10, 10); g.fillStyle = 'rgba(70,40,25,.55)'; g.fillRect(x - w / 2, 84 - h / 2 - 2, w, 5); };
@@ -131,7 +131,7 @@ export class Crowd {
         case 'squat': hipDrop = .42 + .03 * Math.sin(o.phase + t * 14); legFwd = -1.35; pitch = .45 + .12 * Math.sin(o.phase + t * 11); armSwing = .9 * Math.sin(o.phase + t * 10); bob = Math.abs(Math.sin(o.phase + t * 14)) * .03; headNod = .15 * Math.sin(o.phase + t * 9); break;
         case 'bend': pitch = 1.0 + .3 * Math.max(0, Math.sin(o.phase + t * 5)); armSwing = .5 * Math.sin(o.phase + t * 5); headNod = .3 * Math.sin(o.phase + t * 5); bob = Math.abs(Math.sin(o.phase + t * 5)) * .04; break;
         case 'punch': break;
-        case 'sit': legFwd = -1.5; armUp = -.95; pitch = 0; headNod = .05 * Math.sin(o.phase + t * 1.3); break;
+        case 'sit': legFwd = -1.5; armUp = -.55; pitch = 0; headNod = .05 * Math.sin(o.phase + t * 1.3); break;
         case 'jump': bob = Math.abs(Math.sin(o.phase + t * 5)) * .6; armUp = -2.6; break;
         case 'sprint': swing = 1.2 * w; armSwing = 1.1 * w; bob = Math.abs(w) * .2; pitch += .3; break;
         default: bob = Math.sin(o.phase + t * 2.2) * .012; armSwing = .22 * Math.sin(o.phase + t * 1.7); swing = .08 * Math.sin(o.phase * 1.3 + t * 1.1); headNod = .12 * Math.sin(o.phase + t * 1.3); pitch += .05 * Math.sin(o.phase + t * 1.9);

@@ -24,8 +24,25 @@ export function bedroom2(lib, st, scene) {
   // hoodie drawstrings
   const dr = (x) => addBox(scene, x, 1.62, 3.82, .035, .3, .02, 0xf2f2f2); const strings = [dr(-.1), dr(.1)];
   // duvet (blue), long block over his legs + a mound that moves
-  const duvetMat = mat(0x4d6faa, { roughness: .95 }); const blanket = new THREE.Mesh(new (lib.RoundedBoxGeometry)(2.6, .5, 2.7, 4, .2), duvetMat); blanket.position.set(0, 1.08, 5.0); blanket.castShadow = true; blanket.receiveShadow = true; scene.add(blanket);
-  const lump = new THREE.Mesh(new THREE.IcosahedronGeometry(.34, 2), duvetMat); lump.scale.set(1.0, .7, 1.4); lump.position.set(0, 1.42, 4.05); lump.castShadow = true; scene.add(lump);
+  // duvet = a real draped cloth heightfield: legs under it, a tent that pops up in the lap, ripples that travel outward
+  const NX = 100, NZ = 84, X0 = -1.75, X1 = 1.75, Z0 = 3.6, Z1 = 6.2; const cg = new THREE.PlaneGeometry(X1 - X0, Z1 - Z0, NX, NZ); cg.rotateX(-Math.PI / 2); const cp = cg.attributes.position; const cmat = mat(0x4d6faa, { roughness: .96 });
+  const blanket = new THREE.Mesh(cg, cmat); blanket.castShadow = true; blanket.receiveShadow = true; blanket.frustumCulled = false; scene.add(blanket);
+  const ss = (a, b2, x) => { const u = Math.min(1, Math.max(0, (x - a) / (b2 - a))); return u * u * (3 - 2 * u); };
+  blanket.userData.update = (t, A, vel) => {
+    for (let i = 0; i <= NZ; i++) for (let j = 0; j <= NX; j++) {
+      const k = i * (NX + 1) + j; const x = X0 + (X1 - X0) * (j / NX), z = Z0 + (Z1 - Z0) * (i / NZ);
+      const zs = ss(3.55, 3.95, z) * (1 - ss(4.35, 4.75, z)); let y = .93 + .05;
+      y += .27 * zs * (Math.exp(-((x - .2) ** 2) / .03) + Math.exp(-((x + .2) ** 2) / .03));
+      y += .1 * (1 - ss(3.6, 3.9, z)) * (1 - ss(1.0, 1.5, Math.abs(x)));
+      const dx = x, dz = z - 3.98; const r2 = dx * dx / .05 + dz * dz / .08; const tent = A * .42 * Math.exp(-r2 * .5); y += tent;
+      const rr = Math.sqrt(dx * dx + dz * dz); y += vel * .03 * Math.sin(rr * 14 - t * 22) * Math.exp(-rr * 2.2);
+      y += .012 * Math.sin(x * 7 + z * 5) + .008 * Math.sin(x * 17 - z * 9);
+      const side = ss(1.28, 1.7, Math.abs(x)); y = y * (1 - side) + (.5 - (Math.abs(x) - 1.28) * .3) * side; const foot = ss(5.7, 6.15, z); y = y * (1 - foot) + (.55) * foot;
+      cp.setXYZ(k, x, y, z);
+    }
+    cp.needsUpdate = true; cg.computeVertexNormals();
+  };
+  const lump = new THREE.Object3D(); lump.position.set(0, 1.42, 4.05);
   // flame cones on the bed
   const cones = new THREE.InstancedMesh(new THREE.ConeGeometry(.2, .8, 5), new THREE.MeshStandardMaterial({ color: 0xffa05a, emissive: 0xff6a2a, emissiveIntensity: .8, flatShading: true, roughness: .6 }), 34); cones.frustumCulled = false; scene.add(cones); const cc = new THREE.Color(); for (let i = 0; i < 34; i++) { cc.setHSL(.03 + (i * .37 % 1) * .08, .95, .62); cones.setColorAt(i, cc); } cones.instanceColor.needsUpdate = true;
   // floor debris + lightning (used in the standing beat)
