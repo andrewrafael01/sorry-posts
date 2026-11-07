@@ -36,7 +36,7 @@ export default async function build({ lib, tl, hud }) {
     if (bi === 1) { bub[0].sp.visible = true; bub[0].sp.position.set(SPOS[0][0], 2.1, SPOS[0][1] + .5); }
     if (bi === 3 && lt > 1.0) { bub[2].sp.visible = true; bub[2].sp.position.set(SPOS[3][0], 2.1, SPOS[3][1]); }
     for (let i = 0; i < 30; i++) { const u = ((t * .5 + i * .033) % 1); const on = bi === 3 && lt > 3; D.position.set(SPOS[0][0] + Math.sin(i * 3) * .4, 1.2 + u * 1.2, SPOS[0][1] + .4); D.scale.setScalar(on ? 1 - u : 0); D.updateMatrix(); hearts.setMatrixAt(i, D.matrix); } hearts.instanceMatrix.needsUpdate = true;
-    const sw = Math.sin(t * .3) * .5; const cam = bi === 4 ? [-.8, 2.5, -2.8, .4, 1.5, 6.4, 50] : [sw, 2.5, -2.8, 0, 1.5, 6.4, 50];
+    const sw = Math.sin(t * .3) * .3; const cam = bi === 4 ? [-.6, 2.0, 1.6, .3, 1.55, 6.4, 42] : [sw, 2.0, 1.6, 0, 1.55, 6.4, 42];
     A.cam(...cam); A.follow(0, 4); A.render();
     hud.style('C'); hud.question(bi === 0 ? 'What if *Drake* became your substitute teacher?' : '', bi === 0 ? 1 : 0);
     if (bi === 0) hud.counter('', '', ''); else hud.counter('Mr. D (substitute) · Week 1', [ '', '4 min', '1 rhyme', '100%', '2', '1', '100' ][bi], NOTE[bi], 'PARODY', false); hud.tm('');
