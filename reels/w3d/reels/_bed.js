@@ -20,7 +20,7 @@ export function bedroom2(lib, st, scene) {
   const lamp = new THREE.PointLight(0xffc27a, 5, 9, 1.6); lamp.position.set(-2.2, 1.6, 3.35); scene.add(lamp);
   // the guy: sitting up against the headboard in a mustard hoodie, facing the foot of the bed (+z)
   const cr = new Crowd(scene, 1, 8); const h = cr.p[0]; h.scale = 1.25; h.h = 1; h.x = 0; h.z = 3.5; h.y = .06; h.yaw = 0; h.anim = 'sit'; h.speed = 1; h.skin.set(0xe9c3a0); h.hair.set(0x3a2a1c); h.shirt.set(0xe3bd54); h.pants.set(0x2f3a5c);
-  const col = (k, c) => { cr.parts[k].setColorAt(0, c); cr.parts[k].instanceColor.needsUpdate = true; }; ['torso', 'armL', 'armR'].forEach((k) => col(k, h.shirt)); ['legL', 'legR'].forEach((k) => col(k, h.pants)); ['head', 'handL', 'handR'].forEach((k) => col(k, h.skin)); col('hair', h.hair);
+  const col = (k, c) => { cr.parts[k].setColorAt(0, c); cr.parts[k].instanceColor.needsUpdate = true; }; ['torso', 'armL', 'armR'].forEach((k) => col(k, h.shirt)); ['legL', 'legR'].forEach((k) => col(k, h.pants)); ['head', 'neck', 'handL', 'handR'].forEach((k) => col(k, h.skin)); col('hair', h.hair);
   // hoodie drawstrings
   const dr = (x) => addBox(scene, x, 1.62, 3.82, .035, .3, .02, 0xf2f2f2); const strings = [dr(-.1), dr(.1)];
   // duvet (blue), long block over his legs + a mound that moves
