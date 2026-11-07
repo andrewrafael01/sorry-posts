@@ -1,0 +1,39 @@
+// What if everyone in your town was an NPC? Same sentence on loop, speech bubbles, synchronized jumping, one tree.
+export default async function build({ lib, tl, hud }) {
+  const { THREE, makeStage, buildStreet, building, tree, addBox, mat, Crowd, Particles, R, clamp, smooth, lerp } = lib; const fmt = (v) => Math.round(v).toLocaleString('en-US');
+  const st = makeStage({ shadowExtent: 55, fogNear: 120, fogFar: 520, skyTop: 0x7a8ca4, skyMid: 0xb4bfc9, skyBot: 0xdfe3e6, fog: 0xcdd3d8, sunI: 2.0, clouds: true }); const S = st.scene; const city = buildStreet(S, { seed: 9 });
+  const cvs = (w, h, f) => { const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d'); f(g, w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t; };
+  const mkBubble = () => { const c = document.createElement('canvas'); c.width = 512; c.height = 176; const g = c.getContext('2d'); const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false })); sp.scale.set(2.5, .86, 1); S.add(sp); let cur = null; return { sp, set(text) { if (text === cur) return; cur = text; g.clearRect(0, 0, 512, 176); g.fillStyle = '#fff'; g.strokeStyle = '#111'; g.lineWidth = 8; g.beginPath(); g.roundRect(8, 8, 496, 120, 28); g.fill(); g.stroke(); g.beginPath(); g.moveTo(230, 126); g.lineTo(256, 170); g.lineTo(282, 126); g.fillStyle = '#fff'; g.fill(); g.fillStyle = '#111'; g.font = '800 50px Liberation Sans, Arial'; g.textAlign = 'center'; g.fillText(text, 256, 84); tex.needsUpdate = true; } }; };
+  const NN = 14, crowd = new Crowd(S, NN + 1, 77); const P = crowd.p; const col = (i, k, c) => crowd.parts[k].setColorAt(i, new THREE.Color(c));
+  const HERO = NN; ['torso', 'armL', 'armR'].forEach((k) => col(HERO, k, 0x3f7fd6)); ['legL', 'legR'].forEach((k) => col(HERO, k, 0x2a2f3c)); for (let i = 0; i < NN; i++) { ['torso', 'armL', 'armR'].forEach((k) => col(i, k, 0x9aa0a6)); ['legL', 'legR'].forEach((k) => col(i, k, 0x55595e)); } for (const k in crowd.parts) if (crowd.parts[k].instanceColor) crowd.parts[k].instanceColor.needsUpdate = true;
+  const hero = P[HERO]; const bub = P.map(() => mkBubble()); bub.forEach((b) => (b.sp.visible = false));
+  // props: barista counter + cup, bank cave, rain, trees
+  const counter = addBox(S, -5, .5, 38.2, 2.4, 1.0, 1.0, 0x8a5a34); const cup = new THREE.Mesh(new THREE.CylinderGeometry(.07, .055, .16, 12), mat(0xf4f4f4)); cup.position.set(-5.3, 1.1, 38.2); S.add(cup);
+  const bankT = cvs(512, 128, (g, w, h) => { g.fillStyle = '#2a2a2a'; g.fillRect(0, 0, w, h); g.fillStyle = '#ffd23f'; g.font = '900 70px Liberation Sans, Arial'; g.textAlign = 'center'; g.fillText('BANK (CAVE)', w / 2, 92); }); const bank = building(S, 9, 62, 12, 8, 10, 0x8c8c86, 7); bank.position.set(9, 4, 62); const bsign = new THREE.Mesh(new THREE.PlaneGeometry(6, 1.5), new THREE.MeshStandardMaterial({ map: bankT, emissive: 0x222211 })); bsign.position.set(3.0, 5.4, 62); bsign.rotation.y = -Math.PI / 2; S.add(bsign);
+  const rain = new Particles(S, 160, 0x9fc4ff, .03, { rough: .2 }); const ldT = cvs(256, 64, (g, w, h) => { g.fillStyle = '#111'; g.fillRect(0, 0, w, h); g.fillStyle = '#7cff7c'; g.fillRect(8, 22, 120, 20); g.fillStyle = '#fff'; g.font = '700 22px Liberation Sans'; g.fillText('LOADING TOWN...', 8, 18); }); const load = new THREE.Mesh(new THREE.PlaneGeometry(4.8, 1.2), new THREE.MeshBasicMaterial({ map: ldT })); load.visible = false; S.add(load);
+  const trees = []; for (let i = 0; i < 6; i++) { const tr = tree(S, (i % 2 ? 1 : -1) * 6.5, 84 + Math.floor(i / 2) * 9, 1.3, 5); tr.scale.setScalar(.001); trees.push(tr); }
+  const place = (o, x, z, yaw, anim = 'idle', y = 0, sp = .4) => { o.x = x; o.z = z; o.yaw = yaw; o.anim = anim; o.y = y; o.speed = sp; o.vis = true; o.scale = 1.2; };
+  const face = (o, tx, tz) => Math.atan2(tx - o.x, tz - o.z);
+  const G = [3, 18], DAY = ['', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
+  return { frame({ t, bi, lt, p }) {
+    bi = Math.min(bi, 7); for (let i = 0; i < P.length; i++) { P[i].vis = false; P[i].arms = null; P[i].extra = 0; } bub.forEach((b) => (b.sp.visible = false)); load.visible = false; rain.clear && 0;
+    const dur = tl.beats[bi].dur; let cam, cnt = 0, label = '', note = '';
+    const showB = (i, text, dy = 2.9) => { const o = P[i]; bub[i].set(text); bub[i].sp.visible = true; bub[i].sp.position.set(o.x, o.y + dy, o.z); };
+    const greg = P[1]; const hz = 6 + (t % 1000) * 0;
+    if (bi === 0) { place(hero, 1.0, 14, 0, 'idle'); place(greg, G[0], G[1], face(greg, 1.0, 14)); showB(1, 'nice weather today'); cam = [-3.5, 1.9, 8, 2, 2.2, 18, 50]; }
+    else if (bi === 1) { place(hero, 1.0, 14.5, face(hero, G[0], G[1]), 'idle'); place(greg, G[0], G[1], face(greg, 1.0, 14.5)); showB(1, 'nice weather today'); cnt = Math.round(400 * smooth(clamp(lt / (dur * .85)))); label = 'Greg says "nice weather today"'; note = 'it is raining'; cam = [-2.2, 1.9, 11.5, 2.6, 2.3, 18, 48]; }
+    else if (bi === 2) { place(hero, -5, 36.2, 0, 'idle'); place(P[2], -5, 38.9, Math.PI, 'idle'); showB(2, "I'm just a girl"); cnt = Math.round(1412 * smooth(clamp(lt / (dur * .85)))); label = 'Barista says "I\'m just a girl"'; note = 'every single time'; cam = [-2.0, 1.8, 33, -5.2, 2.0, 39, 50]; }
+    else if (bi === 3) { place(hero, 4.6, 52, 0, 'idle'); for (let i = 3; i < 9; i++) { place(P[i], 4.4 + (i % 2) * 1.5, 56 + (i - 3) * 1.1, face(P[i], 4.6, 52)); showB(i, 'hello traveler', 2.8); } cnt = 1; label = 'Bank'; note = 'it is a cave'; cam = [1.0, 1.9, 48, 5.5, 2.2, 58, 54]; }
+    else if (bi === 4) { const jumping = lt > .8 && lt < dur * .72; place(hero, 0, 76, 0, jumping ? 'jump' : 'idle', 0, 1.0); for (let i = 1; i < 9; i++) { const a = i / 8 * 6.28; place(P[i], Math.cos(a) * 3.6, 76 + Math.sin(a) * 3.6 + 3, face(P[i], 0, 76), jumping ? 'jump' : 'idle', 0, 1.0); } cam = [-9, 3.4, 68, 0, 1.6, 77, 54]; label = 'Everyone jumps'; note = 'nobody blinks'; cnt = jumping ? 8 : 0; }
+    else if (bi === 5) { place(greg, G[0], G[1], face(greg, 1.0, 14.5)); showB(1, lt > dur * .55 ? 'help' : '...'); cam = [-.2, 1.9, 11.8, G[0], 2.4, G[1], 40]; label = 'Greg'; note = lt > dur * .55 ? 'he said something new' : 'staring'; cnt = 0; }
+    else if (bi === 6) { place(hero, 0, 78, Math.PI, 'idle'); for (let i = 0; i < 6; i++) { const u = clamp((lt - i * .6) / .4); trees[i].scale.setScalar(Math.max(.001, smooth(u) * (1 + (1 - u) * .2) * 1)); } load.visible = true; load.position.set(0, 6.2, 90); load.rotation.y = Math.PI; cam = [-9, 3.0, 74, 0, 3.0, 88, 58]; label = 'Trees'; note = 'always the same tree'; cnt = trees.filter((x) => x.scale.x > .5).length; }
+    else { const z = 14.5 + lt * 3.5; place(greg, G[0], G[1], face(greg, 1, 14.5)); showB(1, 'nice weather today'); place(hero, 1.0, z, 0, 'sprint', 0, 1.2); cam = [-3.2, 1.9, 8, 1.5, 2.2, 19, 52]; }
+    // rain in monday beat; extra npc bodies are hidden
+    for (let i = 0; i < 160; i++) { const u = ((t * 1.6 + i * .0731) % 1); rain.set(i, Math.cos(i * 12.9) * 8 + 2, 6 - u * 6, 18 + Math.sin(i * 7.7) * 6, bi === 1 ? 1 : 0); } rain.done();
+    crowd.update(t); city.updateCrowd(t, null);
+    st.cam(...cam); st.follow(cam[3], cam[5]); st.render();
+    hud.style('C'); hud.question(bi === 0 ? 'What if everyone in your town was an *NPC*?' : '', bi === 0 ? 1 : 0);
+    if (bi === 0 || bi === 7) hud.counter('', '', ''); else hud.counter(DAY[bi] + ' · ' + label, cnt ? fmt(cnt) : '—', note, 'NPC TOWN', false); hud.tm('');
+    hud.pop(['', '', "I'M JUST A GIRL", 'HELLO TRAVELER', 'NOBODY BLINKS', 'HE SAID: HELP', 'SAME TREE', 'RUN'][bi] && lt > .5 ? ['', '', "I'M JUST A GIRL", 'HELLO TRAVELER', 'NOBODY BLINKS', 'HE SAID: HELP', 'SAME TREE', 'RUN'][bi] : '', Math.min(1, (lt - .5) * 6));
+  } };
+}

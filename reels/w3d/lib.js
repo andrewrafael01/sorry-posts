@@ -149,8 +149,8 @@ export class Crowd {
       this._put('armL', i, true, -.4, hy + .6, 0, aL, 0, -.28, 0, .17, .62, .19, zL); this._put('armR', i, true, .4, hy + .6, 0, aR, 0, -.28, 0, .17, .62, .19, zR);
       this._put('handL', i, true, -.4, hy + .6, 0, aL, 0, -.66, 0, .15, .14, .17, zL); this._put('handR', i, true, .4, hy + .6, 0, aR, 0, -.66, 0, .15, .14, .17, zR);
       this._put('neck', i, true, 0, 0, 0, headNod * .4, 0, hy + .68, 0, .2, .2, .2);
-      this._put('head', i, true, 0, 0, 0, headNod, 0, hy + .93, 0, .44, .44, .44); this._put('hair', i, true, 0, 0, 0, headNod, 0, hy + 1.1, -.03, .47, .17, .48);
-      this._put('face', i, true, 0, 0, 0, headNod, 0, hy + .9, .222, .4, .4, 1);
+      const hs = o.hs ?? 1, hcy = hy + .71 + .22 * hs; this._put('head', i, true, 0, 0, 0, headNod, 0, hcy, 0, .44 * hs, .44 * hs, .44 * hs); this._put('hair', i, true, 0, 0, 0, headNod, 0, hcy + .17 * hs, -.03 * hs, .47 * hs, .17 * hs, .48 * hs);
+      this._put('face', i, true, 0, 0, 0, headNod, 0, hcy - .03 * hs, .222 * hs, .4 * hs, .4 * hs, 1);
     }
     for (const k in this.parts) this.parts[k].instanceMatrix.needsUpdate = true;
   }
