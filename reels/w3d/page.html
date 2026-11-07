@@ -20,9 +20,13 @@ body.B #q{top:480px;font-size:68px}
 body.B #lab{top:292px}body.B #val{top:320px}body.B #note{top:454px;font-family:'Liberation Sans',Arial,sans-serif;font-style:normal;font-size:20px;letter-spacing:4px;text-transform:uppercase;font-weight:700}body.B #tag{display:none}
 #cap{left:90px;right:90px;top:1290px;text-align:center;font-size:58px;font-weight:500;font-style:italic;line-height:1.2;text-shadow:0 2px 3px rgba(0,0,0,.65),0 0 24px rgba(0,0,0,.5)}
 #big{display:none}
+#tm{left:80px;top:760px;font-family:'Liberation Sans',Arial,sans-serif;font-size:21px;letter-spacing:2px;text-transform:uppercase;color:#cfcfd6}
+body.C #note{font-family:'Liberation Sans',Arial,sans-serif;font-style:normal;font-size:26px;letter-spacing:3px;text-transform:uppercase;font-weight:700;top:715px}
+body.C #tag{top:808px}
+#pop{left:60px;right:60px;top:1130px;text-align:center;font-family:'Liberation Sans',Arial,sans-serif;font-weight:900;font-size:100px;letter-spacing:-2px;color:#ffd92a;-webkit-text-stroke:9px #111;paint-order:stroke fill;text-shadow:0 6px 0 #111;text-transform:uppercase;line-height:1;opacity:0}
 </style></head><body>
 <canvas id="c" width="1080" height="1920"></canvas><div class="vig"></div>
-<div class="t" id="q"></div><div class="t" id="lab"></div><div class="t" id="val"></div><div class="t" id="note"></div><div class="t" id="tag"></div><div class="t" id="cap"></div><div class="t" id="big"></div>
+<div class="t" id="q"></div><div class="t" id="lab"></div><div class="t" id="val"></div><div class="t" id="note"></div><div class="t" id="tag"></div><div class="t" id="cap"></div><div class="t" id="big"></div><div class="t" id="tm"></div><div class="t" id="pop"></div>
 <script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
 <script type="module">
 import * as lib from '/lib.js';
@@ -35,6 +39,9 @@ const hud = {
   counter(label, value, note, tag, hot) { $('lab').textContent = label || ''; $('val').textContent = value || ''; $('val').classList.toggle('hot', !!hot); $('note').textContent = note || ''; $('tag').textContent = tag || ''; $('lab').style.opacity = label ? .95 : 0; },
   caption(text, a = 1) { $('cap').textContent = text; $('cap').style.opacity = a; },
   big() {},
+  tm(text) { $('tm').textContent = text || ''; },
+  pop(text, a = 1) { $('pop').textContent = text || ''; $('pop').style.opacity = text ? a : 0; },
+  style(c) { document.body.classList.toggle('C', c === 'C'); },
 };
 function chunkFor(beat, lt) {
   const W = beat.words; let idx = 0; for (let i = 0; i < W.length; i++) if (lt >= W[i][1]) idx = i;

@@ -96,9 +96,14 @@ export class Crowd {
     this.n = n; this.p = []; const r = rnd(seed); const bx = (w, h, d) => new THREE.BoxGeometry(w, h, d);
     const defs = { legL: bx(1, 1, 1), legR: bx(1, 1, 1), torso: bx(1, 1, 1), armL: bx(1, 1, 1), armR: bx(1, 1, 1), handL: bx(1, 1, 1), handR: bx(1, 1, 1), head: bx(1, 1, 1), hair: bx(1, 1, 1) };
     this.parts = {}; for (const k in defs) { const im = new THREE.InstancedMesh(defs[k], new THREE.MeshStandardMaterial({ roughness: .9, metalness: 0 }), n); im.castShadow = true; im.receiveShadow = true; im.frustumCulled = false; scene.add(im); this.parts[k] = im; }
-    // faces: a transparent decal on the front of every head (eyes, brows, mouth)
-    const cv = document.createElement('canvas'); cv.width = 128; cv.height = 96; const g = cv.getContext('2d'); g.fillStyle = '#1b1210'; g.fillRect(22, 40, 20, 14); g.fillRect(86, 40, 20, 14); g.fillRect(18, 28, 28, 7); g.fillRect(82, 28, 28, 7); g.fillStyle = '#5a2f26'; g.fillRect(48, 72, 32, 7);
-    const ft = new THREE.CanvasTexture(cv); ft.colorSpace = THREE.SRGBColorSpace; ft.magFilter = THREE.NearestFilter; const face = new THREE.InstancedMesh(new THREE.PlaneGeometry(1, .75), new THREE.MeshBasicMaterial({ map: ft, transparent: true, alphaTest: .3 }), n); face.frustumCulled = false; scene.add(face); this.parts.face = face;
+    // faces: transparent decals (calm / shock) with brows, sclera, iris, nose, mouth
+    const mkFace = (shock) => { const cv = document.createElement('canvas'); cv.width = 256; cv.height = 192; const g = cv.getContext('2d'); const eye = (x) => { const w = shock ? 46 : 40, h = shock ? 36 : 24; g.fillStyle = '#f4f4f0'; g.fillRect(x - w / 2, 84 - h / 2, w, h); g.fillStyle = '#3b6ea5'; g.fillRect(x - 11 + (shock ? 0 : 4), 84 - (shock ? 11 : 9), 22, shock ? 22 : 18); g.fillStyle = '#10151c'; g.fillRect(x - 5 + (shock ? 0 : 4), 84 - 5, 10, 10); g.fillStyle = 'rgba(70,40,25,.55)'; g.fillRect(x - w / 2, 84 - h / 2 - 2, w, 5); };
+      eye(78); eye(178); g.fillStyle = '#3a2417'; const by = shock ? 38 : 54; g.save(); g.translate(78, by); g.rotate(shock ? -.12 : .06); g.fillRect(-28, -6, 56, 11); g.restore(); g.save(); g.translate(178, by); g.rotate(shock ? .12 : -.06); g.fillRect(-28, -6, 56, 11); g.restore();
+      g.fillStyle = 'rgba(120,70,40,.28)'; g.fillRect(120, 90, 16, 40); g.fillRect(108, 126, 40, 10);
+      if (shock) { g.fillStyle = '#5a2a26'; g.fillRect(92, 142, 72, 42); g.fillStyle = '#f2f0ea'; g.fillRect(96, 142, 64, 9); g.fillStyle = '#e07a82'; g.fillRect(104, 172, 48, 11); } else { g.fillStyle = '#7a3f34'; g.fillRect(100, 156, 56, 8); }
+      const ft = new THREE.CanvasTexture(cv); ft.colorSpace = THREE.SRGBColorSpace; ft.anisotropy = 4; return ft; };
+    this.faces = { calm: mkFace(false), shock: mkFace(true) };
+    const face = new THREE.InstancedMesh(new THREE.PlaneGeometry(1, .75), new THREE.MeshBasicMaterial({ map: this.faces.calm, transparent: true, alphaTest: .3 }), n); face.frustumCulled = false; scene.add(face); this.parts.face = face;
     for (let i = 0; i < n; i++) {
       const o = { x: 0, z: 0, y: 0, yaw: 0, scale: 1, anim: 'idle', phase: r() * 6.28, speed: 1, pitch: 0, extra: 0, shirt: new THREE.Color(SHIRTS[(r() * SHIRTS.length) | 0]), pants: new THREE.Color(r() < .25 ? 0xf2f2f4 : PANTS[(r() * PANTS.length) | 0]), skin: new THREE.Color(SKINS[(r() * SKINS.length) | 0]), hair: new THREE.Color(HAIRS[(r() * HAIRS.length) | 0]), h: .92 + r() * .16, vis: true };
       this.p.push(o); const set = (k, c) => this.parts[k].setColorAt(i, c);
@@ -107,6 +112,7 @@ export class Crowd {
     for (const k in this.parts) if (this.parts[k].instanceColor) this.parts[k].instanceColor.needsUpdate = true;
     this._m = new THREE.Matrix4(); this._a = new THREE.Matrix4(); this._b = new THREE.Matrix4(); this._root = new THREE.Matrix4(); this._up = new THREE.Matrix4();
   }
+  setFace(nm) { this.parts.face.material.map = this.faces[nm] || this.faces.calm; }
   _put(k, i, upper, px, py, pz, rotX, ox, oy, oz, sx, sy, sz) {
     const m = this._m; m.copy(this._root); if (upper) m.multiply(this._up);
     this._a.makeTranslation(px, py, pz); m.multiply(this._a);
@@ -125,6 +131,7 @@ export class Crowd {
         case 'squat': hipDrop = .42 + .03 * Math.sin(o.phase + t * 14); legFwd = -1.35; pitch = .45 + .12 * Math.sin(o.phase + t * 11); armSwing = .9 * Math.sin(o.phase + t * 10); bob = Math.abs(Math.sin(o.phase + t * 14)) * .03; headNod = .15 * Math.sin(o.phase + t * 9); break;
         case 'bend': pitch = 1.0 + .3 * Math.max(0, Math.sin(o.phase + t * 5)); armSwing = .5 * Math.sin(o.phase + t * 5); headNod = .3 * Math.sin(o.phase + t * 5); bob = Math.abs(Math.sin(o.phase + t * 5)) * .04; break;
         case 'punch': break;
+        case 'sit': legFwd = -1.5; armUp = -.95; pitch = 0; headNod = .05 * Math.sin(o.phase + t * 1.3); break;
         case 'jump': bob = Math.abs(Math.sin(o.phase + t * 5)) * .6; armUp = -2.6; break;
         case 'sprint': swing = 1.2 * w; armSwing = 1.1 * w; bob = Math.abs(w) * .2; pitch += .3; break;
         default: bob = Math.sin(o.phase + t * 2.2) * .012; armSwing = .22 * Math.sin(o.phase + t * 1.7); swing = .08 * Math.sin(o.phase * 1.3 + t * 1.1); headNod = .12 * Math.sin(o.phase + t * 1.3); pitch += .05 * Math.sin(o.phase + t * 1.9);
@@ -134,7 +141,7 @@ export class Crowd {
       this._put('legL', i, false, -.13, hy, 0, swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .24, .8, .26);
       this._put('legR', i, false, .13, hy, 0, -swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .24, .8, .26);
       this._put('torso', i, true, 0, 0, 0, 0, 0, hy + .31, 0, .58, .64, .32);
-      let aL = armUp ? armUp : armSwing, aR = armUp ? armUp : -armSwing; if (o.anim === 'punch') { aR = -1.5 + .3 * Math.sin(o.phase + t * 9); aL = .3; }
+      let aL = armUp ? armUp : armSwing, aR = armUp ? armUp : -armSwing; if (o.anim === 'punch') { aR = -1.5 + .3 * Math.sin(o.phase + t * 9); aL = .3; } if (o.extra) { const v = o.extra * Math.sin(t * 52 + o.phase); aL += v; aR -= v; headNod += o.extra * .25 * Math.sin(t * 41); }
       this._put('armL', i, true, -.4, hy + .6, 0, aL, 0, -.28, 0, .17, .62, .19); this._put('armR', i, true, .4, hy + .6, 0, aR, 0, -.28, 0, .17, .62, .19);
       this._put('handL', i, true, -.4, hy + .6, 0, aL, 0, -.66, 0, .15, .14, .17); this._put('handR', i, true, .4, hy + .6, 0, aR, 0, -.66, 0, .15, .14, .17);
       this._put('head', i, true, 0, 0, 0, headNod, 0, hy + .93, 0, .44, .44, .44); this._put('hair', i, true, 0, 0, 0, headNod, 0, hy + 1.1, -.03, .47, .17, .48);
