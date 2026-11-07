@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 export const W = 1080, H = 1920;
-export { THREE };
+export { THREE, RoundedBoxGeometry };
 const rnd = (seed) => { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); };
 export const R = rnd;
 export const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
@@ -129,7 +129,7 @@ export class Crowd {
         case 'sprint': swing = 1.2 * w; armSwing = 1.1 * w; bob = Math.abs(w) * .2; pitch += .3; break;
         default: bob = Math.sin(o.phase + t * 2.2) * .012; armSwing = .22 * Math.sin(o.phase + t * 1.7); swing = .08 * Math.sin(o.phase * 1.3 + t * 1.1); headNod = .12 * Math.sin(o.phase + t * 1.3); pitch += .05 * Math.sin(o.phase + t * 1.9);
       }
-      this._root.makeRotationY(o.yaw + (o.anim === 'idle' ? .18 * Math.sin(o.phase + t * 0.9) : 0)); this._root.setPosition(o.x, o.y + bob * s, o.z); this._a.makeScale(s, s, s); this._root.multiply(this._a);
+      this._root.makeRotationY(o.yaw + (o.anim === 'idle' ? .18 * Math.sin(o.phase + t * 0.9) : 0)); this._root.setPosition(o.x, o.y + bob * s, o.z); if (o.lie) { this._a.makeRotationX(-o.lie); this._root.multiply(this._a); } this._a.makeScale(s, s, s); this._root.multiply(this._a);
       const hy = .8 - hipDrop; this._up.makeTranslation(0, hy, 0); this._b.makeRotationX(pitch); this._up.multiply(this._b); this._a.makeTranslation(0, -hy, 0); this._up.multiply(this._a);
       this._put('legL', i, false, -.13, hy, 0, swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .24, .8, .26);
       this._put('legR', i, false, .13, hy, 0, -swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .24, .8, .26);
