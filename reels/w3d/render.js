@@ -1,7 +1,7 @@
 // node render.js <reel> <timeline.json> <out.mp4> [fps] [workers] [t0] [t1]
 const { chromium } = require('playwright'); const http = require('http'); const fs = require('fs'); const path = require('path'); const { spawn } = require('child_process');
 const [reel, tlPath, out, fps = '30', workers = '2', t0a, t1a] = process.argv.slice(2); const FPS = +fps, NW = +workers;
-const tl = JSON.parse(fs.readFileSync(tlPath)); const wav = tlPath.replace(/\.json$/, '.wav');
+const tl = JSON.parse(fs.readFileSync(tlPath)); const wav = fs.existsSync(tlPath.replace(/\.json$/, '.wav')) ? tlPath.replace(/\.json$/, '.wav') : tlPath.replace(/\.json$/, '.m4a');
 const T0 = t0a ? +t0a : 0, T1 = t1a ? +t1a : tl.dur; const total = Math.round((T1 - T0) * FPS);
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json', '.mjs': 'text/javascript' };
 const srv = http.createServer((req, res) => { let u = decodeURIComponent(req.url.split('?')[0]); if (u === '/') u = '/page.html'; let f = u.startsWith('/tl/') ? path.join(path.dirname(tlPath), u.slice(4)) : path.join(__dirname, u); if (!fs.existsSync(f)) { res.writeHead(404); res.end(); return; } res.writeHead(200, { 'Content-Type': mime[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(res); });

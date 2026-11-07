@@ -1,0 +1,41 @@
+// What if there was a town with a sign that counts how many times you've gooned? Brainrot: the "Welcome to Ohio" sign judges every traveler. Non-explicit: just a number and a lot of staring.
+export default async function build({ lib, tl, hud }) {
+  const { THREE, makeStage, ground, road, building, tree, addBox, mat, Crowd, Particles, R, clamp, smooth, lerp, attach } = lib; const fmt = (v) => Math.round(v).toLocaleString('en-US');
+  const st = makeStage({ shadowExtent: 50, fogNear: 110, fogFar: 520, skyTop: 0x6d86b8, skyMid: 0xc7bfb0, skyBot: 0xf3d8a8, fog: 0xe8d4b0, sunColor: 0xffd9a0, sunDir: [-.6, .35, .5], sunI: 2.7, clouds: true }); const S = st.scene;
+  ground(S, 0x9aa66a, 1400); road(S, 0, 80, 9, 300);
+  const r = R(14); for (let z = 20; z < 200; z += 14) for (const s of [-1, 1]) building(S, s * (16 + r() * 8), z + r() * 6, 9 + r() * 5, 8 + r() * 14, 9, [0xb9a98a, 0xa9b4a0, 0xc4a89a, 0x9aa7b8][(r() * 4) | 0], (z * 7 + s) | 0);
+  for (let z = 6; z < 80; z += 9) for (const s of [-1, 1]) tree(S, s * (7 + r() * 2), z + r() * 3, 1 + r() * .5, (z * 3 + s) | 0);
+  // the sign: a dynamic canvas billboard
+  const cv = document.createElement('canvas'); cv.width = 768; cv.height = 384; const g = cv.getContext('2d'); const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
+  const draw = (n, mood) => { g.fillStyle = '#1b3a2a'; g.fillRect(0, 0, 768, 384); g.strokeStyle = '#f2f2f2'; g.lineWidth = 12; g.strokeRect(10, 10, 748, 364); g.fillStyle = '#fff'; g.textAlign = 'center'; g.font = '900 64px Liberation Sans, Arial'; g.fillText('WELCOME TO OHIO', 384, 100); g.font = '700 38px Liberation Sans, Arial'; g.fillStyle = '#cfe8d8'; g.fillText('YOU HAVE GOONED', 384, 170); g.fillStyle = mood === 'broken' ? '#ff4040' : '#ffd23f'; g.font = '900 120px Liberation Sans, Arial'; g.fillText(mood === 'broken' ? 'NO.' : fmt(n), 384, 285); g.fillStyle = '#cfe8d8'; g.font = '700 38px Liberation Sans, Arial'; g.fillText(mood === 'broken' ? '' : (n === 1 ? 'TIME' : 'TIMES'), 384, 340); tex.needsUpdate = true; };
+  const signG = new THREE.Group(); { const board = new THREE.Mesh(new THREE.PlaneGeometry(7.2, 3.6), new THREE.MeshStandardMaterial({ map: tex, emissive: 0x112218, emissiveMap: tex, emissiveIntensity: .6 })); board.position.set(0, 4.6, -.08); board.rotation.y = Math.PI; const back = new THREE.Mesh(new THREE.BoxGeometry(7.4, 3.8, .12), mat(0x333333)); back.position.set(0, 4.6, .02); for (const sx of [-3, 3]) { const pole = new THREE.Mesh(new THREE.BoxGeometry(.16, 3, .16), mat(0x555555)); pole.position.set(sx, 1.5, 0); signG.add(pole); } signG.add(back, board); signG.traverse((m) => (m.castShadow = true)); signG.position.set(5.5, 0, 34); S.add(signG); }
+  const smoke = new Particles(S, 40, 0x555555, .3, { rough: 1 }); const sparks = new Particles(S, 40, 0xffd23f, .07, { rough: .4, emissive: 0x806000 });
+  // people: 0 hero, 1 the man, 2 chad (big), 3.. townsfolk (cheer), statues, goat built from boxes
+  const NT = 22, NS = 8, crowd = new Crowd(S, 3 + NT + NS, 91); const P = crowd.p; const col = (i, k, c) => crowd.parts[k].setColorAt(i, new THREE.Color(c));
+  const CHAD = 2, TF = 3, ST0 = 3 + NT; ['torso', 'armL', 'armR'].forEach((k) => col(CHAD, k, 0x151515)); ['legL', 'legR'].forEach((k) => col(CHAD, k, 0x2a2a2a)); ['head', 'neck', 'handL', 'handR'].forEach((k) => col(CHAD, k, 0xd8a47c));
+  for (let i = 0; i < NS; i++) { const k0 = ST0 + i; for (const k of ['torso', 'armL', 'armR', 'legL', 'legR', 'head', 'neck', 'handL', 'handR', 'hair']) col(k0, k, 0xb07a3c); } for (const k in crowd.parts) if (crowd.parts[k].instanceColor) crowd.parts[k].instanceColor.needsUpdate = true;
+  const goat = new THREE.Group(); { const wh = mat(0xf2efe6); const body = new THREE.Mesh(new THREE.BoxGeometry(.7, .6, 1.2), wh); body.position.y = .75; const head = new THREE.Mesh(new THREE.BoxGeometry(.4, .4, .5), wh); head.position.set(0, 1.15, .75); for (const sx of [-1, 1]) { const horn = new THREE.Mesh(new THREE.ConeGeometry(.06, .3, 6), mat(0x8a7a60)); horn.position.set(sx * .13, 1.45, .7); horn.rotation.z = -sx * .3; const leg1 = new THREE.Mesh(new THREE.BoxGeometry(.12, .5, .12), wh), leg2 = leg1.clone(); leg1.position.set(sx * .22, .25, .45); leg2.position.set(sx * .22, .25, -.45); goat.add(horn, leg1, leg2); } const sash = new THREE.Mesh(new THREE.BoxGeometry(.74, .12, .5), mat(0xd9a52a)); sash.position.set(0, .95, .1); sash.rotation.z = .5; const eye = new THREE.Mesh(new THREE.BoxGeometry(.3, .06, .05), mat(0x111111)); eye.position.set(0, 1.22, 1.01); goat.add(body, head, sash, eye); goat.traverse((m) => (m.castShadow = true)); goat.visible = false; goat.userData.legs = []; S.add(goat); }
+  const place = (o, x, z, yaw, anim, y = 0, sp = .5, sc = 1.2) => { o.x = x; o.z = z; o.yaw = yaw; o.anim = anim; o.y = y; o.speed = sp; o.vis = true; o.scale = sc; };
+  const SZ = 34; const DAY = ['', 'FIRST VISITOR', 'A MAN', 'A GOAT', 'CHAD', 'NEW RULE', 'MIDNIGHT', 'MORAL'];
+  return { frame({ t, bi, lt, p }) {
+    bi = Math.min(bi, 7); for (let i = 0; i < P.length; i++) { P[i].vis = false; P[i].arms = null; P[i].extra = 0; P[i].pitch = 0; }
+    goat.visible = false; let num = 0, mood = 'ok', cam = [-1.2, 1.9, 16, 3.5, 3.2, 34, 52];
+    const walk = (o, idx, sc = 1.2, x = 2.2) => { const u = clamp(lt / (tl.beats[bi].dur * .8)); const z = lerp(8, SZ - 5, u); place(o, x, z, 0, u < 1 ? 'walk' : 'idle', 0, .56, sc); return { z, u }; };
+    if (bi === 0) { cam = [-2.5, 2.0, 12, 3.5, 3.4, 34, 48]; num = 0; }
+    else if (bi === 1) { const w = walk(P[0], 0); num = Math.round(14 * smooth(clamp((w.u - .55) / .3))); cam = [-1.6, 1.9, w.z - 8, 3.8, 3.0, SZ, 50]; }
+    else if (bi === 2) { const w = walk(P[1], 1); num = Math.round(lerp(14, 400, smooth(clamp((w.u - .55) / .3)))); cam = [-1.6, 1.9, w.z - 8, 3.8, 3.0, SZ, 50]; }
+    else if (bi === 3) { const u = clamp(lt / (tl.beats[bi].dur * .8)); goat.visible = true; goat.position.set(2.2, 0, lerp(8, SZ - 5, u)); goat.rotation.y = 0; goat.position.y = Math.abs(Math.sin(t * 9)) * .05 * (u < 1 ? 1 : 0); num = 0; cam = [-1.6, 1.9, goat.position.z - 8, 3.8, 2.6, SZ, 50]; }
+    else if (bi === 4) { const w = walk(P[CHAD], 2, 1.7); const brk = w.u > .7; num = 9999; mood = brk ? 'broken' : 'ok'; cam = [-1.6, 2.3, w.z - 9, 3.8, 3.2, SZ, 50]; }
+    else if (bi === 5) { mood = 'ok'; num = 1000 + Math.round(lt * 220); const k = clamp(lt / 3); for (let i = 0; i < 3; i++) place(P[ST0 + i], 2.2 + i * 2.2 - 2.2, SZ - 7 - i * .5, 0, 'idle', (1 - smooth(clamp(k * 3 - i))) * 3, .3); cam = [-3, 2.2, 14, 3.5, 2.2, SZ - 6, 56]; }
+    else if (bi === 6) { mood = 'ok'; num = 1000 + Math.round(lt * 250); for (let i = 0; i < NS; i++) place(P[ST0 + i], -3.5 + i * 1.9, SZ - 10 + (i % 2) * .8, 0, 'idle', 0, .3); cam = [-5, 2.0, 12, 1.5, 2.0, SZ - 8, 56]; }
+    else { mood = 'ok'; num = 1000; for (let i = 0; i < NS; i++) place(P[ST0 + i], -3.5 + i * 1.9, SZ - 10 + (i % 2) * .8, 0, 'idle', 0, .3); cam = [-3, 1.7, 10 - lt * 0, 1.5, 2.3, SZ - 6, 50]; }
+    // townsfolk: line the road, face it, cheer in the "a man" beat
+    for (let i = 0; i < NT; i++) { const o = P[TF + i]; if (bi >= 6) { o.vis = false; continue; } const side = i % 2 ? -1 : 1; const z = 10 + Math.floor(i / 2) * 2.1; place(o, side * 4.2 + (side > 0 ? 3 : 0), z, -side * Math.PI / 2, bi === 2 && lt > 5 ? 'jump' : 'idle', 0, .7); if (bi === 2 && lt > 5) o.speed = 1.1; if (bi === 5 || bi === 4) o.anim = 'idle'; }
+    crowd.update(t);
+    draw(num, mood); signG.visible = true; for (let i = 0; i < 40; i++) { const u = ((t * .6 + i * .075) % 1); smoke.set(i, 5.5 + Math.cos(i * 2.2) * .5, 4.6 + u * 2.5, SZ - .3, mood === 'broken' && bi === 4 ? 1 - u : 0); sparks.set(i, 5.5 + Math.cos(i * 1.3) * 2.4, 4.6 + Math.sin(i * 2.7) * 1.4, SZ - .4, mood === 'broken' && bi === 4 && ((t * 12 + i) % 3 < 1) ? 1 : 0); } smoke.done(); sparks.done();
+    st.cam(...cam); st.follow(3, 24); st.render();
+    hud.style('C'); hud.question(bi === 0 ? 'What if there was a town that counts how many times you\'ve *gooned*?' : '', bi === 0 ? 1 : 0);
+    hud.counter('', '', ''); hud.tm('');
+    const POP = ['', 'THE SIGN VOLUNTEERED', 'RESPECTFULLY.', 'GOAT MAYOR', 'THE SIGN BROKE', 'BRONZE. FACING AWAY.', '8 STATUES', 'DO NOT GO TO OHIO'][bi]; hud.pop(POP && lt > .5 ? POP : '', Math.min(1, (lt - .5) * 6));
+  } };
+}
