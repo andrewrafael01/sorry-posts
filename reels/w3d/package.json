@@ -1,1 +1,1 @@
-{ "name": "w3d", "private": true, "version": "1.0.0", "dependencies": { "three": "0.160.0" } }
+{"name":"w3d","private":true,"version":"1.0.0","dependencies":{"@fontsource/cormorant-garamond":"^5.3.0","three":"0.160.0"}}

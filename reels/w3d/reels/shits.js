@@ -1,12 +1,8 @@
 // What if every human took a shit at the same time (8.2e9 x 128 g = 1.05 Mt = 3 Empire State Buildings = 29 cm over Central Park).
 export default async function build({ lib, tl, hud }) {
   const { THREE, makeStage, ground, road, building, tree, Crowd, Particles, R, clamp, smooth, lerp, wander } = lib;
-  const st = makeStage({ shadowExtent: 48, fogNear: 120, fogFar: 520 }); const { scene } = st; const r = R(7);
-  ground(scene, 0x86a672, 1600); const sx = (x) => x;
-  // park paths
-  for (const [x, w] of [[0, 4.6], [-14, 3], [15, 3]]) { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, 300), new THREE.MeshStandardMaterial({ color: 0xcfc3a6, roughness: 1 })); m.rotation.x = -Math.PI / 2; m.position.set(x, .02, 90); m.receiveShadow = true; scene.add(m); }
-  for (let z = -10; z < 260; z += 12) for (const s of [-1, 1]) tree(scene, s * (10 + r() * 30), z + r() * 6, .9 + r() * .5, (z * 7 + s * 3) | 0);
-  for (let z = -10; z < 260; z += 30) for (const s of [-1, 1]) building(scene, s * (78 + r() * 8), z, 24, 40 + r() * 80, 24, [0xd9c7a8, 0xc9d3dc, 0xbdb2a0, 0xe0c6b0, 0xa9bccc][(r() * 5) | 0], (z * 13 + s) | 0);
+  const st = makeStage({ shadowExtent: 48, fogNear: 160, fogFar: 700, skyTop: 0x6ea8d8, skyMid: 0xbcd8ea, skyBot: 0xf2ece0, fog: 0xdfe8ec, sunDir: [-.7, .55, -.45], sunI: 2.9, clouds: false }); const { scene } = st; const r = R(7);
+  const bch = lib.beach(scene, { shoreZ: 96, dress: 4, boats: 3, gulls: 10 }); const sx = (x) => x;
   const N = 260, crowd = new Crowd(scene, N, 3); const pos = [], pos2 = [];
   for (let i = 0; i < N; i++) { pos.push([(r() - .5) * 26, 8 + r() * 72, r() * 6.28, r(), 1.0 + r() * 1.4]); pos2.push([(r() - .5) * 8, 4 + r() * 26, r() * 6.28, r(), 1.5 + r() * 2.5]); }
   // piles: three stacked blobs per person
@@ -17,7 +13,7 @@ export default async function build({ lib, tl, hud }) {
   const MASS = 8.2e9 * 0.128, fmt = (v) => Math.round(v).toLocaleString('en-US');
   return {
     frame({ t, bi, lt, p, beat, ck }) {
-      const ground_ = bi === 3 || bi === 4 || bi === 6; const aer = !ground_;
+      bch.update(t); const ground_ = bi === 3 || bi === 4 || bi === 6; const aer = !ground_;
       let k = 0; if (bi === 1) k = smooth(p); else if (bi === 2 || bi === 5) k = 1; else if (ground_) k = bi === 3 ? smooth(p) : 1;
       // camera
       let cam;

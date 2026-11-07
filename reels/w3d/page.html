@@ -1,20 +1,24 @@
 <!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'Cormorant';font-style:normal;font-weight:400;src:url(/fonts/cormorant-garamond-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Cormorant';font-style:normal;font-weight:500;src:url(/fonts/cormorant-garamond-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Cormorant';font-style:italic;font-weight:400;src:url(/fonts/cormorant-garamond-latin-400-italic.woff2) format('woff2')}
+@font-face{font-family:'Cormorant';font-style:italic;font-weight:500;src:url(/fonts/cormorant-garamond-latin-500-italic.woff2) format('woff2')}
 html,body{margin:0;background:#000;overflow:hidden;width:1080px;height:1920px;position:relative}
 canvas{position:absolute;left:0;top:0;width:1080px;height:1920px}
 .vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 58%,rgba(0,0,0,.34) 100%);pointer-events:none}
-.t{position:absolute;color:#fff;font-family:'Liberation Serif','Times New Roman',serif;text-shadow:0 2px 12px rgba(0,0,0,.35)}
-#q{left:60px;right:60px;top:150px;text-align:center;font-size:62px;line-height:1.16;font-weight:400;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.t{position:absolute;color:#fff;font-family:'Cormorant','Liberation Serif',serif;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+#q{left:60px;right:60px;top:150px;text-align:center;font-size:74px;line-height:1.08;font-weight:500;text-shadow:0 2px 14px rgba(0,0,0,.45)}
 #q i{font-style:italic}
 #lab{left:80px;top:552px;font-family:'Liberation Sans',Arial,sans-serif;font-size:22px;letter-spacing:4px;text-transform:uppercase;font-weight:700;opacity:.95}
-#val{left:76px;top:580px;font-size:112px;font-weight:400;letter-spacing:0;line-height:1.1}
+#val{left:76px;top:575px;font-size:128px;font-weight:500;font-weight:400;letter-spacing:0;line-height:1.1}
 #val.hot{color:#f0846e}
-#note{left:80px;top:714px;font-size:34px;font-style:italic;color:#dcdcdc;opacity:.95}
+#note{left:80px;top:720px;font-size:40px;font-style:italic;color:#dcdcdc;opacity:.95}
 #tag{left:80px;top:766px;font-family:'Liberation Sans',Arial,sans-serif;font-size:19px;letter-spacing:3px;text-transform:uppercase;font-weight:700;opacity:.9}
 #tag:empty{display:none}
 #tag:before{content:'';display:inline-block;width:9px;height:9px;border-radius:50%;background:#f0543c;margin-right:10px;vertical-align:middle}
 body.B #q{top:480px;font-size:68px}
 body.B #lab{top:292px}body.B #val{top:320px}body.B #note{top:454px;font-family:'Liberation Sans',Arial,sans-serif;font-style:normal;font-size:20px;letter-spacing:4px;text-transform:uppercase;font-weight:700}body.B #tag{display:none}
-#cap{left:90px;right:90px;top:1296px;text-align:center;font-size:50px;font-style:italic;line-height:1.2;text-shadow:0 2px 3px rgba(0,0,0,.65),0 0 24px rgba(0,0,0,.5)}
+#cap{left:90px;right:90px;top:1290px;text-align:center;font-size:58px;font-weight:500;font-style:italic;line-height:1.2;text-shadow:0 2px 3px rgba(0,0,0,.65),0 0 24px rgba(0,0,0,.5)}
 #big{display:none}
 </style></head><body>
 <canvas id="c" width="1080" height="1920"></canvas><div class="vig"></div>
