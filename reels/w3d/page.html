@@ -95,6 +95,17 @@ function finaleFx(on, lt, dur) {
   // flash
   const fl = Math.max(0, 1 - lt / .28); if (fl > 0) { FXg.fillStyle = `rgba(255,255,255,${fl * .85})`; FXg.fillRect(0, 0, 1080, 1920); }
 }
+
+function beastFx(bi, lt, nb) {
+  // animated-MrBeast energy: prize chip, hour counter, punch-zoom + red whip streak on every beat start
+  const g = FXg; const last = bi === nb - 1;
+  const pun = Math.max(0, 1 - lt / .22);
+  if (!last) { const z = 1 + .07 * pun; const cur = CVS.style.transform || ''; CVS.style.transform = `scale(${z})`; }
+  if (bi > 0) { const pulse = 1 + .05 * Math.sin(lt * 9); g.save(); g.translate(880, 150); g.scale(pulse, pulse); g.rotate(-.06);
+    g.fillStyle = '#e8252b'; g.strokeStyle = '#111'; g.lineWidth = 10; g.beginPath(); g.roundRect(-200, -60, 400, 120, 18); g.fill(); g.stroke();
+    g.font = '900 78px Liberation Sans, Arial'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineWidth = 12; g.strokeStyle = '#111'; g.strokeText('$100,000', 0, 4); g.fillStyle = '#ffe23a'; g.fillText('$100,000', 0, 4); g.restore(); }
+  if (pun > 0) { g.fillStyle = `rgba(255,255,255,${pun * .35})`; g.fillRect(0, 0, 1080, 1920); g.fillStyle = `rgba(232,37,43,${pun * .6})`; g.fillRect(((1 - pun) * 1400) - 200, 0, 90, 1920); }
+}
 window.drawFrame = (t) => {
   // cold open: the first second shows the reel's climax under the question, then cuts to the start (shock in frame one)
   if (hookOn && t < HOOK) { finaleFx(false); const L = tlSrc.beats[tlSrc.beats.length - 1]; const tc = (typeof tl.hookT === 'number') ? tl.hookT : L.start + Math.min(2.2, L.dur * .55); let bj = 0; for (let i = 0; i < tlSrc.beats.length; i++) if (tc >= tlSrc.beats[i].start) bj = i; const bb = tlSrc.beats[bj]; const lt2 = tc - bb.start, p2 = Math.min(1, lt2 / bb.dur);
@@ -104,6 +115,7 @@ window.drawFrame = (t) => {
   const sS = b.srcStart ?? b.start, sD = b.srcDur ?? b.dur, ts = sS + p * sD, lts = p * sD; const sb = tlSrc.beats[bi];
   ctx.frame({ t: ts, bi, beat: sb, lt: lts, p, tl: tlSrc, ck, hud });
   finaleFx(bi === tl.beats.length - 1 && tl.beats.length > 3, lt, b.dur);
+  if (tl.beast && bi > 0 || tl.beast && bi === 0) { if (bi < tl.beats.length - 1) { FXg.clearRect(0, 0, 1080, 1920); CVS.style.transform = ''; } beastFx(bi, lt, tl.beats.length); }
   return true;
 };
 window.ready = true;
