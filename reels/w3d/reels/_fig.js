@@ -1,0 +1,15 @@
+// Articulated blocky figure for body-swap gags: thigh+shin (backward knees), upper arm+forearm, hands that can carry eyes. Faces +z.
+export function makeFig(lib, S, o = {}) {
+  const { THREE, mat } = lib; const g = new THREE.Group(); S.add(g); const skin = mat(o.skin ?? 0xe6c3a0, { roughness: .8 }), shirt = mat(o.shirt ?? 0xe8e8ec), pants = mat(o.pants ?? 0x2c4a7a), shoe = mat(0x222222);
+  const box = (w, h, d, m, x = 0, y = 0, z = 0, par = g) => { const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); b.position.set(x, y, z); b.castShadow = b.receiveShadow = true; par.add(b); return b; };
+  const hips = new THREE.Group(); hips.position.y = .95; g.add(hips); box(.5, .22, .3, pants, 0, 0, 0, hips); const torso = new THREE.Group(); torso.position.y = .1; hips.add(torso); box(.56, .62, .3, shirt, 0, .31, 0, torso); const neck = box(.14, .1, .14, skin, 0, .67, 0, torso); const head = new THREE.Group(); head.position.y = .72; torso.add(head); box(.4, .4, .4, skin, 0, .2, 0, head); box(.42, .12, .42, mat(0x14100d), 0, .4, -.01, head);
+  if (o.face !== false) { for (const sx of [-.1, .1]) { box(.07, .07, .02, mat(0x111111), sx, .24, .205, head); } box(.14, .03, .02, mat(0x7a3f34), 0, .08, .205, head); }
+  const mkLeg = (x) => { const th = new THREE.Group(); th.position.set(x, -.05, 0); hips.add(th); box(.2, .5, .22, pants, 0, -.25, 0, th); const sh = new THREE.Group(); sh.position.y = -.5; th.add(sh); box(.18, .48, .2, pants, 0, -.24, 0, sh); box(.2, .1, .34, shoe, 0, -.5, .06, sh); return { th, sh }; };
+  const L = mkLeg(-.14), Rg = mkLeg(.14);
+  const mkArm = (x) => { const up = new THREE.Group(); up.position.set(x, .56, 0); torso.add(up); box(.15, .34, .17, shirt, 0, -.17, 0, up); const fo = new THREE.Group(); fo.position.y = -.34; up.add(fo); box(.13, .32, .15, skin, 0, -.16, 0, fo); const hand = new THREE.Group(); hand.position.y = -.34; fo.add(hand); box(.14, .13, .1, skin, 0, -.04, 0, hand); return { up, fo, hand }; };
+  const AL = mkArm(-.36), AR = mkArm(.36);
+  const eyeMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: .3 }), irisMat = new THREE.MeshBasicMaterial({ color: 0x2a5fa8 }), pupMat = new THREE.MeshBasicMaterial({ color: 0x050505 });
+  const mkEye = (hand, s = 1) => { const e = new THREE.Group(); e.position.set(0, -.04, .06); hand.add(e); const w = new THREE.Mesh(new THREE.SphereGeometry(.07 * s, 16, 12), eyeMat); e.add(w); const ir = new THREE.Mesh(new THREE.CircleGeometry(.04 * s, 16), irisMat); ir.position.z = .066 * s; e.add(ir); const pu = new THREE.Mesh(new THREE.CircleGeometry(.02 * s, 12), pupMat); pu.position.z = .067 * s; e.add(pu); const lid = new THREE.Mesh(new THREE.SphereGeometry(.073 * s, 16, 12, 0, 6.283, 0, 1.57), mat(0xe6c3a0)); lid.rotation.x = Math.PI / 2; lid.position.z = .0; lid.scale.set(1, 1, .01); e.userData = { lid: null, iris: ir, pup: pu, w }; return e; };
+  const eyes = o.eyesOnHands ? [mkEye(AL.hand, 2.2), mkEye(AR.hand, 2.2)] : [];
+  return { g, hips, torso, head, L, R: Rg, AL, AR, eyes, set(s) { g.position.set(s.x ?? 0, s.y ?? 0, s.z ?? 0); g.rotation.y = s.yaw ?? 0; } };
+}
