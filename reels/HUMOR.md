@@ -31,3 +31,11 @@ The first spoken words must be the shock, not the setup: open on the payoff imag
 
 ## Workflow
 `python3 src/humor.py <timeline.json>` scores each beat and the whole script. Under 70 = rewrite the flagged lines, regenerate the timeline, re-render.
+
+## Shock + humor check (every reel, before it ships)
+1. **Frame one is the shock.** Re-voiced reels start with a 1.2 s cold open: the climax image under the question and "Holy shit." If that frame isn't visibly shocking, set `hookT` in the timeline json to a better second.
+2. **Every label is a gag, not a date.** "Greg says help." not "Friday." Numbers only when the escalation itself is the joke ("Stroke four.").
+3. **Each beat is bigger and dumber than the last**, and something on screen visibly changes (object, crowd reaction, counter).
+4. **The last beat is the biggest or the most deadpan**, not a recap.
+5. **A crowd reacts.** Gasp, film, cheer, flee, cry. Reaction is half the laugh.
+6. Fail any of these and it goes back, it does not ship.

@@ -74,7 +74,11 @@ function chunkFor(beat, lt) {
   return { text: ch.map((i) => W[i][0]).join(' '), a: Math.max(0, Math.min(1, (lt - t0 + .12) / .18, (t1 - lt) / .18)), idx, word: W[idx][0], wstart: W[idx][1] };
 }
 const ctx = await mod.default({ lib, tl, hud });
+const HOOK = 1.2, hookOn = /^holy shit/i.test((tl.beats[0].narr || '').trim());
 window.drawFrame = (t) => {
+  // cold open: the first second shows the reel's climax under the question, then cuts to the start (shock in frame one)
+  if (hookOn && t < HOOK) { const L = tl.beats[tl.beats.length - 1]; const tc = (typeof tl.hookT === 'number') ? tl.hookT : L.start + Math.min(2.2, L.dur * .55); let bj = 0; for (let i = 0; i < tl.beats.length; i++) if (tc >= tl.beats[i].start) bj = i; const bb = tl.beats[bj]; const lt2 = tc - bb.start, p2 = Math.min(1, lt2 / bb.dur);
+    ctx.frame({ t: tc, bi: bj, beat: bb, lt: lt2, p: p2, tl, ck: chunkFor(bb, lt2), hud }); hud.style && hud.style('C'); hud.question((tl.beats[0].narr || '').replace(/^[^.]*\.\s*/, ''), 1, false); hud.counter('', '', ''); hud.tm && hud.tm(''); hud.pop && hud.pop('', 0); hud.caption('Holy shit.', 1); return true; }
   let bi = 0; for (let i = 0; i < tl.beats.length; i++) if (t >= tl.beats[i].start) bi = i; const b = tl.beats[bi]; const lt = t - b.start, p = Math.min(1, lt / b.dur);
   const ck = chunkFor(b, lt); hud.caption(ck.text, ck.a * Math.min(1, (tl.dur - t) / .3));
   ctx.frame({ t, bi, beat: b, lt, p, tl, ck, hud });
