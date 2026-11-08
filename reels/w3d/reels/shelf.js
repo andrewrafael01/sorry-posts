@@ -1,9 +1,9 @@
 // What if your butt cheeks were horizontal? Played dead serious: clinical load-capacity counter, a coffee, a laptop, a cake, a family of four having dinner. Clothed, cartoon, no commentary.
+import { beachWorld } from './_beachworld.js';
 export default async function build({ lib, tl, hud }) {
   const { THREE, makeStage, ground, addBox, mat, Crowd, Particles, R, clamp, smooth, lerp, attach, dropBounce } = lib;
-  const st = makeStage({ shadowExtent: 12, fogNear: 30, fogFar: 90, skyTop: 0xdfe3e8, skyMid: 0xdfe3e8, skyBot: 0xdfe3e8, fog: 0xdfe3e8, clouds: false, sunDir: [-.4, .9, .5], sunI: 2.4, hemi: 1.6 }); const S = st.scene;
-  const floor = new THREE.Mesh(new THREE.CircleGeometry(40, 48), mat(0xeeeeee, { roughness: .6 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; S.add(floor);
-  const crowd = new Crowd(S, 5, 8); const P = crowd.p; const H = P[0]; const col = (i, k, c) => { crowd.parts[k].setColorAt(i, new THREE.Color(c)); crowd.parts[k].instanceColor.needsUpdate = true; };
+  const W = beachWorld(lib, { n: 26 }); const st = W.st, S = W.S;
+  const crowd = new Crowd(S, 5, 8); crowd.setFace('shock'); const P = crowd.p; const H = P[0]; const col = (i, k, c) => { crowd.parts[k].setColorAt(i, new THREE.Color(c)); crowd.parts[k].instanceColor.needsUpdate = true; };
   ['torso', 'armL', 'armR'].forEach((k) => col(0, k, 0xe8e8ec)); ['legL', 'legR'].forEach((k) => col(0, k, 0x2c4a7a)); for (let i = 1; i < 5; i++) { ['torso', 'armL', 'armR'].forEach((k) => col(i, k, [0xe84a8a, 0x3c8fe8, 0xf2d03c, 0x2ea84f][i - 1])); ['legL', 'legR'].forEach((k) => col(i, k, 0x2a2f3c)); }
   const jean = mat(0x2c4a7a, { roughness: .85 }); const shelf = new THREE.Mesh(new THREE.BoxGeometry(.5, .14, .42), jean); shelf.castShadow = shelf.receiveShadow = true; S.add(shelf); const seam = new THREE.Mesh(new THREE.BoxGeometry(.51, .02, .43), mat(0x1c3050)); S.add(seam);
   const cup = new THREE.Group(); { const c1 = new THREE.Mesh(new THREE.CylinderGeometry(.09, .07, .2, 14), mat(0xf4f4f4)); const c2 = new THREE.Mesh(new THREE.CylinderGeometry(.095, .095, .03, 14), mat(0x5a2f1a)); c2.position.y = .11; cup.add(c1, c2); cup.traverse((m) => (m.castShadow = true)); S.add(cup); }
@@ -26,7 +26,8 @@ export default async function build({ lib, tl, hud }) {
     cake.visible = bi >= 3; cake.position.set(sx + .08, bi === 3 ? dropY(.5, top + .06, lt) : top + .06, 0); cake.scale.setScalar(SC * 1.4);
     const fam = bi >= 4; table.visible = fam; dishes.forEach((d) => (d.visible = fam)); if (fam) { const ty = dropY(.3, top + .02, lt); table.position.set(sx, ty + .04, 0); table.rotation.y = Math.PI / 2; table.scale.setScalar(SC * 1.5); dishes.forEach((d, i) => d.position.set(sx + (i % 2 ? .24 : -.24), ty + .1, i < 2 ? -.2 : .2)); cake.position.set(sx, ty + .13 + .0, 0); cake.visible = true; cake.scale.setScalar(SC * .8);
       const seat = [[-.36, -.34, -Math.PI / 2 + Math.PI], [0, -.34, 0], [-.36, .34, 0], [0, .34, 0]]; for (let i = 1; i < 5; i++) { place(P[i], sx + (i % 2 ? .38 : -.38), ty - .06, i < 3 ? -.62 : .62, i < 3 ? 0 : Math.PI, 'sit', .62, .2); P[i].arms = { lx: -.6, lz: 0, rx: -.6, rz: 0 }; } crowd.update(t); }
-    const sw = Math.sin(t * .3) * .6; st.cam(sw, 1.5, -8.2, -.5, 1.25, 0, 44); st.follow(0, 0); st.render();
+    const react = bi === 0 ? 0 : bi === 1 ? 1 : bi === 2 ? 4 : bi === 3 ? 2 : 3; W.update(t, react, [0, 0]);
+    const orb = bi === 0 ? 0 : (t * .12); const rr = bi >= 4 ? 12 : 10.5; st.cam(Math.sin(-.15 + orb * .6) * -1.2, bi >= 4 ? 2.6 : 1.7, -rr, -.3, 1.15, 0, bi === 0 ? 40 : 46); st.follow(0, 0); st.render();
     hud.style('C'); hud.question(bi === 0 ? 'What if your butt cheeks were *horizontal*?' : '', bi === 0 ? 1 : 0);
     if (bi === 0) hud.counter('', '', ''); else hud.counter('Load capacity', LOAD[bi] + ' kg', LABEL[bi], 'SUBJECT: GARY', bi >= 3); hud.tm('');
     hud.pop('', 0);
