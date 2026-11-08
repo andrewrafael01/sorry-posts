@@ -32,7 +32,7 @@ export default async function build({ lib, tl, hud }) {
   bb(.35, 3.9, 1.85, 12.8, .15, .15, BLU); bb(.35, 3.9, -1.85, 12.8, .15, .15, BLU); for (let x = -6; x <= 6.6; x += 2.1) bb(x, 3.9, 0, .15, .12, 3.7, BLU);
   bb(6.3, 1.0, 0, .8, 1.0, 3.7, 0x1c3f8f); bb(6.65, 2.65, -1.85, .14, 2.3, .14, BLU); bb(6.65, 2.65, 0, .14, 2.3, .14, BLU); bb(6.65, 3.8, 0, .18, .25, 3.7, BLU);
   const glass = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 2.3), new THREE.MeshBasicMaterial({ color: 0xbfe6ff, transparent: true, opacity: .1, side: THREE.DoubleSide, depthWrite: false })); glass.rotation.y = Math.PI / 2; glass.position.set(6.66, 2.65, 0); busG.add(glass);
-  { const d = cvs(768, 160, (g, w, h) => { g.fillStyle = '#10151f'; g.fillRect(0, 0, w, h); g.fillStyle = '#ffb534'; g.font = '900 96px Liberation Sans, Arial'; g.textAlign = 'center'; g.fillText('LINE 24  FOREVER', w / 2, 116); }); const dm = plane(3.4, .7, d.t); dm.rotation.y = Math.PI / 2; dm.position.set(6.78, 4.2, 0); busG.add(dm); }
+  { const d = cvs(768, 160, (g, w, h) => { g.fillStyle = '#10151f'; g.fillRect(0, 0, w, h); g.fillStyle = '#ffb534'; g.font = '900 96px Liberation Sans, Arial'; g.textAlign = 'center'; g.fillText('CITY BUS  LINE 24', w / 2, 116); }); const dm = plane(3.4, .7, d.t); dm.rotation.y = Math.PI / 2; dm.position.set(6.78, 4.2, 0); busG.add(dm); }
   { const d = cvs(768, 128, (g, w, h) => { g.fillStyle = '#1d56c8'; g.fillRect(0, 0, w, h); g.fillStyle = '#fff'; g.font = '900 78px Liberation Sans, Arial'; g.textAlign = 'center'; g.fillText('CITY TRANSIT', w / 2, 94); }); const dm = plane(4.4, .73, d.t); dm.position.set(-2.4, .74, -1.935); dm.rotation.y = Math.PI; busG.add(dm); }
   [-4.5, -2.4, -.3, 1.4].forEach((x) => { const p = new THREE.Mesh(new THREE.CylinderGeometry(.04, .04, 3.4, 8), mat(0xf5c518)); p.position.set(x, 2.2, 0); busG.add(p); });
   const wheels = []; [[-3.6, -1.95], [-3.6, 1.95], [4.4, -1.95], [4.4, 1.95]].forEach(([x, z]) => { const g = new THREE.Group(); const w = new THREE.Mesh(new THREE.CylinderGeometry(.62, .62, .34, 18), mat(0x1c1d20)); w.rotation.x = Math.PI / 2; const hub = new THREE.Mesh(new THREE.CylinderGeometry(.3, .3, .36, 10), mat(0xc9ccd2, { metalness: .6, roughness: .3 })); hub.rotation.x = Math.PI / 2; const nub = new THREE.Mesh(new THREE.BoxGeometry(.5, .06, .4), mat(0xff3b3b)); g.add(w, hub, nub); g.position.set(x, .62, z); g.traverse((m) => (m.castShadow = true)); busG.add(g); wheels.push(g); });
@@ -80,7 +80,7 @@ export default async function build({ lib, tl, hud }) {
     const pm = plane(3.2, 3.2, pd.t); pm.position.set(15, 6.7, -9.2); pm.rotation.y = Math.PI; reveal.add(pm);
     const td = cvs(512, 160, (g) => { g.fillStyle = '#fff'; g.fillRect(0, 0, 512, 160); g.fillStyle = '#1d56c8'; g.font = '900 78px Liberation Sans, Arial'; g.textAlign = 'center'; g.fillText('PARKING LOT', 256, 100); g.fillStyle = '#d62a2a'; g.font = '800 30px Liberation Sans, Arial'; g.fillText('BUSES PARK HERE', 256, 142); });
     const tm = plane(4.2, 1.3, td.t); tm.position.set(15, 4.2, -9.2); tm.rotation.y = Math.PI; reveal.add(tm);
-    const od = cvs(1024, 512, (g) => { g.fillStyle = '#0b0e14'; g.fillRect(0, 0, 1024, 512); g.strokeStyle = '#ffd92a'; g.lineWidth = 18; g.strokeRect(12, 12, 1000, 488); g.textAlign = 'center'; g.fillStyle = '#ffd92a'; g.font = '800 70px Liberation Sans, Arial'; g.fillText('ODOMETER', 512, 100); g.fillStyle = '#17331f'; g.fillRect(70, 150, 884, 220); g.fillStyle = '#6dff8a'; g.font = '900 190px Liberation Sans, Arial'; g.fillText('0 MILES', 512, 320); g.fillStyle = '#ff4a3a'; g.font = '800 54px Liberation Sans, Arial'; g.fillText('24 HRS ON THE CLOCK', 512, 440); });
+    const od = cvs(1024, 512, (g) => { g.fillStyle = '#0b0e14'; g.fillRect(0, 0, 1024, 512); g.strokeStyle = '#ffd92a'; g.lineWidth = 18; g.strokeRect(12, 12, 1000, 488); g.textAlign = 'center'; g.fillStyle = '#ffd92a'; g.font = '800 70px Liberation Sans, Arial'; g.fillText('ODOMETER', 512, 100); g.fillStyle = '#17331f'; g.fillRect(70, 150, 884, 220); g.fillStyle = '#6dff8a'; g.font = '900 190px Liberation Sans, Arial'; g.fillText('0 MILES', 512, 320); g.fillStyle = '#ff4a3a'; g.font = '800 54px Liberation Sans, Arial'; g.fillText('SINCE STOP ONE', 512, 440); });
     const om = plane(7.2, 3.6, od.t); om.position.set(-9.5, 4.2, -9.4); om.rotation.y = Math.PI; reveal.add(om); for (const x of [-12.6, -6.4]) { const p = new THREE.Mesh(new THREE.CylinderGeometry(.12, .12, 4.4, 8), mat(0x666b73)); p.position.set(x, 2.2, -9.5); p.castShadow = true; reveal.add(p); } }
   const bD = makeBubble(lib, S, 2.8, 1.05), bP = makeBubble(lib, S, 3.4, 1.27), bQ = makeBubble(lib, S, 3.4, 1.27);
   // ------------------------------------------------------------------ static plans: seats, exit paths, hug slots
@@ -99,7 +99,7 @@ export default async function build({ lib, tl, hud }) {
   const DPATH = mkPath([[3.4, .4], [2.75, .1], [2.7, -1.9], [2.7, -3.3], [HC[0], HC[1]]]); const DGO = .55, DSP = 3.4;
   // cheering crowd (outside) grid
   const stopPos = (j) => j < 24 ? [-9.5 - (j % 6) * 1.5, -4.8 - ((j / 6) | 0) * 1.7] : [-8.5 - ((j - 24) % 5) * 1.6, 4.5 + (((j - 24) / 5) | 0) * 1.7];
-  const POP = ['24 HOURS', 'HE WAITED', '40 MIN LATE', 'GROUP CHAT', 'GROUP HUG', '0 MILES'];
+  const POP = ['BUS DRIVER', 'HE WAITED', '40 MIN LATE', 'GROUP CHAT', 'GROUP HUG', '0 MILES'];
   const MSG = [[1.5, 'Greg', 'is anyone else crying or is that just me', 0], [2.35, 'Brenda', 'he said take as long as you need', 0], [3.0, 'Dev', 'my stop was 3 stops ago. im staying', 0], [3.7, 'Tammy', 'who has the cookies', 0], [4.35, 'Drake (driver)', 'all of you are valid. next stop: feelings', 1]];
   // phone overlay (beat 3), DOM
   const ph = document.createElement('div'); ph.style.cssText = 'position:absolute;left:600px;top:340px;width:430px;height:800px;z-index:6;display:none;border-radius:54px;background:#101114;border:10px solid #2a2d33;box-shadow:0 20px 60px rgba(0,0,0,.55);overflow:hidden;font-family:Liberation Sans,Arial,sans-serif;transform-origin:50% 50%';
@@ -119,7 +119,7 @@ export default async function build({ lib, tl, hud }) {
   ];
   const ptsHeld = new Set();
   return { frame({ t, bi, lt, p }) {
-    bi = Math.min(bi, 5); const spd = bi < 4 ? 1 : bi === 4 ? Math.max(0, 1 - lt) : 0; const dist = SPD * (Math.min(t, T4) + (bi >= 4 ? Math.min(lt + (bi - 4) * 99, 1) - Math.min(lt + (bi - 4) * 99, 1) ** 2 / 2 : 0));
+    bi = Math.min(bi, 5); lt = p * [4.62, 5.38, 6.15, 5.38, 6.92, 6.92][bi]; const spd = bi < 4 ? 1 : bi === 4 ? Math.max(0, 1 - lt) : 0; const dist = SPD * (Math.min(t, T4) + (bi >= 4 ? Math.min(lt + (bi - 4) * 99, 1) - Math.min(lt + (bi - 4) * 99, 1) ** 2 / 2 : 0));
     for (let i = 0; i < N; i++) { P[i].vis = false; P[i].arms = null; P[i].pitch = 0; P[i].extra = 0; } [bD, bP, bQ].forEach((b) => b.hide());
     brief.visible = false; sweat.clear(); crumbs.clear(); SNK.forEach((m) => (m.visible = false)); hearts.forEach((h) => (h.visible = false)); chats.forEach((c) => (c.visible = false)); phones.count = 0; bills.count = 0; wheel.visible = col.visible = true;
     lot.visible = reveal.visible = bi === 5; clockG.visible = bi === 2; ph.style.display = bi === 3 && lt > .9 ? 'block' : 'none'; if (bi === 3) setPhone(lt);
@@ -136,7 +136,7 @@ export default async function build({ lib, tl, hud }) {
     if (bi === 0) {
       drakeSeat(); D.yaw = Math.PI / 2 + .35 * smooth(clamp((lt - 2.5) / .8)); pax((o) => shockArms(o));
       for (let j = 0; j < 34; j++) { const [x, z] = stopPos(j), o = P[30 + j]; place(o, x, z, j < 24 ? Math.PI / 2 + .3 : -Math.PI / 2 + .3, 'jump', 1 + (j % 3) * .15, .95); }
-      cnt = ['SHIFT', '24 HRS', 'one city bus'];
+      cnt = ['PASSENGERS', '28', 'one city bus'];
     } else if (bi === 1) {
       drakeSeat(); const turn = smooth(clamp((lt - 1.0) / .6)); D.yaw = lerp(Math.PI / 2, Math.PI * .86, turn); const wave = lt > 1.6 && lt < 3.4; if (lt > 1.0) D.arms = { lx: -1.45, lz: .1, rx: wave ? -2.1 + .45 * Math.sin(t * 9) : -1.0, rz: wave ? -.1 : -.3 };
       pax((o, id) => { const w = Math.sin(t * 7 + o.phase * 3); const up = lt > 3.6 || (id % 3 === 0); o.arms = up ? { lx: -2.7 + .3 * w, lz: -.2, rx: -2.7 - .3 * w, rz: .2 } : { lx: -.5, lz: -.1, rx: -.5, rz: .1 }; o.pitch = lt < 2.6 ? .15 : 0; });
@@ -181,7 +181,7 @@ export default async function build({ lib, tl, hud }) {
       XT.forEach((e) => { const o = P[e.id]; place(o, e.sl.x, e.sl.z, Math.atan2(HC[0] - e.sl.x, HC[1] - e.sl.z), 'idle', .5, .95, Math.abs(Math.sin(t * 6 + o.phase)) * .15); o.arms = { lx: -2.7, lz: -.2, rx: -2.7, rz: .2 }; });
       for (let j = 13; j < 34; j++) { const [x, z] = stopPos(j); place(P[30 + j], x, z, Math.PI / 2 + .6, 'jump', 1 + (j % 3) * .15, .95); }
       hearts.forEach((h, i) => { const u = ((t * .8 + i * .17) % 1); h.visible = true; h.position.set(HC[0] + Math.sin(i * 2.3) * 2.4, 4 + u * 3.4, HC[1] + Math.cos(i * 1.9) * 2.4); h.scale.setScalar(.7 * Math.min(1, u * 5) * (1 - u * .4)); h.material.opacity = Math.min(1, (1 - u) * 3); });
-      const mt = lt - 3.9; if (mt > 0) { bills.count = BN; for (let i = 0; i < BN; i++) { const b = BL[i]; const y = 26 + b[1] - (mt + b[5] * .0) * b[3] * 2.2 - (b[0] > 0 ? 0 : 0); const yy = y < .1 ? .05 : y; q4.setFromEuler(new THREE.Euler(t * b[5] + b[4], t * b[5] * .7, b[4])); v3.set(HC[0] + b[0] * 1.2, yy, HC[1] + b[2]); s3.set(1, 1, 1); m4.compose(v3, y < .1 ? new THREE.Quaternion().setFromEuler(new THREE.Euler(0, b[4], 0)) : q4, s3); bills.setMatrixAt(i, m4); } bills.instanceMatrix.needsUpdate = true; }
+      const mt = -1; if (mt > 0) { bills.count = BN; for (let i = 0; i < BN; i++) { const b = BL[i]; const y = 26 + b[1] - (mt + b[5] * .0) * b[3] * 2.2 - (b[0] > 0 ? 0 : 0); const yy = y < .1 ? .05 : y; q4.setFromEuler(new THREE.Euler(t * b[5] + b[4], t * b[5] * .7, b[4])); v3.set(HC[0] + b[0] * 1.2, yy, HC[1] + b[2]); s3.set(1, 1, 1); m4.compose(v3, y < .1 ? new THREE.Quaternion().setFromEuler(new THREE.Euler(0, b[4], 0)) : q4, s3); bills.setMatrixAt(i, m4); } bills.instanceMatrix.needsUpdate = true; }
       cnt = ['MILES DRIVEN', '0', 'never left the lot']; hot = true;
     }
     // Drake wheel + accessories
@@ -193,7 +193,7 @@ export default async function build({ lib, tl, hud }) {
     const hh = (a, f, ph0) => Math.sin(t * f + ph0) * a;
     st.cam(cam[0] + hh(.05, 3.1, 0), cam[1] + hh(.05, 2.3, 1), cam[2] + hh(.05, 2.7, 2), cam[3], cam[4], cam[5], cam[6], cam[7]);
     st.follow(2, -3); st.render();
-    hud.style('C'); hud.question('', 0); hud.counter(cnt[0], cnt[1], cnt[2], 'PARODY', hot || bi === 5); hud.tm('');
+    hud.style('C'); hud.question(bi === 0 ? 'What if *Drake* became your bus driver?' : '', bi === 0 ? 1 : 0); hud.counter(cnt[0], cnt[1], cnt[2], 'PARODY', hot || bi === 5); hud.tm('');
     hud.pop(lt > .45 ? POP[bi] : '', Math.min(1, (lt - .45) * 6));
   } };
 }
