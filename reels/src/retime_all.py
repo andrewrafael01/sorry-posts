@@ -3,11 +3,13 @@ import json, os, subprocess, sys, shutil
 from concurrent.futures import ThreadPoolExecutor
 W3 = "/home/user/sorry-posts/reels/w3d"; TMP = "/tmp/retime"; os.makedirs(TMP, exist_ok=True)
 KEYS = sys.argv[1:]
+PLAIN = json.load(open('/home/user/sorry-posts/reels/src/plain_labels.json'))
 def run(k):
     cur = json.load(open(f"{W3}/tl/{k}.json")); bs = cur["beats"]
     src = [(b.get("srcStart", b["start"]), b.get("srcDur", b["dur"])) for b in bs]
-    newd = [3.6] + [2.3] * (len(bs) - 2) + [2.8]
-    narrs = [b["narr"] for b in bs]; num = int(k[:3]); out = f"{TMP}/{k}"; os.makedirs(out, exist_ok=True)
+    newd = [3.6] + [2.6] * (len(bs) - 2) + [3.0]
+    narrs = [b["narr"] for b in bs]; num = int(k[:3])
+    if k[:3] in PLAIN and len(PLAIN[k[:3]]) == len(bs) - 1: narrs = [bs[0]["narr"]] + PLAIN[k[:3]]; out = f"{TMP}/{k}"; os.makedirs(out, exist_ok=True)
     env = dict(os.environ, MIN_DURS=json.dumps(newd))
     r = subprocess.run(["python3", "tl3d.py", k + "_rt", str(num), "cine", ".35", out] + narrs, env=env, capture_output=True, text=True, cwd="/home/user/sorry-posts/reels/src")
     j = f"{out}/{k}_rt.json"; w = f"{out}/{k}_rt.wav"

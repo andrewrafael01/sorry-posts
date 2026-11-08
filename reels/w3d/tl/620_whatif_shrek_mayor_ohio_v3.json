@@ -1,6 +1,6 @@
 {
  "key": "620_whatif_shrek_mayor_ohio_v3",
- "dur": 18.0,
+ "dur": 21.75,
  "beats": [
   {
    "narr": "Holy shit. What if Shrek became the mayor of Ohio?",
@@ -62,62 +62,97 @@
    "srcDur": 3.75
   },
   {
-   "narr": "No onions.",
+   "narr": "Onions are banned.",
    "start": 3.75,
-   "dur": 2.25,
+   "dur": 3.0,
    "words": [
     [
-     "No",
+     "Onions",
      0.12,
-     0.32
+     0.36
     ],
     [
-     "onions.",
-     0.32,
-     0.66
+     "are",
+     0.36,
+     0.6
+    ],
+    [
+     "banned.",
+     0.6,
+     0.82
     ]
    ],
    "srcStart": 3.75,
    "srcDur": 8.25
   },
   {
-   "narr": "Public swamp.",
-   "start": 6.0,
-   "dur": 2.25,
+   "narr": "The swamp is now a park.",
+   "start": 6.75,
+   "dur": 3.0,
    "words": [
     [
-     "Public",
+     "The",
      0.12,
-     0.4
+     0.24
     ],
     [
-     "swamp.",
-     0.4,
-     0.7
+     "swamp",
+     0.24,
+     0.46
+    ],
+    [
+     "is",
+     0.46,
+     0.66
+    ],
+    [
+     "now",
+     0.66,
+     0.88
+    ],
+    [
+     "a",
+     0.88,
+     0.98
+    ],
+    [
+     "park.",
+     0.98,
+     1.2599999999999998
     ]
    ],
    "srcStart": 12.0,
    "srcDur": 8.25
   },
   {
-   "narr": "Four thousand emails.",
-   "start": 8.25,
-   "dur": 2.25,
+   "narr": "Donkey sends four thousand emails.",
+   "start": 9.75,
+   "dur": 3.0,
    "words": [
     [
-     "Four",
+     "Donkey",
      0.12,
-     0.32666666666666666
+     0.42
+    ],
+    [
+     "sends",
+     0.42,
+     0.68
+    ],
+    [
+     "four",
+     0.68,
+     0.9533333333333333
     ],
     [
      "thousand",
-     0.32666666666666666,
-     0.74
+     0.9533333333333333,
+     1.5
     ],
     [
      "emails.",
-     0.74,
-     0.96
+     1.5,
+     1.8399999999999999
     ]
    ],
    "srcStart": 20.25,
@@ -125,8 +160,8 @@
   },
   {
    "narr": "Farquaad's cousin wins.",
-   "start": 10.5,
-   "dur": 2.25,
+   "start": 12.75,
+   "dur": 3.0,
    "words": [
     [
      "Farquaad's",
@@ -148,53 +183,73 @@
    "srcDur": 9.0
   },
   {
-   "narr": "Get out of my swamp.",
-   "start": 12.75,
-   "dur": 2.25,
+   "narr": "Welcome. Get out of my swamp.",
+   "start": 15.75,
+   "dur": 3.0,
    "words": [
     [
-     "Get",
+     "Welcome.",
      0.12,
-     0.26
+     0.5
+    ],
+    [
+     "Get",
+     1.2200000000000002,
+     1.38
     ],
     [
      "out",
-     0.26,
-     0.36
+     1.38,
+     1.5
     ],
     [
      "of",
-     0.36,
-     0.44
+     1.5,
+     1.6
     ],
     [
      "my",
-     0.44,
-     0.54
+     1.6,
+     1.7000000000000002
     ],
     [
      "swamp.",
-     0.54,
-     0.9
+     1.7000000000000002,
+     2.02
     ]
    ],
    "srcStart": 37.5,
    "srcDur": 8.25
   },
   {
-   "narr": "Parking policy.",
-   "start": 15.0,
+   "narr": "He drowns in parking policy.",
+   "start": 18.75,
    "dur": 3.0,
    "words": [
     [
-     "Parking",
+     "He",
      0.12,
-     0.42
+     0.22
+    ],
+    [
+     "drowns",
+     0.22,
+     0.68
+    ],
+    [
+     "in",
+     0.68,
+     0.76
+    ],
+    [
+     "parking",
+     0.76,
+     1.06
     ],
     [
      "policy.",
-     0.42,
-     0.78
+     1.06,
+     1.56
     ]
    ],
    "srcStart": 45.75,

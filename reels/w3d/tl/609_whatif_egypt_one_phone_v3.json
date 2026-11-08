@@ -1,6 +1,6 @@
 {
  "key": "609_whatif_egypt_one_phone_v3",
- "dur": 23.86363636363636,
+ "dur": 24.545454545454543,
  "beats": [
   {
    "narr": "Holy shit. What if the Ancient Egyptians had one phone?",
@@ -62,40 +62,70 @@
    "srcDur": 4.773
   },
   {
-   "narr": "Dropped.",
+   "narr": "A phone drops at the pyramids.",
    "start": 4.7727272727272725,
    "dur": 2.727272727272727,
    "words": [
     [
-     "Dropped.",
+     "A",
      0.12,
-     0.62
+     0.2
+    ],
+    [
+     "phone",
+     0.2,
+     0.4
+    ],
+    [
+     "drops",
+     0.4,
+     0.74
+    ],
+    [
+     "at",
+     0.74,
+     0.96
+    ],
+    [
+     "the",
+     0.96,
+     1.02
+    ],
+    [
+     "pyramids.",
+     1.02,
+     1.4
     ]
    ],
    "srcStart": 4.773,
    "srcDur": 8.864
   },
   {
-   "narr": "Pharaoh scrolls.",
+   "narr": "The Pharaoh scrolls.",
    "start": 7.5,
    "dur": 2.727272727272727,
    "words": [
     [
-     "Pharaoh",
+     "The",
      0.12,
-     0.32
+     0.22
+    ],
+    [
+     "Pharaoh",
+     0.22,
+     0.48
     ],
     [
      "scrolls.",
-     0.32,
-     0.74
+     0.48,
+     0.94
     ]
    ],
    "srcStart": 13.636,
    "srcDur": 5.455
   },
   {
-   "narr": "Three workers.",
+   "narr": "Three workers scroll.",
    "start": 10.227272727272727,
    "dur": 2.727272727272727,
    "words": [
@@ -105,16 +135,21 @@
      0.26
     ],
     [
-     "workers.",
+     "workers",
      0.26,
      0.5800000000000001
+    ],
+    [
+     "scroll.",
+     0.5800000000000001,
+     0.92
     ]
    ],
    "srcStart": 19.091,
    "srcDur": 4.773
   },
   {
-   "narr": "The overseer sits.",
+   "narr": "The overseer sits and scrolls.",
    "start": 12.954545454545453,
    "dur": 2.727272727272727,
    "words": [
@@ -126,69 +161,114 @@
     [
      "overseer",
      0.24,
-     0.78
+     0.8
     ],
     [
-     "sits.",
-     0.78,
+     "sits",
+     0.8,
      1.04
+    ],
+    [
+     "and",
+     1.04,
+     1.2799999999999998
+    ],
+    [
+     "scrolls.",
+     1.2799999999999998,
+     1.58
     ]
    ],
    "srcStart": 23.864,
    "srcDur": 6.136
   },
   {
-   "narr": "Four thousand.",
+   "narr": "Four thousand people scroll.",
    "start": 15.68181818181818,
    "dur": 2.727272727272727,
    "words": [
     [
      "Four",
      0.12,
-     0.45287284144427
+     0.32666666666666666
     ],
     [
-     "thousand.",
-     0.45287284144427,
-     1.2018367346938774
+     "thousand",
+     0.32666666666666666,
+     0.74
+    ],
+    [
+     "people",
+     0.74,
+     1.06
+    ],
+    [
+     "scroll.",
+     1.06,
+     1.4
     ]
    ],
    "srcStart": 30.0,
    "srcDur": 7.5
   },
   {
-   "narr": "Everyone scrolls.",
+   "narr": "Everyone scrolls at once.",
    "start": 18.409090909090907,
    "dur": 2.727272727272727,
    "words": [
     [
      "Everyone",
      0.12,
-     0.44
+     0.42
     ],
     [
-     "scrolls.",
-     0.44,
-     0.84
+     "scrolls",
+     0.42,
+     0.76
+    ],
+    [
+     "at",
+     0.76,
+     1.08
+    ],
+    [
+     "once.",
+     1.08,
+     1.3199999999999998
     ]
    ],
    "srcStart": 37.5,
    "srcDur": 7.5
   },
   {
-   "narr": "No charger.",
+   "narr": "The battery dies. Pharaoh screams.",
    "start": 21.136363636363633,
-   "dur": 2.727272727272727,
+   "dur": 3.4090909090909087,
    "words": [
     [
-     "No",
+     "The",
      0.12,
-     0.32
+     0.2
     ],
     [
-     "charger.",
-     0.32,
-     0.68
+     "battery",
+     0.2,
+     0.4
+    ],
+    [
+     "dies.",
+     0.4,
+     1.1
+    ],
+    [
+     "Pharaoh",
+     1.1,
+     1.8199999999999998
+    ],
+    [
+     "screams.",
+     1.8199999999999998,
+     2.22
     ]
    ],
    "srcStart": 45.0,

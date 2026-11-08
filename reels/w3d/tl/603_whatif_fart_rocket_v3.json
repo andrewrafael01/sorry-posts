@@ -1,6 +1,6 @@
 {
  "key": "603_whatif_fart_rocket_v3",
- "dur": 21.0,
+ "dur": 25.5,
  "beats": [
   {
    "narr": "Holy shit. What if every fart was twice as strong as the last?",
@@ -77,66 +77,38 @@
    "srcDur": 4.5
   },
   {
-   "narr": "Fart one.",
+   "narr": "Fart one: tiny squeak.",
    "start": 4.5,
-   "dur": 2.25,
+   "dur": 3.0,
    "words": [
     [
      "Fart",
      0.12,
-     0.36
+     0.32
     ],
     [
-     "one.",
-     0.36,
-     1.0040136054421769
+     "one:",
+     0.32,
+     0.52
+    ],
+    [
+     "tiny",
+     0.52,
+     0.84
+    ],
+    [
+     "squeak.",
+     0.84,
+     1.44
     ]
    ],
    "srcStart": 4.5,
    "srcDur": 5.25
   },
   {
-   "narr": "Fart six.",
-   "start": 6.75,
-   "dur": 2.25,
-   "words": [
-    [
-     "Fart",
-     0.12,
-     0.567233560090703
-    ],
-    [
-     "six.",
-     0.567233560090703,
-     1.014467120181406
-    ]
-   ],
-   "srcStart": 9.75,
-   "srcDur": 5.25
-  },
-  {
-   "narr": "Fart ten.",
-   "start": 9.0,
-   "dur": 2.25,
-   "words": [
-    [
-     "Fart",
-     0.12,
-     0.33999999999999997
-    ],
-    [
-     "ten.",
-     0.33999999999999997,
-     0.998344671201814
-    ]
-   ],
-   "srcStart": 15.0,
-   "srcDur": 5.25
-  },
-  {
-   "narr": "Fart seventeen.",
-   "start": 11.25,
-   "dur": 2.25,
+   "narr": "Fart six: the blanket inflates.",
+   "start": 7.5,
+   "dur": 3.0,
    "words": [
     [
      "Fart",
@@ -144,66 +116,209 @@
      0.3
     ],
     [
-     "seventeen.",
+     "six:",
      0.3,
-     1.2899319727891156
+     0.54
+    ],
+    [
+     "the",
+     0.54,
+     0.78
+    ],
+    [
+     "blanket",
+     0.78,
+     1.1600000000000001
+    ],
+    [
+     "inflates.",
+     1.1600000000000001,
+     1.7000000000000002
+    ]
+   ],
+   "srcStart": 9.75,
+   "srcDur": 5.25
+  },
+  {
+   "narr": "Fart ten: like a leaf blower.",
+   "start": 10.5,
+   "dur": 3.0,
+   "words": [
+    [
+     "Fart",
+     0.12,
+     0.32
+    ],
+    [
+     "ten:",
+     0.32,
+     0.6
+    ],
+    [
+     "like",
+     0.6,
+     0.84
+    ],
+    [
+     "a",
+     0.84,
+     0.98
+    ],
+    [
+     "leaf",
+     0.98,
+     1.12
+    ],
+    [
+     "blower.",
+     1.12,
+     1.5
+    ]
+   ],
+   "srcStart": 15.0,
+   "srcDur": 5.25
+  },
+  {
+   "narr": "Fart seventeen: the bed lifts off.",
+   "start": 13.5,
+   "dur": 3.0,
+   "words": [
+    [
+     "Fart",
+     0.12,
+     0.3
+    ],
+    [
+     "seventeen:",
+     0.3,
+     1.04
+    ],
+    [
+     "the",
+     1.04,
+     1.08
+    ],
+    [
+     "bed",
+     1.08,
+     1.2400000000000002
+    ],
+    [
+     "lifts",
+     1.2400000000000002,
+     1.5
+    ],
+    [
+     "off.",
+     1.5,
+     1.8599999999999999
     ]
    ],
    "srcStart": 20.25,
    "srcDur": 6.0
   },
   {
-   "narr": "Fart twenty.",
-   "start": 13.5,
-   "dur": 2.25,
+   "narr": "Fart twenty: he's a rocket.",
+   "start": 16.5,
+   "dur": 3.0,
    "words": [
     [
      "Fart",
      0.12,
-     0.4843867243867244
+     0.3
     ],
     [
-     "twenty.",
-     0.4843867243867244,
-     1.122063492063492
+     "twenty:",
+     0.3,
+     0.9000000000000002
+    ],
+    [
+     "he's",
+     0.9,
+     1.02
+    ],
+    [
+     "a",
+     1.02,
+     1.1
+    ],
+    [
+     "rocket.",
+     1.1,
+     1.3199999999999998
     ]
    ],
    "srcStart": 26.25,
    "srcDur": 5.25
   },
   {
-   "narr": "Fart twenty five.",
-   "start": 15.75,
-   "dur": 2.25,
+   "narr": "Fart twenty five: orbit.",
+   "start": 19.5,
+   "dur": 3.0,
    "words": [
     [
      "Fart",
      0.12,
-     0.28
+     0.3
     ],
     [
      "twenty",
-     0.28,
-     0.846369820655535
+     0.3,
+     0.5181818181818182
     ],
     [
-     "five.",
-     0.846369820655535,
-     1.3183446712018143
+     "five:",
+     0.5181818181818182,
+     0.7
+    ],
+    [
+     "orbit.",
+     0.7,
+     1.44
     ]
    ],
    "srcStart": 31.5,
    "srcDur": 6.0
   },
   {
-   "narr": "Orbit.",
-   "start": 18.0,
+   "narr": "He smells it the whole way up.",
+   "start": 22.5,
    "dur": 3.0,
    "words": [
     [
-     "Orbit.",
+     "He",
      0.12,
-     0.38
+     0.24
+    ],
+    [
+     "smells",
+     0.24,
+     0.48
+    ],
+    [
+     "it",
+     0.48,
+     0.74
+    ],
+    [
+     "the",
+     0.74,
+     0.84
+    ],
+    [
+     "whole",
+     0.84,
+     1.02
+    ],
+    [
+     "way",
+     1.02,
+     1.2999999999999998
+    ],
+    [
+     "up.",
+     1.2999999999999998,
+     1.58
     ]
    ],
    "srcStart": 37.5,

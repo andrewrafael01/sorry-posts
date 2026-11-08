@@ -1,6 +1,6 @@
 {
  "key": "606_whatif_farts_visible_v3",
- "dur": 19.77272727272727,
+ "dur": 20.454545454545453,
  "beats": [
   {
    "narr": "Holy shit. What if every fart was visible?",
@@ -52,114 +52,189 @@
    "srcDur": 4.091
   },
   {
-   "narr": "Hot pink.",
+   "narr": "The fart is hot pink.",
    "start": 3.4090909090909087,
    "dur": 2.727272727272727,
    "words": [
     [
-     "Hot",
+     "The",
      0.12,
-     0.4480952380952381
+     0.22
+    ],
+    [
+     "fart",
+     0.22,
+     0.4
+    ],
+    [
+     "is",
+     0.4,
+     0.66
+    ],
+    [
+     "hot",
+     0.66,
+     0.9
     ],
     [
      "pink.",
-     0.4480952380952381,
-     0.9949206349206349
+     0.9,
+     1.2000000000000002
     ]
    ],
    "srcStart": 4.091,
    "srcDur": 6.136
   },
   {
-   "narr": "Brenda.",
+   "narr": "Everyone sees Brenda's.",
    "start": 6.136363636363636,
    "dur": 2.727272727272727,
    "words": [
     [
-     "Brenda.",
+     "Everyone",
      0.12,
-     0.3
+     0.42
+    ],
+    [
+     "sees",
+     0.42,
+     0.76
+    ],
+    [
+     "Brenda's.",
+     0.76,
+     1.48
     ]
    ],
    "srcStart": 10.227,
    "srcDur": 4.773
   },
   {
-   "narr": "Gary is green.",
+   "narr": "The office is a rave.",
    "start": 8.863636363636363,
    "dur": 2.727272727272727,
    "words": [
     [
-     "Gary",
+     "The",
      0.12,
-     0.3
+     0.24
+    ],
+    [
+     "office",
+     0.24,
+     0.5
     ],
     [
      "is",
-     0.3,
-     0.52
+     0.5,
+     0.76
     ],
     [
-     "green.",
-     0.52,
-     0.74
+     "a",
+     0.76,
+     0.86
+    ],
+    [
+     "rave.",
+     0.86,
+     1.12
     ]
    ],
    "srcStart": 15.0,
    "srcDur": 5.455
   },
   {
-   "narr": "Her chili fries.",
+   "narr": "Dates can see everything.",
    "start": 11.59090909090909,
    "dur": 2.727272727272727,
    "words": [
     [
-     "Her",
+     "Dates",
      0.12,
-     0.24
+     0.3
     ],
     [
-     "chili",
-     0.24,
-     0.46
+     "can",
+     0.3,
+     0.54
     ],
     [
-     "fries.",
-     0.46,
-     0.8
+     "see",
+     0.54,
+     0.72
+    ],
+    [
+     "everything.",
+     0.72,
+     1.08
     ]
    ],
    "srcStart": 20.455,
    "srcDur": 6.136
   },
   {
-   "narr": "Regret. Pantone.",
+   "narr": "Silent but deadly has a color.",
    "start": 14.318181818181817,
    "dur": 2.727272727272727,
    "words": [
     [
-     "Regret.",
+     "Silent",
      0.12,
-     0.42
+     0.36
     ],
     [
-     "Pantone.",
-     1.1600000000000001,
-     1.7400000000000002
+     "but",
+     0.36,
+     0.6
+    ],
+    [
+     "deadly",
+     0.6,
+     0.82
+    ],
+    [
+     "has",
+     0.82,
+     1.1400000000000001
+    ],
+    [
+     "a",
+     1.1400000000000001,
+     1.2400000000000002
+    ],
+    [
+     "color.",
+     1.2400000000000002,
+     1.52
     ]
    ],
    "srcStart": 26.591,
    "srcDur": 4.773
   },
   {
-   "narr": "Grandma.",
+   "narr": "Grandma fills the room.",
    "start": 17.045454545454543,
-   "dur": 2.727272727272727,
+   "dur": 3.4090909090909087,
    "words": [
     [
-     "Grandma.",
+     "Grandma",
      0.12,
-     0.36
+     0.5
+    ],
+    [
+     "fills",
+     0.5,
+     0.76
+    ],
+    [
+     "the",
+     0.76,
+     0.98
+    ],
+    [
+     "room.",
+     0.98,
+     1.1800000000000002
     ]
    ],
    "srcStart": 31.364,

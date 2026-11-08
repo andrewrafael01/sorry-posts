@@ -1,6 +1,6 @@
 {
  "key": "605_whatif_aura_doubles_v3",
- "dur": 20.25,
+ "dur": 24.75,
  "beats": [
   {
    "narr": "Holy shit. What if your aura doubled every minute?",
@@ -57,9 +57,9 @@
    "srcDur": 3.75
   },
   {
-   "narr": "Starbucks knows.",
+   "narr": "Starbucks knows your order.",
    "start": 3.75,
-   "dur": 2.25,
+   "dur": 3.0,
    "words": [
     [
      "Starbucks",
@@ -67,67 +67,92 @@
      0.42
     ],
     [
-     "knows.",
+     "knows",
      0.42,
-     1.3002947845804989
+     0.8
+    ],
+    [
+     "your",
+     0.8,
+     1.04
+    ],
+    [
+     "order.",
+     1.04,
+     1.3399999999999999
     ]
    ],
    "srcStart": 3.75,
    "srcDur": 6.75
   },
   {
-   "narr": "Pigeons bring bread.",
-   "start": 6.0,
-   "dur": 2.25,
+   "narr": "Pigeons bring you bread.",
+   "start": 6.75,
+   "dur": 3.0,
    "words": [
     [
      "Pigeons",
      0.12,
-     0.48
+     0.46
     ],
     [
      "bring",
-     0.48,
-     0.7
+     0.46,
+     0.66
+    ],
+    [
+     "you",
+     0.66,
+     0.82
     ],
     [
      "bread.",
-     0.7,
-     1.0
+     0.82,
+     1.1
     ]
    ],
    "srcStart": 10.5,
    "srcDur": 5.25
   },
   {
-   "narr": "He apologizes to the floor.",
-   "start": 8.25,
-   "dur": 2.25,
+   "narr": "The line cutter apologizes to the floor.",
+   "start": 9.75,
+   "dur": 3.0,
    "words": [
     [
-     "He",
+     "The",
      0.12,
-     0.24
+     0.22
+    ],
+    [
+     "line",
+     0.22,
+     0.44
+    ],
+    [
+     "cutter",
+     0.44,
+     0.74
     ],
     [
      "apologizes",
-     0.24,
-     1.02
+     0.74,
+     1.7200000000000002
     ],
     [
      "to",
-     1.02,
-     1.2599999999999998
+     1.7200000000000002,
+     1.94
     ],
     [
      "the",
-     1.2599999999999998,
-     1.3599999999999999
+     1.94,
+     2.0
     ],
     [
      "floor.",
-     1.3599999999999999,
-     1.56
+     2.0,
+     2.24
     ]
    ],
    "srcStart": 15.75,
@@ -135,8 +160,8 @@
   },
   {
    "narr": "Your ex asks permission.",
-   "start": 10.5,
-   "dur": 2.25,
+   "start": 12.75,
+   "dur": 3.0,
    "words": [
     [
      "Your",
@@ -163,9 +188,9 @@
    "srcDur": 6.0
   },
   {
-   "narr": "The sun dims.",
-   "start": 12.75,
-   "dur": 2.25,
+   "narr": "The sun dims for you.",
+   "start": 15.75,
+   "dur": 3.0,
    "words": [
     [
      "The",
@@ -175,60 +200,90 @@
     [
      "sun",
      0.22,
-     0.38
+     0.4
     ],
     [
-     "dims.",
-     0.38,
-     0.98
+     "dims",
+     0.4,
+     0.82
+    ],
+    [
+     "for",
+     0.82,
+     0.96
+    ],
+    [
+     "you.",
+     0.96,
+     1.1600000000000001
     ]
    ],
    "srcStart": 28.5,
    "srcDur": 5.25
   },
   {
-   "narr": "Cars orbit you.",
-   "start": 15.0,
-   "dur": 2.25,
+   "narr": "Cars orbit your head.",
+   "start": 18.75,
+   "dur": 3.0,
    "words": [
     [
      "Cars",
      0.12,
-     0.38
+     0.36
     ],
     [
      "orbit",
-     0.38,
-     0.72
+     0.36,
+     0.66
     ],
     [
-     "you.",
-     0.72,
-     1.0
+     "your",
+     0.66,
+     0.92
+    ],
+    [
+     "head.",
+     0.92,
+     1.1600000000000001
     ]
    ],
    "srcStart": 33.75,
    "srcDur": 6.75
   },
   {
-   "narr": "A gas giant.",
-   "start": 17.25,
+   "narr": "They name a planet after you.",
+   "start": 21.75,
    "dur": 3.0,
    "words": [
     [
-     "A",
+     "They",
      0.12,
-     0.2
+     0.22
     ],
     [
-     "gas",
-     0.2,
-     0.4
+     "name",
+     0.22,
+     0.36
     ],
     [
-     "giant.",
-     0.4,
-     0.82
+     "a",
+     0.36,
+     0.46
+    ],
+    [
+     "planet",
+     0.46,
+     0.72
+    ],
+    [
+     "after",
+     0.72,
+     1.08
+    ],
+    [
+     "you.",
+     1.08,
+     1.3399999999999999
     ]
    ],
    "srcStart": 40.5,
