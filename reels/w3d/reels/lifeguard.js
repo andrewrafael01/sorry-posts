@@ -14,7 +14,7 @@ export default async function build({ lib, tl, hud }) {
   addBox(S, 0, .06, -.5, 130, .12, 1.0, 0xf4f4f0, { cast: false }); addBox(S, -64.5, .06, 65, 1.0, .12, 130, 0xf4f4f0, { cast: false }); addBox(S, 64.5, .06, 65, 1.0, .12, 130, 0xf4f4f0, { cast: false });
   for (const x of [-52, -44, -36, 36, 44, 52]) { const lane = addBox(S, x, .12, 62, .16, .1, 120, (x / 8 | 0) % 2 ? 0xe8252b : 0xffffff, { cast: false }); }
   // deck dressing: umbrellas, banner, slide, palms
-  const banner = cvs(1024, 256, (g, w, h) => { g.fillStyle = '#e8252b'; g.fillRect(0, 0, w, h); g.fillStyle = '#fff'; g.fillRect(0, 0, w, 16); g.fillRect(0, h - 16, w, 16); g.fillStyle = '#ffe23a'; g.strokeStyle = '#111'; g.lineWidth = 12; g.font = '900 104px Liberation Sans, Arial'; g.textAlign = 'center'; g.strokeText("WORLD'S BIGGEST POOL", w / 2, 150); g.fillText("WORLD'S BIGGEST POOL", w / 2, 150); g.font = '800 40px Liberation Sans, Arial'; g.fillStyle = '#fff'; g.strokeText('LIFEGUARD ON DUTY', w / 2, 214); g.fillText('LIFEGUARD ON DUTY', w / 2, 214); });
+  const banner = cvs(1024, 256, (g, w, h) => { g.fillStyle = '#e8252b'; g.fillRect(0, 0, w, h); g.fillStyle = '#fff'; g.fillRect(0, 0, w, 16); g.fillRect(0, h - 16, w, 16); g.fillStyle = '#ffe23a'; g.strokeStyle = '#111'; g.lineWidth = 12; g.font = '900 104px Liberation Sans, Arial'; g.textAlign = 'center'; g.strokeText('LIFEGUARD', w / 2, 170); g.fillText('LIFEGUARD', w / 2, 170); g.font = '800 40px Liberation Sans, Arial'; g.fillStyle = '#fff'; g.strokeText('ON DUTY', w / 2, 220); g.fillText('ON DUTY', w / 2, 220); });
   { const bm = new THREE.Mesh(new THREE.PlaneGeometry(36, 9), new THREE.MeshBasicMaterial({ map: banner.t, side: THREE.DoubleSide })); bm.position.set(-4, 13.5, -22); S.add(bm); for (const x of [-21, 13]) addBox(S, x, 6, -22.2, .6, 12, .6, 0x44464e); }
   // slide tower (left) with big red tube into the pool
   addBox(S, -30, 7, -10, 7, .6, 7, 0xffffff); for (const [dx, dz] of [[-3, -3], [3, -3], [-3, 3], [3, 3]]) addBox(S, -30 + dx, 3.5, -10 + dz, .5, 7, .5, 0x3a62c8);
@@ -64,7 +64,7 @@ export default async function build({ lib, tl, hud }) {
   const SW = []; { const r = R(11); let n = 0; for (let row = 0; row < 14 && n < NSW; row++) for (let c = 0; c < 9 && n < NSW; c++) { const x = (c - 4) * 3.1 + (row % 2) * 1.5 + (r() - .5) * .6, z = 7 + row * 2.2 + (r() - .5) * .5; if (Math.hypot(x - K.x, z - K.z) < 5.5) continue; SW.push({ x, z, ph: r() * 6.28 }); n++; } while (SW.length < NSW) SW.push({ x: 20 + SW.length % 3, z: 8 + SW.length * .3, ph: 1 }); }
   const POP = [['', 0], ['', 0]]; let popT = '';
   return { frame({ t, bi, lt, p }) {
-    bi = Math.min(bi, 5); const dur = [4.39, 5.85, 4.39, 5.12, 4.39, 7.32][bi];
+    bi = Math.min(bi, 5); const dur = [3.66, 4.39, 3.66, 5.12, 3.66, 3.66][bi];
     for (let i = 0; i < P.length; i++) { const o = P[i]; o.vis = false; o.arms = null; o.pitch = 0; o.extra = 0; o.y = 0; o.anim = 'idle'; }
     board.visible = bpoles.forEach((q) => (q.visible = bi === 5)) || bi === 5; bd.hide(); bk.hide(); cloud.visible = false; whistle.visible = false; lany.visible = false; rings.forEach((m) => (m.visible = false)); rip.forEach((m) => (m.visible = false)); spl.clear(); tears.clear(); rain.clear();
     crowd.setFace(bi <= 2 ? 'shock' : bi <= 4 ? 'sad' : 'happy');
@@ -82,26 +82,26 @@ export default async function build({ lib, tl, hud }) {
       const u = eio(p * 1.15); cam = [...mix([60, 68, 110, 0, 0, 6, 52, .1], [-3.5, 7.0, 18, 2.6, 4.6, -4, 46, -.05], u)]; focus = [0, 0];
       put(H, CH.x, CH.z, 0, 'sit', 2.2, SEATY(2.2)); H.arms = { lx: -.2, rx: -.2, lz: -.15, rz: .15 }; H.pitch = -.04 + Math.sin(t * 3) * .02;
       bleachers('chair'); put(KID, K.x, K.z, 2.3, 'idle', .75, -.4); KID.vis = true; swimmers(0, '');
-      cnt = String(Math.round(36 * eio((lt - .3) / 2.6))); cl = 'SHOCKED PEOPLE'; cnote = "WORLD'S BIGGEST POOL"; pop = lt > .4 && lt < 2.4 ? "WORLD'S BIGGEST POOL" : lt >= 2.4 ? 'LIFEGUARD: DRAKE' : ''; spdK = lt < 1.8 ? .8 * (1 - lt / 1.8) : 0;
+      cnt = String(Math.round(36 * eio((lt - .2) / 2.2))); cl = 'SHOCKED PEOPLE'; cnote = 'huge pool'; pop = lt > .3 ? 'LIFEGUARD: DRAKE' : ''; spdK = lt < 1.8 ? .8 * (1 - lt / 1.8) : 0;
     } else if (bi === 1) {
       // kid drowning, Drake sprints, jumps in, sits down next to him
-      const ts = 1.45, te = 3.0; const dx = K.x - 1.9, dz = K.z; let hx = CH.x, hz = CH.z, hy = SEATY(2.2), hs = 2.2, anim = 'sit', yaw = Math.atan2(K.x - CH.x, K.z - CH.z); const run = eio((lt - ts) / (te - ts));
+      const ts = .95, te = 2.1; const dx = K.x - 1.9, dz = K.z; let hx = CH.x, hz = CH.z, hy = SEATY(2.2), hs = 2.2, anim = 'sit', yaw = Math.atan2(K.x - CH.x, K.z - CH.z); const run = eio((lt - ts) / (te - ts));
       if (lt < ts) { put(H, CH.x, CH.z, yaw, 'sit', 2.2, SEATY(2.2)); H.arms = { lx: -2.5, rx: -2.5, lz: .2, rz: -.2 }; H.pitch = -.05; }
       else if (lt < te) { hx = lerp(CH.x, dx, run); hz = lerp(CH.z, dz, run); const air = clamp((lt - ts) / .5); hs = lerp(2.2, 1.6, air); const ground = air < 1 ? lerp(SEATY(2.2), 0, eio(air)) + Math.sin(air * Math.PI) * 1.2 : Math.abs(Math.sin(lt * 17)) * .3; hy = ground - (hz > 0 ? clamp((hz) / 5) * .5 : 0); put(H, hx, hz, Math.atan2(dx - CH.x, dz - CH.z), air < 1 ? 'jump' : 'sprint', hs, hy, 1.6); H.pitch = air < 1 ? 0 : .3; H.arms = null; spdK = 1; }
       else { const sd = eio((lt - te - .05) / 1.2); const sc = lerp(1.6, 1.5, sd); sit(H, dx, dz, Math.PI / 2, sc, lerp(-.55, -.74 * sc, sd)); H.arms = { lx: -1.1, rx: -1.1, lz: .05, rz: -.05 }; if (lt - te < .35) kidWave(dx, dz, 2.2); }
       if (lt > ts + .3 && lt < te + .5 && hz > 0 && hz < dz - 1) { for (let q = 0; q < 24; q++) { const u = (t * 2.4 + q / 24) % 1; spl.set(80 + q, hx + (Math.random() - .5) * 0, .1 + u * 1.6, hz - u * 1.2, .8 * (1 - u)); } }
       put(KID, K.x, K.z, -Math.PI / 2 + .3, 'panic', .75, -.42 + Math.abs(Math.sin(t * 6)) * .18); KID.vis = true; kidWave(K.x, K.z); ripple(K.x, K.z);
       bleachers('kid'); swimmers(0, '');
-      if (lt < 1.4) bk.show('HELP!!', K.x + 1.3, 3.6, K.z + .5); else if (lt > 4.9) bd.show('...', lt < 5.3 ? dx : dx, 4.6, dz + .5);
-      pop = lt < 1.45 ? 'KID DROWNING!!' : lt < 3.0 ? 'SPRINTING' : lt < 4.8 ? 'HE SITS.' : 'IN. THE. WATER.'; cl = 'DROWNING KIDS'; cnt = '1'; cnote = 'drake is on it'; hot = lt < 3;
-      const cp = [mix([-8, 18, 40, 0, 0, 8, 50, .12], [-6, 6, 8, 2, 3, 12, 56, -.08], eio(lt / 1.5)), mix([-12, 3.5, -8, 3, 1.5, 9, 52, -.08], [-9, 2.6, 13, 3, 1.8, 15, 56, .06], eio((lt - 1.4) / 1.8)), mix([-2, 3, 8, 3.5, 1.6, K.z, 48, .06], [-1.5, 3.4, K.z + 10, 4, 1.8, K.z, 44, -.07], eio((lt - 3) / 2.8))];
-      cam = lt < 1.5 ? cp[0] : lt < 3.0 ? cp[1] : cp[2]; focus = [3, 10];
+      if (lt < .9) bk.show('HELP!!', K.x + 1.3, 3.6, K.z + .5); else if (lt > 3.6) bd.show('...', dx + 1, 4.6, dz + .5);
+      pop = lt < .95 ? 'KID DROWNING!!' : lt < 2.1 ? 'SPRINTING' : lt < 3.4 ? 'HE SITS.' : 'IN. THE. WATER.'; cl = 'DROWNING KIDS'; cnt = '1'; cnote = 'drake is on it'; hot = lt < 2.1;
+      const cp = [mix([-8, 18, 40, 0, 0, 8, 50, .12], [-6, 6, 8, 2, 3, 12, 56, -.08], eio(lt / .95)), mix([-12, 3.5, -8, 3, 1.5, 9, 52, -.08], [-9, 2.6, 13, 3, 1.8, 15, 56, .06], eio((lt - .9) / 1.2)), mix([-2, 3, 8, 3.5, 1.6, K.z, 48, .06], [-1.5, 3.4, K.z + 10, 4, 1.8, K.z, 44, -.07], eio((lt - 2.1) / 2.3))];
+      cam = lt < .95 ? cp[0] : lt < 2.1 ? cp[1] : cp[2]; focus = [3, 10];
     } else if (bi === 2) {
       const dx = K.x - 1.9, dz = K.z; sit(H, dx, dz, Math.PI / 2, 1.5, -.74 * 1.5); H.arms = { lx: -1.3 + Math.sin(t * 3) * .1, rx: -1.0, lz: .1, rz: -.1 }; H.pitch = .12 + Math.sin(t * 2) * .03;
       put(KID, K.x, K.z, -Math.PI / 2 + .1, 'panic', .75, -.42 + Math.abs(Math.sin(t * 6)) * .18); KID.vis = true; kidWave(K.x, K.z, 1.1); ripple(K.x, K.z); ripple(dx, dz, 2);
       bleachers('kid'); swimmers(0, '');
-      if (lt > .5 && lt < 1.25) bd.show('how are you', dx + 1.2, 4.6, dz); else if (lt >= 1.25 && lt < 2.6) bd.show('REALLY feeling?', dx + 1.2, 4.6, dz); if (lt > 2.7) bk.show('GLUB', K.x + .5, 3.4, K.z + .3);
-      pop = lt < 2.4 ? 'HOW ARE YOU REALLY FEELING' : 'STILL DROWNING'; cl = 'KID STATUS'; cnt = 'DROWNING'; cnote = lt < 2.4 ? 'drake asks the real questions' : 'still drowning'; hot = lt > 2.4;
+      if (lt > .4 && lt < 1.1) bd.show('how are you', dx + 1.2, 4.6, dz); else if (lt >= 1.1 && lt < 2.2) bd.show('REALLY feeling?', dx + 1.2, 4.6, dz); if (lt > 2.3) bk.show('GLUB', K.x + .5, 3.4, K.z + .3);
+      pop = lt < 2.2 ? 'HOW ARE YOU REALLY FEELING' : 'STILL DROWNING'; cl = 'KID STATUS'; cnt = 'DROWNING'; cnote = lt < 2.2 ? 'drake asks the real questions' : 'still drowning'; hot = lt > 2.2;
       cam = mix([K.x - 6, 4.6, K.z + 11, K.x - .8, 2, K.z, 50, .1], [K.x - 3.3, 2.4, K.z + 5.5, K.x - .6, 2.0, K.z, 38, -.08], eio(p)); focus = [K.x, K.z];
     } else if (bi === 3) {
       const n = Math.round(100 * eio((lt - .5) / 2.7)); const dx = K.x - 1.9, dz = K.z;
@@ -112,29 +112,29 @@ export default async function build({ lib, tl, hud }) {
       cam = lt < 2.6 ? mix([-22, 32, 58, 0, 0, 16, 52, .12], [-10, 15, 40, 1, 0, 16, 50, -.09], eio(lt / 2.6)) : mix([-10, 15, 40, 1, 0, 16, 50, -.09], [-4, 7.5, 31, 2, 1.2, 17, 44, .08], eio((lt - 2.6) / 2.4)); focus = [0, 16];
     } else if (bi === 4) {
       // sad whistle: Drake back on the chair, droopy, cloud over his head, rings sag
-      const dr = eio(lt / 1.6); put(H, CH.x, CH.z, 0, 'sit', 2.2, SEATY(2.2)); H.pitch = .15 + .55 * dr; H.arms = { lx: lerp(-.3, .35, dr), rx: lerp(-.3, .3, dr), lz: -.2, rz: .2 };
+      const dr = eio(lt / 1.3); put(H, CH.x, CH.z, 0, 'sit', 2.2, SEATY(2.2)); H.pitch = .15 + .55 * dr; H.arms = { lx: lerp(-.3, .35, dr), rx: lerp(-.3, .3, dr), lz: -.2, rz: .2 };
       swimmers(100, 'cry'); bleachers('sad');
       look.update(); // placeholder to keep matrices fresh
       const hp = V2.setFromMatrixPosition(H.M.head); const wy = hp.y - .3;
       whistle.visible = lany.visible = true; whistle.position.set(hp.x, hp.y - .55, hp.z + 1.0); whistle.scale.setScalar(2.2); lany.position.set(hp.x, hp.y - 1.2, hp.z + .6); lany.scale.setScalar(2.4); lany.rotation.x = 1.2;
       cloud.visible = true; cloud.position.set(hp.x, hp.y + 2.4 + Math.sin(t * 2) * .12, hp.z); cloud.scale.setScalar(1.15);
       for (let q = 0; q < 36; q++) { const u = (t * 1.4 + q / 36) % 1; rain.set(q, hp.x + Math.sin(q * 5.1) * 1.7, hp.y + 2.0 - u * 3.6, hp.z + Math.cos(q * 3.3) * .9, u < .96 ? 1 : 0); }
-      for (let k = 0; k < 8; k++) { const u = (lt - .35 - k * .5) / 1.8; const m = rings[k]; if (u < 0 || u > 1) continue; m.visible = true; const r = .8 + u * 7; m.position.set(hp.x, hp.y - .5 - u * u * 2.6, hp.z + 1.2 + u * 6); m.scale.set(r, r * (1 - u * .35), r); m.material.opacity = (1 - u) * .95; m.material.color.setHex(k % 2 ? 0xffe9a0 : 0xffffff); m.rotation.x = -u * .8; }
-      pop = lt < 1.4 ? 'WHISTLE.' : 'SADDEST. WHISTLE. EVER.'; cl = 'SWIMMERS CRYING'; cnt = String(100 + Math.round(lt * 0)); cnote = 'it got worse'; hot = true;
+      for (let k = 0; k < 8; k++) { const u = (lt - .25 - k * .4) / 1.6; const m = rings[k]; if (u < 0 || u > 1) continue; m.visible = true; const r = .8 + u * 7; m.position.set(hp.x, hp.y - .5 - u * u * 2.6, hp.z + 1.2 + u * 6); m.scale.set(r, r * (1 - u * .35), r); m.material.opacity = (1 - u) * .95; m.material.color.setHex(k % 2 ? 0xffe9a0 : 0xffffff); m.rotation.x = -u * .8; }
+      pop = lt < 1.1 ? 'WHISTLE.' : 'SADDEST. WHISTLE. EVER.'; cl = 'SWIMMERS CRYING'; cnt = String(100 + Math.round(lt * 0)); cnote = 'it got worse'; hot = true;
       const u = eio(p * 1.1); cam = mix([2.4, 5.8, 3.5, -.2, 6.0, -2.5, 36, -.1], [16, 9, 22, -1, 4.2, -2, 46, .1], u); focus = [0, 8];
     } else {
       // kid hops out fine, hugs Drake; scoreboard flips to HUGS: 1
-      const hx = 3.4, hz = -1.6; const sc = 1.8; put(H, hx, hz, .1, 'idle', sc, 0, .5); H.pitch = lt > 2.3 ? .5 : .05; const hugT = 2.5;
-      const hug = eio((lt - 2.3) / .5);
-      if (lt < 1.1) { const u = lt / 1.1; put(KID, lerp(4.2, 3.9, u), lerp(3, -.6, u), Math.PI + .0, 'jump', .75, Math.sin(u * Math.PI) * 1.4 - lerp(.42, 0, eio(u * 2)), 1.2); }
-      else if (lt < hugT) { const u = (lt - 1.1) / (hugT - 1.1); put(KID, lerp(3.9, hx + .0, u), lerp(-.6, hz + 1.2, u), Math.PI + Math.sin(u * 3) * .1, 'run', .75, 0, 1.1); }
+      const hx = 3.4, hz = -1.6; const sc = 1.8; put(H, hx, hz, .1, 'idle', sc, 0, .5); H.pitch = lt > 1.5 ? .5 : .05; const hugT = 1.7;
+      const hug = eio((lt - 1.5) / .5);
+      if (lt < .7) { const u = lt / .7; put(KID, lerp(4.2, 3.9, u), lerp(3, -.6, u), Math.PI + .0, 'jump', .75, Math.sin(u * Math.PI) * 1.4 - lerp(.42, 0, eio(u * 2)), 1.2); }
+      else if (lt < hugT) { const u = (lt - .7) / (hugT - .7); put(KID, lerp(3.9, hx + .0, u), lerp(-.6, hz + 1.2, u), Math.PI + Math.sin(u * 3) * .1, 'run', .75, 0, 1.1); }
       else { put(KID, hx, hz + 1.25, Math.PI, 'idle', .75, .25 + Math.abs(Math.sin(t * 6)) * .1); KID.arms = { lx: -2.6, rx: -2.6, lz: .5, rz: -.5 }; }
       KID.vis = true; if (lt >= hugT) { H.arms = { lx: -1.35, rx: -1.35, lz: .5, rz: -.5 }; H.yaw = .1; }
       const hugs = lt >= hugT ? 1 : 0; const key = hugs + (lt > hugT && lt < hugT + .5 ? 'f' : ''); if (key !== sbState) { sbState = key; sbDraw(hugs, key.endsWith('f')); }
       if (hugs) { for (let q = 0; q < 30; q++) { const u = ((t * 1.3 + q / 30) % 1), a = q * 2.4; spl.set(q, hx + Math.cos(a) * 1.4, 3 + u * 5, hz + .6 + Math.sin(a) * .8, 0); } }
       bleachers('cheer'); swimmers(100, 'cheer');
-      pop = lt < 1.1 ? 'KID HOPS OUT' : lt < 2.3 ? 'NEVER DROWNING' : lt < 3.7 ? 'JUST WANTED A HUG' : 'DROWNING: 0   HUGS: 1'; cl = 'DROWNING / HUGS'; cnt = hugs ? '0 / 1' : '0 / 0'; cnote = hugs ? 'drake wins' : 'checking the board'; hot = hugs; spdK = lt < 1.0 ? .4 : 0;
-      cam = lt < 2.3 ? mix([-6, 7, 16, 3.5, 2.5, 0, 50, .1], [3.4, 4.8, 13, 3.4, 3.6, -2, 50, -.06], eio(lt / 2.3)) : mix([3.4, 4.8, 13, 3.4, 3.6, -2, 50, -.06], [3.2, 4.4, 9, 3.3, 3.2, -1.5, 40, .05], eio((lt - 2.3) / 3)); focus = [3, 0];
+      pop = lt < .7 ? 'KID HOPS OUT' : lt < 1.7 ? 'NEVER DROWNING' : lt < 2.7 ? 'JUST WANTED A HUG' : 'DROWNING: 0   HUGS: 1'; cl = 'DROWNING / HUGS'; cnt = hugs ? '0 / 1' : '0 / 0'; cnote = hugs ? 'drake wins' : 'checking the board'; hot = hugs; spdK = lt < .6 ? .4 : 0;
+      cam = lt < 1.5 ? mix([-6, 7, 16, 3.5, 2.5, 0, 50, .1], [3.4, 4.8, 13, 3.4, 3.6, -2, 50, -.06], eio(lt / 1.5)) : mix([3.4, 4.8, 13, 3.4, 3.6, -2, 50, -.06], [3.2, 4.4, 9, 3.3, 3.2, -1.5, 40, .05], eio((lt - 1.5) / 2.1)); focus = [3, 0];
     }
     // tears: fall from crying swimmers' faces
     crowd.update(t); look.update(); look.setVisible(H.vis);
@@ -144,7 +144,7 @@ export default async function build({ lib, tl, hud }) {
     // slight handheld drift keeps the camera alive
     const w = t * 1.7; st.cam(cam[0] + Math.sin(w) * .12, cam[1] + Math.cos(w * 1.3) * .08, cam[2], cam[3], cam[4], cam[5], cam[6], cam[7] + Math.sin(t * .9) * .008);
     speedLines(t, spdK); st.follow(focus[0], focus[1]); st.render();
-    hud.style('C'); hud.question(bi === 0 ? 'What if *Drake* was the lifeguard?' : '', bi === 0 ? 1 : 0);
+    hud.style('C'); hud.question(bi === 0 ? 'What if *Drake* became your lifeguard?' : '', bi === 0 ? 1 : 0);
     hud.counter(cl, cnt, cnote, 'PARODY', hot); hud.tm('');
     hud.pop(pop, pop ? Math.min(1, (lt % 1.4 + .5) * 3) : 0);
   } };
