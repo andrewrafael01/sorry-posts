@@ -1,6 +1,6 @@
 {
  "key": "615_whatif_scroll_loses_iq_v3",
- "dur": 52.5,
+ "dur": 21.75,
  "beats": [
   {
    "narr": "Holy shit. What if every scroll cost you one IQ point?",
@@ -62,12 +62,14 @@
      3.3200000000000003,
      3.8200000000000003
     ]
-   ]
+   ],
+   "srcStart": 0.0,
+   "srcDur": 4.5
   },
   {
    "narr": "IQ one twenty.",
    "start": 4.5,
-   "dur": 6.75,
+   "dur": 2.25,
    "words": [
     [
      "IQ",
@@ -84,12 +86,14 @@
      0.733204081632653,
      1.4640136054421768
     ]
-   ]
+   ],
+   "srcStart": 4.5,
+   "srcDur": 6.75
   },
   {
    "narr": "No cap. In an email.",
-   "start": 11.25,
-   "dur": 6.0,
+   "start": 6.75,
+   "dur": 2.25,
    "words": [
     [
      "No",
@@ -116,12 +120,14 @@
      1.48,
      1.6800000000000002
     ]
-   ]
+   ],
+   "srcStart": 11.25,
+   "srcDur": 6.0
   },
   {
    "narr": "Teacher is fifty four.",
-   "start": 17.25,
-   "dur": 6.75,
+   "start": 9.0,
+   "dur": 2.25,
    "words": [
     [
      "Teacher",
@@ -143,12 +149,14 @@
      1.090861678004535,
      1.5817233560090704
     ]
-   ]
+   ],
+   "srcStart": 17.25,
+   "srcDur": 6.75
   },
   {
    "narr": "Six seven. At a funeral.",
-   "start": 24.0,
-   "dur": 8.25,
+   "start": 11.25,
+   "dur": 3.0,
    "words": [
     [
      "Six",
@@ -175,12 +183,14 @@
      1.62,
      1.9
     ]
-   ]
+   ],
+   "srcStart": 24.0,
+   "srcDur": 8.25
   },
   {
    "narr": "A houseplant.",
-   "start": 32.25,
-   "dur": 6.75,
+   "start": 14.25,
+   "dur": 2.25,
    "words": [
     [
      "A",
@@ -192,24 +202,28 @@
      0.22,
      1.122675736961451
     ]
-   ]
+   ],
+   "srcStart": 32.25,
+   "srcDur": 6.75
   },
   {
    "narr": "Skibidi.",
-   "start": 39.0,
-   "dur": 8.25,
+   "start": 16.5,
+   "dur": 2.25,
    "words": [
     [
      "Skibidi.",
      0.12,
      0.949342403628118
     ]
-   ]
+   ],
+   "srcStart": 39.0,
+   "srcDur": 8.25
   },
   {
    "narr": "Touch grass.",
-   "start": 47.25,
-   "dur": 5.25,
+   "start": 18.75,
+   "dur": 3.0,
    "words": [
     [
      "Touch",
@@ -221,7 +235,9 @@
      0.28,
      0.5800000000000001
     ]
-   ]
+   ],
+   "srcStart": 47.25,
+   "srcDur": 5.25
   }
  ]
 }

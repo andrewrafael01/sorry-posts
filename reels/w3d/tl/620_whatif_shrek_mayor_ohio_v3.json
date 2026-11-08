@@ -1,6 +1,6 @@
 {
  "key": "620_whatif_shrek_mayor_ohio_v3",
- "dur": 51.75,
+ "dur": 18.0,
  "beats": [
   {
    "narr": "Holy shit. What if Shrek became the mayor of Ohio?",
@@ -57,12 +57,14 @@
      2.9,
      3.24
     ]
-   ]
+   ],
+   "srcStart": 0.0,
+   "srcDur": 3.75
   },
   {
    "narr": "No onions.",
    "start": 3.75,
-   "dur": 8.25,
+   "dur": 2.25,
    "words": [
     [
      "No",
@@ -74,12 +76,14 @@
      0.32,
      0.66
     ]
-   ]
+   ],
+   "srcStart": 3.75,
+   "srcDur": 8.25
   },
   {
    "narr": "Public swamp.",
-   "start": 12.0,
-   "dur": 8.25,
+   "start": 6.0,
+   "dur": 2.25,
    "words": [
     [
      "Public",
@@ -91,12 +95,14 @@
      0.4,
      0.7
     ]
-   ]
+   ],
+   "srcStart": 12.0,
+   "srcDur": 8.25
   },
   {
    "narr": "Four thousand emails.",
-   "start": 20.25,
-   "dur": 8.25,
+   "start": 8.25,
+   "dur": 2.25,
    "words": [
     [
      "Four",
@@ -113,12 +119,14 @@
      0.74,
      0.96
     ]
-   ]
+   ],
+   "srcStart": 20.25,
+   "srcDur": 8.25
   },
   {
    "narr": "Farquaad's cousin wins.",
-   "start": 28.5,
-   "dur": 9.0,
+   "start": 10.5,
+   "dur": 2.25,
    "words": [
     [
      "Farquaad's",
@@ -135,12 +143,14 @@
      0.82,
      1.2000000000000002
     ]
-   ]
+   ],
+   "srcStart": 28.5,
+   "srcDur": 9.0
   },
   {
    "narr": "Get out of my swamp.",
-   "start": 37.5,
-   "dur": 8.25,
+   "start": 12.75,
+   "dur": 2.25,
    "words": [
     [
      "Get",
@@ -167,12 +177,14 @@
      0.54,
      0.9
     ]
-   ]
+   ],
+   "srcStart": 37.5,
+   "srcDur": 8.25
   },
   {
    "narr": "Parking policy.",
-   "start": 45.75,
-   "dur": 6.0,
+   "start": 15.0,
+   "dur": 3.0,
    "words": [
     [
      "Parking",
@@ -184,7 +196,9 @@
      0.42,
      0.78
     ]
-   ]
+   ],
+   "srcStart": 45.75,
+   "srcDur": 6.0
   }
  ]
 }

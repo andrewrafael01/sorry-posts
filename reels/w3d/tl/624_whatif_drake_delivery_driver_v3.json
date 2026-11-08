@@ -1,6 +1,6 @@
 {
  "key": "624_whatif_drake_delivery_driver_v3",
- "dur": 48.75,
+ "dur": 19.5,
  "beats": [
   {
    "narr": "Holy shit. What if Drake became your delivery driver?",
@@ -52,12 +52,14 @@
      2.92,
      3.46
     ]
-   ]
+   ],
+   "srcStart": 0.0,
+   "srcDur": 4.5
   },
   {
    "narr": "Ding. Ding.",
    "start": 4.5,
-   "dur": 8.25,
+   "dur": 2.25,
    "words": [
     [
      "Ding.",
@@ -69,12 +71,14 @@
      0.72,
      1.2599999999999998
     ]
-   ]
+   ],
+   "srcStart": 4.5,
+   "srcDur": 8.25
   },
   {
    "narr": "Four page note.",
-   "start": 12.75,
-   "dur": 7.5,
+   "start": 6.75,
+   "dur": 2.25,
    "words": [
     [
      "Four",
@@ -91,12 +95,14 @@
      0.5,
      0.88
     ]
-   ]
+   ],
+   "srcStart": 12.75,
+   "srcDur": 7.5
   },
   {
    "narr": "Who's Karen.",
-   "start": 20.25,
-   "dur": 8.25,
+   "start": 9.0,
+   "dur": 2.25,
    "words": [
     [
      "Who's",
@@ -108,12 +114,14 @@
      0.38,
      0.6
     ]
-   ]
+   ],
+   "srcStart": 20.25,
+   "srcDur": 8.25
   },
   {
    "narr": "The owl.",
-   "start": 28.5,
-   "dur": 8.25,
+   "start": 11.25,
+   "dur": 2.25,
    "words": [
     [
      "The",
@@ -125,12 +133,14 @@
      0.24,
      0.48
     ]
-   ]
+   ],
+   "srcStart": 28.5,
+   "srcDur": 8.25
   },
   {
    "narr": "Five stars. Fired.",
-   "start": 36.75,
-   "dur": 9.0,
+   "start": 13.5,
+   "dur": 3.0,
    "words": [
     [
      "Five",
@@ -147,11 +157,13 @@
      0.7,
      1.8199999999999998
     ]
-   ]
+   ],
+   "srcStart": 36.75,
+   "srcDur": 9.0
   },
   {
    "narr": "No toothbrush.",
-   "start": 45.75,
+   "start": 16.5,
    "dur": 3.0,
    "words": [
     [
@@ -164,7 +176,9 @@
      0.3,
      0.82
     ]
-   ]
+   ],
+   "srcStart": 45.75,
+   "srcDur": 3.0
   }
  ]
 }

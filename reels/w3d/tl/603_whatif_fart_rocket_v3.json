@@ -1,6 +1,6 @@
 {
  "key": "603_whatif_fart_rocket_v3",
- "dur": 41.25,
+ "dur": 21.0,
  "beats": [
   {
    "narr": "Holy shit. What if every fart was twice as strong as the last?",
@@ -72,12 +72,14 @@
      3.8600000000000003,
      4.08
     ]
-   ]
+   ],
+   "srcStart": 0.0,
+   "srcDur": 4.5
   },
   {
    "narr": "Fart one.",
    "start": 4.5,
-   "dur": 5.25,
+   "dur": 2.25,
    "words": [
     [
      "Fart",
@@ -89,12 +91,14 @@
      0.36,
      1.0040136054421769
     ]
-   ]
+   ],
+   "srcStart": 4.5,
+   "srcDur": 5.25
   },
   {
    "narr": "Fart six.",
-   "start": 9.75,
-   "dur": 5.25,
+   "start": 6.75,
+   "dur": 2.25,
    "words": [
     [
      "Fart",
@@ -106,12 +110,14 @@
      0.567233560090703,
      1.014467120181406
     ]
-   ]
+   ],
+   "srcStart": 9.75,
+   "srcDur": 5.25
   },
   {
    "narr": "Fart ten.",
-   "start": 15.0,
-   "dur": 5.25,
+   "start": 9.0,
+   "dur": 2.25,
    "words": [
     [
      "Fart",
@@ -123,12 +129,14 @@
      0.33999999999999997,
      0.998344671201814
     ]
-   ]
+   ],
+   "srcStart": 15.0,
+   "srcDur": 5.25
   },
   {
    "narr": "Fart seventeen.",
-   "start": 20.25,
-   "dur": 6.0,
+   "start": 11.25,
+   "dur": 2.25,
    "words": [
     [
      "Fart",
@@ -140,12 +148,14 @@
      0.3,
      1.2899319727891156
     ]
-   ]
+   ],
+   "srcStart": 20.25,
+   "srcDur": 6.0
   },
   {
    "narr": "Fart twenty.",
-   "start": 26.25,
-   "dur": 5.25,
+   "start": 13.5,
+   "dur": 2.25,
    "words": [
     [
      "Fart",
@@ -157,12 +167,14 @@
      0.4843867243867244,
      1.122063492063492
     ]
-   ]
+   ],
+   "srcStart": 26.25,
+   "srcDur": 5.25
   },
   {
    "narr": "Fart twenty five.",
-   "start": 31.5,
-   "dur": 6.0,
+   "start": 15.75,
+   "dur": 2.25,
    "words": [
     [
      "Fart",
@@ -179,19 +191,23 @@
      0.846369820655535,
      1.3183446712018143
     ]
-   ]
+   ],
+   "srcStart": 31.5,
+   "srcDur": 6.0
   },
   {
    "narr": "Orbit.",
-   "start": 37.5,
-   "dur": 3.75,
+   "start": 18.0,
+   "dur": 3.0,
    "words": [
     [
      "Orbit.",
      0.12,
      0.38
     ]
-   ]
+   ],
+   "srcStart": 37.5,
+   "srcDur": 3.75
   }
  ]
 }

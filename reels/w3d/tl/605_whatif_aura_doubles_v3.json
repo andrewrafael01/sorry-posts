@@ -1,6 +1,6 @@
 {
  "key": "605_whatif_aura_doubles_v3",
- "dur": 47.25,
+ "dur": 20.25,
  "beats": [
   {
    "narr": "Holy shit. What if your aura doubled every minute?",
@@ -52,12 +52,14 @@
      2.8000000000000003,
      3.2
     ]
-   ]
+   ],
+   "srcStart": 0.0,
+   "srcDur": 3.75
   },
   {
    "narr": "Starbucks knows.",
    "start": 3.75,
-   "dur": 6.75,
+   "dur": 2.25,
    "words": [
     [
      "Starbucks",
@@ -69,12 +71,14 @@
      0.42,
      1.3002947845804989
     ]
-   ]
+   ],
+   "srcStart": 3.75,
+   "srcDur": 6.75
   },
   {
    "narr": "Pigeons bring bread.",
-   "start": 10.5,
-   "dur": 5.25,
+   "start": 6.0,
+   "dur": 2.25,
    "words": [
     [
      "Pigeons",
@@ -91,12 +95,14 @@
      0.7,
      1.0
     ]
-   ]
+   ],
+   "srcStart": 10.5,
+   "srcDur": 5.25
   },
   {
    "narr": "He apologizes to the floor.",
-   "start": 15.75,
-   "dur": 6.75,
+   "start": 8.25,
+   "dur": 2.25,
    "words": [
     [
      "He",
@@ -123,12 +129,14 @@
      1.3599999999999999,
      1.56
     ]
-   ]
+   ],
+   "srcStart": 15.75,
+   "srcDur": 6.75
   },
   {
    "narr": "Your ex asks permission.",
-   "start": 22.5,
-   "dur": 6.0,
+   "start": 10.5,
+   "dur": 2.25,
    "words": [
     [
      "Your",
@@ -150,12 +158,14 @@
      0.92,
      1.1400000000000001
     ]
-   ]
+   ],
+   "srcStart": 22.5,
+   "srcDur": 6.0
   },
   {
    "narr": "The sun dims.",
-   "start": 28.5,
-   "dur": 5.25,
+   "start": 12.75,
+   "dur": 2.25,
    "words": [
     [
      "The",
@@ -172,12 +182,14 @@
      0.38,
      0.98
     ]
-   ]
+   ],
+   "srcStart": 28.5,
+   "srcDur": 5.25
   },
   {
    "narr": "Cars orbit you.",
-   "start": 33.75,
-   "dur": 6.75,
+   "start": 15.0,
+   "dur": 2.25,
    "words": [
     [
      "Cars",
@@ -194,12 +206,14 @@
      0.72,
      1.0
     ]
-   ]
+   ],
+   "srcStart": 33.75,
+   "srcDur": 6.75
   },
   {
    "narr": "A gas giant.",
-   "start": 40.5,
-   "dur": 6.75,
+   "start": 17.25,
+   "dur": 3.0,
    "words": [
     [
      "A",
@@ -216,7 +230,9 @@
      0.4,
      0.82
     ]
-   ]
+   ],
+   "srcStart": 40.5,
+   "srcDur": 6.75
   }
  ]
 }

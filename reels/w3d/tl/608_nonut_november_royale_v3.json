@@ -1,6 +1,6 @@
 {
  "key": "608_nonut_november_royale_v3",
- "dur": 48.0,
+ "dur": 21.0,
  "beats": [
   {
    "narr": "Holy shit. What if a hundred guys entered No Nut November?",
@@ -62,12 +62,14 @@
      3.54,
      3.8200000000000003
     ]
-   ]
+   ],
+   "srcStart": 0.0,
+   "srcDur": 4.5
   },
   {
    "narr": "Frank quits.",
    "start": 4.5,
-   "dur": 6.75,
+   "dur": 2.25,
    "words": [
     [
      "Frank",
@@ -79,24 +81,28 @@
      0.33999999999999997,
      1.0543083900226757
     ]
-   ]
+   ],
+   "srcStart": 4.5,
+   "srcDur": 6.75
   },
   {
    "narr": "Wifi.",
-   "start": 11.25,
-   "dur": 7.5,
+   "start": 6.75,
+   "dur": 2.25,
    "words": [
     [
      "Wifi.",
      0.12,
      0.9610204081632653
     ]
-   ]
+   ],
+   "srcStart": 11.25,
+   "srcDur": 7.5
   },
   {
    "narr": "The package.",
-   "start": 18.75,
-   "dur": 7.5,
+   "start": 9.0,
+   "dur": 2.25,
    "words": [
     [
      "The",
@@ -108,12 +114,14 @@
      0.22,
      0.54
     ]
-   ]
+   ],
+   "srcStart": 18.75,
+   "srcDur": 7.5
   },
   {
    "narr": "A warm shower.",
-   "start": 26.25,
-   "dur": 6.0,
+   "start": 11.25,
+   "dur": 2.25,
    "words": [
     [
      "A",
@@ -130,12 +138,14 @@
      0.4,
      0.76
     ]
-   ]
+   ],
+   "srcStart": 26.25,
+   "srcDur": 6.0
   },
   {
    "narr": "He's crying.",
-   "start": 32.25,
-   "dur": 6.75,
+   "start": 13.5,
+   "dur": 2.25,
    "words": [
     [
      "He's",
@@ -147,12 +157,14 @@
      0.33999999999999997,
      0.56
     ]
-   ]
+   ],
+   "srcStart": 32.25,
+   "srcDur": 6.75
   },
   {
    "narr": "Wins nothing.",
-   "start": 39.0,
-   "dur": 6.0,
+   "start": 15.75,
+   "dur": 2.25,
    "words": [
     [
      "Wins",
@@ -164,11 +176,13 @@
      0.32,
      0.7
     ]
-   ]
+   ],
+   "srcStart": 39.0,
+   "srcDur": 6.0
   },
   {
    "narr": "Back at it.",
-   "start": 45.0,
+   "start": 18.0,
    "dur": 3.0,
    "words": [
     [
@@ -186,7 +200,9 @@
      0.52,
      0.74
     ]
-   ]
+   ],
+   "srcStart": 45.0,
+   "srcDur": 3.0
   }
  ]
 }
