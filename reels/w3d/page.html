@@ -47,7 +47,7 @@ body.egypt #lab{top:268px;font-size:24px}body.egypt #val{top:296px;font-size:104
 body.egypt #q{top:330px;font-size:78px;opacity:.9}
 #lab,#val,#note,#tag{text-shadow:0 2px 6px rgba(0,0,0,.7),0 0 16px rgba(0,0,0,.45)}
 </style></head><body>
-<canvas id="c" width="1080" height="1920"></canvas><div class="vig"></div>
+<canvas id="c" width="1080" height="1920"></canvas><canvas id="fx" width="1080" height="1920" style="position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none"></canvas><div class="vig"></div>
 <div class="t" id="q"></div><div class="t" id="lab"></div><div class="t" id="val"></div><div class="t" id="note"></div><div class="t" id="tag"></div><div class="t" id="cap"></div><div class="t" id="big"></div><div class="t" id="tm"></div><div class="t" id="alive"><small>ALIVE</small><b id="aliveN">100</b></div><div class="t" id="day"></div><div class="t" id="feed"></div><div class="t" id="mm"><span>ISLAND</span><i></i><u id="mmdot"></u></div><div class="t" id="pop"></div>
 <script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
 <script type="module">
@@ -76,14 +76,34 @@ function chunkFor(beat, lt) {
 const tlSrc = { ...tl, dur: tl.beats.reduce((a, b) => Math.max(a, (b.srcStart ?? b.start) + (b.srcDur ?? b.dur)), 0), beats: tl.beats.map((b) => ({ ...b, start: b.srcStart ?? b.start, dur: b.srcDur ?? b.dur })) };
 const ctx = await mod.default({ lib, tl: tlSrc, hud });
 const HOOK = 1.2, hookOn = /^holy shit/i.test((tl.beats[0].narr || '').trim());
+
+// MrBeast-style finale: flash, shake, punch-in zoom, light rays, confetti burst on the last beat (deterministic per frame)
+const FXc = document.getElementById('fx'), FXg = FXc.getContext('2d'), CVS = document.getElementById('c');
+const fxRand = (i) => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+function finaleFx(on, lt, dur) {
+  FXg.clearRect(0, 0, 1080, 1920);
+  if (!on || tl.finale === false) { CVS.style.transform = ''; return; }
+  const k = Math.min(1, lt / dur), env = Math.max(0, 1 - lt / 0.9);
+  const sx = Math.sin(lt * 47) * 14 * env, sy = Math.cos(lt * 53) * 14 * env, z = 1 + 0.10 * Math.min(1, lt / 0.35) * (1 - .2 * k) + 0.05 * k;
+  CVS.style.transform = `translate(${sx}px,${sy}px) scale(${z})`;
+  // rays
+  FXg.save(); FXg.translate(540, 900); FXg.rotate(lt * .25); const ra = Math.min(.32, lt * 1.2) * (1 - .4 * k);
+  for (let i = 0; i < 14; i++) { FXg.rotate(Math.PI * 2 / 14); FXg.fillStyle = `rgba(255,224,90,${ra * .55})`; FXg.beginPath(); FXg.moveTo(0, 0); FXg.lineTo(-70, -1700); FXg.lineTo(70, -1700); FXg.closePath(); FXg.fill(); } FXg.restore();
+  // confetti
+  const cols = ['#ffd92a', '#ff3b3b', '#3bd1ff', '#6dff6d', '#ff6bd6', '#ffffff'];
+  for (let i = 0; i < 90; i++) { const a = fxRand(i) * Math.PI * 2, v = 500 + fxRand(i + 99) * 900, tt = Math.max(0, lt - .05); const x = 540 + Math.cos(a) * v * tt * .9, y = 1000 + Math.sin(a) * v * tt * .9 + 900 * tt * tt - 200 * tt; if (tt > 0 && y < 2000 && x > -40 && x < 1120) { FXg.save(); FXg.translate(x, y); FXg.rotate(tt * 9 + i); FXg.fillStyle = cols[i % 6]; FXg.fillRect(-9, -5, 18, 10); FXg.restore(); } }
+  // flash
+  const fl = Math.max(0, 1 - lt / .28); if (fl > 0) { FXg.fillStyle = `rgba(255,255,255,${fl * .85})`; FXg.fillRect(0, 0, 1080, 1920); }
+}
 window.drawFrame = (t) => {
   // cold open: the first second shows the reel's climax under the question, then cuts to the start (shock in frame one)
-  if (hookOn && t < HOOK) { const L = tlSrc.beats[tlSrc.beats.length - 1]; const tc = (typeof tl.hookT === 'number') ? tl.hookT : L.start + Math.min(2.2, L.dur * .55); let bj = 0; for (let i = 0; i < tlSrc.beats.length; i++) if (tc >= tlSrc.beats[i].start) bj = i; const bb = tlSrc.beats[bj]; const lt2 = tc - bb.start, p2 = Math.min(1, lt2 / bb.dur);
+  if (hookOn && t < HOOK) { finaleFx(false); const L = tlSrc.beats[tlSrc.beats.length - 1]; const tc = (typeof tl.hookT === 'number') ? tl.hookT : L.start + Math.min(2.2, L.dur * .55); let bj = 0; for (let i = 0; i < tlSrc.beats.length; i++) if (tc >= tlSrc.beats[i].start) bj = i; const bb = tlSrc.beats[bj]; const lt2 = tc - bb.start, p2 = Math.min(1, lt2 / bb.dur);
     ctx.frame({ t: tc, bi: bj, beat: bb, lt: lt2, p: p2, tl: tlSrc, ck: chunkFor(tl.beats[bj], lt2 * (tl.beats[bj].dur / bb.dur)), hud }); hud.style && hud.style('C'); hud.question((tl.beats[0].narr || '').replace(/^[^.]*\.\s*/, ''), 1, false); hud.counter('', '', ''); hud.tm && hud.tm(''); hud.pop && hud.pop('', 0); hud.caption('Holy shit.', 1); return true; }
   let bi = 0; for (let i = 0; i < tl.beats.length; i++) if (t >= tl.beats[i].start) bi = i; const b = tl.beats[bi]; const lt = t - b.start, p = Math.min(1, lt / b.dur);
   const ck = chunkFor(b, lt); hud.caption(ck.text, ck.a * Math.min(1, (tl.dur - t) / .3));
   const sS = b.srcStart ?? b.start, sD = b.srcDur ?? b.dur, ts = sS + p * sD, lts = p * sD; const sb = tlSrc.beats[bi];
   ctx.frame({ t: ts, bi, beat: sb, lt: lts, p, tl: tlSrc, ck, hud });
+  finaleFx(bi === tl.beats.length - 1 && tl.beats.length > 3, lt, b.dur);
   return true;
 };
 window.ready = true;
