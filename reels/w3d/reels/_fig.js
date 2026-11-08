@@ -10,6 +10,6 @@ export function makeFig(lib, S, o = {}) {
   const AL = mkArm(-.36), AR = mkArm(.36);
   const eyeMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: .3 }), irisMat = new THREE.MeshBasicMaterial({ color: 0x2a5fa8 }), pupMat = new THREE.MeshBasicMaterial({ color: 0x050505 });
   const mkEye = (hand, s = 1) => { const e = new THREE.Group(); e.position.set(0, -.04, .06); hand.add(e); const w = new THREE.Mesh(new THREE.SphereGeometry(.07 * s, 16, 12), eyeMat); e.add(w); const ir = new THREE.Mesh(new THREE.CircleGeometry(.04 * s, 16), irisMat); ir.position.z = .066 * s; e.add(ir); const pu = new THREE.Mesh(new THREE.CircleGeometry(.02 * s, 12), pupMat); pu.position.z = .067 * s; e.add(pu); const lid = new THREE.Mesh(new THREE.SphereGeometry(.073 * s, 16, 12, 0, 6.283, 0, 1.57), mat(0xe6c3a0)); lid.rotation.x = Math.PI / 2; lid.position.z = .0; lid.scale.set(1, 1, .01); e.userData = { lid: null, iris: ir, pup: pu, w }; return e; };
-  const eyes = o.eyesOnHands ? [mkEye(AL.hand, 2.2), mkEye(AR.hand, 2.2)] : [];
+  const eyes = o.eyesOnHands ? [mkEye(AL.hand, 1.6), mkEye(AR.hand, 1.6)] : [];
   return { g, hips, torso, head, L, R: Rg, AL, AR, eyes, set(s) { g.position.set(s.x ?? 0, s.y ?? 0, s.z ?? 0); g.rotation.y = s.yaw ?? 0; } };
 }

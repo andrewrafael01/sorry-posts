@@ -18,7 +18,7 @@ export default async function build({ lib, tl, hud }) {
     else if (bi === 2) { const c = Math.abs(Math.sin(t * 5)); F.AL.up.rotation.z = -(lerp(.2, -.9, c)); F.AR.up.rotation.z = -(lerp(-.2, .9, c)); F.AL.up.rotation.x = -1.4; F.AR.up.rotation.x = -1.4; F.AL.fo.rotation.x = 0; F.AR.fo.rotation.x = 0; F.eyes.forEach((e) => { shut(e, c > .8 ? 1 : c * .6); e.scale.x = 1 + c * .3; }); cam = [0, 1.6, 5.2, 0, 1.45, 0, 42]; }
     else if (bi === 3) { G.g.visible = true; G.set({ x: 1.2, z: 0, yaw: -Math.PI / 2 - .3 }); const c = Math.abs(Math.sin(t * 4)); F.AR.up.rotation.z = -(-2.5 + c * .5); F.AR.up.rotation.x = 0; F.AR.fo.rotation.x = 0; G.AL.up.rotation.z = -(1.6 - c * .3); G.AL.up.rotation.x = 0; G.AL.fo.rotation.x = 0; shut(F.eyes[1], c > .85 ? 1 : 0); look(F.eyes[1], 0, 0); F.eyes[0].scale.set(1, 1, 1); cam = [-1.4, 1.7, 5.4, 0, 1.6, 0, 44]; }
     else if (bi === 4) { F.AR.up.rotation.x = -1.9 + Math.sin(t * 3) * .12; F.AR.up.rotation.z = -(0); F.AR.fo.rotation.x = -1.4; F.AR.hand.rotation.x = 0; look(F.eyes[1], 0, 1.3, 1); look(F.eyes[0], 0, 0); cam = [0, 1.9, 3.6, 0, 1.75, 0, 38]; }
-    st.cam(...cam); st.follow(0, 0); st.render();
+    st.cam(...cam); st.follow(0, 0); S.updateMatrixWorld(true); F.eyes.forEach((e) => { const sx = e.scale.x, sy = e.scale.y; e.lookAt(st.camera.position); e.scale.x = sx; e.scale.y = sy; }); st.render();
     hud.style('C'); hud.question(bi === 0 ? 'What if your eyes were on your *hands*?' : '', bi === 0 ? 1 : 0);
     if (bi === 0) hud.counter('', '', ''); else hud.counter('Subject: Gary', LAB[bi], NOTE[bi], 'CLINICAL FOOTAGE', bi >= 3); hud.tm(''); hud.pop('', 0);
   } };
