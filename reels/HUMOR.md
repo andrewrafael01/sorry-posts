@@ -5,6 +5,9 @@ Research notes: brainrot works as anti-humor against predictable jokes, as in-gr
 (capcut.com/resource/brainrot-meme, dazeddigital.com brainrot article). Sketch craft: game of the scene, heighten, rule of three,
 misdirection, specificity (comedipedia / writingworkshops / Ken Levine "rule of 3s").
 
+## The format (user-approved, overrides everything below)
+Every script is: **"Holy shit. What if <premise>?"** then 4-5 one-word labels ("Stroke one." "Stroke four." ...). Nothing else is spoken. No quips, no characters talking, no story. The visuals do the shock. Example: "Holy shit. What if every time you stroked your dick, you went twice as fast?"
+
 ## The hook rule (first second)
 The first spoken words must be the shock, not the setup: open on the payoff image/line, then ask the what-if. Cursing is allowed and works (adult account): "Holy shit, that sneeze just launched my neighbor. What if every sneeze doubled?" The first frame shows the climax image + hook text, not the calm start. No logo, no throat-clearing, no "What if" alone as line one.
 

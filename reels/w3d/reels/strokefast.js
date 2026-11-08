@@ -3,7 +3,7 @@ import { beachWorld } from './_beachworld.js';
 // What if every time you stroked X (beard / cat / goat) you went twice as fast? Doubling speed run, speed lines, crowd blown over, sonic ring. Config by key.
 export default async function build({ lib, tl, hud }) {
   const { THREE, mat, Particles, clamp, smooth, lerp, attach } = lib; const W = beachWorld(lib, { n: 24 }); const st = W.st, S = W.S; const F = makeFig(lib, S);
-  const KEY = tl.key || ''; const KIND = KEY.includes('cat') ? 'cat' : KEY.includes('goat') ? 'goat' : KEY.includes('dick') ? 'sprint' : 'beard';
+  const KEY = tl.key || ''; const KIND = KEY.includes('cat') ? 'cat' : KEY.includes('goat') ? 'goat' : (KEY.includes('dick') || KEY.includes('sprint')) ? 'sprint' : 'beard';
   const pet0 = () => {}; const beard = new THREE.Mesh(new THREE.BoxGeometry(.34, .3, .1), mat(0x6a4a2a)); beard.visible = KIND === 'beard'; S.add(beard); pet0();
   const pet = new THREE.Group(); { const wh = KIND === 'cat' ? 0xe8a24a : 0xf2efe6; const b = new THREE.Mesh(new THREE.BoxGeometry(.3, .26, .5), mat(wh)); b.position.y = .3; const h = new THREE.Mesh(new THREE.BoxGeometry(.22, .2, .22), mat(wh)); h.position.set(0, .45, .3); for (const sx of [-1, 1]) { const e = new THREE.Mesh(new THREE.ConeGeometry(.05, .12, 4), mat(wh)); e.position.set(sx * .07, .6, .3); pet.add(e); if (KIND === 'goat') { const hn = new THREE.Mesh(new THREE.ConeGeometry(.03, .16, 5), mat(0x8a7a60)); hn.position.set(sx * .08, .63, .27); hn.rotation.z = -sx * .4; pet.add(hn); } } const t = new THREE.Mesh(new THREE.BoxGeometry(.05, .05, .3), mat(wh)); t.position.set(0, .4, -.35); pet.add(b, h, t); pet.traverse((m) => (m.castShadow = true)); pet.scale.setScalar(1.6); pet.visible = KIND === 'cat' || KIND === 'goat'; S.add(pet); }
   const lines = new THREE.InstancedMesh(new THREE.BoxGeometry(.02, .02, 1), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .7 }), 60); lines.frustumCulled = false; S.add(lines); const ring = new THREE.Mesh(new THREE.TorusGeometry(1, .06, 8, 40), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true })); ring.visible = false; S.add(ring); const D = new THREE.Object3D();
@@ -19,7 +19,7 @@ export default async function build({ lib, tl, hud }) {
     for (let i = 0; i < 60; i++) { const u = ((t * (1 + n * .4) + i * .137) % 1); D.position.set(x - 1.2 - (1 - u) * 3 * (1 + n * .2), .3 + (i % 11) * .18, -.9 - (i % 7) * .1); D.rotation.y = Math.PI / 2; D.scale.set(1, 1, .5 + n * .35); D.updateMatrix(); lines.setMatrixAt(i, D.matrix); D.position.y = -9; } lines.instanceMatrix.needsUpdate = true; lines.visible = n > 3;
     ring.visible = bi === 5 && lt > .8; if (ring.visible) { ring.position.set(x, 1, 0); ring.rotation.y = 0; ring.scale.setScalar(1 + (lt - .8) * 9); ring.material.opacity = clamp(1 - (lt - .8) * .6); }
     W.update(t, bi >= 4 ? 2 : bi >= 2 ? 1 : 0, [0, 4.5], 1); st.cam(...cam); st.follow(x, 0); st.render();
-    hud.style('C'); hud.question(bi === 0 ? 'What if every time you stroked your *' + (KIND === 'cat' ? 'cat' : KIND === 'goat' ? 'goat' : KIND === 'sprint' ? 'dick' : 'beard') + '*, you went twice as fast?' : '', bi === 0 ? 1 : 0);
+    hud.style('C'); hud.question(bi === 0 ? (tl.beats[0].narr || '').replace(/^[^.]*\.\s*/, '') : '', bi === 0 ? 1 : 0);
     if (bi === 0) hud.counter('', '', ''); else hud.counter('Speed · stroke ' + Math.round(n), MPH(n) + ' mph', NOTE[bi], '×2 every stroke', bi >= 4); hud.tm(''); hud.pop('', 0);
   } };
 }

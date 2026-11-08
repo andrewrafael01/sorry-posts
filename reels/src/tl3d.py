@@ -9,6 +9,9 @@ from motion import Clean
 SR = reel.SR
 def export(key, num, narrs, out, style="cine", gain=.35):
     shots = [Clean(n, lambda *a: None, 3.0, cut="cut", push=0, cap=False) for n in narrs]
+    mins = json.loads(os.environ.get('MIN_DURS', '[]'))
+    for i, m in enumerate(mins[:len(shots)]):
+        shots[i].min_dur = float(m); shots[i].fit_speech = True; shots[i].pad = .35
     r = reel.Reel(key, shots, style=style, seed=num, gain_music=gain, snap=False, grid=0, safe_zone=False, vo=[(i, n) for i, n in enumerate(narrs)], title=key, caption="x", story="3d")
     beats = []
     for s, t0 in zip(r.shots, r.starts):
