@@ -55,79 +55,114 @@
    ]
   },
   {
-   "narr": "Attendance.",
+   "narr": "Sorry, Dylan.",
    "start": 4.285714285714286,
    "dur": 8.571428571428571,
    "words": [
     [
-     "Attendance.",
+     "Sorry,",
      0.12,
-     0.68
+     0.38
+    ],
+    [
+     "Dylan.",
+     0.38,
+     0.7
     ]
    ]
   },
   {
-   "narr": "Homework.",
+   "narr": "In rhyme.",
    "start": 12.857142857142858,
    "dur": 10.0,
    "words": [
     [
-     "Homework.",
+     "In",
      0.12,
-     0.4
+     0.24
+    ],
+    [
+     "rhyme.",
+     0.24,
+     0.8
     ]
    ]
   },
   {
-   "narr": "Pop quiz.",
+   "narr": "Everyone gets an A.",
    "start": 22.857142857142858,
    "dur": 6.428571428571429,
    "words": [
     [
-     "Pop",
+     "Everyone",
      0.12,
-     0.3
+     0.4
     ],
     [
-     "quiz.",
-     0.3,
-     0.64
+     "gets",
+     0.4,
+     0.78
+    ],
+    [
+     "an",
+     0.78,
+     0.98
+    ],
+    [
+     "A.",
+     0.98,
+     1.1600000000000001
     ]
    ]
   },
   {
-   "narr": "Detention.",
+   "narr": "Candlelit detention.",
    "start": 29.285714285714285,
    "dur": 6.428571428571429,
    "words": [
     [
-     "Detention.",
+     "Candlelit",
      0.12,
-     0.54
+     0.56
+    ],
+    [
+     "detention.",
+     0.56,
+     0.9
     ]
    ]
   },
   {
-   "narr": "Principal.",
+   "narr": "Principal resigns.",
    "start": 35.714285714285715,
    "dur": 7.857142857142858,
    "words": [
     [
-     "Principal.",
+     "Principal",
      0.12,
-     0.52
+     0.48
+    ],
+    [
+     "resigns.",
+     0.48,
+     1.3199999999999998
     ]
    ]
   },
   {
-   "narr": "Dylan.",
+   "narr": "Dylan's absent.",
    "start": 43.57142857142857,
    "dur": 7.142857142857143,
    "words": [
     [
-     "Dylan.",
+     "Dylan's",
      0.12,
-     0.36
+     0.52
+    ],
+    [
+     "absent.",
+     0.52,
+     0.88
     ]
    ]
   }

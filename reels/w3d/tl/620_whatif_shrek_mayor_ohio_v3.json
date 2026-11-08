@@ -60,74 +60,129 @@
    ]
   },
   {
-   "narr": "Onions.",
+   "narr": "No onions.",
    "start": 3.75,
    "dur": 8.25,
    "words": [
     [
-     "Onions.",
+     "No",
      0.12,
-     0.48
+     0.32
+    ],
+    [
+     "onions.",
+     0.32,
+     0.66
     ]
    ]
   },
   {
-   "narr": "Swamp.",
+   "narr": "Public swamp.",
    "start": 12.0,
    "dur": 8.25,
    "words": [
     [
-     "Swamp.",
+     "Public",
      0.12,
-     0.33999999999999997
+     0.4
+    ],
+    [
+     "swamp.",
+     0.4,
+     0.7
     ]
    ]
   },
   {
-   "narr": "Donkey.",
+   "narr": "Four thousand emails.",
    "start": 20.25,
    "dur": 8.25,
    "words": [
     [
-     "Donkey.",
+     "Four",
      0.12,
-     0.42
+     0.32666666666666666
+    ],
+    [
+     "thousand",
+     0.32666666666666666,
+     0.74
+    ],
+    [
+     "emails.",
+     0.74,
+     0.96
     ]
    ]
   },
   {
-   "narr": "Election.",
+   "narr": "Farquaad's cousin wins.",
    "start": 28.5,
    "dur": 9.0,
    "words": [
     [
-     "Election.",
+     "Farquaad's",
      0.12,
-     0.44
+     0.54
+    ],
+    [
+     "cousin",
+     0.54,
+     0.82
+    ],
+    [
+     "wins.",
+     0.82,
+     1.2000000000000002
     ]
    ]
   },
   {
-   "narr": "Welcome.",
+   "narr": "Get out of my swamp.",
    "start": 37.5,
    "dur": 8.25,
    "words": [
     [
-     "Welcome.",
+     "Get",
      0.12,
-     0.48
+     0.26
+    ],
+    [
+     "out",
+     0.26,
+     0.36
+    ],
+    [
+     "of",
+     0.36,
+     0.44
+    ],
+    [
+     "my",
+     0.44,
+     0.54
+    ],
+    [
+     "swamp.",
+     0.54,
+     0.9
     ]
    ]
   },
   {
-   "narr": "Parking.",
+   "narr": "Parking policy.",
    "start": 45.75,
    "dur": 6.0,
    "words": [
     [
-     "Parking.",
+     "Parking",
      0.12,
-     0.48
+     0.42
+    ],
+    [
+     "policy.",
+     0.42,
+     0.78
     ]
    ]
   }

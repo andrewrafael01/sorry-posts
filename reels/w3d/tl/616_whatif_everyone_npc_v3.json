@@ -65,74 +65,124 @@
    ]
   },
   {
-   "narr": "Monday.",
+   "narr": "Nice weather today.",
    "start": 4.615384615384616,
    "dur": 6.923076923076923,
    "words": [
     [
-     "Monday.",
+     "Nice",
      0.12,
-     0.38
+     0.32
+    ],
+    [
+     "weather",
+     0.32,
+     0.56
+    ],
+    [
+     "today.",
+     0.56,
+     0.96
     ]
    ]
   },
   {
-   "narr": "Tuesday.",
+   "narr": "I'm just a girl.",
    "start": 11.53846153846154,
    "dur": 6.923076923076923,
    "words": [
     [
-     "Tuesday.",
+     "I'm",
      0.12,
+     0.3
+    ],
+    [
+     "just",
+     0.3,
      0.5
+    ],
+    [
+     "a",
+     0.5,
+     0.62
+    ],
+    [
+     "girl.",
+     0.62,
+     0.9
     ]
    ]
   },
   {
-   "narr": "Wednesday.",
+   "narr": "Hello traveler.",
    "start": 18.461538461538463,
    "dur": 6.153846153846154,
    "words": [
     [
-     "Wednesday.",
+     "Hello",
      0.12,
-     0.44
+     0.33999999999999997
+    ],
+    [
+     "traveler.",
+     0.46,
+     0.94
     ]
    ]
   },
   {
-   "narr": "Thursday.",
+   "narr": "Nobody blinks.",
    "start": 24.615384615384617,
    "dur": 8.461538461538462,
    "words": [
     [
-     "Thursday.",
+     "Nobody",
      0.12,
-     0.5
+     0.38
+    ],
+    [
+     "blinks.",
+     0.38,
+     0.9
     ]
    ]
   },
   {
-   "narr": "Friday.",
+   "narr": "Greg says help.",
    "start": 33.07692307692308,
    "dur": 7.6923076923076925,
    "words": [
     [
-     "Friday.",
+     "Greg",
      0.12,
-     0.4
+     0.32
+    ],
+    [
+     "says",
+     0.32,
+     0.54
+    ],
+    [
+     "help.",
+     0.54,
+     0.9
     ]
    ]
   },
   {
-   "narr": "Saturday.",
+   "narr": "Same tree.",
    "start": 40.769230769230774,
    "dur": 7.6923076923076925,
    "words": [
     [
-     "Saturday.",
+     "Same",
      0.12,
-     0.42
+     0.36
+    ],
+    [
+     "tree.",
+     0.36,
+     0.5800000000000001
     ]
    ]
   },

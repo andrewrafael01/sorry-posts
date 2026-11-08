@@ -45,111 +45,141 @@
    ]
   },
   {
-   "narr": "Denied.",
+   "narr": "Not born here.",
    "start": 3.333333333333333,
    "dur": 6.0,
    "words": [
     [
-     "Denied.",
+     "Not",
      0.12,
      0.33999999999999997
+    ],
+    [
+     "born",
+     0.33999999999999997,
+     0.54
+    ],
+    [
+     "here.",
+     0.54,
+     0.88
     ]
    ]
   },
   {
-   "narr": "Fourteen pages.",
+   "narr": "Fourteen apologies.",
    "start": 9.333333333333332,
    "dur": 8.0,
    "words": [
     [
      "Fourteen",
      0.12,
-     0.42
+     0.36
     ],
     [
-     "pages.",
-     0.42,
-     0.74
+     "apologies.",
+     0.36,
+     1.0
     ]
    ]
   },
   {
-   "narr": "Approved.",
+   "narr": "Citizenship approved.",
    "start": 17.333333333333332,
    "dur": 4.666666666666666,
    "words": [
     [
-     "Approved.",
+     "Citizenship",
      0.12,
-     0.76
+     0.7
+    ],
+    [
+     "approved.",
+     0.7,
+     1.08
     ]
    ]
   },
   {
-   "narr": "Coffee shop.",
+   "narr": "A coffee shop.",
    "start": 22.0,
    "dur": 7.333333333333333,
    "words": [
     [
-     "Coffee",
+     "A",
      0.12,
-     0.4
+     0.2
+    ],
+    [
+     "coffee",
+     0.2,
+     0.44
     ],
     [
      "shop.",
-     0.4,
+     0.44,
+     0.92
+    ]
+   ]
+  },
+  {
+   "narr": "Congress cries.",
+   "start": 29.333333333333332,
+   "dur": 9.333333333333332,
+   "words": [
+    [
+     "Congress",
+     0.12,
+     0.44
+    ],
+    [
+     "cries.",
+     0.44,
      0.8
     ]
    ]
   },
   {
-   "narr": "Five thirty five crying.",
-   "start": 29.333333333333332,
-   "dur": 9.333333333333332,
-   "words": [
-    [
-     "Five",
-     0.12,
-     0.2742857142857143
-    ],
-    [
-     "thirty",
-     0.2742857142857143,
-     0.5057142857142858
-    ],
-    [
-     "five",
-     0.5057142857142858,
-     0.66
-    ],
-    [
-     "crying.",
-     0.66,
-     1.2599999999999998
-    ]
-   ]
-  },
-  {
-   "narr": "Owl.",
+   "narr": "The owl.",
    "start": 38.666666666666664,
    "dur": 6.666666666666666,
    "words": [
     [
-     "Owl.",
+     "The",
      0.12,
-     0.76
+     0.24
+    ],
+    [
+     "owl.",
+     0.24,
+     0.48
     ]
    ]
   },
   {
-   "narr": "Canada.",
+   "narr": "Canada takes him back.",
    "start": 45.33333333333333,
    "dur": 4.666666666666666,
    "words": [
     [
-     "Canada.",
+     "Canada",
      0.12,
      0.4
+    ],
+    [
+     "takes",
+     0.4,
+     0.7
+    ],
+    [
+     "him",
+     0.7,
+     0.92
+    ],
+    [
+     "back.",
+     0.92,
+     1.2000000000000002
     ]
    ]
   }

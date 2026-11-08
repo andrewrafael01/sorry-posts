@@ -55,79 +55,114 @@
    ]
   },
   {
-   "narr": "Doorbell.",
+   "narr": "Ding. Ding.",
    "start": 4.5,
    "dur": 8.25,
    "words": [
     [
-     "Doorbell.",
+     "Ding.",
      0.12,
-     0.8932199546485261
+     0.36
+    ],
+    [
+     "Ding.",
+     0.72,
+     1.2599999999999998
     ]
    ]
   },
   {
-   "narr": "Toothbrush.",
+   "narr": "Four page note.",
    "start": 12.75,
    "dur": 7.5,
    "words": [
     [
-     "Toothbrush.",
+     "Four",
      0.12,
-     0.56
+     0.3
+    ],
+    [
+     "page",
+     0.3,
+     0.5
+    ],
+    [
+     "note.",
+     0.5,
+     0.88
     ]
    ]
   },
   {
-   "narr": "Wrong house.",
+   "narr": "Who's Karen.",
    "start": 20.25,
    "dur": 8.25,
    "words": [
     [
-     "Wrong",
+     "Who's",
      0.12,
-     0.28
+     0.38
     ],
     [
-     "house.",
-     0.28,
-     0.62
+     "Karen.",
+     0.38,
+     0.6
     ]
    ]
   },
   {
-   "narr": "Owl.",
+   "narr": "The owl.",
    "start": 28.5,
    "dur": 8.25,
    "words": [
     [
-     "Owl.",
+     "The",
      0.12,
-     0.76
+     0.24
+    ],
+    [
+     "owl.",
+     0.24,
+     0.48
     ]
    ]
   },
   {
-   "narr": "Fired.",
+   "narr": "Five stars. Fired.",
    "start": 36.75,
    "dur": 9.0,
    "words": [
     [
-     "Fired.",
+     "Five",
      0.12,
-     0.44
+     0.33999999999999997
+    ],
+    [
+     "stars.",
+     0.33999999999999997,
+     0.7
+    ],
+    [
+     "Fired.",
+     0.7,
+     1.8199999999999998
     ]
    ]
   },
   {
-   "narr": "Karen.",
+   "narr": "No toothbrush.",
    "start": 45.75,
    "dur": 3.0,
    "words": [
     [
-     "Karen.",
+     "No",
      0.12,
-     0.36
+     0.3
+    ],
+    [
+     "toothbrush.",
+     0.3,
+     0.82
     ]
    ]
   }

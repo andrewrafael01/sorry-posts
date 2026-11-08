@@ -72,14 +72,19 @@
    ]
   },
   {
-   "narr": "Pharaoh.",
+   "narr": "Pharaoh scrolls.",
    "start": 13.636363636363637,
    "dur": 5.454545454545454,
    "words": [
     [
-     "Pharaoh.",
+     "Pharaoh",
      0.12,
-     0.38
+     0.32
+    ],
+    [
+     "scrolls.",
+     0.32,
+     0.74
     ]
    ]
   },
@@ -101,19 +106,24 @@
    ]
   },
   {
-   "narr": "The overseer.",
+   "narr": "The overseer sits.",
    "start": 23.863636363636363,
    "dur": 6.136363636363636,
    "words": [
     [
      "The",
      0.12,
-     0.22
+     0.24
     ],
     [
-     "overseer.",
-     0.22,
-     0.9
+     "overseer",
+     0.24,
+     0.78
+    ],
+    [
+     "sits.",
+     0.78,
+     1.04
     ]
    ]
   },
@@ -135,31 +145,36 @@
    ]
   },
   {
-   "narr": "Everyone.",
+   "narr": "Everyone scrolls.",
    "start": 37.5,
    "dur": 7.499999999999999,
    "words": [
     [
-     "Everyone.",
+     "Everyone",
      0.12,
-     0.4
+     0.44
+    ],
+    [
+     "scrolls.",
+     0.44,
+     0.84
     ]
    ]
   },
   {
-   "narr": "Zero percent.",
+   "narr": "No charger.",
    "start": 45.0,
    "dur": 7.499999999999999,
    "words": [
     [
-     "Zero",
+     "No",
      0.12,
-     0.4991156462585034
+     0.32
     ],
     [
-     "percent.",
-     0.4991156462585034,
-     1.2573469387755103
+     "charger.",
+     0.32,
+     0.68
     ]
    ]
   }

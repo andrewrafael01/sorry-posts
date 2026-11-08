@@ -60,74 +60,114 @@
    ]
   },
   {
-   "narr": "January.",
+   "narr": "Twelve jars.",
    "start": 4.390243902439025,
    "dur": 9.512195121951219,
    "words": [
     [
-     "January.",
+     "Twelve",
      0.12,
-     0.44
+     0.30000000000000004
+    ],
+    [
+     "jars.",
+     0.3,
+     0.76
     ]
    ]
   },
   {
-   "narr": "March.",
+   "narr": "The ceiling holds.",
    "start": 13.902439024390244,
    "dur": 7.317073170731707,
    "words": [
     [
-     "March.",
+     "The",
      0.12,
-     0.3
+     0.22
+    ],
+    [
+     "ceiling",
+     0.22,
+     0.46
+    ],
+    [
+     "holds.",
+     0.46,
+     0.92
     ]
    ]
   },
   {
-   "narr": "May.",
+   "narr": "Fire department refuses.",
    "start": 21.21951219512195,
    "dur": 8.048780487804878,
    "words": [
     [
-     "May.",
+     "Fire",
      0.12,
      0.32
+    ],
+    [
+     "department",
+     0.32,
+     0.72
+    ],
+    [
+     "refuses.",
+     0.72,
+     1.2400000000000002
     ]
    ]
   },
   {
-   "narr": "July.",
+   "narr": "Payable in web.",
    "start": 29.268292682926827,
    "dur": 8.048780487804878,
    "words": [
     [
-     "July.",
+     "Payable",
      0.12,
-     0.36
+     0.46
+    ],
+    [
+     "in",
+     0.46,
+     0.64
+    ],
+    [
+     "web.",
+     0.64,
+     0.84
     ]
    ]
   },
   {
-   "narr": "September.",
+   "narr": "Evicted.",
    "start": 37.3170731707317,
    "dur": 8.048780487804878,
    "words": [
     [
-     "September.",
+     "Evicted.",
      0.12,
-     0.4
+     0.56
     ]
    ]
   },
   {
-   "narr": "December.",
+   "narr": "Luxury duvet.",
    "start": 45.36585365853658,
    "dur": 8.048780487804878,
    "words": [
     [
-     "December.",
+     "Luxury",
      0.12,
-     0.44
+     0.52
+    ],
+    [
+     "duvet.",
+     0.52,
+     1.2663492063492066
     ]
    ]
   }
