@@ -10,13 +10,13 @@ export function drakeLook(lib, S, crowd, idx, o = {}) {
   const grill = new THREE.Mesh(new THREE.BoxGeometry(.13, .035, .03), new THREE.MeshStandardMaterial({ color: 0xdfe6ee, metalness: 1, roughness: .15 }));
   const chain = new THREE.Mesh(new THREE.TorusGeometry(.2, .035, 8, 20), gold), pend = new THREE.Mesh(new THREE.BoxGeometry(.13, .15, .03), gold);
   const stripe = new THREE.Mesh(new THREE.BoxGeometry(.58, .09, .33), mat(0xe8c02e)), stripe2 = new THREE.Mesh(new THREE.BoxGeometry(.58, .09, .33), mat(0xf4f4f0));
-  const all = [beard, stache, grill, chain, pend, stripe, stripe2, ...clips]; all.forEach((m) => S.add(m));
+  const all = [beard, stache, grill, chain, pend, ...(o.coat ? [] : [stripe, stripe2]), ...clips]; all.forEach((m) => S.add(m));
   const M4 = new THREE.Matrix4(), Q = new THREE.Quaternion(), V = new THREE.Vector3(), SC = new THREE.Vector3();
   return { person: T, setVisible(v) { all.forEach((m) => (m.visible = v)); curls.visible = v; },
     update() { attach(beard, T, 'head', [0, -.17, .2]); attach(stache, T, 'head', [0, -.075, .224]); attach(grill, T, 'head', [0, -.105, .226]);
       for (let i = 0; i < 46; i++) { const c = CL[i]; V.set(c[0] * .85, .13 + c[1] * .55, c[2] * .8 - .04); V.applyMatrix4(T.M.head); SC.set(c[3], c[3], c[3]); M4.compose(V, Q, SC); curls.setMatrixAt(i, M4); } curls.instanceMatrix.needsUpdate = true;
       clips.forEach((m, i) => attach(m, T, 'head', [-.2 + i * .1, .2, .1 - i * .03], [0, .2 - i * .08, -.5 + i * .12]));
-      attach(chain, T, 'torso', [0, .3, .02], [Math.PI / 2, 0, 0]); attach(pend, T, 'torso', [0, .1, .175]); attach(stripe, T, 'torso', [0, .16, 0]); attach(stripe2, T, 'torso', [0, -.22, 0]); } };
+      attach(chain, T, 'torso', [0, .3, .02], [Math.PI / 2, 0, 0]); attach(pend, T, 'torso', [0, .1, .175]); if (!o.coat) { attach(stripe, T, 'torso', [0, .16, 0]); attach(stripe2, T, 'torso', [0, -.22, 0]); } } };
 }
 // speech/thought bubble sprite helper
 export function makeBubble(lib, S, w = .9, h = .36) {
