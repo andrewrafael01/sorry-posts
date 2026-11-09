@@ -105,7 +105,7 @@ export class Crowd {
     this.faces = { calm: mkFace(false), shock: mkFace(true) };
     const face = new THREE.InstancedMesh(new THREE.PlaneGeometry(1, .75), new THREE.MeshBasicMaterial({ map: this.faces.calm, transparent: true, alphaTest: .3 }), n); face.frustumCulled = false; scene.add(face); this.parts.face = face;
     for (let i = 0; i < n; i++) {
-      const o = { x: 0, z: 0, y: 0, yaw: 0, scale: 1, anim: 'idle', phase: r() * 6.28, speed: 1, pitch: 0, extra: 0, shirt: new THREE.Color(SHIRTS[(r() * SHIRTS.length) | 0]), pants: new THREE.Color(r() < .25 ? 0xf2f2f4 : PANTS[(r() * PANTS.length) | 0]), skin: new THREE.Color(SKINS[(r() * SKINS.length) | 0]), hair: new THREE.Color(HAIRS[(r() * HAIRS.length) | 0]), h: .92 + r() * .16, vis: true, arms: null, M: { handL: new THREE.Matrix4(), handR: new THREE.Matrix4(), head: new THREE.Matrix4(), torso: new THREE.Matrix4() } };
+      const o = { x: 0, z: 0, y: 0, yaw: 0, scale: 1, anim: 'idle', phase: r() * 6.28, speed: 1, pitch: 0, extra: 0, shirt: new THREE.Color(SHIRTS[(r() * SHIRTS.length) | 0]), pants: new THREE.Color(r() < .25 ? 0xf2f2f4 : PANTS[(r() * PANTS.length) | 0]), skin: new THREE.Color(SKINS[(r() * SKINS.length) | 0]), hair: new THREE.Color(HAIRS[(r() * HAIRS.length) | 0]), h: .92 + r() * .16, vis: true, arms: null, M: { handL: new THREE.Matrix4(), handR: new THREE.Matrix4(), head: new THREE.Matrix4(), torso: new THREE.Matrix4(), armL: new THREE.Matrix4(), armR: new THREE.Matrix4() } };
       this.p.push(o); const set = (k, c) => this.parts[k].setColorAt(i, c);
       set('legL', o.pants); set('legR', o.pants); set('torso', o.shirt); set('armL', o.shirt); set('armR', o.shirt); set('handL', o.skin); set('handR', o.skin); set('head', o.skin); set('hair', o.hair); set('neck', o.skin);
     }
@@ -139,7 +139,7 @@ export class Crowd {
         case 'sprint': swing = 1.2 * w; armSwing = 1.1 * w; bob = Math.abs(w) * .2; pitch += .3; break;
         default: bob = Math.sin(o.phase + t * 2.2) * .012; armSwing = .22 * Math.sin(o.phase + t * 1.7); swing = .08 * Math.sin(o.phase * 1.3 + t * 1.1); headNod = .12 * Math.sin(o.phase + t * 1.3); pitch += .05 * Math.sin(o.phase + t * 1.9);
       }
-      this._root.makeRotationY(o.yaw + (o.anim === 'idle' ? .18 * Math.sin(o.phase + t * 0.9) : 0)); this._root.setPosition(o.x, o.y + bob * s, o.z); if (o.lie) { this._a.makeRotationX(-o.lie); this._root.multiply(this._a); } this._a.makeScale(s, s, s); this._root.multiply(this._a);
+      this._root.makeRotationY(o.yaw + (o.anim === 'idle' ? .18 * Math.sin(o.phase + t * 0.9) : 0)); this._root.setPosition(o.x, o.y + bob * s, o.z); if (o.lie) { this._a.makeRotationX(-o.lie); this._root.multiply(this._a); } if (o.roll) { this._a.makeRotationY(o.roll); this._root.multiply(this._a); } this._a.makeScale(s, s, s); this._root.multiply(this._a);
       const hy = .8 - hipDrop; this._up.makeTranslation(0, hy, 0); this._b.makeRotationX(pitch); this._up.multiply(this._b); this._a.makeTranslation(0, -hy, 0); this._up.multiply(this._a);
       this._put('legL', i, false, -.13, hy, 0, swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .24, .8, .26);
       this._put('legR', i, false, .13, hy, 0, -swing + legFwd, 0, -.4 + (legFwd ? .12 : 0), 0, .24, .8, .26);
