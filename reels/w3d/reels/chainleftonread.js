@@ -78,7 +78,7 @@ export default async function build({ lib, tl, hud }) {
   const tree = (x, z, s = 1) => { cyl(GB, .22 * s, .3 * s, 1.6 * s, 0x6b4a2a, x, .8 * s, z); const c = new THREE.Mesh(new THREE.SphereGeometry(1.4 * s, 10, 8), mat(0x2e8a3a)); c.position.set(x, 2.5 * s, z); c.castShadow = true; GB.add(c); }; tree(-7, -3, 1.3); tree(9.5, -3.5, 1.2); tree(-4.8, -3.8, .9);
   // sale sign
   const saleT = cvs(512, 400, (g) => { g.fillStyle = '#fff'; g.fillRect(0, 0, 512, 400); g.fillStyle = '#c8102e'; g.fillRect(0, 0, 512, 160); txt(g, 'FOR SALE', 256, 82, 112, '#fff'); txt(g, 'Happy Homes Realty', 256, 215, 38, '#444', { w: 700 }); g.save(); g.translate(256, 305); g.rotate(-.12); rr(g, -210, -60, 420, 120, 14, '#16a34a'); txt(g, 'SOLD', 0, 4, 100, '#fff'); g.restore(); });
-  const sale = new THREE.Group(); sale.position.set(-1.9, 0, 1.5); GB.add(sale); bx(sale, 0, .9, 0, .14, 1.8, .14, 0x6b4a2a); bx(sale, 0, 1.5, 0, 1.9, 1.5, .1, 0xffffff); plane(sale, 1.8, 1.4, saleT.t, 0, 1.5, .06);
+  const sale = new THREE.Group(); sale.position.set(4.7, 0, .6); GB.add(sale); bx(sale, 0, .9, 0, .14, 1.8, .14, 0x6b4a2a); bx(sale, 0, 1.5, 0, 1.9, 1.5, .1, 0xffffff); plane(sale, 1.8, 1.4, saleT.t, 0, 1.5, .06);
   // moving van
   const van = new THREE.Group(); GB.add(van); bx(van, 0, 1.15, 0, 4.4, 2.1, 2.1, 0xf4f4f6, { round: .1 }); bx(van, 2.55, .9, 0, 1.3, 1.6, 2.0, 0xe0a82a, { round: .1 }); bx(van, 3.05, 1.1, 0, .12, .7, 1.7, 0x9fd0ff, { cast: false }); for (const [wx, wz] of [[-1.4, 1.05], [1.4, 1.05], [-1.4, -1.05], [1.4, -1.05], [2.7, 1.0], [2.7, -1.0]]) { const w = cyl(van, .42, .42, .3, 0x16171c, wx, .42, wz, { seg: 14 }); w.rotation.x = Math.PI / 2; }
   const vanT = cvs(512, 200, (g) => { g.fillStyle = '#e0201b'; g.fillRect(0, 0, 512, 200); txt(g, 'MOVERS', 256, 104, 130, '#fff', { stroke: '#111', sw: 12 }); }); plane(van, 3.6, 1.4, vanT.t, 0, 1.3, 1.07); const vanB = plane(van, 3.6, 1.4, vanT.t, 0, 1.3, -1.07); vanB.rotation.y = Math.PI;
@@ -93,7 +93,7 @@ export default async function build({ lib, tl, hud }) {
   const sky = A.sky.material.uniforms;
   const MOODS = [{ top: 0x0a1030, mid: 0x1c2a55, bot: 0x2a3a6a, fog: 0x0a1030, hemi: .55, sun: .25, sc: 0x8aa0ff, ex: 1.3 }, { top: 0x3f86d8, mid: 0x9cc8f0, bot: 0xe2eef9, fog: 0xbcd8ee, hemi: 1.7, sun: 2.2, sc: 0xfff1d8, ex: 1.1 }, { top: 0x1a1030, mid: 0x2a1a4e, bot: 0x2a1a4e, fog: 0x2a1a4e, hemi: 1.9, sun: 1.6, sc: 0xfff1d8, ex: 1.05 }];
   const CR = [[0, 12], [12, 64], [64, 311], [311, 2400], [2400, 48000], [48000, 999999]]; const NOTE = ['she saw it. she did not reply', 'delivered. that is all it says', 'you are recording a voicemail', 'nine minutes. four sorrys', 'she moved. new family waves', 'who is this?'];
-  const DUR = tl.beats.map((b) => b.dur);
+  tl.finale = false; const DUR = tl.beats.map((b) => b.dur);
   const Y0 = V3(-.7, 0, -1.8);
 
   return { frame({ t, bi, lt }) {
@@ -107,31 +107,31 @@ export default async function build({ lib, tl, hud }) {
     if (set === 2) {
       PB.draw((g, w, h) => screen(g, w, h, t, bi, lt)); PB.g.position.set(0, 0, 0); PB.g.rotation.y = Math.sin(t * .6) * .05; PB.g.rotation.x = .03; followX = 120;
       const ringing = bi === 2 && lt > 1.4 && lt < 2.44; if (ringing) { PB.g.position.x = Math.sin(t * 50) * .02; PB.g.rotation.z = Math.sin(t * 44) * .025; } else PB.g.rotation.z = 0;
-      const z0 = bi === 5 ? 6.6 : 6.2; rig(lt, [[0, [120 + .2, .15, z0], [120, .05, z0 - .9], [120, 0, 0], [120, 0, 0], 40, 38]], t, ringing ? .004 : 0);
+      const z0 = bi === 5 ? 6.6 : 6.2; rig(lt, [[0, [120 + .2, -.1, z0], [120, .05, z0 - .9], [120, -.3, 0], [120, -.3, 0], 40, 38]], t, ringing ? .004 : 0);
     } else if (set === 0) {
       // bedroom wide
       let lw = lt; place(YOU, -.7, -.02, -1.8, 0, 'sit', .3); YOU.pitch = .08; YOU.vis = true; PH.g.visible = true;
       let sitAnim = { lx: -.9, lz: -.12, rx: -1.15, rz: .12 }; glow.intensity = 2 + Math.sin(t * 3) * .4;
       const putPhone = (ang) => { attach(PH.g, YOU, 'handR', [0, -.12, .12], [ang, 0, 0]); PH.g.visible = true; };
-      if (bi === 0) { YOU.arms = sitAnim; putPhone(-.2); rig(lt, [[0, [.3, 1.9, 5.4], [-.2, 1.8, 4.2], [-.7, 1.2, -1.8], [-.7, 1.1, -1.8], 52, 46]], t); }
-      else if (bi === 1) { const k = smooth((lt - 2.6) / .3); YOU.arms = { lx: -.4, lz: -.1, rx: -.6, rz: .1 }; YOU.pitch = .2; putPhone(-.2); rig(lt, [[2.6, [-.1, 1.7, 4.8], [-.4, 1.65, 4.0], [-.7, 1.25, -1.8], [-.7, 1.2, -1.8], 46, 40]], t); }
-      else if (bi === 2) { YOU.arms = { lx: -.4, lz: -.1, rx: -2.6, rz: .0 }; putPhone(.9); const sp = lt > 4.5; if (sp) bub.show(lt < 5.3 ? 'um... hi. it is me.' : 'so about earlier...', -.7, 3.5, -1.0); faceShock = false; rig(lt, [[3.9, [-.2, 1.9, 5.2], [-.5, 1.85, 4.1], [-.7, 1.35, -1.8], [-.7, 1.4, -1.8], 52, 44]], t); }
+      if (bi === 0) { YOU.arms = sitAnim; putPhone(-.2); rig(lt, [[0, [.3, 1.9, 3.9], [-.2, 1.85, 3.0], [-.7, 1.25, -1.8], [-.7, 1.25, -1.8], 50, 44]], t); }
+      else if (bi === 1) { const k = smooth((lt - 2.6) / .3); YOU.arms = { lx: -.4, lz: -.1, rx: -.6, rz: .1 }; YOU.pitch = .2; putPhone(-.2); rig(lt, [[2.6, [-.1, 1.7, 3.6], [-.4, 1.65, 2.9], [-.7, 1.25, -1.8], [-.7, 1.25, -1.8], 46, 40]], t); }
+      else if (bi === 2) { YOU.arms = { lx: -.4, lz: -.1, rx: -2.6, rz: .0 }; putPhone(.9); const sp = lt > 4.5; if (sp) bub.show(lt < 5.3 ? 'um... hi. it is me.' : 'so about earlier...', -.7, 3.5, -1.0); faceShock = false; rig(lt, [[3.9, [-.2, 1.9, 3.8], [-.5, 1.85, 3.0], [-.7, 1.4, -1.8], [-.7, 1.45, -1.8], 50, 44]], t); }
       else if (bi === 3) { const l3 = lt - 1.1; YOU.arms = { lx: -.4, lz: -.1, rx: -2.6, rz: .0 }; putPhone(.9); YOU.pitch = .1; faceShock = true;
         const at = [1.86, 2.35, 2.85, 3.3]; const pos = [[-1.2, 2.55], [.6, 3.2], [-1.0, 3.9], [.5, 4.55]];
         SORRY.forEach((s, i) => { const a = lt - at[i]; s.visible = a > 0; if (a > 0) { const pop = 1 + .35 * Math.exp(-a * 9) * Math.cos(a * 22); s.position.set(-.7 + pos[i][0] * .55 * (i % 2 ? 1 : -1) * -1, pos[i][1] - .15 + Math.sin(t * 2 + i) * .06, -1.3); s.scale.setScalar(pop * .85); s.rotation.z = (i % 2 ? -1 : 1) * .07; } });
         sweat.forEach((d, i) => { const ph = (t * .9 + i * .31) % 1; d.visible = lt > .0; d.position.set(-.7 + (i % 2 ? .38 : -.38) + Math.sin(i * 2) * .06, 1.75 - ph * .9 + (i % 3) * .05, -1.3 + .15); d.scale.setScalar(.8 + .3 * (1 - ph)); });
-        rig(lt, [[1.1, [-.5, 2.4, 7.8], [-.5, 2.7, 6.8], [-.7, 2.6, -1.8], [-.7, 2.7, -1.8], 50, 50]], t); }
+        rig(lt, [[1.1, [-.5, 2.4, 6.2], [-.5, 2.6, 5.4], [-.7, 2.5, -1.8], [-.7, 2.6, -1.8], 52, 52]], t); }
       else { const k = smooth((lt - 3.1) / .4); const g0 = lt < 1.0; YOU.arms = g0 ? { lx: -.4, lz: -.1, rx: -.8, rz: .1 } : { lx: -.1, lz: -.12, rx: lerp(-.8, -.05, k), rz: .1 }; YOU.pitch = g0 ? .1 : lerp(.1, .42, k); faceShock = true; putPhone(g0 ? -.2 : lerp(-.2, .1, k)); glow.intensity = g0 ? 2 + Math.sin(t * 40) * 1.5 : 1;
-        rig(lt, [[0, [.3, 1.9, 5.4], [-.1, 1.8, 4.4], [-.7, 1.2, -1.8], [-.7, 1.1, -1.8], 52, 46], [3.1, [-.2, 1.7, 4.8], [-.5, 1.55, 3.9], [-.7, 1.1, -1.8], [-.7, 1.0, -1.8], 46, 40]], t); }
+        rig(lt, [[0, [.3, 1.9, 3.9], [-.1, 1.8, 3.2], [-.7, 1.25, -1.8], [-.7, 1.2, -1.8], 50, 44], [3.1, [-.2, 1.7, 3.5], [-.5, 1.55, 2.7], [-.7, 1.2, -1.8], [-.7, 1.1, -1.8], 46, 40]], t); }
       followX = 0;
     } else {
       // her old house
-      followX = 60; const fx = 60; const vx = lt < 1.9 ? 4.6 : 4.6 + Math.pow(lt - 1.9, 2.1) * 2.2; van.position.set(fx + vx, 0, 3.6); van.rotation.y = 0;
-      if (lt > 1.9 && lt < 4.2) dust.forEach((d, i) => { const a = clamp((lt - 1.9 - i * .06) / 1.4); d.visible = a > 0 && a < 1; d.position.set(fx + 4.0 + a * 1.5 - i * .15, .3 + a * 1.2, 3.6 + (i % 3 - 1) * .5); d.scale.setScalar(.5 + a * 2); d.material.opacity = .6 * (1 - a); });
-      const wk = clamp(lt / 1.5); const yz = lerp(5.6, 3.2, smooth(wk)); place(YOU, fx - 2.3 + lerp(-3, 0, smooth(wk)) + 0, 0, yz, Math.PI * .88, wk < 1 ? 'walk' : 'idle', .55); YOU.arms = { lx: -.2, lz: -.15, rx: wk < 1 ? -1.0 : -1.2 + Math.sin(t * 2) * .05, rz: .12 }; YOU.pitch = lt > 2.4 ? .2 : 0; YOU.vis = true; bouquet.visible = true; attach(bouquet, YOU, 'handR', [0, -.1, .15], [-.3, 0, 0]);
-      const show = lt >= 3.2; const wave = (i, sc) => { const o = P[1 + i]; place(o, fx + .2 + i * 1.0 + (i > 1 ? .2 : 0), .26, -.95, .05 * (i - 1.5), 'idle', .5 + i * .1, sc); o.arms = { lx: -.2, lz: -.12, rx: -2.55 + Math.sin(t * 9 + i) * .4, rz: -.35 }; o.vis = show; }; wave(0, 1.05); wave(1, 1.0); wave(2, .7); wave(3, .62);
+      followX = 60; const fx = 60; const vx = lt < 1.3 ? 3.4 : 3.4 + Math.pow(lt - 1.3, 2.1) * 2.6; van.position.set(vx, 0, 4.6); van.rotation.y = 0;
+      if (lt > 1.3 && lt < 4.2) dust.forEach((d, i) => { const a = clamp((lt - 1.3 - i * .06) / 1.4); d.visible = a > 0 && a < 1; d.position.set(4.4 + a * 2.5 - i * .15, .3 + a * 1.2, 4.6 + (i % 3 - 1) * .5); d.scale.setScalar(.5 + a * 2); d.material.opacity = .6 * (1 - a); });
+      const wk = clamp(lt / 1.5); const yz = lerp(5.6, 3.2, smooth(wk)); place(YOU, fx - .2 + lerp(-3, 0, smooth(wk)), 0, yz, Math.PI * .85, wk < 1 ? 'walk' : 'idle', .55); YOU.arms = { lx: -.2, lz: -.15, rx: wk < 1 ? -1.0 : -1.2 + Math.sin(t * 2) * .05, rz: .12 }; YOU.pitch = lt > 2.4 ? .2 : 0; YOU.vis = true; bouquet.visible = true; attach(bouquet, YOU, 'handR', [0, -.1, .15], [-.3, 0, 0]);
+      const show = lt >= 3.2; const wave = (i, sc) => { const o = P[1 + i]; place(o, fx + .5 + i * .85, .26, -.95, .05 * (i - 1.5), 'idle', .5 + i * .1, sc); o.arms = { lx: -.2, lz: -.12, rx: -2.55 + Math.sin(t * 9 + i) * .4, rz: -.35 }; o.vis = show; }; wave(0, 1.05); wave(1, 1.0); wave(2, .7); wave(3, .62);
       faceShock = false;
-      rig(lt, [[0, [fx + 1.0, 2.1, 10.5], [fx + .4, 2.2, 10.0], [fx + .6, 1.5, 0], [fx + .6, 1.6, 0], 46, 46], [2.4, [fx + 2.8, 2.2, 10.2], [fx + 1.6, 2.4, 9.2], [fx + .6, 1.6, 0], [fx + 1.2, 1.7, -.4], 44, 40]], t);
+      rig(lt, [[0, [fx + 2.0, 2.8, 14.5], [fx + 1.6, 2.8, 13.8], [fx + 1.8, 1.8, 0], [fx + 1.8, 1.8, 0], 68, 68], [2.4, [fx + 2.4, 2.8, 14.0], [fx + 1.9, 2.8, 12.8], [fx + 1.8, 1.8, 0], [fx + 1.8, 1.8, -.4], 68, 60]], t);
     }
     // labels
     if (bi === 1 && lt < 1.0) putCam(lbClever, 4.3, .36, Math.min(1.1, (lt + .05) * 6) * (lt > .85 ? Math.max(0, 1 - (lt - .85) * 6) : 1));
