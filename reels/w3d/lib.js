@@ -134,7 +134,7 @@ export class Crowd {
         case 'squat': hipDrop = .42 + .03 * Math.sin(o.phase + t * 14); legFwd = -1.35; pitch = .45 + .12 * Math.sin(o.phase + t * 11); armSwing = .9 * Math.sin(o.phase + t * 10); bob = Math.abs(Math.sin(o.phase + t * 14)) * .03; headNod = .15 * Math.sin(o.phase + t * 9); break;
         case 'bend': pitch = 1.0 + .3 * Math.max(0, Math.sin(o.phase + t * 5)); armSwing = .5 * Math.sin(o.phase + t * 5); headNod = .3 * Math.sin(o.phase + t * 5); bob = Math.abs(Math.sin(o.phase + t * 5)) * .04; break;
         case 'punch': break;
-        case 'sit': legFwd = -1.5; armUp = -.55; pitch = 0; headNod = .05 * Math.sin(o.phase + t * 1.3); break;
+        case 'sit': legFwd = -1.5; armUp = -.55; pitch = o.sitPitch || 0; headNod = .05 * Math.sin(o.phase + t * 1.3); break;
         case 'jump': bob = Math.abs(Math.sin(o.phase + t * 5)) * .6; armUp = -2.6; break;
         case 'sprint': swing = 1.2 * w; armSwing = 1.1 * w; bob = Math.abs(w) * .2; pitch += .3; break;
         default: bob = Math.sin(o.phase + t * 2.2) * .012; armSwing = .22 * Math.sin(o.phase + t * 1.7); swing = .08 * Math.sin(o.phase * 1.3 + t * 1.1); headNod = .12 * Math.sin(o.phase + t * 1.3); pitch += .05 * Math.sin(o.phase + t * 1.9);
