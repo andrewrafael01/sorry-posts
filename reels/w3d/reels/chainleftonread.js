@@ -64,7 +64,7 @@ export default async function build({ lib, tl, hud }) {
   const glow = new THREE.PointLight(0x7fa8ff, 2, 6); glow.position.set(-.7, 1.9, -.2); GA.add(glow);
   const SORRY = []; { const mk = (i) => { const t = cvs(512, 200, (g) => { g.fillStyle = '#fff'; g.fillRect(0, 0, 512, 200); g.strokeStyle = '#e0201b'; g.lineWidth = 16; g.strokeRect(8, 8, 496, 184); txt(g, 'SORRY', 256, 104, 130, '#e0201b'); }); const grp2 = new THREE.Group(); const b = new THREE.Mesh(new THREE.BoxGeometry(1.6, .64, .06), mat(0xffffff)); b.castShadow = true; grp2.add(b); const f = new THREE.Mesh(new THREE.PlaneGeometry(1.56, .6), new THREE.MeshBasicMaterial({ map: t.t, toneMapped: false, fog: false })); f.position.z = .035; grp2.add(f); grp2.visible = false; GA.add(grp2); return grp2; }; for (let i = 0; i < 4; i++) SORRY.push(mk(i)); }
   const sweat = []; for (let i = 0; i < 7; i++) { const d = new THREE.Mesh(new THREE.SphereGeometry(.07, 8, 6), new THREE.MeshStandardMaterial({ color: 0x7fd0ff, emissive: 0x2a80c0, emissiveIntensity: .5 })); d.scale.y = 1.4; d.visible = false; GA.add(d); sweat.push(d); }
-  const bub = makeBubble(lib, S, 3.4, 1.3);
+  const bub = makeBubble(lib, S, 2.1, .85);
 
   // ================================================================= SET B: her old house
   backdrop(GB, 0, -30, '#7fc4ff', '#e2f1ff', 200, 90); flat(GB, 120, 80, 0x62b24a, 0, 0, 0); bx(GB, 0, .02, 8, 120, .06, 5, 0x4a4d55); bx(GB, 0, .05, 8, 120, .02, .16, 0xf2d24a, { cast: false }); bx(GB, 6.0, .03, 3.6, 3.0, .05, 8, 0x8a8d94);
@@ -115,7 +115,7 @@ export default async function build({ lib, tl, hud }) {
       const putPhone = (ang) => { attach(PH.g, YOU, 'handR', [0, -.12, .12], [ang, 0, 0]); PH.g.visible = true; };
       if (bi === 0) { YOU.arms = sitAnim; putPhone(-.2); rig(lt, [[0, [.3, 1.9, 3.9], [-.2, 1.85, 3.0], [-.7, 1.25, -1.8], [-.7, 1.25, -1.8], 50, 44]], t); }
       else if (bi === 1) { const k = smooth((lt - 2.6) / .3); YOU.arms = { lx: -.4, lz: -.1, rx: -.6, rz: .1 }; YOU.pitch = .2; putPhone(-.2); rig(lt, [[2.6, [-.1, 1.7, 3.6], [-.4, 1.65, 2.9], [-.7, 1.25, -1.8], [-.7, 1.25, -1.8], 46, 40]], t); }
-      else if (bi === 2) { YOU.arms = { lx: -.4, lz: -.1, rx: -2.6, rz: .0 }; putPhone(.9); const sp = lt > 4.5; if (sp) bub.show(lt < 5.3 ? 'um... hi. it is me.' : 'so about earlier...', -.7, 3.5, -1.0); faceShock = false; rig(lt, [[3.9, [-.2, 1.9, 3.8], [-.5, 1.85, 3.0], [-.7, 1.4, -1.8], [-.7, 1.45, -1.8], 50, 44]], t); }
+      else if (bi === 2) { YOU.arms = { lx: -.4, lz: -.1, rx: -2.6, rz: .0 }; putPhone(.9); const sp = lt > 4.5; if (sp) bub.show(lt < 5.3 ? 'um... hi. it is me.' : 'so about earlier...', -.7, 2.22, -1.0); faceShock = false; rig(lt, [[3.9, [-.2, 1.9, 3.8], [-.5, 1.85, 3.0], [-.7, 1.4, -1.8], [-.7, 1.45, -1.8], 50, 44]], t); }
       else if (bi === 3) { const l3 = lt - 1.1; YOU.arms = { lx: -.4, lz: -.1, rx: -2.6, rz: .0 }; putPhone(.9); YOU.pitch = .1; faceShock = true;
         const at = [1.86, 2.35, 2.85, 3.3]; const pos = [[-1.2, 2.55], [.6, 3.2], [-1.0, 3.9], [.5, 4.55]];
         SORRY.forEach((s, i) => { const a = lt - at[i]; s.visible = a > 0; if (a > 0) { const pop = 1 + .35 * Math.exp(-a * 9) * Math.cos(a * 22); s.position.set(-.7 + pos[i][0] * .55 * (i % 2 ? 1 : -1) * -1, pos[i][1] - .15 + Math.sin(t * 2 + i) * .06, -1.3); s.scale.setScalar(pop * .85); s.rotation.z = (i % 2 ? -1 : 1) * .07; } });
