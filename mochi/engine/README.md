@@ -28,6 +28,14 @@ Edge function post-carousel posts as IG_ACCESS_TOKEN_MOCHI, 3h min gap, retries 
 Edge function mochi-insights (daily cron) fills stats (views, reach, shares, saved, sends_per_1k_reach).
 Media is served from raw.githubusercontent.com/andrewrafael01/sorry-posts/main/mochi/...
 
+## v2 (Nov 15)
+- props2.py: box, door, cushion, bowl, window, snowflake, nightcap/santa hat, lit phone
+- scenes.py: new kinds mbox/tbox, mdoor/tdoor, seat/tseat, mthink/tthink, mwin/twin, tbowl, mpl/tpl; '+cap' / '+santa' hats; '|bang' (!!)
+- content_v2.py: v2 reel scripts (every beat acts out its line) + CAR_PATCH for carousel slides
+- mreel.py auto-fits tall scenes below the text; cry trembles, love bounces, last beat slow push-in
+- normalize.sh: loudness to -14 LUFS after rendering (run on every new mp4)
+- audit.py A|B: contact sheets of every beat for visual QA
+
 ## Style rules that work
 - Speak to the viewer ("you"), one feeling per beat, small joke in a grey sub line ("(he ate it)")
 - First frame: text + cats fully visible (hook in <0.5s); reels ~12-16s

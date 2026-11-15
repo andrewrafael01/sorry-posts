@@ -550,3 +550,7 @@ REEL_DATES = {"thankful": "2026-11-26", "first_snow": "2026-11-29", "finals": "2
 CAR_DATES = {"thanksgiving_toast": "2026-11-26", "study_with_us": "2026-12-08", "december_plans": "2026-12-01", "snow_day": "2026-12-03",
              "xmas_morning": "2026-12-25", "gift_ideas_cats": "2026-12-20", "resolutions_mochi": "2026-12-29", "resolutions_toast": "2026-12-30",
              "nye_countdown": "2026-12-31", "learned_this_year": "2026-12-28"}
+
+# ---- v2 upgrades (scene-accurate visuals, varied endings, hats) ----
+from content_v2 import REELS, CAR_PATCH
+CAROUSELS = [(n, c, [(t, CAR_PATCH.get((n, i), sp), sb) for i, (t, sp, sb) in enumerate(sl)]) for n, c, sl in CAROUSELS]

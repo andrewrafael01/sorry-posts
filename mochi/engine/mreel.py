@@ -76,7 +76,7 @@ def music(path, dur, seed):
     with wave.open(path, "wb") as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr); w.writeframes((y*32767).astype(np.int16).tobytes())
 
-OPEN = ("m", "t", "mt", "mp", "tp", "mb", "tb", "mh", "th", "give")
+OPEN = ("m", "t", "mt", "mp", "tp", "mb", "tb", "mh", "th", "give", "mbox", "tbox", "mdoor", "tdoor", "seat", "tseat", "mthink", "tthink", "mwin", "twin", "tbowl", "mbowl", "mpl", "tpl")
 
 def build(idx, name, beats, preview=False):
     path = f"{OUT}/{idx+1:02d}_{name}.mp4"
@@ -98,12 +98,18 @@ def build(idx, name, beats, preview=False):
         n = txt.count("\n")+1
         ty = 430 if n < 3 else 360
         tl, yb = tlayer(txt, ty, 96 if n < 3 else 84)
-        sl = tlayer(sub, yb+10, 50, sub=True)[0] if sub else None
+        sl, tb = tlayer(sub, yb+10, 50, sub=True) if sub else (None, yb)
         kind = S.parse(spec)[0][0]
         B.append(dict(t0=T[i][0], t1=T[i][1], tl=tl, sl=sl, spec=spec, kind=kind, fx=S.parse(spec)[1], txt=txt,
                       pop=(i == 0 or beats[i-1][1] != spec), blinky=kind in OPEN, sleep=S.is_sleep(spec)))
-        scn(spec)
+        s0 = scn(spec)
         if kind in OPEN: scn(spec, True)
+        above = s0.a[1]; below = s0.arr.shape[0]-s0.a[1]
+        avail = GY-(tb+45); yoff = 0.0; fit = 1.0
+        if above > avail:
+            yoff = max(0.0, min(above-avail, 1660-(GY+below)))
+            if above > avail+yoff: fit = (avail+yoff)/above
+        B[-1]["yoff"] = yoff; B[-1]["fit"] = fit
     rr = random.Random(idx)
     hearts = [Spr(heart(56+8*i, PINK, seed=i)) for i in range(3)]
     spk = [Spr(sparkle(40+12*i, (255, 214, 90), i)) for i in range(3)]
@@ -136,16 +142,20 @@ def build(idx, name, beats, preview=False):
         if b["pop"] and bi > 0: sc = 0.88+0.12*ease_out_back(a/0.4, 1.6)
         al = clamp(a/0.12) if (b["pop"] and bi > 0) else 1
         txt = b["txt"].lower()
-        if txt.startswith("in") or "\nin" in txt: br = 1+0.07*ease_io(a/2.4)
+        if txt.startswith("in...") or "\nin..." in txt: br = 1+0.07*ease_io(a/2.4)
         elif "out..." in txt: br = 1.07-0.07*ease_io(a/2.4)
         if ":stand" in b["spec"] and ("sparkle" in b["spec"] or "happy" in b["spec"]): dy = abs(math.sin(a*math.pi*1.25))*45
         elif "shock" in b["spec"] and a < 0.5: dy = math.sin(a/0.5*math.pi)*60
         if b["kind"] == "hug": rot = 2.0*math.sin(a*2.0)
-        elif b["kind"] in ("m", "t", "mh", "th", "mp", "mb", "tb"): rot = 1.6*math.sin(t*1.3)
+        elif b["kind"] in ("m", "t", "mh", "th"): rot = 1.6*math.sin(t*1.3)
+        mood_s = b["spec"]
+        if ":cry" in mood_s and b["kind"] in ("m", "t", "tdoor", "mdoor", "mp"): rot += 1.1*math.sin(t*26)
+        if ":love" in mood_s and b["kind"] in ("m", "t", "mh", "th", "tbox", "mbox"): dy += abs(math.sin(a*3.4))*12
+        if bi == len(B)-1: sc *= 1+0.05*ease_io(a/max(0.1, b["t1"]-b["t0"]))
         if b["sleep"]: br = 1+0.02*math.sin(t*1.6)
         blink = b["blinky"] and ((t+bi*0.7) % 3.3) > 3.12 and a > 0.5
         spr = scn(b["spec"], blink)
-        blit(fr, spr, 540, GY-dy, sc*br, sc*(2-br), rot, al)
+        blit(fr, spr, 540, GY+b["yoff"]-dy, sc*br*b["fit"], sc*(2-br)*b["fit"], rot, al)
         # fx in front
         if b["fx"] == "hearts":
             for j in range(16):
