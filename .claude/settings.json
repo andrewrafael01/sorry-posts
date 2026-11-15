@@ -12,7 +12,6 @@
       "mcp__Supabase",
       "mcp__claude-code-remote",
       "mcp__github"
-    ],
-    "defaultMode": "bypassPermissions"
+    ]
   }
 }
