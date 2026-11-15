@@ -1,0 +1,35 @@
+# Mochi & Toast engine
+
+Original art engine for @mochaandtoastworld (Mochi = lavender cat, Toast = butter tabby with cowlick).
+Flat colors, hand-drawn ink outlines, Gaegu handwriting font, white backgrounds.
+
+## Setup (fresh session)
+Fonts are expected at /tmp/claude-0/fonts/gf/ofl/ (see FONTS in soft.py):
+
+    mkdir -p /tmp/claude-0/fonts && cd /tmp/claude-0/fonts
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/google/fonts gf
+    cd gf && git sparse-checkout set ofl/gaegu ofl/patrickhand ofl/shortstack ofl/gloriahallelujah ofl/sniglet
+
+Python deps: pillow, numpy, opencv-python. Video: ffmpeg.
+
+## Files
+- soft.py      core drawing: cat(who,pose,mood,...), props (heart, cookie, mug, flower, sparkle, cloud, bubble, rect_prop), text()
+- scenes.py    scene spec language shared by carousels and reels (see docstring), e.g. "hug:love,love|hearts"
+- content.py   REELS and CAROUSELS scripts (text, scene spec, sub) + holiday date pins
+- mcar.py      render carousels  -> /tmp/claude-0/cats/mochi/carousels/<name>/NN.jpg
+- mreel.py     render reels      -> /tmp/claude-0/cats/mochi/reels/NN_<name>.mp4 (+ covers/)
+- film.py / film2.py  mini-movie episodes (room/outdoor sets, timestamps, camera moves)
+- mqueue.py    builds the queue SQL (older; schedule was later moved to 1pm ET reels / 7:30pm ET carousels)
+
+## Posting pipeline
+Supabase project ig-poster, table public.ig_carousels (kind carousel|reel, image_urls / video_url / cover_url,
+caption, scheduled_at, status draft|queued|processing|posted|failed, stats jsonb).
+Edge function post-carousel posts as IG_ACCESS_TOKEN_MOCHI, 3h min gap, retries IG blocks +6h.
+Edge function mochi-insights (daily cron) fills stats (views, reach, shares, saved, sends_per_1k_reach).
+Media is served from raw.githubusercontent.com/andrewrafael01/sorry-posts/main/mochi/...
+
+## Style rules that work
+- Speak to the viewer ("you"), one feeling per beat, small joke in a grey sub line ("(he ate it)")
+- First frame: text + cats fully visible (hook in <0.5s); reels ~12-16s
+- End every reel with a "send this to ..." line (sends per reach is a top ranking signal)
+- Max 5 hashtags; keyword-led caption
