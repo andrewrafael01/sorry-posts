@@ -257,21 +257,16 @@ def face(A, mood, x, y, U, lw, seed, mouth=None, hatch=False):
             cv2.line(ink, _p((ex-s*0.07*U, y-0.06*U)), _p((ex+s*0.06*U, y)), 255, int(th*1.2), cv2.LINE_AA, SH)
             cv2.line(ink, _p((ex+s*0.06*U, y)), _p((ex-s*0.07*U, y+0.06*U)), 255, int(th*1.2), cv2.LINE_AA, SH)
         elif mood in ("stare", "shock"):
-            rr = 0.13*U if mood == "stare" else 0.085*U
-            dot(ink, (ex, y), rr+th*0.6); dot(ink, (ex, y), rr, 0)
-            A.ink = ink
-            dot(ink, (ex, y), 0.03*U)
+            # big glossy eyes with a shine (cute, not startled)
+            k = 1.75 if mood == "stare" else 1.55
+            dot(ink, (ex, y), r*k)
+            dot(ink, (ex-0.032*U, y-0.038*U), r*0.68, 0); dot(ink, (ex+0.038*U, y+0.042*U), r*0.3, 0)
         elif mood == "smug":
             cv2.ellipse(ink, _p((ex, y-0.01*U)), (int(0.08*U*FX), int(0.06*U*FX)), 0, 0, 180, 255, -1, cv2.LINE_AA, SH)
             cv2.line(ink, _p((ex-0.1*U, y-0.01*U)), _p((ex+0.1*U, y-0.01*U)), 255, int(th), cv2.LINE_AA, SH)
         if mood == "pout":
             cv2.line(ink, _p((ex-s*0.1*U, y-0.15*U)), _p((ex+s*0.07*U, y-0.09*U)), 255, int(th), cv2.LINE_AA, SH)
     # white-out inside stare eyes must not leave holes in col: paint col white there
-    if mood in ("stare", "shock"):
-        wm = np.zeros(ink.shape, np.uint8)
-        rr = 0.13*U if mood == "stare" else 0.085*U
-        for s in (-1, 1): dot(wm, (x+s*e, y), rr)
-        A.tint(wm.astype(float)/255, (255, 255, 255))
     if mood == "cry":
         tm = np.zeros(ink.shape, np.uint8)
         for s in (-1, 1):
