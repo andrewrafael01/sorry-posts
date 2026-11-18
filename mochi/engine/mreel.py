@@ -189,6 +189,7 @@ def build(idx, name, beats, preview=False):
         if preview and fi in prev_frames: Image.fromarray(out).save(f"{OUT}/_p{idx:02d}_{fi:03d}.jpg", quality=88)
         pr.stdin.write(out.tobytes())
     pr.stdin.close(); pr.wait(); os.remove(f"{OUT}/_a{idx}.wav")
+    subprocess.run(["sh", "/tmp/claude-0/cats/mochi/normalize.sh", path], check=True)  # -14 LUFS
     return path, DUR
 
 if __name__ == "__main__":
