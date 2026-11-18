@@ -87,7 +87,7 @@ NEW_REELS = [
   ("that was\nso *brave*", "m:sparkle:stand|sparkles", None),
   ("toast is brave too.\nhe saw a *bug*", "t:shock:stand|bang", "(he screamed)"),
   ("we're so\n*proud* of you", "hug:love,love|hearts", "send this to someone who was brave today")]),
- ("for_your_mom", "send this to your mom", [
+ ("for_your_mom", "for every mom who worried about us", [
   ("this is for\nyour *mom*", "m:stare", None),
   ("she worried\nabout you *again*", "mthink:pout:heart", None),
   ("she'd do it\nall over *again*", "m:love", None),
@@ -153,13 +153,13 @@ NEW_REELS = [
   ("someone smiled today\nbecause of *you*", "m:sparkle:stand|sparkles", None),
   ("toast smiles\nbecause of *snacks*", "th:cookie:happy", "(you're a close second)"),
   ("you *matter*", "hug:love,love|hearts", "send this to someone who matters to you")]),
- ("roommate", "send this to your roommate", [
+ ("roommate", "the roommate who saves you the good seat", [
   ("this is for\nyour *roommate*", "mt:stare,stare", None),
   ("the one who eats\nyour *snacks*", "th:cookie:smug", None),
   ("and steals\nthe *blanket*", "t:dot:loaf", None),
   ("but always saves\nyou the good *seat*", "seat:happy", "(toast never does)"),
   ("living with you\nis the *best*", "hug:love,love|hearts", "send this to your roommate")]),
- ("for_your_dad", "send this to your dad", [
+ ("for_your_dad", "he doesn't say it much", [
   ("this is for\nyour *dad*", "t:stare", None),
   ("he doesn't say it\nmuch but he's *proud*", "t:pout", None),
   ("he tells everyone\n*else* about you", "tp:happy", None),
@@ -189,7 +189,7 @@ NEW_REELS = [
   ("but you've done\n*every* monday so far", "m:happy|sparkles", None),
   ("toast skips\nmondays", "t:dot:loaf", "(he's not allowed to)"),
   ("you've *got* this one\ntoo", "hug:love,love|hearts", "send this to your monday person")]),
- ("coffee_person", "send this to your coffee person", [
+ ("coffee_person", "the one who knows your order", [
   ("this is for your\n*coffee* person", "mh:mug:stare", None),
   ("the one who knows\nyour *order*", "mh:mug:happy", None),
   ("and talks you\nthrough *everything*", "mt:happy,love", None),
@@ -225,7 +225,7 @@ NEW_REELS = [
   ("this one is\n*pretty* great", "m:sparkle:stand|sparkles", None),
   ("toast's goal is to\nstay *exactly* the same", "t:smug:loaf", "(he's on track)"),
   ("just be *you*\nin 2027", "hug:love,love|hearts", "send this to someone who doesn't need to change")]),
- ("sibling", "send this to your sibling", [
+ ("sibling", "they'd fight anyone for you", [
   ("this is for\nyour *sibling*", "mt:stare,stare", None),
   ("you fought over\n*everything*", "mt:pout,smug", None),
   ("but they'd fight\nanyone *for* you", "m:love", None),
