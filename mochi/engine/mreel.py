@@ -84,8 +84,9 @@ def build(idx, name, beats, preview=False):
     T = []; t = 0.0
     for i, (txt, spec, sub) in enumerate(beats):
         n = txt.count("\n")+1
-        d = 2.25+0.3*(n-1)+(0.5 if sub else 0)
-        if i == len(beats)-1: d = max(d, 3.2)+0.3
+        # v3 pacing (Nov 18): reel 01 averaged 5.9s watched of 14.4s, so most viewers never saw the payoff. ~25% faster.
+        d = 1.55+0.3*(n-1)+(0.7 if sub else 0)+(0.3 if i == 0 else 0)
+        if i == len(beats)-1: d = max(d, 2.4)+0.3
         T.append((t, t+d)); t += d
     DUR = t+0.2
     cache = {}
