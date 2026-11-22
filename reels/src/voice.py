@@ -76,7 +76,9 @@ def enabled(): return _engine() is not None
 K_FEMALE = ["af_bella", "af_heart", "af_nicole", "af_sarah", "af_nova", "af_river", "bf_emma", "af_sky"]
 K_MALE = ["am_michael", "am_adam", "am_fenrir", "am_liam", "am_eric", "am_onyx", "bm_george", "bm_lewis"]
 K_KID = ["am_puck"]
-NARRATOR = "am_fenrir"
+NARRATOR = os.environ.get("NARRATOR_VOICE", "am_fenrir")
+KID_STYLE = os.environ.get("KID_STYLE", "") == "1"
+if KID_STYLE or NARRATOR != "am_fenrir": V2 = V2 + "-kid2-" + NARRATOR   # separate cache for the kid-storyteller voice   # animated kid-storyteller delivery (pitch lift + contour) to match viral first-person town reels
 def voice_for(key):
     """Match a cast key to a voice: role keywords first (so every mom sounds like a mom), then a stable hash. ELEVENLABS_VOICE_ID overrides when ElevenLabs is the engine."""
     k = str(key).lower()
@@ -136,17 +138,36 @@ def _delivery(sentence, first, last):
     if last: pause = 0.0; speed = min(speed, .84)
     return speed, pause, gain
 
+
+def _kid_pitch(x, sr, sent, first, last, ci=0, nc=1):
+    """Animated kid delivery. Base lift ~1.0 st (reference median 173 Hz), then a contour: statements start high and fall across clauses, questions climb, exclamations pop, short punch lines jump, the final line settles."""
+    import librosa
+    n = len(sent.split()); end = sent.rstrip()[-1:]
+    st = .4
+    if end == "?": st += 1.2 + 2.0 * (ci / max(1, nc - 1) if nc > 1 else 1.0)
+    elif end == "!": st += 3.2
+    else: st += 1.8 * (nc - 1 - ci) / max(1, nc - 1) if nc > 1 else (1.8 if n <= 4 else .6)
+    if n <= 4: st += 1.2
+    if last and end == ".": st -= 1.0
+    if first: st += .8
+    if len(x) < 400: return x
+    return librosa.effects.pitch_shift(np.asarray(x, np.float32), sr=sr, n_steps=st).astype(np.float32)
+
 def _kokoro_expressive(text, voice_id=None):
     """Synthesise sentence by sentence with their own pace, then place real silences between them. Long sentences are split at commas with a short breath."""
     parts = [p.strip() for p in _re.split(r"(?<=[.!?\u2026])\s+", text) if p.strip()]
     chunks = []; sr_out = 24000
     for i, sent in enumerate(parts):
         speed, pause, gain = _delivery(sent, i == 0, i == len(parts) - 1)
+        if KID_STYLE: speed *= 1.12; pause *= .8   # quick, animated storyteller pace
         clauses = [sent]
-        if len(sent.split()) > 14 and "," in sent:      # breath at the middle comma
+        if KID_STYLE and "," in sent and len(sent.split()) > 5:      # kid delivery: split at every comma so each clause gets its own pitch step
+            clauses = [c.strip() for c in _re.split(r"(?<=,)\s+", sent) if c.strip()]
+        elif len(sent.split()) > 14 and "," in sent:      # breath at the middle comma
             idx = [m.start() for m in _re.finditer(",", sent)]; mid = min(idx, key=lambda k: abs(k - len(sent) / 2)); clauses = [sent[:mid + 1], sent[mid + 1:].strip()]
         for j, cl in enumerate(clauses):
             x, sr = _kokoro(cl, voice_id, speed=speed); sr_out = sr
+            if KID_STYLE: x = _kid_pitch(x, sr, sent, i == 0, i == len(parts) - 1, j, len(clauses))
             x = _master(x, sr, studio=False) * gain
             chunks.append(x)
             if j < len(clauses) - 1: chunks.append(np.zeros(int(.16 * sr), np.float32))
