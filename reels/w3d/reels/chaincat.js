@@ -328,6 +328,7 @@ export default async function build({ lib, tl, hud }) {
     crowd.setFace(shock ? 'shock' : 'calm'); crowd.update(t);
     if (bi === 0 && lt > 2.6 && lt < 3.2) attach(glassFly, YOU, 'handR', [0, -.05, .1], [0, 0, 0]);
     if (bi === 2 || (bi === 0 && lt < 2.6)) { /* noop */ }
+    dust.done(); water.done(); bigW.done(); sparkle.done();
     A.render();
     hud.style('C'); hud.layout('B'); hud.question('', 0);
     if (counter) hud.counter(counter[0], counter[1], counter[2], '', counter[3]);
