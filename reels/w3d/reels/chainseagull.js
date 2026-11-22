@@ -134,7 +134,7 @@ export default async function build({ lib, tl, hud }) {
 
   // floating labels
   const mkLabel = (text, c1, c2, o = {}) => { const w = o.w || 640, h = 170; const l = cvs(w, h, (g) => { if (o.bubble) { g.fillStyle = '#fff'; g.strokeStyle = '#111'; g.lineWidth = 10; g.beginPath(); g.roundRect(14, 10, w - 28, h - 56, 34); g.fill(); g.stroke(); g.beginPath(); g.moveTo(w * .42, h - 48); g.lineTo(w * .5, h - 8); g.lineTo(w * .56, h - 50); g.closePath(); g.fillStyle = '#fff'; g.fill(); txt(g, text, w / 2, (h - 56) / 2 + 10, o.size || 88, '#111'); } else txt(g, text, w / 2, h / 2, o.size || 108, c1, { stroke: c2, sw: 20 }); }); const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: l.t, transparent: true, depthWrite: false, depthTest: false })); s.visible = false; s.renderOrder = 10; S.add(s); return s; };
-  const lbClever = mkLabel('CLEVER!', '#ffe23a', '#111', { w: 520 }), lbBetter = mkLabel('MUCH BETTER!', '#7dff6a', '#111', { size: 94 }), lbOrder = mkLabel('FRIES, PLEASE.', '', '', { bubble: true, w: 700, size: 80 }), lbMine = mkLabel('MINE.', '#fff', '#111', { w: 420 });
+  const lbClever = mkLabel('CLEVER!', '#ffe23a', '#111', { w: 520 }), lbBetter = mkLabel('MUCH BETTER!', '#7dff6a', '#111', { size: 76 }), lbOrder = mkLabel('FRIES, PLEASE.', '', '', { bubble: true, w: 700, size: 80 }), lbMine = mkLabel('MINE.', '#fff', '#111', { w: 420 });
   const showLb = (s, on, pos, k = 1, w = 1.4) => { s.visible = on; if (on) { s.position.copy(pos); const a = clamp(k); s.scale.set(w * a, w * a * (170 / s.material.map.image.width), 1); } };
 
   // ------------------------------------------------------------------ camera
@@ -205,7 +205,7 @@ export default async function build({ lib, tl, hud }) {
       const dropped = lt > 3.35; towel.position.copy(H); towel.rotation.set(0, 0, -ang); towel.scale.set(len, 1, 1); skirts.visible = lt < 1.75; if (dropped) { const f = smooth((lt - 3.35) / .3); towel.position.set(lerp(H.x, BX - .7, f), lerp(H.y, .05, f), lerp(H.z, BZ + .4, f)); towel.rotation.set(0, 0, lerp(-1.5, 0, f)); towel.scale.set(1, 1, 1); }
       if (lt > 3.3) { P.hp = .8 * smooth((lt - 3.3) / .15); P.fry = lt > 3.5; gull.g.rotation.x = .2; } shock = lt < .08;
       count = 3 + Math.floor(smooth((lt - 3.4) / .26) * 9);
-      showLb(lbClever, lt > .05 && lt < .85, V(.45, 2.35 + Math.min(.12, lt * .4), .95), Math.min(1.05, (lt - .05) * 6), 1.45);
+      showLb(lbClever, lt > .05 && lt < .85, V(-.2, 2.1 + Math.min(.12, lt * .4), .5), Math.min(1.05, (lt - .05) * 6), 1.0);
       eye = [[0, V(-.1, 1.6, -5.6), V(-.9, .75, .5), 46], [1.6, V(-.5, 1.4, -5.0), V(-1.0, .8, .5), 44], [3.7, V(-.4, 1.6, -5.4), V(-.9, .8, .5), 46]];
     // ========================================================= BEAT 2: car, you eat; the gull is already in the car
     } else if (bi === 2) {
@@ -217,7 +217,7 @@ export default async function build({ lib, tl, hud }) {
       const peek = smooth((lt - 2.9) / .5); gull.g.position.set(lerp(-.5, .15, peek), SEAT - .24 + .05 * peek, -1.4); gull.g.rotation.y = lerp(0, .5, peek); P.sit = 1; P.brow = lerp(.1, .5, peek); P.hp = lerp(.1, .12, peek) + Math.sin(t * 7) * .03 * peek; P.beak = peek > .5 ? (Math.sin(t * 9) > .3 ? .35 : .05) : 0; P.fry = peek > .6; P.wl = P.wr = lerp(0, .1, peek);
       if (lt > 3.6) { P.wr = .3; P.fr = .1 + Math.sin(t * 4) * .1; P.wl = 1.2; P.fl = Math.sin(t * 4) * .2 + .1; }
       shock = lt > 3.2; if (lt > 3.3) { YOU.arms = { lx: -2.5, lz: -.3, rx: -2.5, rz: .3 }; YOU.pitch = -.05; }
-      const h = hp(YOU, 'head'); showLb(lbBetter, lt > 1.75 && lt < 2.9, V(h.x, h.y + .85, h.z), Math.min(1.1, (lt - 1.75) * 5) * 1, 1.7);
+      const h = hp(YOU, 'head'); showLb(lbBetter, lt > 1.75 && lt < 2.9, V(h.x + .55, h.y + .8, h.z + .3), Math.min(1.1, (lt - 1.75) * 5) * 1, 1.15);
       count = 12 + Math.floor(smooth((lt - 3.3) / .5) * 35);
       const cx = 300; eye = [[0, V(cx + 3.6, 3.2, 19.4), V(cx - .6, 1.4, 13.6), 50], [2.6, V(cx + 3.2, 3.2, 19.0), V(cx - .4, 1.4, 13.4), 48], [3.4, V(cx + 3.6, 3.1, 18.0), V(cx - .1, 1.4, 12.8), 46], [5.9, V(cx + 3.2, 3.0, 18.2), V(cx - .1, 1.3, 12.8), 46]];
     // ========================================================= BEAT 3: driver's seat, your keys
