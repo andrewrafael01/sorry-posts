@@ -141,6 +141,8 @@ def build(idx, name, beats, preview=False):
         br = 1+0.014*math.sin(t*2.6)
         sc = 1.0; dy = 0; rot = 0
         if b["pop"] and bi > 0: sc = 0.88+0.12*ease_out_back(a/0.4, 1.6)
+        # v5 (Nov 22): motion inside the first 0.35 s so frame 0 is never a still card
+        if bi == 0 and a < 0.5: sc = 0.62+0.38*ease_out_back(clamp(a/0.35), 2.0); dy += math.sin(clamp(a/0.5)*math.pi)*55
         al = clamp(a/0.12) if (b["pop"] and bi > 0) else 1
         txt = b["txt"].lower()
         if txt.startswith("in...") or "\nin..." in txt: br = 1+0.07*ease_io(a/2.4)
