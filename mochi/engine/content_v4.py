@@ -104,4 +104,24 @@ DUO_REELS = [
   ("cookies\nfor *two*", "give:t:cookie:happy:sparkle+santa", None),
   ("matching *hats*", "mt:sparkle,sparkle+santa|sparkles", None),
   ("the best gift\nis *them*", "hug:love,love+santa|hearts", "send this to your christmas person")]),
+ # Nov 22 weekly review: standalone variants of the 2x-median winners
+ # (proud_of_you 59.9, friends_are 36.7, did_you_eat 32.3 sends/1k; median 15.7)
+ ("so_proud", "we're so proud of you", [
+  ("mochi and toast\nhave *news*", "mt:stare,stare", None),
+  ("we're *proud*\nof you", "mt:happy,happy|sparkles", None),
+  ("for the days you\nkept *going*", "hug:cry,love", None),
+  ("even the *tiny* wins", "give:t:cookie:happy:sparkle", "(toast baked you a cookie. it's burnt)"),
+  ("*so* proud", "hug:love,love|hearts", "send this to someone who needs to hear it")]),
+ ("real_friends", "real friends", [
+  ("real *friends*...", "mt:happy,happy", None),
+  ("share the\nlast *cookie*", "give:t:cookie:happy:sparkle", None),
+  ("show up\nwith *snacks*", "tdoor:happy", None),
+  ("sit with you\nin the *quiet*", "mt:dot,dot", None),
+  ("stay *forever*", "hug:love,love|hearts", "send this to your real one")]),
+ ("drink_water", "did you drink water today?", [
+  ("toast wants to\n*check* on you", "mt:stare,stare", None),
+  ("did you drink\n*water* today?", "th:mug:squint", None),
+  ("a real *meal*?\nnot just snacks", "tbowl:squint:empty", "(toast is one to talk)"),
+  ("we'll *wait*", "mt:pout,pout", None),
+  ("take care of\n*you* today", "hug:love,love|hearts", "send this to someone who forgets to eat")]),
 ]
