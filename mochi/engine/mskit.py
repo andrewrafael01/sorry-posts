@@ -126,6 +126,8 @@ def meter_layer(pct, label="mochi's heart"):
 
 # ---------------- render ----------------
 def render(ep):
+    global GY
+    GY = 925 if ep.get("send") else 1080  # v6: cats sit higher so the caption, meter and send line fit under them
     slug = ep["slug"]; seed = ep.get("seed", 1); steps = ep["steps"]
     path = f"{OUT}/{slug}.mp4"
     # timeline
@@ -140,10 +142,17 @@ def render(ep):
         seq.append(dict(t0=T[i][0], t1=T[i][1], prev=prev, cur={k: dict(v) for k, v in st.items()}, s=s))
     # header
     small, big = ep["header"]
-    hs = tlayer(small, 235, 54, sub=True)[0] if small else None
-    hb, hb_y = tlayer(big, 365 if small else 320, 140 if len(big) < 14 else 88)
-    caps = {i: tlayer(s["cap"], 1335, 72)[0] for i, s in enumerate(steps) if s.get("cap")}
-    foot = tlayer(ep["foot"], 1570, 46, sub=True)[0] if ep.get("foot") else None
+    hs = tlayer(small, 235, 58 if ep.get("send") else 54, sub=True)[0] if small else None
+    v6 = bool(ep.get("send"))  # v6 series layout: premise header, captions/meter tucked under the cats, send line in the safe zone
+    hb, hb_y = tlayer(big, (330 if v6 else 365) if small else 320, 140 if len(big) < 14 else 88)
+    CAPY = 1190 if v6 else 1335; MY = 1145 if v6 else 1325
+    caps = {i: tlayer(s["cap"], CAPY, 80 if v6 else 72)[0] for i, s in enumerate(steps) if s.get("cap")}
+    foot = tlayer(ep["foot"], 1640 if v6 else 1570, 44 if v6 else 46, sub=True)[0] if ep.get("foot") else None
+    sl = ep.get("send") or ""
+    if len(sl) > 22:  # wrap long send lines into two balanced lines so they stay big
+        ws = sl.split(" "); best = min(range(1, len(ws)), key=lambda k: abs(len(" ".join(ws[:k]))-len(" ".join(ws[k:]))))
+        sl = " ".join(ws[:best])+"\n"+" ".join(ws[best:])
+    send = tlayer(sl.replace("send this", "*send* this", 1), 1440, 70)[0] if v6 else None
     hearts = [Spr(heart(52+8*i, PINK, seed=i)) for i in range(3)]
     spk = [Spr(sparkle(40+12*i, (255, 214, 90), i)) for i in range(3)]
     marks = {"bang": mark_spr("!!", 100), "q": mark_spr("?", 110), "notes": note_spr(), "sweat": drop_spr()}
@@ -266,7 +275,10 @@ def render(ep):
                 p0, p1 = ep["meter"]; v = p0+(p1-p0)*ease_io(clamp((c-0.3)/1.0))
                 kk = round(v, 0)
                 if kk not in mlay: mlay[kk] = meter_layer(kk)
-                blit(fr, mlay[kk], RW/2, 1325+int(20*(1-ease_io(clamp(c/0.25)))), alpha=ease_io(clamp(c/0.25)))
+                blit(fr, mlay[kk], RW/2, MY+int(20*(1-ease_io(clamp(c/0.25)))), alpha=ease_io(clamp(c/0.25)))
+        if send is not None:
+            c = t-seq[-1]["t0"]
+            if c > 0.3: k = clamp((c-0.3)/0.3); blit(fr, send, RW/2, send.ay+int(16*(1-ease_io(k))), 0.9+0.1*ease_out_back(k, 2.0), alpha=ease_io(k))
         if foot is not None:
             c = t-seq[-1]["t0"]
             if c > 0.5: blit(fr, foot, RW/2, foot.ay, alpha=ease_io(clamp((c-0.5)/0.3)))

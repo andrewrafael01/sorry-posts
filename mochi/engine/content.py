@@ -67,7 +67,7 @@ REELS = [
   ("naps", "ss", None),
   ("cookies", "th:cookie:love", "(mostly toast)"),
   ("each other", "hug:love,love", None),
-  ("and *you*", "mt:love,love|hearts", "happy thanksgiving")]),
+  ("and *you*", "hug:love,love|hearts", "send this to someone you're thankful for")]),
  ("finals", "to everyone studying right now", [
   ("to everyone\nin *finals*", "m:stare", None),
   ("you're more\nthan a grade", "m:happy", None),

@@ -6,8 +6,25 @@
 # Actor specs: SPEC@X~MOTION (see mskit.py). Mochi sits left (~300), Toast right (~780).
 H = "toast is trying to win mochi's heart"
 def F(n): return f"day {n+1} tomorrow · follow so you don't miss it"
+# v6 (Nov 25): day 1 reached 483 and day 2 629 with 0 and 3 sends; every other reel floors at ~1,000.
+# Frame 0 said "day 1" in big type, which means nothing to a stranger, and nothing asked to be sent.
+# Now: the premise is the big header, "day N of 31" is the small line, and each episode ends on a send line
+# naming a person in the viewer's life (sends correlate 0.91 with reach across 15 reels).
+SEND = {1: "send this to your toast", 2: "send this to who eats your snacks", 3: "send this to someone who'd draw themselves",
+ 4: "send this to the loudest person you love", 5: "send this to who steals your warm spot", 6: "send this to someone who tries too hard",
+ 7: "send this to your blanket thief", 8: "send this to someone who just gets you", 9: "send this to someone whose gifts look like this",
+ 10: "send this to who waits for you to get home", 11: "send this to someone who'd make you warm milk", 12: "send this to someone who can't play it cool",
+ 13: "send this to who texts you 40 times", 14: "send this to whoever kills the bugs", 15: "send this to your first-snow person",
+ 16: "send this to who gives you the last bite", 17: "send this to someone who falls asleep waiting up", 18: "send this to someone who just stays",
+ 19: "send this to the jealous one", 20: "send this to someone who panics around you", 21: "send this to someone studying right now",
+ 22: "send this to someone who deserves a gift back", 23: "send this to who you'd match with", 24: "send this to your nap person",
+ 25: "send this to someone who took care of you", 26: "send this to someone you'd keep", 27: "send this to someone you almost told",
+ 28: "send this to someone who'd run away too", 29: "send this to someone you're waiting on", 30: "send this to someone who said it back",
+ 31: "send this to your person"}
 def ep(n, slug, meter, steps, **kw):
-    d = dict(slug=f"s{n:02d}_{slug}", header=(H, f"day *{n}*"), meter=meter, foot=kw.pop("foot", F(n)), seed=100+n, steps=steps)
+    d = dict(slug=f"s{n:02d}_{slug}", header=(f"day {n} of 31", "toast is trying to\nwin *mochi's* heart"), meter=meter,
+             foot=kw.pop("foot", F(n)), send=SEND[n], seed=100+n, steps=steps)
+    steps[-1]["d"] = steps[-1]["d"]+0.6  # time to read the send line
     d.update(kw); return d
 
 EPISODES = [
