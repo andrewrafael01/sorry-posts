@@ -41,3 +41,11 @@ Media is served from raw.githubusercontent.com/andrewrafael01/sorry-posts/main/m
 - First frame: text + cats fully visible (hook in <0.5s); reels ~12-16s
 - End every reel with a "send this to ..." line (sends per reach is a top ranking signal)
 - Max 5 hashtags; keyword-led caption
+
+## v6 additions (Nov 26)
+- `content_v6.py` + `mreel_m.py`: message Reels (files `4NN_m_<name>.mp4`, NN = index + 1). `python3 mreel_m.py <index or name>`.
+- `endcard.py`: overlays "follow for a new one every day" above the headline for the last 1.6 s. No added length.
+  Run it on every new non-series, non-film Reel before pushing: `cd mochi/reels && python3 ../engine/endcard.py <files>`.
+  It records finished files in `endcard_done.txt` next to the script and skips them on later runs.
+- `stickers.py`: 40 transparent looping GIF stickers + PNGs (480x480, white die-cut outline) in `mochi/stickers/`, for GIPHY and messaging apps.
+- Posting: 6 a day from Dec 1 (9:30, 12:00, 14:30, 17:00, 19:30, 22:00 ET), poster minimum gap 2 h.
