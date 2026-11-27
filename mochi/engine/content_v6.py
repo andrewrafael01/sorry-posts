@@ -78,3 +78,44 @@ MSG_REELS = [
   ("toast already saved\nyou a *seat*", "tseat:happy:sparkle", "(he's guarding it)"),
   ("come *home* soon", "hug:love,love|hearts", "send this to someone you'll see over break")]),
 ]
+
+# v6b (Nov 26): 303_d_if_sent_proud hit 6,005 views and 94.6 sends/1k. Its device: "it means they ___" ->
+# one concrete detail -> "they just didn't know how to say it" (toast's sub-joke) -> "so we said it for them".
+MSG_REELS += [
+ ("if_sent_amazing", "if someone sent you this, they think you're doing amazing", [
+  ("if someone sent\nyou *this*...", "mt:stare,stare", None),
+  ("they think you're\ndoing *amazing*", "mt:sparkle,sparkle|sparkles", None),
+  ("even on the days\nyou *don't*", "m:cry", None),
+  ("they just didn't\nknow how to *say* it", "tb:pout:...", "(toast practiced in the mirror)"),
+  ("so we said it\n*for* them", "hug:love,love|hearts", "send this to someone doing better than they think")]),
+ ("if_sent_safe", "if someone sent you this, you're their safe person", [
+  ("if someone sent\nyou *this*...", "mt:stare,stare", None),
+  ("it means you're\ntheir *safe* person", "hug:love,love", None),
+  ("the one they can\nbe *quiet* with", "mt:dot,dot", None),
+  ("they just didn't\nknow how to *say* it", "tb:pout:...", "(toast wrote it on a napkin. then ate it)"),
+  ("so we said it\n*for* them", "hug:love,love|hearts", "send this to your safe person")]),
+ ("if_sent_fight", "if someone sent you this, they'd fight someone for you", [
+  ("if someone sent\nyou *this*...", "mt:stare,stare", None),
+  ("they'd *fight*\nsomeone for you", "mt:shock,shock|bang", None),
+  ("toast would *also*\nfight someone", "t:smug", "(he has never won a fight)"),
+  ("they just didn't\nknow how to *say* it", "tb:pout:...", None),
+  ("so we said it\n*for* them", "hug:love,love|hearts", "send this to someone you'd fight for")]),
+ ("if_sent_call", "if someone sent you this, you're their first call", [
+  ("if someone sent\nyou *this*...", "mt:stare,stare", None),
+  ("you're their\nfirst *call*", "mp:happy", None),
+  ("good news *or* bad", "mt:sparkle,cry", None),
+  ("they just didn't\nknow how to *say* it", "tp:pout", "(toast tried. he sent a sticker)"),
+  ("so we said it\n*for* them", "hug:love,love|hearts", "send this to your first call")]),
+ ("if_sent_rest", "if someone sent you this, they want you to rest", [
+  ("if someone sent\nyou *this*...", "mt:stare,stare", None),
+  ("it means they want\nyou to *rest*", "mt:pout,pout", None),
+  ("you've been doing\n*so* much", "m:cry", None),
+  ("they just didn't\nknow how to *say* it", "tb:pout:...", "(toast is already resting. for you)"),
+  ("so we said it: *rest*", "ss|hearts", "send this to someone who never rests")]),
+ ("if_sent_thinking", "if someone sent you this, they're thinking about you", [
+  ("if someone sent\nyou *this*...", "mt:stare,stare", None),
+  ("they're thinking\nabout you *now*", "mthink:love:heart", None),
+  ("like, *right* now", "m:love", None),
+  ("they just didn't\nknow how to *say* it", "tb:pout:...", "(toast thinks about you too. between snacks)"),
+  ("so we said it\n*for* them", "hug:love,love|hearts", "send this to who you're thinking about")]),
+]
