@@ -413,8 +413,9 @@ const optProps = [bank, heroMoney, chessB, solit, lindaSb, car, cones, testSign,
     CAST.forEach((ch) => { ch.pose = { vis: false }; ch.ex = 'calm'; ch.mo = 0; }); for (const k in PR) PR[k].visible = false; optProps.forEach((m) => { m.visible = false; }); PAR.pose = { vis: false };
     for (let i = 6; i < PP.length; i++) exHide(PP[i]); exUsed = 0; popTxt = ''; popA = 0; ctr = null; tag = ''; crowdFace = 'calm'; heroDoor.rotation.y = 0; beardK.visible = beardH.visible = beardL.visible = false;
     roomL.intensity = 0; roomL2.intensity = 0; winBanner.visible = false; lindaSb.visible = false; setSun(.4, 30, false);
-    const list = SC[bi]; let k = 0; for (let i = 0; i < list.length; i++) if (lt >= list[i].a) k = i; const s = list[k];
-    const c = { t, bt: lt, lt: lt - s.a, s: lt - s.a, d: s.b - s.a, first: bi === 0 && k === 0, last: bi === BEATN - 1 && k === list.length - 1 };
+    const OLDD = [4.39, 10.24, 9.51, 8.78, 8.05, 15.37, 8.05, 10.24, 14.63]; const lts = lt * OLDD[bi] / tl.beats[bi].dur;
+    const list = SC[bi]; let k = 0; for (let i = 0; i < list.length; i++) if (lts >= list[i].a) k = i; const s = list[k];
+    const c = { t, bt: lt, lt: lts - s.a, s: lts - s.a, d: s.b - s.a, first: bi === 0 && k === 0, last: bi === BEATN - 1 && k === list.length - 1 };
     A.follow(0, 14); s.f(c);
     crowd0.setFace(crowdFace); crowd0.update(t);
     // suitcases for extras
@@ -424,7 +425,7 @@ const optProps = [bank, heroMoney, chessB, solit, lindaSb, car, cones, testSign,
     sky.position.set(A.camera.position.x, 0, A.camera.position.z);
     A.render();
     hud.style('C'); hud.layout('B');
-    hud.question(bi === 0 && lt < 4.2 ? 'In this town, everybody cheats at everything <i>except me.</i>' : '', bi === 0 ? Math.min(1, lt / .25, (4.2 - lt) / .25) : 0);
+    const qd = tl.beats[0].dur - .2; hud.question(bi === 0 && lt < qd ? 'In this town, everybody cheats at everything <i>except me.</i>' : '', bi === 0 ? Math.min(1, lt / .25, (qd - lt) / .25) : 0);
     if (ctr) hud.counter(ctr[0], ctr[1], ctr[2], ctr[3], ctr[4]); else hud.counter('', '', '', tag, false);
     hud.tm(''); hud.pop(popTxt, popA);
   } };
