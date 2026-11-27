@@ -26,3 +26,6 @@ Match the Roblox-avatar look of the reference closely, with OUR OWN hero costume
 - Side-character looks: each has a different hat + hoodie/shirt color and the same simple face decal.
 - World: soft, bright, slightly hazy low-poly town: gentle hills in the back, pastel houses with pitched roofs and dark chimneys, street lamps, curbs and crosswalks, green cars, bunting strings of colored flags, bleachers and a court, a moon/sun disc, evening/night gradient skies (navy, pink), smooth lighting with soft shadows and a mild bloom. Camera mostly at character height, 25-35 mm feel, face close-ups with shallow depth, slow drifts and push-ins.
 - Captions: bold white word-by-word with a thick dark outline, centered lower third (already provided by page.html).
+
+## Voice (decided by the user, Nov 27)
+Town reels use Kokoro voice `am_puck`, plain (no pitch shifting): run tl3d.py with env NARRATOR_VOICE=am_puck and KID_STYLE unset. The earlier pitch-shifted `am_eric` kid style (KID_STYLE=1) was rejected ('the voice sucks'). Chains keep the default narrator. If a real-voice upgrade is wanted: set ELEVENLABS_API_KEY as an environment variable in the cloud environment settings (voice.py uses it automatically).
